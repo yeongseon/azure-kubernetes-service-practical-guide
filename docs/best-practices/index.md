@@ -1,67 +1,43 @@
 # Best Practices
 
-Production-ready patterns for running workloads on Azure Kubernetes Service.
+This section turns AKS concepts into production standards. Read it after Platform and before writing infrastructure or workload manifests.
 
-## Cluster Configuration
+## Main Content
 
-### Use Managed Identity
-
-```bash
-az aks create \
-    --resource-group myResourceGroup \
-    --name myAKSCluster \
-    --enable-managed-identity
+```mermaid
+flowchart LR
+    A[Platform Concepts] --> B[Production Baseline]
+    B --> C[Security]
+    B --> D[Networking]
+    B --> E[Resource Governance]
+    B --> F[Reliability]
+    B --> G[Cost Optimization]
+    G --> H[Anti-Patterns]
 ```
 
-### Enable Azure Policy
 
-```bash
-az aks enable-addons \
-    --addons azure-policy \
-    --resource-group myResourceGroup \
-    --name myAKSCluster
-```
+| Topic | Purpose |
+|---|---|
+| [Production Baseline](production-baseline.md) | Define the minimum controls every production cluster should meet |
+| [Security](security.md) | Reduce cluster, node, and workload attack surface |
+| [Networking](networking.md) | Standardize IP planning, ingress, egress, and policy boundaries |
+| [Resource Governance](resource-governance.md) | Apply quotas, limits, and namespace controls |
+| [Reliability](reliability.md) | Improve upgrade safety, failure isolation, and recovery |
+| [Cost Optimization](cost-optimization.md) | Right-size node pools and avoid waste in shared clusters |
+| [Common Anti-Patterns](common-anti-patterns.md) | Identify frequent AKS design mistakes before production |
 
-## Resource Management
+## Advanced Topics
 
-### Set Resource Requests and Limits
-
-```yaml
-resources:
-  requests:
-    memory: "128Mi"
-    cpu: "250m"
-  limits:
-    memory: "256Mi"
-    cpu: "500m"
-```
-
-### Use Pod Disruption Budgets
-
-```yaml
-apiVersion: policy/v1
-kind: PodDisruptionBudget
-metadata:
-  name: app-pdb
-spec:
-  minAvailable: 2
-  selector:
-    matchLabels:
-      app: myapp
-```
-
-## Security
-
-- Enable Azure AD integration
-- Use network policies
-- Scan container images
-- Rotate credentials regularly
+- Convert these pages into platform guardrails, Azure Policy, and admission policy checks.
+- Review drift from these standards after every major incident.
 
 ## See Also
 
-- [Platform Overview](../platform/index.md)
+- [Platform](../platform/index.md)
 - [Operations](../operations/index.md)
+- [Troubleshooting](../troubleshooting/index.md)
 
 ## Sources
 
-- [AKS best practices](https://learn.microsoft.com/en-us/azure/aks/best-practices)
+- [AKS best practices overview](https://learn.microsoft.com/azure/aks/best-practices)
+- [AKS secure baseline architecture](https://learn.microsoft.com/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks)

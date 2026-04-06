@@ -1,20 +1,41 @@
 # Start Here
 
-Welcome to the Azure AKS Practical Guide. This section helps you get oriented and find the right content for your learning goals.
+Use this section to understand the guide scope, choose a learning path, and confirm that AKS is the right service for your workload.
 
-## Learning Paths
+```mermaid
+flowchart LR
+    A[Overview] --> B[Prerequisites]
+    B --> C[Learning Path]
+    C --> D[AKS vs Other Compute]
+    D --> E[Platform]
+```
 
-### Path 1: New to AKS
+## Main Content
 
-1. [Platform Overview](../platform/index.md) — Understand AKS architecture
-2. [Best Practices](../best-practices/index.md) — Learn production patterns
-3. [Operations](../operations/index.md) — Day-2 tasks
+| Document | Purpose |
+|---|---|
+| [Overview](overview.md) | Understand what AKS is, who this guide is for, and what is in scope. |
+| [Learning Path](learning-path.md) | Follow a role-based sequence for architect, operator, or troubleshooter work. |
+| [Prerequisites](prerequisites.md) | Confirm Azure, Kubernetes, networking, and tooling readiness. |
+| [AKS vs Other Compute](aks-vs-other-compute.md) | Compare AKS with App Service and Azure Container Apps. |
 
-### Path 2: Troubleshooting
+## Recommended Reading Order
 
-1. [Troubleshooting Guide](../troubleshooting/index.md) — Diagnose and resolve issues
+1. [Overview](overview.md)
+2. [Prerequisites](prerequisites.md)
+3. [Learning Path](learning-path.md)
+4. [AKS vs Other Compute](aks-vs-other-compute.md)
+5. [Platform](../platform/index.md)
 
 ## See Also
 
-- [Platform Overview](../platform/index.md)
-- [Best Practices](../best-practices/index.md)
+- [Overview](overview.md)
+- [Learning Path](learning-path.md)
+- [Prerequisites](prerequisites.md)
+- [AKS vs Other Compute](aks-vs-other-compute.md)
+- [Platform](../platform/index.md)
+
+## Sources
+
+- [Azure Kubernetes Service (AKS) documentation](https://learn.microsoft.com/azure/aks/)
+- [What is Azure Kubernetes Service (AKS)?](https://learn.microsoft.com/azure/aks/intro-kubernetes)

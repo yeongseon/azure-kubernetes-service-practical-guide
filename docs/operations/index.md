@@ -1,70 +1,45 @@
 # Operations
 
-Day-2 operational tasks for managing AKS clusters in production.
+This section contains day-2 runbooks for creating, changing, scaling, monitoring, and maintaining AKS clusters in production.
 
-## Scaling
+## Main Content
 
-### Manual Scaling
-
-```bash
-# Scale node pool
-az aks scale \
-    --resource-group myResourceGroup \
-    --name myAKSCluster \
-    --node-count 5
-
-# Scale deployment
-kubectl scale deployment myapp --replicas=5
+```mermaid
+flowchart TD
+    A[Operations] --> B[Cluster Creation]
+    A --> C[Node Pool Operations]
+    A --> D[Upgrades]
+    A --> E[Scaling Operations]
+    A --> F[Monitoring and Logging]
+    A --> G[Maintenance Windows]
+    A --> H[Credential Rotation]
 ```
 
-### Cluster Autoscaler
 
-```bash
-az aks update \
-    --resource-group myResourceGroup \
-    --name myAKSCluster \
-    --enable-cluster-autoscaler \
-    --min-count 1 \
-    --max-count 10
-```
+| Document | Description |
+|---|---|
+| [Cluster Creation](cluster-creation.md) | Build a production-ready cluster with initial baseline settings |
+| [Node Pool Operations](node-pool-operations.md) | Add, scale, cordon, drain, and retire node pools safely |
+| [Upgrades](upgrades.md) | Upgrade Kubernetes versions and node images with validation |
+| [Scaling Operations](scaling-operations.md) | Operate HPA, VPA, and cluster autoscaler safely |
+| [Monitoring and Logging](monitoring-logging.md) | Configure observability, alerts, and diagnostic collection |
+| [Maintenance Windows](maintenance-windows.md) | Align upgrades and platform maintenance with business windows |
+| [Credential Rotation](credential-rotation.md) | Rotate certificates, identities, kubeconfig access, and secrets |
 
-## Upgrades
+## Advanced Topics
 
-### Check Available Versions
-
-```bash
-az aks get-upgrades \
-    --resource-group myResourceGroup \
-    --name myAKSCluster \
-    --output table
-```
-
-### Upgrade Cluster
-
-```bash
-az aks upgrade \
-    --resource-group myResourceGroup \
-    --name myAKSCluster \
-    --kubernetes-version 1.28.0
-```
-
-## Monitoring
-
-### Enable Container Insights
-
-```bash
-az aks enable-addons \
-    --addons monitoring \
-    --resource-group myResourceGroup \
-    --name myAKSCluster
-```
+- Treat every operational change as a runbook with pre-checks and post-checks.
+- Keep non-production clusters close enough to production that upgrades and scaling tests are meaningful.
 
 ## See Also
 
-- [Platform Overview](../platform/index.md)
+- [Platform](../platform/index.md)
+- [Best Practices](../best-practices/index.md)
 - [Troubleshooting](../troubleshooting/index.md)
+- [Reference](../reference/index.md)
 
 ## Sources
 
-- [Scale AKS cluster](https://learn.microsoft.com/en-us/azure/aks/scale-cluster)
-- [Upgrade AKS cluster](https://learn.microsoft.com/en-us/azure/aks/upgrade-cluster)
+- [Create an AKS cluster](https://learn.microsoft.com/azure/aks/learn/quick-kubernetes-deploy-cli)
+- [Upgrade an AKS cluster](https://learn.microsoft.com/azure/aks/upgrade-cluster)
+- [Monitor AKS with Container insights](https://learn.microsoft.com/azure/azure-monitor/containers/container-insights-overview)
