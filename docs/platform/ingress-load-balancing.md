@@ -26,6 +26,9 @@ flowchart TD
 - Application Gateway for Containers or app routing add-on when Azure-managed edge integration is preferred.
 - Service meshes or gateway APIs for larger platform-standard traffic controls.
 
+> [!WARNING]
+> ingress-nginx upstream maintenance ends in March 2026. In AKS, the application routing add-on can continue using NGINX through November 2026, but Gateway API is the recommended long-term direction for new designs.
+
 ### Useful commands
 
 ```bash

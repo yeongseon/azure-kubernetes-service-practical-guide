@@ -14,6 +14,8 @@ flowchart LR
 
 ### What to track
 
+- AKS supports N, N-1, and N-2 GA minor versions; N-3 is platform support only.
+- GA versions follow a 12-month support policy.
 - Current cluster Kubernetes version.
 - Supported AKS minor versions and retirement timelines.
 - API deprecations affecting manifests and controllers.
