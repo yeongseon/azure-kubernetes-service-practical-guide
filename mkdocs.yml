@@ -162,6 +162,7 @@ nav:
         - troubleshooting/playbooks/operations/scaling-failure.md
   - Reference:
     - reference/index.md
+    - Validation Status: reference/validation-status.md
     - reference/cli-cheatsheet.md
     - reference/limits-and-quotas.md
     - reference/version-support.md
