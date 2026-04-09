@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Resource Governance
 
 Shared clusters fail socially before they fail technically. Resource governance sets capacity, ownership, and policy boundaries so one team cannot destabilize everyone else.

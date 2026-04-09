@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Ingress and Load Balancing
 
 AKS traffic entry points combine Kubernetes Services, Azure load balancers, and one or more ingress controllers. Separate north-south routing from east-west service discovery in your design.

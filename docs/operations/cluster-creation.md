@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Cluster Creation
 
 A good AKS cluster is mostly decided before the first `az aks create` command. Use this runbook to create a cluster with explicit networking, identity, and observability choices.

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Lab 01: AKS Cluster Deployment
 
 This lab walks through a production-oriented AKS deployment using a private cluster, Azure CNI Overlay, Microsoft Entra integration, and Container Insights. The goal is to create a repeatable cluster baseline rather than a throwaway demo.

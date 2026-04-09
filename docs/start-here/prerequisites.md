@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Prerequisites
 
 Before you create or operate AKS, confirm that your Azure subscription, networking plan, identity model, and workstation tools are ready.

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Lab 05: AKS Disaster Recovery
 
 This lab simulates AKS disaster recovery planning by backing up cluster configuration, validating cross-region image and secret readiness, and rehearsing failover to a secondary cluster.

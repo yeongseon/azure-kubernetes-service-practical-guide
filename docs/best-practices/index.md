@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Best Practices
 
 This section translates AKS platform guidance into production-ready operating standards. Use it as the policy layer between conceptual platform design and day-2 execution.

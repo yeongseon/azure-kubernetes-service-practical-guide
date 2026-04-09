@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Quick Diagnosis Cards
 
 Use these cards when you need a 30-second starting point before opening a full playbook.

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Scaling
 
 AKS scaling operates at multiple layers: pods, nodes, and sometimes cluster topology. Stable scaling comes from correct workload requests, good probes, and realistic capacity boundaries.

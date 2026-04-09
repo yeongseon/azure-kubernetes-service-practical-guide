@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Security
 
 AKS security is a layered system: control plane access, workload identity, pod restrictions, network segmentation, secret handling, and continuous policy enforcement all matter together.

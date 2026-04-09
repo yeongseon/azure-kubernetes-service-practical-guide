@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Node Pool Operations
 
 Use node pool changes to adjust cluster capacity and isolate workloads without rebuilding the cluster. Safe node pool operations depend on drain behavior, pod disruption budgets, and quota awareness.

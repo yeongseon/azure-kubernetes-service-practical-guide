@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Platform
 
 This section explains how AKS works so you can design clusters with realistic assumptions about networking, identity, storage, ingress, and scale.

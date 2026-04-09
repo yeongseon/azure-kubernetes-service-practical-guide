@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Reliability
 
 Reliable AKS platforms assume nodes, pods, images, and dependencies will fail regularly. Platform choices should reduce blast radius and make recovery routines routine.

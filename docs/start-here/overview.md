@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # AKS Overview
 
 Azure Kubernetes Service (AKS) is Azure's managed Kubernetes offering for teams that need Kubernetes APIs, multi-service orchestration, and control over cluster-level behavior.

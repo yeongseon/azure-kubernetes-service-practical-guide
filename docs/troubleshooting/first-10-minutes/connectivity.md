@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Connectivity
 
 Use this checklist when traffic fails somewhere between ingress and pod.

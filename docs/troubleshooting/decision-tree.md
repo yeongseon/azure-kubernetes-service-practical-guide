@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Decision Tree
 
 Use this decision tree when time matters more than completeness. Its job is to route you to the most likely evidence path, not to prove root cause by itself.

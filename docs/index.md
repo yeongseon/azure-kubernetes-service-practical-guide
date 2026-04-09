@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Azure Kubernetes Service Practical Guide
 
 Comprehensive, practical documentation for designing, deploying, operating, and troubleshooting containerized applications on Azure Kubernetes Service (AKS).

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Node Pools
 
 Node pools are the core workload isolation and lifecycle boundary in AKS. Treat them as operational contracts, not just groups of VMs.

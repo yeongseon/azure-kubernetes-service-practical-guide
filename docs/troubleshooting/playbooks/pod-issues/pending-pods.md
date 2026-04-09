@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Pending Pods
 
 ## 1. Summary

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # CNI IP Exhaustion
 
 ## 1. Summary

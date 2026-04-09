@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Diagnostic Commands
 
 These commands are grouped by investigation goal so you can collect evidence quickly during AKS incidents.

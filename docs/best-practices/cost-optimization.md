@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Cost Optimization
 
 AKS cost optimization is primarily a platform design exercise: node pool shape, pod requests, autoscaler limits, ingress sprawl, and observability volume all matter more than a single VM discount.

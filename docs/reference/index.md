@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Reference
 
 Use this section for quick lookup of commands, support boundaries, terminology, and diagnostics.

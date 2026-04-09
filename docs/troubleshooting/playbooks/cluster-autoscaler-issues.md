@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Cluster Autoscaler Issues
 
 ## 1. Summary

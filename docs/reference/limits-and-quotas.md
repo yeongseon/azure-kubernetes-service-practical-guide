@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Limits and Quotas
 
 AKS capacity planning fails when teams treat quotas as afterthoughts. Limits exist at the subscription, region, VM family, subnet, and Kubernetes design layers.

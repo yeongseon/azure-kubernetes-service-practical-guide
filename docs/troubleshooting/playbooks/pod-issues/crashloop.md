@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # CrashLoop
 
 ## 1. Summary

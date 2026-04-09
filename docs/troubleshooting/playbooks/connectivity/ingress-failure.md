@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Ingress Failure
 
 ## 1. Summary

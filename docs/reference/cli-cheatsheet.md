@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # CLI Cheatsheet
 
 Keep these commands nearby for common AKS tasks. Use long flags for readability and auditability.

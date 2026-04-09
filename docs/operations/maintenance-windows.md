@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Maintenance Windows
 
 Maintenance windows align AKS upgrades and disruptive platform changes with business-approved change periods. They reduce surprise, but they do not remove the need for validation.

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Architecture Overview
 
 Good AKS troubleshooting starts by locating the failure layer: Kubernetes object, node, cluster integration, or Azure dependency.

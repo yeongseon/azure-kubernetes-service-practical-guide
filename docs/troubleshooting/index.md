@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Troubleshooting
 
 This section is a hypothesis-driven AKS troubleshooting hub. Use it to move from symptom to evidence, then to a focused playbook.

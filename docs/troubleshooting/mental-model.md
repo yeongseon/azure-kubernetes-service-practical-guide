@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Mental Model
 
 Think in competing hypotheses, not in favorite fixes. AKS troubleshooting improves when you separate symptom, failure layer, and likely cause.

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Networking
 
 AKS networking decisions shape scale limits, security boundaries, ingress patterns, and troubleshooting speed. Good clusters are designed around network intent before workloads arrive.

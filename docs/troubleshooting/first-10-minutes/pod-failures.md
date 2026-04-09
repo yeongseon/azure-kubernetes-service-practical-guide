@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Pod Failures
 
 Use this checklist when pods are not reaching `Running` and `Ready` quickly enough for service recovery.

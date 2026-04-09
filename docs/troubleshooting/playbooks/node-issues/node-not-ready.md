@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Node Not Ready
 
 ## 1. Summary

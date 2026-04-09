@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Common Anti-Patterns
 
 Most AKS incidents come from a familiar set of design mistakes: under-planned IP space, weak pod security, mixed ingress standards, unbounded autoscaling, and shallow monitoring.

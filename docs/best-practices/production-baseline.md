@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Production Baseline
 
 A production AKS cluster needs a baseline for identity, network isolation, scaling, policy, monitoring, and recovery before application teams are allowed to onboard.

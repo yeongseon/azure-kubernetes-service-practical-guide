@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Version Support
 
 AKS is a managed service with a defined Kubernetes support policy. Treat version support as an ongoing operational responsibility, not an annual cleanup task.

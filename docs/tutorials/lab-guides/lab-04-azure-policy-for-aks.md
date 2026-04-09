@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Lab 04: Azure Policy for AKS
 
 This lab enables Azure Policy for Kubernetes and validates how policy guardrails can enforce baseline controls such as allowed images, label requirements, and restricted pod settings.

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Ingress Not Working
 
 ## 1. Summary

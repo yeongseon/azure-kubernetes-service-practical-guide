@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Glossary
 
 This glossary defines recurring AKS and Kubernetes terms used across the guide.

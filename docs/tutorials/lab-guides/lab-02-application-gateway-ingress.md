@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Lab 02: Application Gateway Ingress
 
 This lab deploys Application Gateway Ingress Controller (AGIC) for north-south traffic so you can validate listener, backend, TLS, and DNS behavior in a controlled way.

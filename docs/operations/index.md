@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Operations
 
 This section contains day-2 runbooks for creating, changing, scaling, monitoring, and maintaining AKS clusters in production.

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Scaling Operations
 
 Scaling is operationally safe only when you understand which layer is changing: replicas, requests, or node capacity. This runbook focuses on operating those controls during normal growth and incident response.

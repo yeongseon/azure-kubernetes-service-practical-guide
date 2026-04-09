@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Upgrade Failure
 
 ## 1. Summary

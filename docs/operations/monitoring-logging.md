@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Monitoring and Logging
 
 AKS observability must cover cluster state, node health, workload health, and control-plane-related signals. Effective monitoring is the difference between guessing and diagnosing.

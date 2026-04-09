@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Upgrades
 
 AKS upgrades touch both Kubernetes version and node image lifecycle. A safe upgrade is a staged change with explicit pre-checks, workload validation, and rollback criteria.

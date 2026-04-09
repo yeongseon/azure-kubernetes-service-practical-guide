@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # AKS vs App Service vs Container Apps
 
 Choose AKS only when you need Kubernetes-level control. Azure App Service and Azure Container Apps remove more operational burden for simpler workloads.

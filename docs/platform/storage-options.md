@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Storage Options
 
 AKS supports both ephemeral and persistent storage. Match the storage pattern to workload behavior instead of assuming all containers should be stateless or all data should live on Azure Disk.

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Performance
 
 Use this checklist when the cluster is responding but latency, throttling, or timeout symptoms are growing.

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Cluster Architecture
 
 AKS separates a Microsoft-managed control plane from customer-managed worker nodes. Most production design mistakes happen when teams treat the cluster as a single opaque box instead of a layered system.

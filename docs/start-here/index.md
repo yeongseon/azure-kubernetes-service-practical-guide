@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Start Here
 
 Use this section to understand the guide scope, choose a learning path, and confirm that AKS is the right service for your workload.

@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Scaling Failure
 
 ## 1. Summary

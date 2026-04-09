@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Networking Models
 
 AKS networking determines pod IP assignment, routability, and subnet pressure. This is one of the most important design choices because it is painful to change later.

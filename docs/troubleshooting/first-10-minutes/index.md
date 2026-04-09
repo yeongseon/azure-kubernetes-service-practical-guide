@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # First 10 Minutes
 
 These checklists prioritize speed over completeness. Use them to stabilize your investigation before you dive into a detailed playbook.

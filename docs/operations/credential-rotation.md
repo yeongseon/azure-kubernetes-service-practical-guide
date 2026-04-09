@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Credential Rotation
 
 Credential rotation in AKS includes more than Kubernetes certificates. You also need rotation plans for kubeconfig access, workload credentials, image pull identities, and external secrets.

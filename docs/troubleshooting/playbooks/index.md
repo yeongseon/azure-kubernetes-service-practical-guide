@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Playbooks
 
 Use these playbooks once you have identified the symptom family. Each playbook is structured around competing hypotheses and evidence collection.

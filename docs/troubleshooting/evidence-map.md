@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Evidence Map
 
 Use this page to decide which commands and signals matter for each AKS symptom category. Better evidence collection prevents random corrective changes.

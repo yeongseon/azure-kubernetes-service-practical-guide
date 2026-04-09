@@ -1,3 +1,8 @@
+---
+hide:
+  - toc
+---
+
 # Identity and Secrets
 
 Use Azure-native identity wherever possible so workloads authenticate without long-lived secrets. AKS security maturity improves dramatically when you separate cluster access, node identity, and workload identity.
