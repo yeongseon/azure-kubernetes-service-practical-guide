@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: troubleshooting-first-10-minutes-index
+    type: flowchart
+    source: self-generated
+    justification: Navigation flow synthesized from the linked AKS topics and workflows
+      on this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
 ---
+
+
 
 # First 10 Minutes
 
@@ -9,6 +21,7 @@ These checklists prioritize speed over completeness. Use them to stabilize your 
 
 ## Main Content
 
+<!-- diagram-id: troubleshooting-first-10-minutes-index -->
 ```mermaid
 flowchart LR
     A[Incident Starts] --> B[Pod Failures]

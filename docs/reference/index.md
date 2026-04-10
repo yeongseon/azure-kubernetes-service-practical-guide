@@ -1,7 +1,18 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: reference-index
+    type: flowchart
+    source: self-generated
+    justification: Navigation flow synthesized from the linked AKS topics and workflows
+      on this page.
+    based_on:
+    - https://learn.microsoft.com/cli/azure/aks
 ---
+
+
 
 # Reference
 
@@ -9,6 +20,7 @@ Use this section for quick lookup of commands, support boundaries, terminology, 
 
 ## Main Content
 
+<!-- diagram-id: reference-index -->
 ```mermaid
 flowchart LR
     A[Reference] --> B[CLI Cheatsheet]

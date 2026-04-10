@@ -1,7 +1,21 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: tutorials-lab-guides-lab-05-aks-disaster-recovery
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-network
+    - https://learn.microsoft.com/en-us/azure/aks/csi-secrets-store-driver
+    - https://learn.microsoft.com/en-us/azure/governance/policy/concepts/policy-for-kubernetes
+    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
 ---
+
+
 
 # Lab 05: AKS Disaster Recovery
 
@@ -17,14 +31,19 @@ This lab simulates AKS disaster recovery planning by backing up cluster configur
 
 ## Architecture Diagram
 
+<!-- diagram-id: tutorials-lab-guides-lab-05-aks-disaster-recovery -->
 ```mermaid
-flowchart TD
-    A[Primary to secondary AKS recovery] --> B[AKS control plane]
-    B --> C[System node pool]
-    B --> D[User workload resources]
-    D --> E[Ingress and networking]
-    D --> F[Policy and identity controls]
-    D --> G[Container Insights and validation]
+flowchart LR
+    subgraph Primary Region
+        PRIMARY[Primary AKS cluster]
+        ACR[Container registry]
+        KV[Key Vault]
+    end
+    PRIMARY --> BACKUP[Backup manifests]
+    BACKUP --> SECONDARY[Secondary AKS cluster]
+    ACR --> SECONDARY
+    KV --> SECONDARY
+    SECONDARY --> MON[Failover validation and monitoring]
 ```
 
 ## Step-by-Step Instructions

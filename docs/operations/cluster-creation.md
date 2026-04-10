@@ -1,7 +1,22 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: operations-cluster-creation
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+    - https://learn.microsoft.com/en-us/azure/aks/upgrade-cluster
+    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-network
+    - https://learn.microsoft.com/en-us/azure/aks/azure-cni-overlay
 ---
+
+
+
 
 # Cluster Creation
 
@@ -20,7 +35,9 @@ A good AKS cluster is mostly decided before the first `az aks create` command. U
 - Standardizing cluster creation across teams.
 
 ## Procedure
+<!-- diagram-id: operations-cluster-creation -->
 
+<!-- diagram-id: operations-cluster-creation -->
 ```mermaid
 flowchart LR
     A[Prepare RG and region] --> B[Create cluster]

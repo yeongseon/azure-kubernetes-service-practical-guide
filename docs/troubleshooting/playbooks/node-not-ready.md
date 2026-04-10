@@ -1,7 +1,21 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: troubleshooting-playbooks-node-not-ready
+    type: flowchart
+    source: self-generated
+    justification: Diagnostic flow synthesized from Microsoft Learn troubleshooting
+      guidance linked in this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-network
 ---
+
+
 
 # Node Not Ready
 
@@ -21,6 +35,7 @@ Use this playbook when one or more AKS nodes report `NotReady`, workloads are be
 
 ### Diagnostic flowchart
 
+<!-- diagram-id: troubleshooting-playbooks-node-not-ready -->
 ```mermaid
 flowchart TD
     A[Reported symptom] --> B{Can the object be reproduced now?}

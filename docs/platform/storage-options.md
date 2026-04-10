@@ -1,14 +1,29 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: platform-storage-options
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/concepts-storage
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-storage
+    - https://learn.microsoft.com/en-us/azure/aks/azure-disk-csi
+    - https://learn.microsoft.com/en-us/azure/aks/azure-files-csi
 ---
+
+
+
 
 # Storage Options
 
 AKS supports both ephemeral and persistent storage. Match the storage pattern to workload behavior instead of assuming all containers should be stateless or all data should live on Azure Disk.
 
 ## Main Content
+<!-- diagram-id: platform-storage-options -->
 
+<!-- diagram-id: platform-storage-options -->
 ```mermaid
 flowchart TD
     A[Pod] --> B[emptyDir]

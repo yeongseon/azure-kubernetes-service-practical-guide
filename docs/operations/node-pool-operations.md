@@ -1,7 +1,22 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: operations-node-pool-operations
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+    - https://learn.microsoft.com/en-us/azure/aks/upgrade-cluster
+    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads
+    - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
 ---
+
+
+
 
 # Node Pool Operations
 
@@ -20,7 +35,9 @@ Use node pool changes to adjust cluster capacity and isolate workloads without r
 - Scaling specific workload pools independently.
 
 ## Procedure
+<!-- diagram-id: operations-node-pool-operations -->
 
+<!-- diagram-id: operations-node-pool-operations -->
 ```mermaid
 flowchart TD
     A[Identify target pool] --> B[Add or scale pool]

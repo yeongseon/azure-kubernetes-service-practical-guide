@@ -1,14 +1,28 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: platform-cluster-architecture
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads
+    - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
 ---
+
+
+
 
 # Cluster Architecture
 
 AKS separates a Microsoft-managed control plane from customer-managed worker nodes. Most production design mistakes happen when teams treat the cluster as a single opaque box instead of a layered system.
 
 ## Main Content
+<!-- diagram-id: platform-cluster-architecture -->
 
+<!-- diagram-id: platform-cluster-architecture -->
 ```mermaid
 flowchart TD
     subgraph Azure Subscription

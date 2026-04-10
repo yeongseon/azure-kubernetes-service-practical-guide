@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: troubleshooting-mental-model
+    type: flowchart
+    source: self-generated
+    justification: Diagnostic flow synthesized from Microsoft Learn troubleshooting
+      guidance linked in this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
 ---
+
+
 
 # Mental Model
 
@@ -9,6 +21,7 @@ Think in competing hypotheses, not in favorite fixes. AKS troubleshooting improv
 
 ## Main Content
 
+<!-- diagram-id: troubleshooting-mental-model -->
 ```mermaid
 flowchart TD
     A[Symptom] --> B[Failure Layer]

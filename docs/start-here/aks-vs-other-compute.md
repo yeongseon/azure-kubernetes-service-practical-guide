@@ -1,7 +1,20 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: start-here-aks-vs-other-compute
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/
+    - https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes
+    - https://learn.microsoft.com/en-us/azure/app-service/overview
+    - https://learn.microsoft.com/en-us/azure/container-apps/overview
 ---
+
+
 
 # AKS vs App Service vs Container Apps
 
@@ -9,6 +22,7 @@ Choose AKS only when you need Kubernetes-level control. Azure App Service and Az
 
 ## Main Content
 
+<!-- diagram-id: start-here-aks-vs-other-compute -->
 ```mermaid
 flowchart LR
     A[Need Kubernetes API?] -->|Yes| B[AKS]

@@ -1,7 +1,20 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: home-learning-flow
+    type: flowchart
+    source: self-generated
+    justification: Navigation flow synthesized from the linked AKS topics and workflows
+      on this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/
+    - https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes
 ---
+
+
+
 
 # Azure Kubernetes Service Practical Guide
 
@@ -52,7 +65,9 @@ This site is organized as a learning and operations guide so you can move from f
 For orientation and study order, start with [Start Here](start-here/overview.md).
 
 ## Learning flow
+<!-- diagram-id: home-learning-flow -->
 
+<!-- diagram-id: home-learning-flow -->
 ```mermaid
 flowchart LR
     A[Start Here] --> B[Platform]

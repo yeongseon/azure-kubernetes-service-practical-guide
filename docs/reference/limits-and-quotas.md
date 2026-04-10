@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: reference-limits-and-quotas
+    type: flowchart
+    source: self-generated
+    justification: Reference visualization synthesized from the Microsoft Learn sources
+      linked in this page or the repository validation data for this guide.
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions
+    - https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits
 ---
+
+
 
 # Limits and Quotas
 
@@ -9,6 +21,7 @@ AKS capacity planning fails when teams treat quotas as afterthoughts. Limits exi
 
 ## Topic/Command Groups
 
+<!-- diagram-id: reference-limits-and-quotas -->
 ```mermaid
 flowchart TD
     A[Limits] --> B[Subscription Quota]

@@ -1,3 +1,17 @@
+---
+content_sources:
+  diagrams:
+  - id: reference-validation-status
+    type: pie
+    source: self-generated
+    justification: Reference visualization synthesized from the Microsoft Learn sources
+      linked in this page or the repository validation data for this guide.
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+    - https://learn.microsoft.com/en-us/azure/aks/what-is-aks
+---
+
+
 # Tutorial Validation Status
 
 This page tracks which tutorials have been validated against real Azure deployments. Each tutorial can be tested via **az-cli** (manual CLI commands) or **Bicep** (infrastructure as code). Tutorials not tested within 90 days are marked as stale.
@@ -14,6 +28,7 @@ This page tracks which tutorials have been validated against real Azure deployme
 | ❌ Failed | 0 |
 | ➖ Not tested | 5 |
 
+<!-- diagram-id: reference-validation-status -->
 ```mermaid
 pie title Tutorial Validation Status
     "Not Tested" : 5
@@ -66,4 +81,3 @@ python3 scripts/generate_validation_status.py
 - [CLI Cheatsheet](cli-cheatsheet.md)
 - [Limits and Quotas](limits-and-quotas.md)
 - [Diagnostic Commands](diagnostic-commands.md)
-

@@ -1,7 +1,20 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: reference-diagnostic-commands
+    type: flowchart
+    source: self-generated
+    justification: Reference visualization synthesized from the Microsoft Learn sources
+      linked in this page or the repository validation data for this guide.
+    based_on:
+    - https://learn.microsoft.com/cli/azure/aks
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
 ---
+
+
 
 # Diagnostic Commands
 
@@ -9,6 +22,7 @@ These commands are grouped by investigation goal so you can collect evidence qui
 
 ## Topic/Command Groups
 
+<!-- diagram-id: reference-diagnostic-commands -->
 ```mermaid
 flowchart LR
     A[Diagnostics] --> B[Cluster State]

@@ -1,7 +1,21 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: troubleshooting-first-10-minutes-performance
+    type: flowchart
+    source: self-generated
+    justification: Diagnostic flow synthesized from Microsoft Learn troubleshooting
+      guidance linked in this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
+    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-data-collection-configure
 ---
+
+
 
 # Performance
 
@@ -9,6 +23,7 @@ Use this checklist when the cluster is responding but latency, throttling, or ti
 
 ## Main Content
 
+<!-- diagram-id: troubleshooting-first-10-minutes-performance -->
 ```mermaid
 flowchart TD
     A[Performance issue] --> B[Check pod and node usage]

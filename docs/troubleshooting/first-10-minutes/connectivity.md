@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: troubleshooting-first-10-minutes-connectivity
+    type: flowchart
+    source: self-generated
+    justification: Diagnostic flow synthesized from Microsoft Learn troubleshooting
+      guidance linked in this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
 ---
+
+
 
 # Connectivity
 
@@ -9,6 +21,7 @@ Use this checklist when traffic fails somewhere between ingress and pod.
 
 ## Main Content
 
+<!-- diagram-id: troubleshooting-first-10-minutes-connectivity -->
 ```mermaid
 flowchart LR
     A[Connectivity issue] --> B[Check ingress]

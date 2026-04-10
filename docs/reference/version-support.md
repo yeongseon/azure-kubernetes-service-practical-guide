@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: reference-version-support
+    type: flowchart
+    source: self-generated
+    justification: Reference visualization synthesized from the Microsoft Learn sources
+      linked in this page or the repository validation data for this guide.
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/supported-kubernetes-versions
+    - https://learn.microsoft.com/en-us/azure/aks/release-tracker
 ---
+
+
 
 # Version Support
 
@@ -9,6 +21,7 @@ AKS is a managed service with a defined Kubernetes support policy. Treat version
 
 ## Topic/Command Groups
 
+<!-- diagram-id: reference-version-support -->
 ```mermaid
 flowchart LR
     A[Version Support] --> B[Supported Window]

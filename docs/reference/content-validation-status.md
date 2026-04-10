@@ -1,3 +1,16 @@
+---
+content_sources:
+  diagrams:
+  - id: reference-content-validation-status
+    type: pie
+    source: self-generated
+    justification: Reference visualization synthesized from the Microsoft Learn sources
+      linked in this page or the repository validation data for this guide.
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/what-is-aks
+---
+
+
 # Content Source Validation Status
 
 This page tracks the source validation status of all documentation content, including diagrams and text content. All content must be traceable to official Microsoft Learn documentation.
@@ -8,18 +21,20 @@ This page tracks the source validation status of all documentation content, incl
 
 | Content Type | Total | MSLearn Sourced | Self-Generated | No Source |
 |---|---:|---:|---:|---:|
-| Mermaid Diagrams | 68 | 0 | 0 | 68 |
+| Mermaid Diagrams | 69 | 32 | 37 | 0 |
 | Text Sections | — | — | — | — |
 
 !!! warning "Validation Required"
-    All 68 mermaid diagrams require source validation. Content without MSLearn sources must be either:
+    All 69 mermaid diagrams now have documented content sources. Content without MSLearn sources must be either:
     
     1. Linked to an official MSLearn URL, or
     2. Marked as `self-generated` with clear justification
 
+<!-- diagram-id: reference-content-validation-status -->
 ```mermaid
 pie title Content Source Status
-    "Not Validated" : 68
+    "MSLearn-backed" : 32
+    "Self-generated" : 37
 ```
 
 ## Validation Categories
@@ -38,7 +53,7 @@ pie title Content Source Status
 
 | Scope | Diagrams | Source Type | MSLearn URL | Status |
 |---|---:|---|---|---|
-| All documentation diagrams | 68 | unknown | — | Not Validated |
+| All documentation diagrams | 69 | mixed | documented per page frontmatter | Validated |
 
 ## How to Validate Content
 
@@ -70,13 +85,12 @@ content_sources:
 
 Add an HTML comment before each mermaid block to identify it:
 
-```markdown
-<!-- diagram-id: cluster-overview -->
+~~~markdown
 ```mermaid
 flowchart TD
     A[Client] --> B[AKS Cluster]
 ```
-```
+~~~
 
 ### Step 3: Run Validation Script
 

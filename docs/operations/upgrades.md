@@ -1,7 +1,22 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: operations-upgrades
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+    - https://learn.microsoft.com/en-us/azure/aks/upgrade-cluster
+    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+    - https://learn.microsoft.com/en-us/azure/aks/supported-kubernetes-versions
+    - https://learn.microsoft.com/en-us/azure/aks/release-tracker
 ---
+
+
+
 
 # Upgrades
 
@@ -20,7 +35,9 @@ AKS upgrades touch both Kubernetes version and node image lifecycle. A safe upgr
 - Aligning cluster posture with security or support policy.
 
 ## Procedure
+<!-- diagram-id: operations-upgrades -->
 
+<!-- diagram-id: operations-upgrades -->
 ```mermaid
 flowchart LR
     A[Check versions] --> B[Upgrade non-production]

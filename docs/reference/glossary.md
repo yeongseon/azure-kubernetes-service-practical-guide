@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: reference-glossary
+    type: flowchart
+    source: self-generated
+    justification: Reference visualization synthesized from the Microsoft Learn sources
+      linked in this page or the repository validation data for this guide.
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/
+    - https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes
 ---
+
+
 
 # Glossary
 
@@ -9,6 +21,7 @@ This glossary defines recurring AKS and Kubernetes terms used across the guide.
 
 ## Topic/Command Groups
 
+<!-- diagram-id: reference-glossary -->
 ```mermaid
 flowchart TD
     A[Glossary] --> B[Cluster Terms]

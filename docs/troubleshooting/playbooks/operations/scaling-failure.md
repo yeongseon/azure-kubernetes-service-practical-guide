@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: troubleshooting-playbooks-operations-scaling-failure
+    type: flowchart
+    source: self-generated
+    justification: Diagnostic flow synthesized from Microsoft Learn troubleshooting
+      guidance linked in this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
 ---
+
+
 
 # Scaling Failure
 
@@ -9,6 +21,7 @@ hide:
 
 Scaling failures happen when demand rises but pods or nodes cannot grow in time. The bottleneck may be HPA inputs, scheduler constraints, quota, or subnet capacity.
 
+<!-- diagram-id: troubleshooting-playbooks-operations-scaling-failure -->
 ```mermaid
 flowchart LR
     A[Symptom] --> B[Hypotheses]

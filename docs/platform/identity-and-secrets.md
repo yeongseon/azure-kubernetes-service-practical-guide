@@ -1,14 +1,29 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: platform-identity-and-secrets
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/managed-azure-ad
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/managed-azure-ad
+    - https://learn.microsoft.com/en-us/azure/aks/workload-identity-deploy-cluster
+    - https://learn.microsoft.com/en-us/azure/aks/csi-secrets-store-driver
 ---
+
+
+
 
 # Identity and Secrets
 
 Use Azure-native identity wherever possible so workloads authenticate without long-lived secrets. AKS security maturity improves dramatically when you separate cluster access, node identity, and workload identity.
 
 ## Main Content
+<!-- diagram-id: platform-identity-and-secrets -->
 
+<!-- diagram-id: platform-identity-and-secrets -->
 ```mermaid
 flowchart LR
     A[Human Access] --> B[Microsoft Entra ID]

@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: troubleshooting-playbooks-operations-upgrade-failure
+    type: flowchart
+    source: self-generated
+    justification: Diagnostic flow synthesized from Microsoft Learn troubleshooting
+      guidance linked in this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
 ---
+
+
 
 # Upgrade Failure
 
@@ -9,6 +21,7 @@ hide:
 
 An AKS upgrade stalls, partially completes, or leaves workloads unhealthy. The problem is usually compatibility, disruption controls, or insufficient pre-checking.
 
+<!-- diagram-id: troubleshooting-playbooks-operations-upgrade-failure -->
 ```mermaid
 flowchart LR
     A[Symptom] --> B[Hypotheses]

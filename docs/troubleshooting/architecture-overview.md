@@ -1,7 +1,21 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: troubleshooting-architecture-overview
+    type: flowchart
+    source: self-generated
+    justification: Diagnostic flow synthesized from Microsoft Learn troubleshooting
+      guidance linked in this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads
+    - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
 ---
+
+
 
 # Architecture Overview
 
@@ -9,6 +23,7 @@ Good AKS troubleshooting starts by locating the failure layer: Kubernetes object
 
 ## Main Content
 
+<!-- diagram-id: troubleshooting-architecture-overview -->
 ```mermaid
 flowchart TD
     U[Users] --> G[Ingress / Gateway]

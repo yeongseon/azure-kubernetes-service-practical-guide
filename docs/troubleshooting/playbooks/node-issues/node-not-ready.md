@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: troubleshooting-playbooks-node-issues-node-not-ready
+    type: flowchart
+    source: self-generated
+    justification: Diagnostic flow synthesized from Microsoft Learn troubleshooting
+      guidance linked in this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
 ---
+
+
 
 # Node Not Ready
 
@@ -9,6 +21,7 @@ hide:
 
 A node marked `NotReady` is a cluster-capacity and reliability risk. The cause may be kubelet health, CNI problems, resource pressure, or Azure VM-level issues.
 
+<!-- diagram-id: troubleshooting-playbooks-node-issues-node-not-ready -->
 ```mermaid
 flowchart LR
     A[Symptom] --> B[Hypotheses]

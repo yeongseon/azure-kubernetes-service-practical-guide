@@ -1,14 +1,34 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: best-practices-reliability
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/best-practices
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/best-practices
+    - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-network
+    - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
+    - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
+    - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+    - https://learn.microsoft.com/en-us/azure/aks/upgrade-cluster
 ---
+
+
+
 
 # Reliability
 
 Reliable AKS platforms assume nodes, pods, images, and dependencies will fail regularly. Platform choices should reduce blast radius and make recovery routines routine.
 
 ## Why This Matters
+<!-- diagram-id: best-practices-reliability -->
 
+<!-- diagram-id: best-practices-reliability -->
 ```mermaid
 flowchart TD
     A[Reliability] --> B[Cluster Blueprint]

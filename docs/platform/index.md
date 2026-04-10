@@ -1,14 +1,28 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: platform-index
+    type: graph
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/
+    - https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes
 ---
+
+
+
 
 # Platform
 
 This section explains how AKS works so you can design clusters with realistic assumptions about networking, identity, storage, ingress, and scale.
 
 ## Main Content
+<!-- diagram-id: platform-index -->
 
+<!-- diagram-id: platform-index -->
 ```mermaid
 graph LR
     A[Cluster Architecture] --> B[Node Pools]

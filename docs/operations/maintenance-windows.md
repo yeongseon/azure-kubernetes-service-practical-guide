@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: operations-maintenance-windows
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/planned-maintenance
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/planned-maintenance
+    - https://learn.microsoft.com/en-us/azure/aks/auto-upgrade-cluster
 ---
+
+
+
 
 # Maintenance Windows
 
@@ -20,7 +32,9 @@ Maintenance windows align AKS upgrades and disruptive platform changes with busi
 - Reducing overlap with peak traffic periods.
 
 ## Procedure
+<!-- diagram-id: operations-maintenance-windows -->
 
+<!-- diagram-id: operations-maintenance-windows -->
 ```mermaid
 flowchart TD
     A[Define business windows] --> B[Map to AKS maintenance policy]

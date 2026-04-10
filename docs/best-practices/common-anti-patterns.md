@@ -1,14 +1,34 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: best-practices-common-anti-patterns
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/best-practices
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/best-practices
+    - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-network
+    - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
+    - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
+    - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+    - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-cluster-isolation
 ---
+
+
+
 
 # Common Anti-Patterns
 
 Most AKS incidents come from a familiar set of design mistakes: under-planned IP space, weak pod security, mixed ingress standards, unbounded autoscaling, and shallow monitoring.
 
 ## Why This Matters
+<!-- diagram-id: best-practices-common-anti-patterns -->
 
+<!-- diagram-id: best-practices-common-anti-patterns -->
 ```mermaid
 flowchart TD
     A[Common Anti-Patterns] --> B[Cluster Blueprint]

@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: troubleshooting-first-10-minutes-pod-failures
+    type: flowchart
+    source: self-generated
+    justification: Diagnostic flow synthesized from Microsoft Learn troubleshooting
+      guidance linked in this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
 ---
+
+
 
 # Pod Failures
 
@@ -9,6 +21,7 @@ Use this checklist when pods are not reaching `Running` and `Ready` quickly enou
 
 ## Main Content
 
+<!-- diagram-id: troubleshooting-first-10-minutes-pod-failures -->
 ```mermaid
 flowchart TD
     A[Pod failure] --> B[Get pod status]

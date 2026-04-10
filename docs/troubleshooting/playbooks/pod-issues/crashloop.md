@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: troubleshooting-playbooks-pod-issues-crashloop
+    type: flowchart
+    source: self-generated
+    justification: Diagnostic flow synthesized from Microsoft Learn troubleshooting
+      guidance linked in this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
 ---
+
+
 
 # CrashLoop
 
@@ -9,6 +21,7 @@ hide:
 
 A pod starts and repeatedly exits or fails health checks. The immediate symptom is restart churn, but the real cause may be application configuration, dependency startup, or probe design.
 
+<!-- diagram-id: troubleshooting-playbooks-pod-issues-crashloop -->
 ```mermaid
 flowchart LR
     A[Symptom] --> B[Hypotheses]

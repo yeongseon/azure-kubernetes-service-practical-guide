@@ -1,14 +1,28 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: platform-networking-models
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/concepts-network
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-network
+    - https://learn.microsoft.com/en-us/azure/aks/azure-cni-overlay
 ---
+
+
+
 
 # Networking Models
 
 AKS networking determines pod IP assignment, routability, and subnet pressure. This is one of the most important design choices because it is painful to change later.
 
 ## Main Content
+<!-- diagram-id: platform-networking-models -->
 
+<!-- diagram-id: platform-networking-models -->
 ```mermaid
 flowchart LR
     A[Networking Choice] --> B[Azure CNI Overlay]

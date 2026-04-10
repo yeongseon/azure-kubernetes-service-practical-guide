@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: troubleshooting-decision-tree
+    type: flowchart
+    source: self-generated
+    justification: Diagnostic flow synthesized from Microsoft Learn troubleshooting
+      guidance linked in this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
 ---
+
+
 
 # Decision Tree
 
@@ -9,6 +21,7 @@ Use this decision tree when time matters more than completeness. Its job is to r
 
 ## Main Content
 
+<!-- diagram-id: troubleshooting-decision-tree -->
 ```mermaid
 flowchart TD
     A[Symptom] --> B{{Pods healthy?}}

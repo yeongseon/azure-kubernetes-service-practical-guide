@@ -1,7 +1,20 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: operations-scaling-operations
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/concepts-scale
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-scale
+    - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+    - https://learn.microsoft.com/en-us/azure/aks/vertical-pod-autoscaler
 ---
+
+
+
 
 # Scaling Operations
 
@@ -20,7 +33,9 @@ Scaling is operationally safe only when you understand which layer is changing: 
 - Cost review requires tuning autoscaler boundaries.
 
 ## Procedure
+<!-- diagram-id: operations-scaling-operations -->
 
+<!-- diagram-id: operations-scaling-operations -->
 ```mermaid
 flowchart TD
     A[Observe pressure] --> B[Check HPA and requests]

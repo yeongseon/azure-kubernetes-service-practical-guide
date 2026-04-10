@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: troubleshooting-evidence-map
+    type: flowchart
+    source: self-generated
+    justification: Diagnostic flow synthesized from Microsoft Learn troubleshooting
+      guidance linked in this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
 ---
+
+
 
 # Evidence Map
 
@@ -9,6 +21,7 @@ Use this page to decide which commands and signals matter for each AKS symptom c
 
 ## Main Content
 
+<!-- diagram-id: troubleshooting-evidence-map -->
 ```mermaid
 flowchart LR
     A[Symptom Category] --> B[kubectl state]

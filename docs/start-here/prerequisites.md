@@ -1,7 +1,20 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: start-here-prerequisites
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/
+    - https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes
+    - https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions
+    - https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits
 ---
+
+
 
 # Prerequisites
 
@@ -9,6 +22,7 @@ Before you create or operate AKS, confirm that your Azure subscription, networki
 
 ## Prerequisites
 
+<!-- diagram-id: start-here-prerequisites -->
 ```mermaid
 flowchart TD
     A[Azure Subscription] --> B[RBAC Permissions]

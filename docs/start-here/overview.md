@@ -1,12 +1,24 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: start-here-overview
+    type: graph
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/
+    - https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes
 ---
+
+
 
 # AKS Overview
 
 Azure Kubernetes Service (AKS) is Azure's managed Kubernetes offering for teams that need Kubernetes APIs, multi-service orchestration, and control over cluster-level behavior.
 
+<!-- diagram-id: start-here-overview -->
 ```mermaid
 graph TD
     A[Application Team] --> B[Containers]

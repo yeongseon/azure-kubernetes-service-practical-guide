@@ -1,12 +1,25 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: start-here-index
+    type: flowchart
+    source: self-generated
+    justification: Navigation flow synthesized from the linked AKS topics and workflows
+      on this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/
+    - https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes
 ---
+
+
 
 # Start Here
 
 Use this section to understand the guide scope, choose a learning path, and confirm that AKS is the right service for your workload.
 
+<!-- diagram-id: start-here-index -->
 ```mermaid
 flowchart LR
     A[Overview] --> B[Prerequisites]

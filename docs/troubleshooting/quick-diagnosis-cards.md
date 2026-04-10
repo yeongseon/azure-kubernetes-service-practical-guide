@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: troubleshooting-quick-diagnosis-cards
+    type: flowchart
+    source: self-generated
+    justification: Diagnostic flow synthesized from Microsoft Learn troubleshooting
+      guidance linked in this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
 ---
+
+
 
 # Quick Diagnosis Cards
 
@@ -9,6 +21,7 @@ Use these cards when you need a 30-second starting point before opening a full p
 
 ## Main Content
 
+<!-- diagram-id: troubleshooting-quick-diagnosis-cards -->
 ```mermaid
 flowchart LR
     A[Quick Card] --> B[Symptom]

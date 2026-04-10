@@ -1,14 +1,34 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: best-practices-index
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/best-practices
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/best-practices
+    - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-network
+    - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
+    - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
+    - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+    - https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions
 ---
+
+
+
 
 # Best Practices
 
 This section translates AKS platform guidance into production-ready operating standards. Use it as the policy layer between conceptual platform design and day-2 execution.
 
 ## Why This Matters
+<!-- diagram-id: best-practices-index -->
 
+<!-- diagram-id: best-practices-index -->
 ```mermaid
 flowchart TD
     A[Best Practices] --> B[Cluster Blueprint]

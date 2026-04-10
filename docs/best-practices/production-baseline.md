@@ -1,14 +1,34 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: best-practices-production-baseline
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/best-practices
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/best-practices
+    - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-network
+    - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
+    - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
+    - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+    - https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
 ---
+
+
+
 
 # Production Baseline
 
 A production AKS cluster needs a baseline for identity, network isolation, scaling, policy, monitoring, and recovery before application teams are allowed to onboard.
 
 ## Why This Matters
+<!-- diagram-id: best-practices-production-baseline -->
 
+<!-- diagram-id: best-practices-production-baseline -->
 ```mermaid
 flowchart TD
     A[Production Baseline] --> B[Cluster Blueprint]

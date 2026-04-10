@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: operations-monitoring-logging
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-data-collection-configure
 ---
+
+
+
 
 # Monitoring and Logging
 
@@ -20,7 +32,9 @@ AKS observability must cover cluster state, node health, workload health, and co
 - Diagnosing incidents with cluster and node evidence.
 
 ## Procedure
+<!-- diagram-id: operations-monitoring-logging -->
 
+<!-- diagram-id: operations-monitoring-logging -->
 ```mermaid
 flowchart LR
     A[Cluster Metrics] --> B[Logs]

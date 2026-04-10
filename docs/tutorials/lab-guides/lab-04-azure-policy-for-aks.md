@@ -1,7 +1,21 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: tutorials-lab-guides-lab-04-azure-policy-for-aks
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-network
+    - https://learn.microsoft.com/en-us/azure/aks/csi-secrets-store-driver
+    - https://learn.microsoft.com/en-us/azure/governance/policy/concepts/policy-for-kubernetes
+    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
 ---
+
+
 
 # Lab 04: Azure Policy for AKS
 
@@ -17,14 +31,15 @@ This lab enables Azure Policy for Kubernetes and validates how policy guardrails
 
 ## Architecture Diagram
 
+<!-- diagram-id: tutorials-lab-guides-lab-04-azure-policy-for-aks -->
 ```mermaid
-flowchart TD
-    A[Azure Policy admission path] --> B[AKS control plane]
-    B --> C[System node pool]
-    B --> D[User workload resources]
-    D --> E[Ingress and networking]
-    D --> F[Policy and identity controls]
-    D --> G[Container Insights and validation]
+flowchart LR
+    DEV[kubectl apply] --> API[AKS API server]
+    API --> POLICY[Azure Policy add-on]
+    POLICY --> GATEKEEPER[Gatekeeper constraints]
+    GATEKEEPER --> DECISION{Compliant?}
+    DECISION -->|Yes| ADMIT[Admit workload]
+    DECISION -->|No| DENY[Deny and record violation]
 ```
 
 ## Step-by-Step Instructions

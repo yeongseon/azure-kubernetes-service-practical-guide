@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: troubleshooting-playbooks-pod-issues-image-pull-failure
+    type: flowchart
+    source: self-generated
+    justification: Diagnostic flow synthesized from Microsoft Learn troubleshooting
+      guidance linked in this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
 ---
+
+
 
 # Image Pull Failure
 
@@ -9,6 +21,7 @@ hide:
 
 A pod cannot start because the node cannot pull the required image. In AKS, this usually points to registry authentication, image reference, network reachability, or policy issues.
 
+<!-- diagram-id: troubleshooting-playbooks-pod-issues-image-pull-failure -->
 ```mermaid
 flowchart LR
     A[Symptom] --> B[Hypotheses]

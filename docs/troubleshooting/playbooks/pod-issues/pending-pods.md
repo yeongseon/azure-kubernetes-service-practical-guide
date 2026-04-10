@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: troubleshooting-playbooks-pod-issues-pending-pods
+    type: flowchart
+    source: self-generated
+    justification: Diagnostic flow synthesized from Microsoft Learn troubleshooting
+      guidance linked in this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
 ---
+
+
 
 # Pending Pods
 
@@ -9,6 +21,7 @@ hide:
 
 Pending pods usually indicate a scheduling boundary: no matching nodes, insufficient capacity, quota limits, or volume attachment constraints.
 
+<!-- diagram-id: troubleshooting-playbooks-pod-issues-pending-pods -->
 ```mermaid
 flowchart LR
     A[Symptom] --> B[Hypotheses]

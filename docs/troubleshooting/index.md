@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: troubleshooting-index
+    type: flowchart
+    source: self-generated
+    justification: Navigation flow synthesized from the linked AKS topics and workflows
+      on this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
 ---
+
+
 
 # Troubleshooting
 
@@ -9,6 +21,7 @@ This section is a hypothesis-driven AKS troubleshooting hub. Use it to move from
 
 ## Main Content
 
+<!-- diagram-id: troubleshooting-index -->
 ```mermaid
 flowchart LR
     A[Observe Symptom] --> B[Decision Tree]

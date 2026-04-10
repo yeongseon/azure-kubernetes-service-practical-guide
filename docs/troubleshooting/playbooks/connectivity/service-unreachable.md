@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: troubleshooting-playbooks-connectivity-service-unreachable
+    type: flowchart
+    source: self-generated
+    justification: Diagnostic flow synthesized from Microsoft Learn troubleshooting
+      guidance linked in this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
 ---
+
+
 
 # Service Unreachable
 
@@ -9,6 +21,7 @@ hide:
 
 A Service exists but cannot be reached by clients or peers. The usual problem is selector mismatch, endpoint absence, DNS confusion, or network policy.
 
+<!-- diagram-id: troubleshooting-playbooks-connectivity-service-unreachable -->
 ```mermaid
 flowchart LR
     A[Symptom] --> B[Hypotheses]

@@ -1,7 +1,35 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: start-here-learning-path-architect-path
+    type: flowchart
+    source: self-generated
+    justification: Navigation flow synthesized from the linked AKS topics and workflows
+      on this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/
+    - https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes
+  - id: start-here-learning-path-operator-path
+    type: flowchart
+    source: self-generated
+    justification: Navigation flow synthesized from the linked AKS topics and workflows
+      on this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/
+    - https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes
+  - id: start-here-learning-path-troubleshooter-path
+    type: flowchart
+    source: self-generated
+    justification: Navigation flow synthesized from the linked AKS topics and workflows
+      on this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/
+    - https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes
 ---
+
+
 
 # Learning Path
 
@@ -11,6 +39,7 @@ Choose a path based on your role so you can move from AKS fundamentals to produc
 
 ### Architect Path
 
+<!-- diagram-id: start-here-learning-path-architect-path -->
 ```mermaid
 flowchart LR
     A[Overview] --> B[Cluster Architecture]
@@ -30,6 +59,7 @@ flowchart LR
 
 ### Operator Path
 
+<!-- diagram-id: start-here-learning-path-operator-path -->
 ```mermaid
 flowchart LR
     A[Prerequisites] --> B[Cluster Creation]
@@ -50,6 +80,7 @@ flowchart LR
 
 ### Troubleshooter Path
 
+<!-- diagram-id: start-here-learning-path-troubleshooter-path -->
 ```mermaid
 flowchart LR
     A[Architecture Overview] --> B[Decision Tree]

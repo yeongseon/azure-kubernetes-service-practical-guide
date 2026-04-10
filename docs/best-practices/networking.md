@@ -1,14 +1,34 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: best-practices-networking
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/best-practices
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/best-practices
+    - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-network
+    - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
+    - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
+    - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+    - https://learn.microsoft.com/en-us/azure/aks/azure-cni-overlay
 ---
+
+
+
 
 # Networking
 
 AKS networking decisions shape scale limits, security boundaries, ingress patterns, and troubleshooting speed. Good clusters are designed around network intent before workloads arrive.
 
 ## Why This Matters
+<!-- diagram-id: best-practices-networking -->
 
+<!-- diagram-id: best-practices-networking -->
 ```mermaid
 flowchart TD
     A[Networking] --> B[Cluster Blueprint]

@@ -1,14 +1,29 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: operations-index
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+    - https://learn.microsoft.com/en-us/azure/aks/upgrade-cluster
+    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
 ---
+
+
+
 
 # Operations
 
 This section contains day-2 runbooks for creating, changing, scaling, monitoring, and maintaining AKS clusters in production.
 
 ## Main Content
+<!-- diagram-id: operations-index -->
 
+<!-- diagram-id: operations-index -->
 ```mermaid
 flowchart TD
     A[Operations] --> B[Cluster Creation]

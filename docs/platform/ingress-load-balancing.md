@@ -1,14 +1,28 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: platform-ingress-load-balancing
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/internal-lb
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/internal-lb
+    - https://learn.microsoft.com/en-us/azure/aks/app-routing
 ---
+
+
+
 
 # Ingress and Load Balancing
 
 AKS traffic entry points combine Kubernetes Services, Azure load balancers, and one or more ingress controllers. Separate north-south routing from east-west service discovery in your design.
 
 ## Main Content
+<!-- diagram-id: platform-ingress-load-balancing -->
 
+<!-- diagram-id: platform-ingress-load-balancing -->
 ```mermaid
 flowchart TD
     U[Users] --> PIP[Public IP or Private IP]

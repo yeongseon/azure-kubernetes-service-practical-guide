@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: troubleshooting-playbooks-node-issues-cni-ip-exhaustion
+    type: flowchart
+    source: self-generated
+    justification: Diagnostic flow synthesized from Microsoft Learn troubleshooting
+      guidance linked in this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
 ---
+
+
 
 # CNI IP Exhaustion
 
@@ -9,6 +21,7 @@ hide:
 
 Pods fail to schedule or nodes fail to scale because the subnet or pod IP allocation model has run out of usable addresses.
 
+<!-- diagram-id: troubleshooting-playbooks-node-issues-cni-ip-exhaustion -->
 ```mermaid
 flowchart LR
     A[Symptom] --> B[Hypotheses]

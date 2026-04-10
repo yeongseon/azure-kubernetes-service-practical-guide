@@ -1,14 +1,29 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: platform-scaling
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/concepts-scale
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-scale
+    - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+    - https://learn.microsoft.com/en-us/azure/aks/vertical-pod-autoscaler
 ---
+
+
+
 
 # Scaling
 
 AKS scaling operates at multiple layers: pods, nodes, and sometimes cluster topology. Stable scaling comes from correct workload requests, good probes, and realistic capacity boundaries.
 
 ## Main Content
+<!-- diagram-id: platform-scaling -->
 
+<!-- diagram-id: platform-scaling -->
 ```mermaid
 flowchart LR
     A[Demand Increase] --> B[HPA changes replicas]

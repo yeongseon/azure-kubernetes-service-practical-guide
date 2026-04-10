@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: operations-credential-rotation
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/certificate-rotation
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/certificate-rotation
+    - https://learn.microsoft.com/en-us/azure/aks/use-managed-identity
 ---
+
+
+
 
 # Credential Rotation
 
@@ -20,7 +32,9 @@ Credential rotation in AKS includes more than Kubernetes certificates. You also 
 - Migration from static credentials to workload identity.
 
 ## Procedure
+<!-- diagram-id: operations-credential-rotation -->
 
+<!-- diagram-id: operations-credential-rotation -->
 ```mermaid
 flowchart LR
     A[Inventory credentials] --> B[Rotate cluster certs or secrets]

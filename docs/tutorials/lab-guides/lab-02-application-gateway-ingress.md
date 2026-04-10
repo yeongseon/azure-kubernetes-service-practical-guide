@@ -1,7 +1,21 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: tutorials-lab-guides-lab-02-application-gateway-ingress
+    type: flowchart
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-network
+    - https://learn.microsoft.com/en-us/azure/aks/csi-secrets-store-driver
+    - https://learn.microsoft.com/en-us/azure/governance/policy/concepts/policy-for-kubernetes
+    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
 ---
+
+
 
 # Lab 02: Application Gateway Ingress
 
@@ -17,14 +31,20 @@ This lab deploys Application Gateway Ingress Controller (AGIC) for north-south t
 
 ## Architecture Diagram
 
+<!-- diagram-id: tutorials-lab-guides-lab-02-application-gateway-ingress -->
 ```mermaid
-flowchart TD
-    A[AGIC traffic flow] --> B[AKS control plane]
-    B --> C[System node pool]
-    B --> D[User workload resources]
-    D --> E[Ingress and networking]
-    D --> F[Policy and identity controls]
-    D --> G[Container Insights and validation]
+flowchart LR
+    CLIENT[Client or DNS] --> APPGW[Application Gateway]
+    subgraph AKS Cluster
+        AGIC[AGIC add-on]
+        INGRESS[Ingress resource]
+        SVC[Service]
+        PODS[Application pods]
+    end
+    APPGW --> AGIC
+    AGIC --> INGRESS
+    INGRESS --> SVC
+    SVC --> PODS
 ```
 
 ## Step-by-Step Instructions

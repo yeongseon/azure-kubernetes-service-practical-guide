@@ -1,7 +1,21 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: troubleshooting-playbooks-ingress-not-working
+    type: flowchart
+    source: self-generated
+    justification: Diagnostic flow synthesized from Microsoft Learn troubleshooting
+      guidance linked in this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-network
 ---
+
+
 
 # Ingress Not Working
 
@@ -21,6 +35,7 @@ Use this playbook when external or internal traffic does not reach the intended 
 
 ### Diagnostic flowchart
 
+<!-- diagram-id: troubleshooting-playbooks-ingress-not-working -->
 ```mermaid
 flowchart TD
     A[Reported symptom] --> B{Can the object be reproduced now?}

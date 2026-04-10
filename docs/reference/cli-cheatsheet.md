@@ -1,14 +1,28 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: reference-cli-cheatsheet
+    type: flowchart
+    source: self-generated
+    justification: Reference visualization synthesized from the Microsoft Learn sources
+      linked in this page or the repository validation data for this guide.
+    based_on:
+    - https://learn.microsoft.com/cli/azure/aks
 ---
+
+
+
 
 # CLI Cheatsheet
 
 Keep these commands nearby for common AKS tasks. Use long flags for readability and auditability.
 
 ## Topic/Command Groups
+<!-- diagram-id: reference-cli-cheatsheet -->
 
+<!-- diagram-id: reference-cli-cheatsheet -->
 ```mermaid
 flowchart TD
     A[CLI Cheatsheet] --> B[Cluster]

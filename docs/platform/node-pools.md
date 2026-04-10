@@ -1,14 +1,31 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: platform-node-pools
+    type: graph
+    source: mslearn-adapted
+    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads
+    - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-scale
+    - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+    - https://learn.microsoft.com/en-us/azure/aks/vertical-pod-autoscaler
 ---
+
+
+
 
 # Node Pools
 
 Node pools are the core workload isolation and lifecycle boundary in AKS. Treat them as operational contracts, not just groups of VMs.
 
 ## Main Content
+<!-- diagram-id: platform-node-pools -->
 
+<!-- diagram-id: platform-node-pools -->
 ```mermaid
 graph TD
     A[Cluster] --> B[System Pool]

@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: troubleshooting-playbooks-connectivity-ingress-failure
+    type: flowchart
+    source: self-generated
+    justification: Diagnostic flow synthesized from Microsoft Learn troubleshooting
+      guidance linked in this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
 ---
+
+
 
 # Ingress Failure
 
@@ -9,6 +21,7 @@ hide:
 
 Ingress failures appear as 404, 502, TLS errors, or connection timeouts at the cluster edge. The broken layer may be the controller, Service, endpoints, or external Azure load balancer path.
 
+<!-- diagram-id: troubleshooting-playbooks-connectivity-ingress-failure -->
 ```mermaid
 flowchart LR
     A[Symptom] --> B[Hypotheses]

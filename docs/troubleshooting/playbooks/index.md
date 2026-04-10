@@ -1,7 +1,19 @@
 ---
 hide:
   - toc
+content_sources:
+  diagrams:
+  - id: troubleshooting-playbooks-index
+    type: flowchart
+    source: self-generated
+    justification: Navigation flow synthesized from the linked AKS topics and workflows
+      on this page.
+    based_on:
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
+    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
 ---
+
+
 
 # Playbooks
 
@@ -9,6 +21,7 @@ Use these playbooks once you have identified the symptom family. Each playbook i
 
 ## Main Content
 
+<!-- diagram-id: troubleshooting-playbooks-index -->
 ```mermaid
 flowchart LR
     A[Playbooks] --> B[Pod Issues]
