@@ -1,6 +1,4 @@
 ---
-hide:
-  - toc
 content_sources:
   diagrams:
   - id: tutorials-lab-guides-lab-03-azure-key-vault-csi-driver

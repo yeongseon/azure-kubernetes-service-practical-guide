@@ -1,263 +1,271 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/best-practices/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/best-practices/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/best-practices/common-anti-patterns/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/best-practices/common-anti-patterns/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/best-practices/cost-optimization/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/best-practices/cost-optimization/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/best-practices/networking/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/best-practices/networking/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/best-practices/production-baseline/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/best-practices/production-baseline/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/best-practices/reliability/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/best-practices/reliability/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/best-practices/resource-governance/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/best-practices/resource-governance/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/best-practices/security/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/best-practices/security/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/operations/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/operations/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/operations/cluster-creation/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/operations/cluster-creation/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/operations/credential-rotation/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/operations/credential-rotation/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/operations/maintenance-windows/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/operations/maintenance-windows/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/operations/monitoring-logging/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/operations/monitoring-logging/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/operations/node-pool-operations/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/operations/node-pool-operations/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/operations/scaling-operations/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/operations/scaling-operations/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/operations/upgrades/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/operations/upgrades/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/platform/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/platform/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/platform/cluster-architecture/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/platform/cluster-architecture/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/platform/identity-and-secrets/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/platform/identity-and-secrets/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/platform/ingress-load-balancing/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/platform/ingress-load-balancing/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/platform/networking-models/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/platform/networking-models/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/platform/node-pools/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/platform/node-pools/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/platform/scaling/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/platform/scaling/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/platform/storage-options/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/platform/storage-options/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/reference/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/reference/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/reference/cli-cheatsheet/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/reference/cli-cheatsheet/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/reference/diagnostic-commands/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/reference/content-validation-status/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/reference/glossary/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/reference/diagnostic-commands/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/reference/limits-and-quotas/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/reference/glossary/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/reference/version-support/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/reference/limits-and-quotas/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/start-here/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/reference/validation-status/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/start-here/aks-vs-other-compute/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/reference/version-support/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/start-here/learning-path/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/start-here/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/start-here/overview/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/start-here/aks-vs-other-compute/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/start-here/prerequisites/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/start-here/learning-path/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/start-here/overview/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/architecture-overview/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/start-here/prerequisites/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/decision-tree/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/evidence-map/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/architecture-overview/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/mental-model/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/decision-tree/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/quick-diagnosis-cards/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/evidence-map/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/first-10-minutes/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/mental-model/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/first-10-minutes/connectivity/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/quick-diagnosis-cards/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/first-10-minutes/performance/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/first-10-minutes/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/first-10-minutes/pod-failures/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/first-10-minutes/connectivity/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/playbooks/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/first-10-minutes/performance/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/playbooks/cluster-autoscaler-issues/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/first-10-minutes/pod-failures/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/playbooks/ingress-not-working/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/playbooks/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/playbooks/node-not-ready/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/playbooks/cluster-autoscaler-issues/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/playbooks/pod-crashloopbackoff/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/playbooks/ingress-not-working/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/playbooks/connectivity/ingress-failure/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/playbooks/node-not-ready/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/playbooks/connectivity/service-unreachable/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/playbooks/pod-crashloopbackoff/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/playbooks/node-issues/cni-ip-exhaustion/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/playbooks/connectivity/ingress-failure/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/playbooks/node-issues/node-not-ready/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/playbooks/connectivity/service-unreachable/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/playbooks/operations/scaling-failure/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/playbooks/node-issues/cni-ip-exhaustion/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/playbooks/operations/upgrade-failure/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/playbooks/node-issues/node-not-ready/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/playbooks/pod-issues/crashloop/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/playbooks/operations/scaling-failure/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/playbooks/pod-issues/image-pull-failure/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/playbooks/operations/upgrade-failure/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/troubleshooting/playbooks/pod-issues/pending-pods/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/playbooks/pod-issues/crashloop/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/tutorials/lab-guides/lab-01-aks-cluster-deployment/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/playbooks/pod-issues/image-pull-failure/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/tutorials/lab-guides/lab-02-application-gateway-ingress/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/playbooks/pod-issues/pending-pods/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/tutorials/lab-guides/lab-03-azure-key-vault-csi-driver/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/tutorials/lab-guides/lab-01-aks-cluster-deployment/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/tutorials/lab-guides/lab-04-azure-policy-for-aks/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/tutorials/lab-guides/lab-02-application-gateway-ingress/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
     <url>
-         <loc>https://yeongseon.github.io/azure-aks-practical-guide/tutorials/lab-guides/lab-05-aks-disaster-recovery/</loc>
-         <lastmod>2026-04-07</lastmod>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/tutorials/lab-guides/lab-03-azure-key-vault-csi-driver/</loc>
+         <lastmod>2026-04-14</lastmod>
+    </url>
+    <url>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/tutorials/lab-guides/lab-04-azure-policy-for-aks/</loc>
+         <lastmod>2026-04-14</lastmod>
+    </url>
+    <url>
+         <loc>https://yeongseon.github.io/azure-kubernetes-service-practical-guide/tutorials/lab-guides/lab-05-aks-disaster-recovery/</loc>
+         <lastmod>2026-04-14</lastmod>
     </url>
 </urlset>
