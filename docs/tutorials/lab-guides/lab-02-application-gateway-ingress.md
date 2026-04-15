@@ -31,7 +31,7 @@ This lab deploys Application Gateway Ingress Controller (AGIC) for north-south t
 
 <!-- diagram-id: tutorials-lab-guides-lab-02-application-gateway-ingress -->
 ```mermaid
-flowchart LR
+flowchart TD
     CLIENT[Client or DNS] --> APPGW[Application Gateway]
     subgraph AKS Cluster
         AGIC[AGIC add-on]

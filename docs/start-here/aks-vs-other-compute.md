@@ -22,7 +22,7 @@ Choose AKS only when you need Kubernetes-level control. Azure App Service and Az
 
 <!-- diagram-id: start-here-aks-vs-other-compute -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Need Kubernetes API?] -->|Yes| B[AKS]
     A -->|No| C[Need app platform for web/API?]
     C -->|Yes| D[App Service]

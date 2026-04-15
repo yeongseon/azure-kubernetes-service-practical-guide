@@ -21,7 +21,7 @@ This section is a hypothesis-driven AKS troubleshooting hub. Use it to move from
 
 <!-- diagram-id: troubleshooting-index -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Observe Symptom] --> B[Decision Tree]
     B --> C[First 10 Minutes]
     C --> D[Playbook]

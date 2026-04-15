@@ -21,7 +21,7 @@ An AKS upgrade stalls, partially completes, or leaves workloads unhealthy. The p
 
 <!-- diagram-id: troubleshooting-playbooks-operations-upgrade-failure -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Symptom] --> B[Hypotheses]
     B --> C[Evidence]
     C --> D[Disprove weak paths]

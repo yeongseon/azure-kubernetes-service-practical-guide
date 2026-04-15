@@ -31,7 +31,7 @@ This lab enables Azure Policy for Kubernetes and validates how policy guardrails
 
 <!-- diagram-id: tutorials-lab-guides-lab-04-azure-policy-for-aks -->
 ```mermaid
-flowchart LR
+flowchart TD
     DEV[kubectl apply] --> API[AKS API server]
     API --> POLICY[Azure Policy add-on]
     POLICY --> GATEKEEPER[Gatekeeper constraints]

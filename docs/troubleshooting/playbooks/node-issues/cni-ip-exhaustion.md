@@ -21,7 +21,7 @@ Pods fail to schedule or nodes fail to scale because the subnet or pod IP alloca
 
 <!-- diagram-id: troubleshooting-playbooks-node-issues-cni-ip-exhaustion -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Symptom] --> B[Hypotheses]
     B --> C[Evidence]
     C --> D[Disprove weak paths]

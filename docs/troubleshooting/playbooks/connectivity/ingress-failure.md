@@ -21,7 +21,7 @@ Ingress failures appear as 404, 502, TLS errors, or connection timeouts at the c
 
 <!-- diagram-id: troubleshooting-playbooks-connectivity-ingress-failure -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Symptom] --> B[Hypotheses]
     B --> C[Evidence]
     C --> D[Disprove weak paths]

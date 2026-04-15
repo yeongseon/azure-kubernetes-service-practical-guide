@@ -22,7 +22,7 @@ This section explains how AKS works so you can design clusters with realistic as
 
 <!-- diagram-id: platform-index -->
 ```mermaid
-graph LR
+graph TD
     A[Cluster Architecture] --> B[Node Pools]
     B --> C[Networking Models]
     C --> D[Ingress and Load Balancing]

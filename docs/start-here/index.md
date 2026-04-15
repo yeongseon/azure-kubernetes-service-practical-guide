@@ -19,7 +19,7 @@ Use this section to understand the guide scope, choose a learning path, and conf
 
 <!-- diagram-id: start-here-index -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Overview] --> B[Prerequisites]
     B --> C[Learning Path]
     C --> D[AKS vs Other Compute]

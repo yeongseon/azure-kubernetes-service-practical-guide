@@ -31,7 +31,7 @@ This lab integrates the Azure Key Vault provider for Secrets Store CSI Driver so
 
 <!-- diagram-id: tutorials-lab-guides-lab-03-azure-key-vault-csi-driver -->
 ```mermaid
-flowchart LR
+flowchart TD
     POD[Workload pod] --> SA[ServiceAccount]
     SA --> FED[Federated credential]
     FED --> UAMI[User-assigned managed identity]

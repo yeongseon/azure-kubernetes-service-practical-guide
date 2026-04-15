@@ -21,7 +21,7 @@ Use this page to decide which commands and signals matter for each AKS symptom c
 
 <!-- diagram-id: troubleshooting-evidence-map -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Symptom Category] --> B[kubectl state]
     A --> C[Events]
     A --> D[Node signals]

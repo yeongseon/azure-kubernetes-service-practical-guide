@@ -22,7 +22,7 @@ These commands are grouped by investigation goal so you can collect evidence qui
 
 <!-- diagram-id: reference-diagnostic-commands -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Diagnostics] --> B[Cluster State]
     A --> C[Pods]
     A --> D[Networking]

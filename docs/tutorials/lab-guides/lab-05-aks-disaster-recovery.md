@@ -31,7 +31,7 @@ This lab simulates AKS disaster recovery planning by backing up cluster configur
 
 <!-- diagram-id: tutorials-lab-guides-lab-05-aks-disaster-recovery -->
 ```mermaid
-flowchart LR
+flowchart TD
     subgraph Primary Region
         PRIMARY[Primary AKS cluster]
         ACR[Container registry]

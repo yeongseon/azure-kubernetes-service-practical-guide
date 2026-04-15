@@ -21,7 +21,7 @@ A node marked `NotReady` is a cluster-capacity and reliability risk. The cause m
 
 <!-- diagram-id: troubleshooting-playbooks-node-issues-node-not-ready -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Symptom] --> B[Hypotheses]
     B --> C[Evidence]
     C --> D[Disprove weak paths]

@@ -23,7 +23,7 @@ AKS scaling operates at multiple layers: pods, nodes, and sometimes cluster topo
 
 <!-- diagram-id: platform-scaling -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Demand Increase] --> B[HPA changes replicas]
     B --> C[Scheduler places pods]
     C --> D{{Enough node capacity?}}

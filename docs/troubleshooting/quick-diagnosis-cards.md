@@ -21,7 +21,7 @@ Use these cards when you need a 30-second starting point before opening a full p
 
 <!-- diagram-id: troubleshooting-quick-diagnosis-cards -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Quick Card] --> B[Symptom]
     B --> C[First Command]
     C --> D[Likely Branch]

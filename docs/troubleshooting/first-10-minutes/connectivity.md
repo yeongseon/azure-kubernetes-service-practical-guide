@@ -21,7 +21,7 @@ Use this checklist when traffic fails somewhere between ingress and pod.
 
 <!-- diagram-id: troubleshooting-first-10-minutes-connectivity -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Connectivity issue] --> B[Check ingress]
     B --> C[Check service]
     C --> D[Check endpoints]

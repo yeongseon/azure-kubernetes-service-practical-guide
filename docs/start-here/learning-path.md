@@ -39,7 +39,7 @@ Choose a path based on your role so you can move from AKS fundamentals to produc
 
 <!-- diagram-id: start-here-learning-path-architect-path -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Overview] --> B[Cluster Architecture]
     B --> C[Networking Models]
     C --> D[Identity and Secrets]
@@ -59,7 +59,7 @@ flowchart LR
 
 <!-- diagram-id: start-here-learning-path-operator-path -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Prerequisites] --> B[Cluster Creation]
     B --> C[Node Pool Operations]
     C --> D[Upgrades]
@@ -80,7 +80,7 @@ flowchart LR
 
 <!-- diagram-id: start-here-learning-path-troubleshooter-path -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Architecture Overview] --> B[Decision Tree]
     B --> C[First 10 Minutes]
     C --> D[Playbooks]

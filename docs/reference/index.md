@@ -20,7 +20,7 @@ Use this section for quick lookup of commands, support boundaries, terminology, 
 
 <!-- diagram-id: reference-index -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Reference] --> B[CLI Cheatsheet]
     A --> C[Limits and Quotas]
     A --> D[Version Support]

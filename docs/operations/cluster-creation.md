@@ -37,7 +37,7 @@ A good AKS cluster is mostly decided before the first `az aks create` command. U
 
 <!-- diagram-id: operations-cluster-creation -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Prepare RG and region] --> B[Create cluster]
     B --> C[Get credentials]
     C --> D[Validate nodes]

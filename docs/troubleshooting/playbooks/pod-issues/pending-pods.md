@@ -21,7 +21,7 @@ Pending pods usually indicate a scheduling boundary: no matching nodes, insuffic
 
 <!-- diagram-id: troubleshooting-playbooks-pod-issues-pending-pods -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Symptom] --> B[Hypotheses]
     B --> C[Evidence]
     C --> D[Disprove weak paths]

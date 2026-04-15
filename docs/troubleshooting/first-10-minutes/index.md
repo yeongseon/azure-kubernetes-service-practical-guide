@@ -21,7 +21,7 @@ These checklists prioritize speed over completeness. Use them to stabilize your 
 
 <!-- diagram-id: troubleshooting-first-10-minutes-index -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Incident Starts] --> B[Pod Failures]
     A --> C[Connectivity]
     A --> D[Performance]

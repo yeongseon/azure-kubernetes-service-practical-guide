@@ -21,7 +21,7 @@ Use these playbooks once you have identified the symptom family. Each playbook i
 
 <!-- diagram-id: troubleshooting-playbooks-index -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Playbooks] --> B[Pod Issues]
     A --> C[Connectivity]
     A --> D[Node Issues]

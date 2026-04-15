@@ -21,7 +21,7 @@ Scaling failures happen when demand rises but pods or nodes cannot grow in time.
 
 <!-- diagram-id: troubleshooting-playbooks-operations-scaling-failure -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Symptom] --> B[Hypotheses]
     B --> C[Evidence]
     C --> D[Disprove weak paths]

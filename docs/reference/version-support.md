@@ -21,7 +21,7 @@ AKS is a managed service with a defined Kubernetes support policy. Treat version
 
 <!-- diagram-id: reference-version-support -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Version Support] --> B[Supported Window]
     B --> C[Upgrade Planning]
     C --> D[Validation]

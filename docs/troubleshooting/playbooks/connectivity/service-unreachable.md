@@ -21,7 +21,7 @@ A Service exists but cannot be reached by clients or peers. The usual problem is
 
 <!-- diagram-id: troubleshooting-playbooks-connectivity-service-unreachable -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Symptom] --> B[Hypotheses]
     B --> C[Evidence]
     C --> D[Disprove weak paths]

@@ -21,7 +21,7 @@ A pod starts and repeatedly exits or fails health checks. The immediate symptom 
 
 <!-- diagram-id: troubleshooting-playbooks-pod-issues-crashloop -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Symptom] --> B[Hypotheses]
     B --> C[Evidence]
     C --> D[Disprove weak paths]

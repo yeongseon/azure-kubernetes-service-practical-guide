@@ -21,7 +21,7 @@ A pod cannot start because the node cannot pull the required image. In AKS, this
 
 <!-- diagram-id: troubleshooting-playbooks-pod-issues-image-pull-failure -->
 ```mermaid
-flowchart LR
+flowchart TD
     A[Symptom] --> B[Hypotheses]
     B --> C[Evidence]
     C --> D[Disprove weak paths]
