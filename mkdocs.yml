@@ -170,3 +170,5 @@ nav:
       - reference/version-support.md
       - reference/glossary.md
       - reference/diagnostic-commands.md
+  - Contributing:
+    - contributing/index.md
