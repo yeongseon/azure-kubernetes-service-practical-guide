@@ -11,9 +11,12 @@ content_sources:
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
     - https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads
     - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
+content_validation:
+  status: pending_review
+  last_reviewed: null
+  reviewer: agent
+  core_claims: []
 ---
-
-
 
 # Architecture Overview
 

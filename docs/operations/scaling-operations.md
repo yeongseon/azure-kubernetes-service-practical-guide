@@ -9,10 +9,12 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/aks/concepts-scale
     - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
     - https://learn.microsoft.com/en-us/azure/aks/vertical-pod-autoscaler
+content_validation:
+  status: pending_review
+  last_reviewed: null
+  reviewer: agent
+  core_claims: []
 ---
-
-
-
 
 # Scaling Operations
 

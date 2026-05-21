@@ -8,10 +8,12 @@ content_sources:
     based_on:
     - https://learn.microsoft.com/en-us/azure/aks/internal-lb
     - https://learn.microsoft.com/en-us/azure/aks/app-routing
+content_validation:
+  status: pending_review
+  last_reviewed: null
+  reviewer: agent
+  core_claims: []
 ---
-
-
-
 
 # Ingress and Load Balancing
 

@@ -8,9 +8,12 @@ content_sources:
       on this page.
     based_on:
     - https://learn.microsoft.com/cli/azure/aks
+content_validation:
+  status: pending_review
+  last_reviewed: null
+  reviewer: agent
+  core_claims: []
 ---
-
-
 
 # Reference
 

@@ -9,10 +9,12 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
     - https://learn.microsoft.com/en-us/azure/aks/upgrade-cluster
     - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+content_validation:
+  status: pending_review
+  last_reviewed: null
+  reviewer: agent
+  core_claims: []
 ---
-
-
-
 
 # Operations
 

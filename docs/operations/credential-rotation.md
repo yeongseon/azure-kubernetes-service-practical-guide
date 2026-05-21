@@ -8,10 +8,12 @@ content_sources:
     based_on:
     - https://learn.microsoft.com/en-us/azure/aks/certificate-rotation
     - https://learn.microsoft.com/en-us/azure/aks/use-managed-identity
+content_validation:
+  status: pending_review
+  last_reviewed: null
+  reviewer: agent
+  core_claims: []
 ---
-
-
-
 
 # Credential Rotation
 

@@ -10,9 +10,12 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes
     - https://learn.microsoft.com/en-us/azure/app-service/overview
     - https://learn.microsoft.com/en-us/azure/container-apps/overview
+content_validation:
+  status: pending_review
+  last_reviewed: null
+  reviewer: agent
+  core_claims: []
 ---
-
-
 
 # AKS vs App Service vs Container Apps
 

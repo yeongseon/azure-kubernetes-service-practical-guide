@@ -9,10 +9,12 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/aks/managed-azure-ad
     - https://learn.microsoft.com/en-us/azure/aks/workload-identity-deploy-cluster
     - https://learn.microsoft.com/en-us/azure/aks/csi-secrets-store-driver
+content_validation:
+  status: pending_review
+  last_reviewed: null
+  reviewer: agent
+  core_claims: []
 ---
-
-
-
 
 # Identity and Secrets
 

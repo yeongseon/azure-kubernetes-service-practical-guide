@@ -9,9 +9,12 @@ content_sources:
     based_on:
     - https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions
     - https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits
+content_validation:
+  status: pending_review
+  last_reviewed: null
+  reviewer: agent
+  core_claims: []
 ---
-
-
 
 # Limits and Quotas
 

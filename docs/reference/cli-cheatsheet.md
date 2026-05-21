@@ -8,10 +8,12 @@ content_sources:
       linked in this page or the repository validation data for this guide.
     based_on:
     - https://learn.microsoft.com/cli/azure/aks
+content_validation:
+  status: pending_review
+  last_reviewed: null
+  reviewer: agent
+  core_claims: []
 ---
-
-
-
 
 # CLI Cheatsheet
 

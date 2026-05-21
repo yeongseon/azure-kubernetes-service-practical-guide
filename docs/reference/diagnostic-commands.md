@@ -10,9 +10,12 @@ content_sources:
     - https://learn.microsoft.com/cli/azure/aks
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
+content_validation:
+  status: pending_review
+  last_reviewed: null
+  reviewer: agent
+  core_claims: []
 ---
-
-
 
 # Diagnostic Commands
 

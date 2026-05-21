@@ -9,10 +9,12 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/aks/concepts-storage
     - https://learn.microsoft.com/en-us/azure/aks/azure-disk-csi
     - https://learn.microsoft.com/en-us/azure/aks/azure-files-csi
+content_validation:
+  status: pending_review
+  last_reviewed: null
+  reviewer: agent
+  core_claims: []
 ---
-
-
-
 
 # Storage Options
 

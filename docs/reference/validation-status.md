@@ -7,6 +7,11 @@ content_sources:
       justification: Tutorial validation status chart generated from repository validation frontmatter.
       based_on:
         - docs/tutorials/lab-guides/
+content_validation:
+  status: pending_review
+  last_reviewed: null
+  reviewer: agent
+  core_claims: []
 ---
 
 # Tutorial Validation Status

@@ -10,9 +10,12 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes
     - https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions
     - https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits
+content_validation:
+  status: pending_review
+  last_reviewed: null
+  reviewer: agent
+  core_claims: []
 ---
-
-
 
 # Prerequisites
 

@@ -4,137 +4,143 @@ content_sources:
     - id: reference-content-validation-status
       type: pie
       source: self-generated
-      justification: Diagram source status chart generated from repository frontmatter metadata.
+      justification: Text and diagram validation status chart generated from repository frontmatter metadata.
       based_on:
         - docs/
+content_validation:
+  status: pending_review
+  last_reviewed: null
+  reviewer: agent
+  core_claims: []
 ---
 
 # Content Source Validation Status
 
-This page tracks Mermaid diagram source metadata declared in document frontmatter. It does not claim text-level `content_validation` coverage; that workflow is separate from this diagram/source metadata check.
+This page tracks non-tutorial text validation metadata and Mermaid diagram source metadata declared in document frontmatter.
 
 ## Summary
 
-*Last updated: 2026-05-22*
+*Generated: 2026-05-22*
 
-| Content Type | Total | MSLearn Sourced | Self-Generated | No Source |
-|---|---:|---:|---:|---:|
-| Mermaid diagrams | 69 | 32 | 37 | 0 |
+| Text Validation Status | Count |
+|---|---:|
+| Total non-tutorial documents | 63 |
+| Verified | 0 |
+| Pending review | 63 |
+| Unverified | 0 |
+| Missing metadata | 0 |
+| Core claims listed | 0 |
+| Core claims verified | 0 |
 
-!!! warning "Validation Required"
-    This dashboard validates diagram source metadata only. Non-tutorial text claim validation requires `content_validation` frontmatter and is not represented by the counts on this page.
+| Diagram Source Type | Count |
+|---|---:|
+| Mermaid diagrams | 64 |
+| MSLearn sourced | 27 |
+| Self-generated | 37 |
+| Missing source metadata | 0 |
 
-    Diagram content without direct MSLearn sources must be either:
-    
-    1. Linked to an official MSLearn URL, or
-    2. Marked as `self-generated` with clear justification
+!!! warning "Validation state"
+    `pending_review` means the document participates in the tracking workflow, but its individual factual claims still need claim-level source review. Do not treat pending documents as verified.
 
 <!-- diagram-id: reference-content-validation-status -->
 ```mermaid
-pie title Content Source Status
-    "MSLearn-backed" : 32
-    "Self-generated" : 37
+pie title Text Validation Status
+    "Pending Review" : 63
 ```
 
-## Validation Categories
+## Document Matrix
 
-### Source Types
+| Document | Status | Core Claims | Verified Claims |
+|---|---|---:|---:|
+| [best-practices/common-anti-patterns.md](../best-practices/common-anti-patterns.md) | `pending_review` | 0 | 0 |
+| [best-practices/cost-optimization.md](../best-practices/cost-optimization.md) | `pending_review` | 0 | 0 |
+| [best-practices/index.md](../best-practices/index.md) | `pending_review` | 0 | 0 |
+| [best-practices/networking.md](../best-practices/networking.md) | `pending_review` | 0 | 0 |
+| [best-practices/production-baseline.md](../best-practices/production-baseline.md) | `pending_review` | 0 | 0 |
+| [best-practices/reliability.md](../best-practices/reliability.md) | `pending_review` | 0 | 0 |
+| [best-practices/resource-governance.md](../best-practices/resource-governance.md) | `pending_review` | 0 | 0 |
+| [best-practices/security.md](../best-practices/security.md) | `pending_review` | 0 | 0 |
+| [contributing/index.md](../contributing/index.md) | `pending_review` | 0 | 0 |
+| [index.md](../index.md) | `pending_review` | 0 | 0 |
+| [operations/cluster-creation.md](../operations/cluster-creation.md) | `pending_review` | 0 | 0 |
+| [operations/credential-rotation.md](../operations/credential-rotation.md) | `pending_review` | 0 | 0 |
+| [operations/index.md](../operations/index.md) | `pending_review` | 0 | 0 |
+| [operations/maintenance-windows.md](../operations/maintenance-windows.md) | `pending_review` | 0 | 0 |
+| [operations/monitoring-logging.md](../operations/monitoring-logging.md) | `pending_review` | 0 | 0 |
+| [operations/node-pool-operations.md](../operations/node-pool-operations.md) | `pending_review` | 0 | 0 |
+| [operations/scaling-operations.md](../operations/scaling-operations.md) | `pending_review` | 0 | 0 |
+| [operations/upgrades.md](../operations/upgrades.md) | `pending_review` | 0 | 0 |
+| [platform/cluster-architecture.md](../platform/cluster-architecture.md) | `pending_review` | 0 | 0 |
+| [platform/identity-and-secrets.md](../platform/identity-and-secrets.md) | `pending_review` | 0 | 0 |
+| [platform/index.md](../platform/index.md) | `pending_review` | 0 | 0 |
+| [platform/ingress-load-balancing.md](../platform/ingress-load-balancing.md) | `pending_review` | 0 | 0 |
+| [platform/networking-models.md](../platform/networking-models.md) | `pending_review` | 0 | 0 |
+| [platform/node-pools.md](../platform/node-pools.md) | `pending_review` | 0 | 0 |
+| [platform/scaling.md](../platform/scaling.md) | `pending_review` | 0 | 0 |
+| [platform/storage-options.md](../platform/storage-options.md) | `pending_review` | 0 | 0 |
+| [reference/cli-cheatsheet.md](../reference/cli-cheatsheet.md) | `pending_review` | 0 | 0 |
+| [reference/content-validation-status.md](../reference/content-validation-status.md) | `pending_review` | 0 | 0 |
+| [reference/diagnostic-commands.md](../reference/diagnostic-commands.md) | `pending_review` | 0 | 0 |
+| [reference/glossary.md](../reference/glossary.md) | `pending_review` | 0 | 0 |
+| [reference/index.md](../reference/index.md) | `pending_review` | 0 | 0 |
+| [reference/limits-and-quotas.md](../reference/limits-and-quotas.md) | `pending_review` | 0 | 0 |
+| [reference/validation-status.md](../reference/validation-status.md) | `pending_review` | 0 | 0 |
+| [reference/version-support.md](../reference/version-support.md) | `pending_review` | 0 | 0 |
+| [start-here/aks-vs-other-compute.md](../start-here/aks-vs-other-compute.md) | `pending_review` | 0 | 0 |
+| [start-here/index.md](../start-here/index.md) | `pending_review` | 0 | 0 |
+| [start-here/learning-path.md](../start-here/learning-path.md) | `pending_review` | 0 | 0 |
+| [start-here/overview.md](../start-here/overview.md) | `pending_review` | 0 | 0 |
+| [start-here/prerequisites.md](../start-here/prerequisites.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/architecture-overview.md](../troubleshooting/architecture-overview.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/decision-tree.md](../troubleshooting/decision-tree.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/evidence-map.md](../troubleshooting/evidence-map.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/first-10-minutes/connectivity.md](../troubleshooting/first-10-minutes/connectivity.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/first-10-minutes/index.md](../troubleshooting/first-10-minutes/index.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/first-10-minutes/performance.md](../troubleshooting/first-10-minutes/performance.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/first-10-minutes/pod-failures.md](../troubleshooting/first-10-minutes/pod-failures.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/index.md](../troubleshooting/index.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/mental-model.md](../troubleshooting/mental-model.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/playbooks/cluster-autoscaler-issues.md](../troubleshooting/playbooks/cluster-autoscaler-issues.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/playbooks/connectivity/ingress-failure.md](../troubleshooting/playbooks/connectivity/ingress-failure.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/playbooks/connectivity/service-unreachable.md](../troubleshooting/playbooks/connectivity/service-unreachable.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/playbooks/index.md](../troubleshooting/playbooks/index.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/playbooks/ingress-not-working.md](../troubleshooting/playbooks/ingress-not-working.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/playbooks/node-issues/cni-ip-exhaustion.md](../troubleshooting/playbooks/node-issues/cni-ip-exhaustion.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/playbooks/node-issues/node-not-ready.md](../troubleshooting/playbooks/node-issues/node-not-ready.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/playbooks/node-not-ready.md](../troubleshooting/playbooks/node-not-ready.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/playbooks/operations/scaling-failure.md](../troubleshooting/playbooks/operations/scaling-failure.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/playbooks/operations/upgrade-failure.md](../troubleshooting/playbooks/operations/upgrade-failure.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/playbooks/pod-crashloopbackoff.md](../troubleshooting/playbooks/pod-crashloopbackoff.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/playbooks/pod-issues/crashloop.md](../troubleshooting/playbooks/pod-issues/crashloop.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/playbooks/pod-issues/image-pull-failure.md](../troubleshooting/playbooks/pod-issues/image-pull-failure.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/playbooks/pod-issues/pending-pods.md](../troubleshooting/playbooks/pod-issues/pending-pods.md) | `pending_review` | 0 | 0 |
+| [troubleshooting/quick-diagnosis-cards.md](../troubleshooting/quick-diagnosis-cards.md) | `pending_review` | 0 | 0 |
 
-| Type | Description | Allowed? |
-|---|---|---|
-| `mslearn` | Content directly from or based on Microsoft Learn | Required for platform content |
-| `mslearn-adapted` | Microsoft Learn content adapted for this guide | Yes, with source URL |
-| `self-generated` | Original content created for this guide | Requires justification |
-| `community` | Community sources | Not for core content |
-| `unknown` | Source not documented | Must be validated |
+## How to Update
 
-### Diagram Validation Status
-
-| Scope | Diagrams | Source Type | MSLearn URL | Status |
-|---|---:|---|---|---|
-| All documentation diagrams | 69 | mixed | documented per page frontmatter | Validated by `scripts/validate_content_sources.py` |
-
-### Out of Scope
-
-| Scope | Status | Tracking |
-|---|---|---|
-| Text-level `content_validation` metadata | Not represented on this page | Track separately until non-tutorial documents carry `content_validation` frontmatter |
-
-## How to Validate Content
-
-### Step 1: Add Source Metadata to Frontmatter
-
-Add `content_sources` to the document's YAML frontmatter:
+Add a `content_validation` block to every non-tutorial Markdown file:
 
 ```yaml
----
-title: Example Page
-content_sources:
-  diagrams:
-    - id: cluster-overview
-      type: flowchart
-      source: mslearn
-      mslearn_url: https://learn.microsoft.com/en-us/azure/aks/
-      description: "AKS architecture overview"
-    - id: troubleshooting-flow
-      type: flowchart
-      source: self-generated
-      justification: "Synthesized from multiple Microsoft Learn articles for clarity"
-      based_on:
-        - https://learn.microsoft.com/en-us/azure/aks/
-        - https://learn.microsoft.com/en-us/azure/aks/concepts-network
----
+content_validation:
+  status: pending_review
+  last_reviewed: null
+  reviewer: agent
+  core_claims: []
 ```
 
-### Step 2: Mark Diagram Blocks with IDs
+When claims have been reviewed against Microsoft Learn, replace the empty claim list with 2-5 sourced claims and set `status: verified` only if every listed claim is verified.
 
-Add an HTML comment before each mermaid block to identify it:
-
-~~~markdown
-<!-- diagram-id: example-aks-cluster -->
-```mermaid
-flowchart TD
-    A[Client] --> B[AKS Cluster]
-```
-~~~
-
-### Step 3: Run Validation Script
+Then regenerate this page:
 
 ```bash
-python3 scripts/validate_content_sources.py
+python3 scripts/generate_content_validation_status.py
 ```
-
-### Step 4: Update This Page
-
-If diagram counts or source types change, rerun the validator and update the summary table from the repository frontmatter metadata. There is no generated text-claim inventory in this repository yet.
-
-## Validation Rules
-
-!!! danger "Mandatory Rules"
-    1. **Platform diagrams** (`docs/platform/`) MUST have MSLearn sources
-    2. **Architecture diagrams** MUST reference official Microsoft documentation
-    3. **Troubleshooting flowcharts** MAY be self-generated if they synthesize MSLearn content
-    4. **Self-generated content** MUST have a `justification` field explaining the source basis
-
-## Official MSLearn Architecture References
-
-Use these official sources for diagram validation:
-
-| Topic | MSLearn URL |
-|---|---|
-| AKS Overview | https://learn.microsoft.com/en-us/azure/aks/ |
-| AKS Cluster Architecture | https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads |
-| AKS Networking | https://learn.microsoft.com/en-us/azure/aks/concepts-network |
-| AKS Identity and Access | https://learn.microsoft.com/en-us/azure/aks/concepts-identity |
-| AKS Security | https://learn.microsoft.com/en-us/azure/aks/concepts-security |
-| AKS Storage | https://learn.microsoft.com/en-us/azure/aks/concepts-storage |
-| AKS Scaling | https://learn.microsoft.com/en-us/azure/aks/concepts-scale |
-| AKS Monitoring | https://learn.microsoft.com/en-us/azure/aks/monitor-aks |
 
 ## See Also
 
 - [Tutorial Validation Status](validation-status.md)
 - [CLI Cheatsheet](cli-cheatsheet.md)
+- [Limits and Quotas](limits-and-quotas.md)
 
 ## Sources
 

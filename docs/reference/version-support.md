@@ -9,9 +9,12 @@ content_sources:
     based_on:
     - https://learn.microsoft.com/en-us/azure/aks/supported-kubernetes-versions
     - https://learn.microsoft.com/en-us/azure/aks/release-tracker
+content_validation:
+  status: pending_review
+  last_reviewed: null
+  reviewer: agent
+  core_claims: []
 ---
-
-
 
 # Version Support
 

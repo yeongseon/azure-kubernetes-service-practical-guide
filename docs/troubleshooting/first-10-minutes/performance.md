@@ -11,9 +11,12 @@ content_sources:
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
     - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
     - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-data-collection-configure
+content_validation:
+  status: pending_review
+  last_reviewed: null
+  reviewer: agent
+  core_claims: []
 ---
-
-
 
 # Performance
 
