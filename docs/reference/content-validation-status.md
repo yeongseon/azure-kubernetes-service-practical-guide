@@ -20,7 +20,7 @@ This page tracks non-tutorial text validation metadata and Mermaid diagram sourc
 
 ## Summary
 
-*Generated: 2026-05-22*
+*Generated from repository frontmatter metadata.*
 
 | Text Validation Status | Count |
 |---|---:|

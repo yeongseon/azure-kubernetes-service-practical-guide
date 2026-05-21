@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 import re
 from collections import Counter
-from datetime import date
 from pathlib import Path
 from typing import Any
 
@@ -113,7 +112,7 @@ def collect_status(docs_dir: Path) -> dict[str, Any]:
     }
 
 
-def generate_dashboard(data: dict[str, Any], today: date) -> str:
+def generate_dashboard(data: dict[str, Any]) -> str:
     status_counts: Counter[str] = data["status_counts"]
     diagram_source_counts: Counter[str] = data["diagram_source_counts"]
     docs = data["docs"]
@@ -143,7 +142,7 @@ def generate_dashboard(data: dict[str, Any], today: date) -> str:
         "",
         "## Summary",
         "",
-        f"*Generated: {today.isoformat()}*",
+        "*Generated from repository frontmatter metadata.*",
         "",
         "| Text Validation Status | Count |",
         "|---|---:|",
@@ -259,7 +258,7 @@ def main() -> None:
     args = parser.parse_args()
 
     data = collect_status(args.docs_dir)
-    content = generate_dashboard(data, date.today())
+    content = generate_dashboard(data)
 
     if args.check:
         existing = args.output.read_text(encoding="utf-8")
