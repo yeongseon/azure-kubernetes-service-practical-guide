@@ -42,22 +42,25 @@ jobs:
       
       - name: Check for missing diagram IDs
         run: |
-          # Count mermaid blocks
-          MERMAID_COUNT=$(grep -r '```mermaid' docs/ --include="*.md" | wc -l)
-          
-          # Count diagram-id comments
-          DIAGRAM_ID_COUNT=$(grep -r '<!-- diagram-id:' docs/ --include="*.md" | wc -l)
-          
-          echo "Mermaid blocks: $MERMAID_COUNT"
-          echo "Diagram IDs: $DIAGRAM_ID_COUNT"
-          
-          if [ "$MERMAID_COUNT" -ne "$DIAGRAM_ID_COUNT" ]; then
-            echo "::error::Mismatch! Some mermaid blocks are missing diagram-id comments."
-            echo "Missing: $((MERMAID_COUNT - DIAGRAM_ID_COUNT)) diagram IDs"
-            exit 1
-          fi
-          
-          echo "All mermaid blocks have diagram-id comments."
+          python - <<'PY'
+          from pathlib import Path
+          import sys
+
+          sys.path.insert(0, "scripts")
+          from validate_content_sources import find_diagram_id_comments, find_mermaid_blocks
+
+          mermaid_blocks = 0
+          diagram_ids = 0
+
+          for path in Path("docs").glob("**/*.md"):
+              content = path.read_text(encoding="utf-8")
+              mermaid_blocks += len(find_mermaid_blocks(content))
+              diagram_ids += len(find_diagram_id_comments(content))
+
+          print(f"Mermaid blocks: {mermaid_blocks}")
+          print(f"Diagram IDs: {diagram_ids}")
+          print("Diagram ID coverage is validated by scripts/validate_content_sources.py.")
+          PY
       
       - name: Check for content_sources in new/modified files
         run: |
