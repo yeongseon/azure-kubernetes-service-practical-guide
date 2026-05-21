@@ -25,12 +25,12 @@ This page tracks non-tutorial text validation metadata and Mermaid diagram sourc
 | Text Validation Status | Count |
 |---|---:|
 | Total non-tutorial documents | 63 |
-| Verified | 0 |
-| Pending review | 63 |
+| Verified | 8 |
+| Pending review | 55 |
 | Unverified | 0 |
 | Missing metadata | 0 |
-| Core claims listed | 0 |
-| Core claims verified | 0 |
+| Core claims listed | 23 |
+| Core claims verified | 23 |
 
 | Diagram Source Type | Count |
 |---|---:|
@@ -45,21 +45,22 @@ This page tracks non-tutorial text validation metadata and Mermaid diagram sourc
 <!-- diagram-id: reference-content-validation-status -->
 ```mermaid
 pie title Text Validation Status
-    "Pending Review" : 63
+    "Verified" : 8
+    "Pending Review" : 55
 ```
 
 ## Document Matrix
 
 | Document | Status | Core Claims | Verified Claims |
 |---|---|---:|---:|
-| [best-practices/common-anti-patterns.md](../best-practices/common-anti-patterns.md) | `pending_review` | 0 | 0 |
-| [best-practices/cost-optimization.md](../best-practices/cost-optimization.md) | `pending_review` | 0 | 0 |
-| [best-practices/index.md](../best-practices/index.md) | `pending_review` | 0 | 0 |
-| [best-practices/networking.md](../best-practices/networking.md) | `pending_review` | 0 | 0 |
-| [best-practices/production-baseline.md](../best-practices/production-baseline.md) | `pending_review` | 0 | 0 |
-| [best-practices/reliability.md](../best-practices/reliability.md) | `pending_review` | 0 | 0 |
-| [best-practices/resource-governance.md](../best-practices/resource-governance.md) | `pending_review` | 0 | 0 |
-| [best-practices/security.md](../best-practices/security.md) | `pending_review` | 0 | 0 |
+| [best-practices/common-anti-patterns.md](../best-practices/common-anti-patterns.md) | `verified` | 3 | 3 |
+| [best-practices/cost-optimization.md](../best-practices/cost-optimization.md) | `verified` | 3 | 3 |
+| [best-practices/index.md](../best-practices/index.md) | `verified` | 2 | 2 |
+| [best-practices/networking.md](../best-practices/networking.md) | `verified` | 3 | 3 |
+| [best-practices/production-baseline.md](../best-practices/production-baseline.md) | `verified` | 3 | 3 |
+| [best-practices/reliability.md](../best-practices/reliability.md) | `verified` | 3 | 3 |
+| [best-practices/resource-governance.md](../best-practices/resource-governance.md) | `verified` | 3 | 3 |
+| [best-practices/security.md](../best-practices/security.md) | `verified` | 3 | 3 |
 | [contributing/index.md](../contributing/index.md) | `pending_review` | 0 | 0 |
 | [index.md](../index.md) | `pending_review` | 0 | 0 |
 | [operations/cluster-creation.md](../operations/cluster-creation.md) | `pending_review` | 0 | 0 |
