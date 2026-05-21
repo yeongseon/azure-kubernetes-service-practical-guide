@@ -77,26 +77,37 @@ def extract_frontmatter(content: str) -> Tuple[Optional[dict], int]:
 
 def find_mermaid_blocks(content: str) -> List[Tuple[int, str]]:
     """
-    Find all mermaid code blocks in content.
+    Find all top-level mermaid code blocks in content.
     Returns list of (line_number, block_content).
     """
     blocks = []
     lines = content.split("\n")
     in_mermaid = False
+    in_other_fence = False
     block_start = 0
     block_content = []
     fence_indent = 0
+    other_fence_marker = ""
 
     for i, line in enumerate(lines, 1):
         stripped = line.lstrip()
         indent = len(line) - len(stripped)
 
         if not in_mermaid:
+            if in_other_fence:
+                if stripped.startswith(other_fence_marker) and indent <= fence_indent:
+                    in_other_fence = False
+                continue
+
             if stripped.startswith("```mermaid"):
                 in_mermaid = True
                 block_start = i
                 fence_indent = indent
                 block_content = [line]
+            elif stripped.startswith("```") or stripped.startswith("~~~"):
+                in_other_fence = True
+                fence_indent = indent
+                other_fence_marker = stripped[:3]
         else:
             block_content.append(line)
             # Check for closing fence at same or less indentation
@@ -109,13 +120,30 @@ def find_mermaid_blocks(content: str) -> List[Tuple[int, str]]:
 
 def find_diagram_id_comments(content: str) -> Dict[int, str]:
     """
-    Find all diagram-id comments in content.
+    Find all diagram-id comments outside fenced code blocks.
     Returns dict of {line_number: diagram_id}.
     """
     comments = {}
     lines = content.split("\n")
+    in_fence = False
+    fence_marker = ""
+    fence_indent = 0
 
     for i, line in enumerate(lines, 1):
+        stripped = line.lstrip()
+        indent = len(line) - len(stripped)
+
+        if in_fence:
+            if stripped.startswith(fence_marker) and indent <= fence_indent:
+                in_fence = False
+            continue
+
+        if stripped.startswith("```") or stripped.startswith("~~~"):
+            in_fence = True
+            fence_marker = stripped[:3]
+            fence_indent = indent
+            continue
+
         match = re.search(r"<!--\s*diagram-id:\s*([^\s>]+)\s*-->", line)
         if match:
             comments[i] = match.group(1)
@@ -139,11 +167,6 @@ def validate_file(file_path: Path, verbose: bool = False) -> List[ValidationErro
         return []  # No mermaid, no validation needed
 
     rel_path = str(file_path)
-
-    # Skip example code blocks in validation status pages
-    if "content-validation-status" in rel_path or "validation-status" in rel_path:
-        # These may contain example mermaid blocks in code fences
-        pass
 
     # Check for frontmatter
     frontmatter, fm_end_line = extract_frontmatter(content)
@@ -277,7 +300,7 @@ def validate_project(
         except:
             continue
 
-        if "```mermaid" in content:
+        if find_mermaid_blocks(content):
             files_with_mermaid += 1
 
         errors = validate_file(md_file, verbose)

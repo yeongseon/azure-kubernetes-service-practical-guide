@@ -11,6 +11,13 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/aks/csi-secrets-store-driver
     - https://learn.microsoft.com/en-us/azure/governance/policy/concepts/policy-for-kubernetes
     - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+validation:
+  az_cli:
+    last_tested: null
+    result: not_tested
+  bicep:
+    last_tested: null
+    result: not_tested
 ---
 
 

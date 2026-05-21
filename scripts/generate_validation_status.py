@@ -128,7 +128,19 @@ def generate_dashboard(tutorials: list[dict[str, Any]], today: date) -> str:
         else:
             not_tested += 1
 
-    lines: list[str] = []
+    lines: list[str] = [
+        "---",
+        "content_sources:",
+        "  diagrams:",
+        "    - id: reference-validation-status",
+        "      type: pie",
+        "      source: self-generated",
+        "      justification: Tutorial validation status chart generated from repository validation frontmatter.",
+        "      based_on:",
+        "        - docs/tutorials/lab-guides/",
+        "---",
+        "",
+    ]
     lines.append("# Tutorial Validation Status")
     lines.append("")
     lines.append(
@@ -153,6 +165,7 @@ def generate_dashboard(tutorials: list[dict[str, Any]], today: date) -> str:
     lines.append("")
 
     # Mermaid pie chart
+    lines.append("<!-- diagram-id: reference-validation-status -->")
     lines.append("```mermaid")
     lines.append('pie title Tutorial Validation Status')
     if validated > 0:
@@ -244,9 +257,7 @@ def generate_dashboard(tutorials: list[dict[str, Any]], today: date) -> str:
     lines.append("- [CLI Cheatsheet](cli-cheatsheet.md)")
     lines.append("- [Limits and Quotas](limits-and-quotas.md)")
     lines.append("- [Diagnostic Commands](diagnostic-commands.md)")
-    lines.append("")
-
-    return "\n".join(lines) + "\n"
+    return "\n".join(lines).rstrip() + "\n"
 
 
 def main() -> None:

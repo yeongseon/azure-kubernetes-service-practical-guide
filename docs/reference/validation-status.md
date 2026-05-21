@@ -1,16 +1,13 @@
 ---
 content_sources:
   diagrams:
-  - id: reference-validation-status
-    type: pie
-    source: self-generated
-    justification: Reference visualization synthesized from the Microsoft Learn sources
-      linked in this page or the repository validation data for this guide.
-    based_on:
-    - https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
-    - https://learn.microsoft.com/en-us/azure/aks/what-is-aks
+    - id: reference-validation-status
+      type: pie
+      source: self-generated
+      justification: Tutorial validation status chart generated from repository validation frontmatter.
+      based_on:
+        - docs/tutorials/lab-guides/
 ---
-
 
 # Tutorial Validation Status
 
@@ -18,7 +15,7 @@ This page tracks which tutorials have been validated against real Azure deployme
 
 ## Summary
 
-*Generated: 2026-04-09*
+*Generated: 2026-05-22*
 
 | Metric | Count |
 |---|---:|
@@ -38,11 +35,11 @@ pie title Tutorial Validation Status
 
 | Lab Guide | az-cli | Bicep | Last Tested | Status |
 |---|---|---|---|---|
-| [Lab 01 Aks Cluster Deployment](../tutorials/lab-guides/lab-01-aks-cluster-deployment.md) | ➖ No Data | ➖ No Data | — | ➖ Not Tested |
-| [Lab 02 Application Gateway Ingress](../tutorials/lab-guides/lab-02-application-gateway-ingress.md) | ➖ No Data | ➖ No Data | — | ➖ Not Tested |
-| [Lab 03 Azure Key Vault Csi Driver](../tutorials/lab-guides/lab-03-azure-key-vault-csi-driver.md) | ➖ No Data | ➖ No Data | — | ➖ Not Tested |
-| [Lab 04 Azure Policy For Aks](../tutorials/lab-guides/lab-04-azure-policy-for-aks.md) | ➖ No Data | ➖ No Data | — | ➖ Not Tested |
-| [Lab 05 Aks Disaster Recovery](../tutorials/lab-guides/lab-05-aks-disaster-recovery.md) | ➖ No Data | ➖ No Data | — | ➖ Not Tested |
+| [Lab 01 Aks Cluster Deployment](../tutorials/lab-guides/lab-01-aks-cluster-deployment.md) | ➖ Not Tested | ➖ Not Tested | — | ➖ Not Tested |
+| [Lab 02 Application Gateway Ingress](../tutorials/lab-guides/lab-02-application-gateway-ingress.md) | ➖ Not Tested | ➖ Not Tested | — | ➖ Not Tested |
+| [Lab 03 Azure Key Vault Csi Driver](../tutorials/lab-guides/lab-03-azure-key-vault-csi-driver.md) | ➖ Not Tested | ➖ Not Tested | — | ➖ Not Tested |
+| [Lab 04 Azure Policy For Aks](../tutorials/lab-guides/lab-04-azure-policy-for-aks.md) | ➖ Not Tested | ➖ Not Tested | — | ➖ Not Tested |
+| [Lab 05 Aks Disaster Recovery](../tutorials/lab-guides/lab-05-aks-disaster-recovery.md) | ➖ Not Tested | ➖ Not Tested | — | ➖ Not Tested |
 
 ## How to Update
 
@@ -50,6 +47,8 @@ To mark a tutorial as validated, add a `validation` block to its YAML frontmatte
 
 ```yaml
 ---
+hide:
+  - toc
 validation:
   az_cli:
     last_tested: 2026-04-09
