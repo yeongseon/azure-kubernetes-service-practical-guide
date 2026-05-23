@@ -60,6 +60,14 @@ kubectl describe node <node-name>
 - Spot pools for interruptible work.
 - Autoscaler enabled or fixed-capacity pools.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Node Pools. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Cluster Architecture](cluster-architecture.md)

@@ -145,6 +145,9 @@ Brief introduction
 ## Topic/Command Groups
 ## Usage Notes
 ## See Also
+
+## See Also
+- [Start Here](../start-here/index.md)
 ## Sources
 ```
 
@@ -219,6 +222,3 @@ mkdocs serve
 
 ## Code of Conduct
 See [CODE_OF_CONDUCT.md](https://github.com/yeongseon/azure-kubernetes-service-practical-guide/blob/main/CODE_OF_CONDUCT.md).
-
-## See Also
-- [Start Here](../start-here/index.md)

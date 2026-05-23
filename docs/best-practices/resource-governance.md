@@ -10,7 +10,7 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
     - https://learn.microsoft.com/en-us/azure/aks/concepts-network
     - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
-    - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-security
     - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
     - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
     - https://learn.microsoft.com/en-us/azure/governance/policy/concepts/policy-for-kubernetes
@@ -107,6 +107,14 @@ If ownership, labels, quotas, and policies are not enforced or measured, they wi
 - Exceptions include reason, owner, expiry date, and compensating control.
 - Cost and incident dashboards can group data by owner or application.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Resource Governance. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Security](security.md)
@@ -119,4 +127,4 @@ If ownership, labels, quotas, and policies are not enforced or measured, they wi
 - [AKS best practices](https://learn.microsoft.com/azure/aks/best-practices)
 - [Azure Policy for AKS](https://learn.microsoft.com/azure/aks/use-azure-policy)
 - [AKS cost optimization best practices](https://learn.microsoft.com/azure/aks/best-practices-cost)
-- [AKS security baseline](https://learn.microsoft.com/security/benchmark/azure/baselines/azure-kubernetes-service-security-baseline)
+- [AKS security baseline](https://learn.microsoft.com/en-us/security/benchmark/azure/baselines/azure-kubernetes-service-aks-security-baseline)

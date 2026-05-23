@@ -85,6 +85,14 @@ kubectl exec -it <pod-name> -n <namespace> -- nslookup <service-name>
 - Keep network policy diagrams current.
 - Use synthetic service checks for critical dependencies.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Service Unreachable. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Ingress Failure](ingress-failure.md)

@@ -49,6 +49,14 @@ If ingress returns 502:
 - Hypothesis B: Service selector does not match pods.
 - Hypothesis C: ingress controller cannot reach endpoints due to network policy.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Mental Model. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Evidence Map](evidence-map.md)

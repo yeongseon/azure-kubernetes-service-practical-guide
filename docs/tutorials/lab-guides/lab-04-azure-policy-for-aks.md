@@ -18,10 +18,16 @@ validation:
   bicep:
     last_tested: null
     result: not_tested
+content_validation:
+  status: verified
+  last_reviewed: '2026-05-23'
+  reviewer: agent
+  core_claims:
+  - claim: This page uses Microsoft Learn as the primary source basis for its Azure-specific
+      guidance.
+    source: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+    verified: true
 ---
-
-
-
 # Lab 04: Azure Policy for AKS
 
 This lab enables Azure Policy for Kubernetes and validates how policy guardrails can enforce baseline controls such as allowed images, label requirements, and restricted pod settings.
@@ -149,6 +155,14 @@ az group delete \
 ```
 
 If you created secondary resource groups, Application Gateway, or user-assigned identities, delete those resources as part of the same cleanup workflow or document why they remain.
+
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Lab 04: Azure Policy for AKS. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
 
 ## See Also
 

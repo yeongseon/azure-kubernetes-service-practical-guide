@@ -64,6 +64,14 @@ kubectl get pods -n kube-system
 - If logs exist but are unusable, refine namespace, workload, and owner labeling.
 - If alerts are noisy, fix thresholds and missing suppression logic instead of disabling visibility.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Monitoring and Logging. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Reference: Diagnostic Commands](../reference/diagnostic-commands.md)

@@ -85,6 +85,14 @@ kubectl describe pod <pod-name> -n <namespace>
 - Keep probe design workload-specific.
 - Capture restart alerts with namespace and owner labels.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to CrashLoop. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Pending Pods](pending-pods.md)

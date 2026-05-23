@@ -85,6 +85,14 @@ kubectl get pdb -A
 - Test upgrades in lower environments.
 - Keep workload APIs and controllers current.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Upgrade Failure. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Upgrades](../../../operations/upgrades.md)

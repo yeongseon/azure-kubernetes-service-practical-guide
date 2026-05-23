@@ -64,6 +64,14 @@ kubectl describe serviceaccount <service-account> -n <namespace>
 - If workloads lose Azure access, inspect workload identity federation settings and Key Vault access policies.
 - If image pulls fail after credential changes, validate ACR integration or secret references immediately.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Credential Rotation. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Identity and Secrets](../platform/identity-and-secrets.md)

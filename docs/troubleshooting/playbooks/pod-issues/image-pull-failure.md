@@ -85,6 +85,14 @@ az aks check-acr --resource-group $RG --name $CLUSTER_NAME --acr <acr-name>.azur
 - Prefer managed identity-based ACR access.
 - Add pre-deployment image existence checks in CI.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Image Pull Failure. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [CrashLoop](crashloop.md)

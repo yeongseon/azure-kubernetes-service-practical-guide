@@ -85,6 +85,14 @@ az network vnet subnet show --resource-group <network-rg> --vnet-name <vnet-name
 - Review subnet utilization as part of scaling readiness.
 - Keep a clear standard for supported networking models.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to CNI IP Exhaustion. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Networking Models](../../../platform/networking-models.md)

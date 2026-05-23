@@ -85,6 +85,14 @@ kubectl get pvc -A
 - Keep namespace quotas aligned with real capacity.
 - Test new affinity or taint strategies outside production first.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Pending Pods. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Scaling Failure](../operations/scaling-failure.md)

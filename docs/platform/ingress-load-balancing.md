@@ -57,6 +57,14 @@ kubectl describe ingress <ingress-name> -n <namespace>
 az network public-ip list --resource-group MC_<managed-resource-group>_<cluster-name>_<location> --output table
 ```
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Ingress and Load Balancing. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Networking Models](networking-models.md)

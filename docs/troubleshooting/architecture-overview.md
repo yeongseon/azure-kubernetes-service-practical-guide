@@ -48,6 +48,14 @@ flowchart TD
 
 Symptoms often appear at one layer and originate in another. A 502 at ingress might be a pod readiness issue, a service selector issue, or a node networking issue.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Architecture Overview. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Decision Tree](decision-tree.md)

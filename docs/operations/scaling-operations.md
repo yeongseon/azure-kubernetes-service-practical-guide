@@ -66,6 +66,14 @@ az aks show --resource-group $RG --name $CLUSTER_NAME --query "agentPoolProfiles
 - If node growth stalls, inspect quota and subnet IP capacity.
 - If scaling works but latency remains high, investigate application bottlenecks rather than adding more nodes blindly.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Scaling Operations. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Scaling](../platform/scaling.md)

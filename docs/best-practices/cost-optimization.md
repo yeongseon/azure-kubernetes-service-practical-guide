@@ -10,7 +10,7 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
     - https://learn.microsoft.com/en-us/azure/aks/concepts-network
     - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
-    - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-security
     - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
     - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
     - https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions
@@ -106,6 +106,14 @@ Spot is best for workloads that tolerate eviction. Critical services need regula
 - Spot workloads are explicitly labeled, tainted, and interruption-tolerant.
 - Log categories and retention have an owner and cost review cadence.
 - Non-production clusters have stop, scale-down, or expiry rules.
+
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Cost Optimization. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
 
 ## See Also
 

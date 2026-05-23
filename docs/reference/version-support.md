@@ -54,6 +54,14 @@ kubectl api-resources
 - Upgrade non-production first and validate custom controllers, admission webhooks, and CRDs.
 - Track version readiness in the same place you track security patching and maintenance windows.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Version Support. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Upgrades](../operations/upgrades.md)

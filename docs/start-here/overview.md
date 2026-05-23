@@ -58,6 +58,14 @@ graph TD
 - Your team does not want to own cluster operations.
 - Your traffic pattern is simple and event-driven enough for a higher-level platform.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to AKS Overview. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Start Here](index.md)

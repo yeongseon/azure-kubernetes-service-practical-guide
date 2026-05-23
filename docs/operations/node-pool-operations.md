@@ -67,6 +67,14 @@ kubectl get pods -A -o wide
 - If scale-out fails, inspect quota, subnet IPs, and autoscaler bounds.
 - If workloads land on the wrong pool, inspect taints, tolerations, selectors, and affinity.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Node Pool Operations. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Node Pools](../platform/node-pools.md)

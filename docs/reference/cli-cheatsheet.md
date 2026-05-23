@@ -65,6 +65,14 @@ kubectl get events -A --sort-by=.lastTimestamp
 - Prefer `--output yaml` or `--output json` when you need evidence for incident notes.
 - Use namespace-qualified `kubectl` commands during incidents to reduce ambiguity.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to CLI Cheatsheet. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Diagnostic Commands](diagnostic-commands.md)

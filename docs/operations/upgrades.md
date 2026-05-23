@@ -68,6 +68,14 @@ kubectl get events -A --sort-by=.lastTimestamp
 - If workloads fail after upgrade, inspect API deprecations, CRD/controller compatibility, and PDB constraints.
 - If one pool is problematic, isolate validation there before widening the rollout.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Upgrades. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Version Support](../reference/version-support.md)

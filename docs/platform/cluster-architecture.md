@@ -65,6 +65,14 @@ flowchart TD
 - Load balancers, managed disks, NICs, and public IPs often live there.
 - Incident triage often requires checking both the cluster resource group and the node resource group.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Cluster Architecture. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Platform](index.md)

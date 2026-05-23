@@ -52,6 +52,14 @@ az network vnet subnet show --resource-group <network-rg> --vnet-name <vnet-name
 - Treat official limits as moving targets; verify current Microsoft documentation before major expansion.
 - The most common real-world blockers are quota exhaustion and subnet exhaustion, not theoretical Kubernetes maxima.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Limits and Quotas. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Networking Models](../platform/networking-models.md)

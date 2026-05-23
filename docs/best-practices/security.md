@@ -10,10 +10,10 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
     - https://learn.microsoft.com/en-us/azure/aks/concepts-network
     - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
-    - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
+    - https://learn.microsoft.com/en-us/azure/aks/concepts-security
     - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
     - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
-    - https://learn.microsoft.com/security/benchmark/azure/baselines/azure-kubernetes-service-security-baseline
+    - https://learn.microsoft.com/en-us/security/benchmark/azure/baselines/azure-kubernetes-service-aks-security-baseline
 content_validation:
   status: verified
   last_reviewed: 2026-05-21
@@ -108,6 +108,14 @@ Privileged access should be exceptional and tied to a documented operational req
 - Secret access path and rotation owner are documented.
 - Image registry and vulnerability scanning expectations are enforced.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Security. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Identity and Secrets](../platform/identity-and-secrets.md)
@@ -120,4 +128,4 @@ Privileged access should be exceptional and tied to a documented operational req
 - [AKS best practices for pod security](https://learn.microsoft.com/azure/aks/developer-best-practices-pod-security)
 - [Azure Policy for AKS](https://learn.microsoft.com/azure/aks/use-azure-policy)
 - [Key Vault CSI driver identity access](https://learn.microsoft.com/azure/aks/csi-secrets-store-identity-access)
-- [AKS security baseline](https://learn.microsoft.com/security/benchmark/azure/baselines/azure-kubernetes-service-security-baseline)
+- [AKS security baseline](https://learn.microsoft.com/en-us/security/benchmark/azure/baselines/azure-kubernetes-service-aks-security-baseline)

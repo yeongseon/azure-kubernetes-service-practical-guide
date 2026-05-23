@@ -61,6 +61,14 @@ kubectl get nodes
 - If maintenance events still create incidents, review PDBs, readiness behavior, and workload singleton patterns.
 - If auto-upgrade timing is too risky, pause or narrow the automation scope and move to a controlled manual process.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Maintenance Windows. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Upgrades](upgrades.md)

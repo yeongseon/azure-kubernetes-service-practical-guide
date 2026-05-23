@@ -71,6 +71,14 @@ kubectl get pods -n kube-system
 - If creation fails, check quota, subnet sizing, and Azure Policy denies first.
 - If credentials fail, re-run `az aks get-credentials` and validate Entra login requirements.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Cluster Creation. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Prerequisites](../start-here/prerequisites.md)

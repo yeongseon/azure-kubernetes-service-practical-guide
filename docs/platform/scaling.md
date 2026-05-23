@@ -55,6 +55,14 @@ az aks update     --resource-group $RG     --name $CLUSTER_NAME     --enable-clu
 - Autoscaler is enabled but subnet IPs or quotas block node growth.
 - Workloads have no CPU/memory requests, so autoscaling decisions are noisy.
 
+## Review Matrix
+
+| Review area | Page-specific check |
+|---|---|
+| Scope | Confirm the guidance applies to Scaling. |
+| Source basis | Validate the recommendation against the Microsoft Learn sources in this page. |
+| Evidence | Capture command output, portal state, metrics, logs, or screenshots before treating the result as proven. |
+
 ## See Also
 
 - [Node Pools](node-pools.md)

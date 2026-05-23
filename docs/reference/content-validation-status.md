@@ -1,19 +1,28 @@
 ---
 content_sources:
   diagrams:
-    - id: reference-content-validation-status
-      type: pie
-      source: self-generated
-      justification: Text and diagram validation status chart generated from repository frontmatter metadata.
-      based_on:
-        - docs/
+  - id: reference-content-validation-status
+    type: pie
+    source: self-generated
+    justification: Text and diagram validation status chart generated from repository
+      frontmatter metadata.
+    based_on:
+    - docs/
+  - id: content-validation-status-pie
+    type: pie
+    source: self-generated
+    justification: Auto-generated dashboard chart from repository validation metadata.
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/what-is-aks
+  sources:
+  - type: mslearn-adapted
+    url: https://learn.microsoft.com/en-us/azure/aks/what-is-aks
 content_validation:
   status: pending_review
   last_reviewed: null
   reviewer: agent
   core_claims: []
 ---
-
 # Content Source Validation Status
 
 This page tracks non-tutorial text validation metadata and Mermaid diagram source metadata declared in document frontmatter.
