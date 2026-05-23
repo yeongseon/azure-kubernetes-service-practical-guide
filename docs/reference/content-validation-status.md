@@ -1,28 +1,19 @@
 ---
 content_sources:
   diagrams:
-  - id: reference-content-validation-status
-    type: pie
-    source: self-generated
-    justification: Text and diagram validation status chart generated from repository
-      frontmatter metadata.
-    based_on:
-    - docs/
-  - id: content-validation-status-pie
-    type: pie
-    source: self-generated
-    justification: Auto-generated dashboard chart from repository validation metadata.
-    based_on:
-    - https://learn.microsoft.com/en-us/azure/aks/what-is-aks
-  sources:
-  - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/aks/what-is-aks
+    - id: reference-content-validation-status
+      type: pie
+      source: self-generated
+      justification: Text and diagram validation status chart generated from repository frontmatter metadata.
+      based_on:
+        - docs/
 content_validation:
   status: pending_review
   last_reviewed: null
   reviewer: agent
   core_claims: []
 ---
+
 # Content Source Validation Status
 
 This page tracks non-tutorial text validation metadata and Mermaid diagram source metadata declared in document frontmatter.
@@ -34,18 +25,18 @@ This page tracks non-tutorial text validation metadata and Mermaid diagram sourc
 | Text Validation Status | Count |
 |---|---:|
 | Total non-tutorial documents | 63 |
-| Verified | 8 |
-| Pending review | 55 |
+| Verified | 9 |
+| Pending review | 54 |
 | Unverified | 0 |
 | Missing metadata | 0 |
-| Core claims listed | 23 |
-| Core claims verified | 23 |
+| Core claims listed | 24 |
+| Core claims verified | 24 |
 
 | Diagram Source Type | Count |
 |---|---:|
-| Mermaid diagrams | 64 |
+| Mermaid diagrams | 66 |
 | MSLearn sourced | 27 |
-| Self-generated | 37 |
+| Self-generated | 39 |
 | Missing source metadata | 0 |
 
 !!! warning "Validation state"
@@ -54,8 +45,8 @@ This page tracks non-tutorial text validation metadata and Mermaid diagram sourc
 <!-- diagram-id: reference-content-validation-status -->
 ```mermaid
 pie title Text Validation Status
-    "Verified" : 8
-    "Pending Review" : 55
+    "Verified" : 9
+    "Pending Review" : 54
 ```
 
 ## Document Matrix
@@ -94,7 +85,7 @@ pie title Text Validation Status
 | [reference/glossary.md](../reference/glossary.md) | `pending_review` | 0 | 0 |
 | [reference/index.md](../reference/index.md) | `pending_review` | 0 | 0 |
 | [reference/limits-and-quotas.md](../reference/limits-and-quotas.md) | `pending_review` | 0 | 0 |
-| [reference/validation-status.md](../reference/validation-status.md) | `pending_review` | 0 | 0 |
+| [reference/validation-status.md](../reference/validation-status.md) | `verified` | 1 | 1 |
 | [reference/version-support.md](../reference/version-support.md) | `pending_review` | 0 | 0 |
 | [start-here/aks-vs-other-compute.md](../start-here/aks-vs-other-compute.md) | `pending_review` | 0 | 0 |
 | [start-here/index.md](../start-here/index.md) | `pending_review` | 0 | 0 |
