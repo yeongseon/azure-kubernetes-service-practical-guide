@@ -34,9 +34,9 @@ This page tracks non-tutorial text validation metadata and Mermaid diagram sourc
 
 | Diagram Source Type | Count |
 |---|---:|
-| Mermaid diagrams | 66 |
+| Mermaid diagrams | 65 |
 | MSLearn sourced | 27 |
-| Self-generated | 39 |
+| Self-generated | 38 |
 | Missing source metadata | 0 |
 
 !!! warning "Validation state"
