@@ -9,6 +9,40 @@ Guidance for AI agents working in this repository.
 - **Live site**: <https://yeongseon.github.io/azure-kubernetes-service-practical-guide/>
 - **Repository**: <https://github.com/yeongseon/azure-kubernetes-service-practical-guide>
 
+## Series-Wide Documentation Contract
+
+This repository is part of the Azure Practical Guide series. All repositories in the series must preserve a consistent reader experience while allowing repository-specific extensions.
+
+### Core Sections
+
+Every service-focused repository SHOULD use these core sections unless the repository-specific addendum explains an exception.
+
+| Section | Required | Purpose |
+|---|---:|---|
+| `Start Here` | Yes | Entry points, overview, learning paths, repository map |
+| `Platform` | Yes | Service concepts, architecture, core behavior |
+| `Best Practices` | Yes | Production patterns, anti-patterns, design guidance |
+| `Operations` | Yes | Day-2 operational procedures and verification |
+| `Troubleshooting` | Yes | Symptom-based diagnosis, playbooks, evidence collection |
+| `Reference` | Yes | CLI, KQL, limits, glossary, decision tables |
+
+### Approved Extension Sections
+
+| Section | Use When |
+|---|---|
+| `Tutorials` | The repository provides hands-on learning or lab sequences |
+| `Lab Guides` | Reproducible experiments or validation exercises are first-class content |
+| `Language Guides` | The service has language/runtime-specific implementation tutorials |
+| `SDK Guides` | The service is primarily consumed through SDKs |
+| `Service Guides` | The repository configures or monitors multiple Azure services |
+| `Workload Guides` | The repository is architecture/workload oriented |
+| `Architecture Reviews` | The repository includes architecture review methodology and playbooks |
+| `Design Labs` | The repository includes architecture design exercises |
+| `Visualization` | Visual maps are a deliberate learning surface, not generated leftovers |
+| `Meta` | Repository taxonomy, content model, or generated metadata |
+
+Do not create a new top-level section if the content can fit under one of the core or approved extension sections.
+
 ## Repository Structure
 
 ```text
@@ -27,6 +61,215 @@ Guidance for AI agents working in this repository.
 │   └── troubleshooting/        # Diagnosis and resolution
 └── mkdocs.yml                  # MkDocs Material configuration
 ```
+
+## Start Here Rules
+
+`Start Here` is orientation content. It must not become a language tutorial, SDK tutorial, operations runbook, troubleshooting playbook, or lab guide.
+
+Required pages:
+
+| Page | Purpose |
+|---|---|
+| `overview.md` | Who this guide is for, what is in scope, and what is out of scope |
+| `learning-paths.md` | Role-based and experience-based reading paths |
+| `repository-map.md` | Map of major sections and when to use them |
+
+Optional pages:
+
+| Page Pattern | Purpose |
+|---|---|
+| `when-to-use-*.md` | Service selection guidance |
+| `prerequisites.md` | Required tools, permissions, and accounts |
+| `common-scenarios.md` | Common use cases |
+| `*-vs-other-compute.md` | Positioning against neighboring Azure services |
+| `how-to-use-this-guide.md` | Reader navigation guidance |
+
+`learning-paths.md` MUST:
+
+- Start with role-based or goal-based paths.
+- Link to tutorials instead of embedding a full tutorial sequence.
+- Avoid service-specific code walkthroughs except short examples.
+- Avoid `content_validation` unless this repository explicitly includes Start Here pages in content validation scope.
+
+Preferred title:
+
+```markdown
+# Learning Paths
+```
+
+Avoid:
+
+```markdown
+# Tutorial: {Service} for {Language}
+```
+
+## Navigation Budget
+
+The left navigation should help orientation, not expose every file.
+
+Recommended:
+
+- Top-level sections SHOULD stay between 6 and 9 items.
+- Direct children under a top-level section SHOULD stay between 5 and 8 items.
+- Large collections such as tutorials, recipes, KQL packs, lab guides, and playbooks SHOULD be listed on index pages rather than fully expanded in `mkdocs.yml`.
+- Use hub pages, tables, tags, and search for deep inventory.
+- Keep `mkdocs.yml` readable enough that a contributor can understand the site structure without scrolling through hundreds of deep links.
+
+Preferred troubleshooting structure:
+
+```text
+Troubleshooting
+├─ Overview
+├─ Quick Diagnosis
+├─ Decision Tree
+├─ First 10 Minutes
+├─ Playbooks
+├─ KQL Query Packs
+└─ Labs
+```
+
+Avoid exposing every individual playbook, KQL query, and lab guide in `mkdocs.yml` unless the repository is intentionally small.
+
+## Content Validation Scope
+
+`content_validation` is required for factual-claim pages, not for every Markdown file.
+
+Required by default:
+
+- `docs/platform/**`
+- `docs/best-practices/**`
+- `docs/operations/**`
+- factual troubleshooting methodology/playbook pages
+
+Usually out of scope:
+
+- `docs/start-here/**`
+- `docs/reference/**`
+- `docs/language-guides/**`
+- `docs/sdk-guides/**`
+- `docs/tutorials/**`
+- `docs/troubleshooting/kql/**`
+- `docs/troubleshooting/lab-guides/**`
+- generated dashboards
+- navigation-only index pages
+
+Content-type-specific rules:
+
+- Tutorials use `validation`.
+- Labs use evidence and falsification integrity.
+- KQL packs document query purpose, expected interpretation, required tables, and assumptions.
+- KQL packs do not need `content_validation` unless they make factual platform claims outside the query explanation.
+- Never fabricate validation dates or test results.
+
+## Mermaid Diagrams
+
+Use Mermaid diagrams when they clarify architecture, flow, dependency, decision logic, or troubleshooting paths.
+
+Required for:
+
+- Platform architecture pages
+- Complex operations pages
+- Decision trees
+- Troubleshooting playbooks with multi-step diagnosis
+- Lab guides with failure progression or evidence timelines
+- Architecture review or design decision flows
+
+Optional for:
+
+- Reference tables
+- CLI cheatsheets
+- Glossary pages
+- Generated validation dashboards
+- Short landing pages
+- Simple tutorial steps where prose is clearer
+
+Do not add a diagram just to satisfy a checkbox. A diagram must explain something better than prose or a table.
+
+### Diagram Orientation Rule
+
+- **Sequential flows with 5+ nodes**: Use `flowchart TD` (top-down) to prevent horizontal overflow.
+- **Short diagrams with fewer than 5 nodes**: `flowchart LR` (left-right) is acceptable.
+- **Layered architecture diagrams** (e.g., network layers, stack diagrams): Always use `flowchart TD`.
+
+```mermaid
+%% CORRECT — 5+ node sequential flow uses TD
+flowchart TD
+    A[Commit] --> B[Build and test]
+    B --> C[Package artifact]
+    C --> D[Deploy to staging]
+    D --> E[Validation]
+    E --> F[Swap to production]
+
+%% WRONG — long horizontal overflow
+flowchart LR
+    A[Commit] --> B[Build and test] --> C[Package] --> D[Deploy] --> E[Validate] --> F[Swap]
+```
+
+## Image and Screenshot Rules
+
+Images must support the reader's task. Do not add screenshots only for decoration.
+
+Every referenced image MUST have:
+
+- Descriptive alt text.
+- A nearby explanation of what the reader should verify.
+- No real subscription IDs, tenant IDs, object IDs, emails, phone numbers, secrets, keys, connection strings, or customer data.
+- Visual verification before merge when the image is referenced from Markdown.
+
+Recommended explanation pattern:
+
+```markdown
+![AKS cluster overview showing a healthy cluster](../assets/example.png)
+
+Purpose: Confirm why this image exists.
+Look for: Tell the reader what values or states to confirm.
+Expected result: State the healthy or expected condition.
+Next step: Link the image to the next action.
+```
+
+Portal screenshots:
+
+- Prefer text replacement over black-box redaction.
+- Use black-box masking only for unavoidable avatar/profile pixels and only with the repository-approved mask color.
+- If a screenshot cannot be visually verified, remove the Markdown reference or disclose the debt explicitly in the PR.
+
+## Microsoft Learn URL Locale
+
+All `learn.microsoft.com` URLs SHOULD use the `en-us` locale prefix.
+
+Canonical form:
+
+```text
+https://learn.microsoft.com/en-us/azure/{service}/...
+```
+
+Avoid locale-less URLs:
+
+```text
+https://learn.microsoft.com/azure/{service}/...
+```
+
+Reason:
+
+- Stable reader experience.
+- Stable reviewer experience.
+- Easier link checking.
+- Less URL drift across repositories.
+
+## Related Projects
+
+| Repository | Description |
+|---|---|
+| [azure-virtual-machine-practical-guide](https://github.com/yeongseon/azure-virtual-machine-practical-guide) | Azure Virtual Machines practical guide |
+| [azure-networking-practical-guide](https://github.com/yeongseon/azure-networking-practical-guide) | Azure Networking practical guide |
+| [azure-storage-practical-guide](https://github.com/yeongseon/azure-storage-practical-guide) | Azure Storage practical guide |
+| [azure-app-service-practical-guide](https://github.com/yeongseon/azure-app-service-practical-guide) | Azure App Service practical guide |
+| [azure-functions-practical-guide](https://github.com/yeongseon/azure-functions-practical-guide) | Azure Functions practical guide |
+| [azure-communication-services-practical-guide](https://github.com/yeongseon/azure-communication-services-practical-guide) | Azure Communication Services practical guide |
+| [azure-container-apps-practical-guide](https://github.com/yeongseon/azure-container-apps-practical-guide) | Azure Container Apps practical guide |
+| [azure-kubernetes-service-practical-guide](https://github.com/yeongseon/azure-kubernetes-service-practical-guide) | Azure Kubernetes Service (AKS) practical guide |
+| [azure-architecture-practical-guide](https://github.com/yeongseon/azure-architecture-practical-guide) | Azure Architecture practical guide |
+| [azure-monitoring-practical-guide](https://github.com/yeongseon/azure-monitoring-practical-guide) | Azure Monitoring practical guide |
 
 ## Content Categories
 
@@ -98,30 +341,6 @@ For MkDocs admonitions (`!!!` / `???`), every line in the body must be indented 
     This line is correctly indented.
 
     - List item also inside
-```
-
-### Mermaid Diagrams
-
-All architectural diagrams use Mermaid. Every documentation page should include at least one diagram.
-
-#### Diagram Orientation Rule
-
-- **Sequential flows with 5+ nodes**: Use `flowchart TD` (top-down) to prevent horizontal overflow.
-- **Short diagrams with fewer than 5 nodes**: `flowchart LR` (left-right) is acceptable.
-- **Layered architecture diagrams** (e.g., network layers, stack diagrams): Always use `flowchart TD`.
-
-```mermaid
-%% CORRECT — 5+ node sequential flow uses TD
-flowchart TD
-    A[Commit] --> B[Build and test]
-    B --> C[Package artifact]
-    C --> D[Deploy to staging]
-    D --> E[Validation]
-    E --> F[Swap to production]
-
-%% WRONG — long horizontal overflow
-flowchart LR
-    A[Commit] --> B[Build and test] --> C[Package] --> D[Deploy] --> E[Validate] --> F[Swap]
 ```
 
 ### Nested List Indentation
@@ -294,20 +513,20 @@ content_sources:
 
 ### Text Content Validation
 
-Every non-tutorial document should include a `content_validation` block in frontmatter to track the verification status of its core claims.
+Factual-claim documents include a `content_validation` block in frontmatter to track the verification status of their core claims. See `## Content Validation Scope` above for the required paths and out-of-scope paths.
 
 ```yaml
 ---
 content_sources:
   - type: mslearn-adapted
-    url: https://learn.microsoft.com/azure/aks/...
+    url: https://learn.microsoft.com/en-us/azure/aks/...
 content_validation:
   status: verified  # verified | pending_review | unverified
   last_reviewed: 2026-04-12
   reviewer: agent  # agent | human
   core_claims:
     - claim: "{example claim}"
-      source: https://learn.microsoft.com/azure/aks/...
+      source: https://learn.microsoft.com/en-us/azure/aks/...
       verified: true
 ---
 ```
@@ -383,17 +602,3 @@ type: short description
 ```
 
 Allowed types: `feat`, `fix`, `docs`, `chore`, `refactor`
-
-## Related Projects
-
-| Repository | Description |
-|---|---|
-| [azure-virtual-machine-practical-guide](https://github.com/yeongseon/azure-virtual-machine-practical-guide) | Azure Virtual Machines practical guide |
-| [azure-networking-practical-guide](https://github.com/yeongseon/azure-networking-practical-guide) | Azure Networking practical guide |
-| [azure-storage-practical-guide](https://github.com/yeongseon/azure-storage-practical-guide) | Azure Storage practical guide |
-| [azure-app-service-practical-guide](https://github.com/yeongseon/azure-app-service-practical-guide) | Azure App Service practical guide |
-| [azure-functions-practical-guide](https://github.com/yeongseon/azure-functions-practical-guide) | Azure Functions practical guide |
-| [azure-container-apps-practical-guide](https://github.com/yeongseon/azure-container-apps-practical-guide) | Azure Container Apps practical guide |
-| [azure-communication-services-practical-guide](https://github.com/yeongseon/azure-communication-services-practical-guide) | Azure Communication Services practical guide |
-| [azure-architecture-practical-guide](https://github.com/yeongseon/azure-architecture-practical-guide) | Azure Architecture practical guide |
-| [azure-monitoring-practical-guide](https://github.com/yeongseon/azure-monitoring-practical-guide) | Azure Monitoring practical guide |

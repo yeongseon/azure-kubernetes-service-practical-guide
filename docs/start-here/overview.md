@@ -58,7 +58,7 @@ graph TD
 ## See Also
 
 - [Start Here](index.md)
-- [Learning Path](learning-path.md)
+- [Learning Paths](learning-paths.md)
 - [AKS vs Other Compute](aks-vs-other-compute.md)
 - [Cluster Architecture](../platform/cluster-architecture.md)
 - [Production Baseline](../best-practices/production-baseline.md)

@@ -53,7 +53,7 @@ flowchart TD
 ## See Also
 
 - [Overview](overview.md)
-- [Learning Path](learning-path.md)
+- [Learning Paths](learning-paths.md)
 - [Platform](../platform/index.md)
 - [Production Baseline](../best-practices/production-baseline.md)
 

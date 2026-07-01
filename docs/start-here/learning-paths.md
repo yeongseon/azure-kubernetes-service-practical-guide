@@ -29,7 +29,7 @@ content_sources:
 
 
 
-# Learning Path
+# Learning Paths
 
 Choose a path based on your role so you can move from AKS fundamentals to production execution without skipping key design decisions.
 
