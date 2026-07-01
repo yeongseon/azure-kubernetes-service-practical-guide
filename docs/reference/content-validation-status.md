@@ -86,6 +86,7 @@ content_sources:
 Add an HTML comment before each mermaid block to identify it:
 
 ~~~markdown
+<!-- diagram-id: platform-example-diagram -->
 ```mermaid
 flowchart TD
     A[Client] --> B[AKS Cluster]

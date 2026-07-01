@@ -34,8 +34,6 @@ AKS upgrades touch both Kubernetes version and node image lifecycle. A safe upgr
 
 ## Procedure
 <!-- diagram-id: operations-upgrades -->
-
-<!-- diagram-id: operations-upgrades -->
 ```mermaid
 flowchart TD
     A[Check versions] --> B[Upgrade non-production]

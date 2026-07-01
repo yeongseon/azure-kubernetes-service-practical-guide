@@ -19,8 +19,6 @@ Keep these commands nearby for common AKS tasks. Use long flags for readability 
 
 ## Topic/Command Groups
 <!-- diagram-id: reference-cli-cheatsheet -->
-
-<!-- diagram-id: reference-cli-cheatsheet -->
 ```mermaid
 flowchart TD
     A[CLI Cheatsheet] --> B[Cluster]

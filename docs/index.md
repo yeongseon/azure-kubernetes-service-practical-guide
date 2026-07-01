@@ -64,8 +64,6 @@ For orientation and study order, start with [Start Here](start-here/overview.md)
 
 ## Learning flow
 <!-- diagram-id: home-learning-flow -->
-
-<!-- diagram-id: home-learning-flow -->
 ```mermaid
 flowchart TD
     A[Start Here] --> B[Platform]

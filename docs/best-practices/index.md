@@ -25,8 +25,6 @@ This section translates AKS platform guidance into production-ready operating st
 
 ## Why This Matters
 <!-- diagram-id: best-practices-index -->
-
-<!-- diagram-id: best-practices-index -->
 ```mermaid
 flowchart TD
     A[Best Practices] --> B[Cluster Blueprint]

@@ -31,8 +31,6 @@ Maintenance windows align AKS upgrades and disruptive platform changes with busi
 
 ## Procedure
 <!-- diagram-id: operations-maintenance-windows -->
-
-<!-- diagram-id: operations-maintenance-windows -->
 ```mermaid
 flowchart TD
     A[Define business windows] --> B[Map to AKS maintenance policy]

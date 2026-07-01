@@ -20,8 +20,6 @@ AKS supports both ephemeral and persistent storage. Match the storage pattern to
 
 ## Main Content
 <!-- diagram-id: platform-storage-options -->
-
-<!-- diagram-id: platform-storage-options -->
 ```mermaid
 flowchart TD
     A[Pod] --> B[emptyDir]

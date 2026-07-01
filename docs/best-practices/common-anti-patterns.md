@@ -25,8 +25,6 @@ Most AKS incidents come from a familiar set of design mistakes: under-planned IP
 
 ## Why This Matters
 <!-- diagram-id: best-practices-common-anti-patterns -->
-
-<!-- diagram-id: best-practices-common-anti-patterns -->
 ```mermaid
 flowchart TD
     A[Common Anti-Patterns] --> B[Cluster Blueprint]

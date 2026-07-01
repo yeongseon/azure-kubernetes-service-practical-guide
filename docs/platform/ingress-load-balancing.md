@@ -19,8 +19,6 @@ AKS traffic entry points combine Kubernetes Services, Azure load balancers, and 
 
 ## Main Content
 <!-- diagram-id: platform-ingress-load-balancing -->
-
-<!-- diagram-id: platform-ingress-load-balancing -->
 ```mermaid
 flowchart TD
     U[Users] --> PIP[Public IP or Private IP]

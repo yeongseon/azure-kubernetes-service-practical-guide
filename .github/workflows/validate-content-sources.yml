@@ -3,12 +3,16 @@ name: Validate Content Sources
 on:
   pull_request:
     paths:
-      - 'docs/**/*.md'
+      - 'docs/**'
+      - 'scripts/**'
+      - '.github/workflows/validate-content-sources.yml'
   push:
     branches:
       - main
     paths:
-      - 'docs/**/*.md'
+      - 'docs/**'
+      - 'scripts/**'
+      - '.github/workflows/validate-content-sources.yml'
 
 jobs:
   validate-content-sources:

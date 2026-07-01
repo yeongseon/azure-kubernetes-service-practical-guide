@@ -25,8 +25,6 @@ AKS security is a layered system: control plane access, workload identity, pod r
 
 ## Why This Matters
 <!-- diagram-id: best-practices-security -->
-
-<!-- diagram-id: best-practices-security -->
 ```mermaid
 flowchart TD
     A[Security] --> B[Cluster Blueprint]

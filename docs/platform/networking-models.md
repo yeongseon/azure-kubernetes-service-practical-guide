@@ -19,8 +19,6 @@ AKS networking determines pod IP assignment, routability, and subnet pressure. T
 
 ## Main Content
 <!-- diagram-id: platform-networking-models -->
-
-<!-- diagram-id: platform-networking-models -->
 ```mermaid
 flowchart TD
     A[Networking Choice] --> B[Azure CNI Overlay]

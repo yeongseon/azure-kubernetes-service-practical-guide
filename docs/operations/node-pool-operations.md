@@ -34,8 +34,6 @@ Use node pool changes to adjust cluster capacity and isolate workloads without r
 
 ## Procedure
 <!-- diagram-id: operations-node-pool-operations -->
-
-<!-- diagram-id: operations-node-pool-operations -->
 ```mermaid
 flowchart TD
     A[Identify target pool] --> B[Add or scale pool]

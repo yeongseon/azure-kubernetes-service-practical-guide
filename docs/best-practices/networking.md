@@ -25,8 +25,6 @@ AKS networking decisions shape scale limits, security boundaries, ingress patter
 
 ## Why This Matters
 <!-- diagram-id: best-practices-networking -->
-
-<!-- diagram-id: best-practices-networking -->
 ```mermaid
 flowchart TD
     A[Networking] --> B[Cluster Blueprint]

@@ -20,8 +20,6 @@ Use Azure-native identity wherever possible so workloads authenticate without lo
 
 ## Main Content
 <!-- diagram-id: platform-identity-and-secrets -->
-
-<!-- diagram-id: platform-identity-and-secrets -->
 ```mermaid
 flowchart TD
     A[Human Access] --> B[Microsoft Entra ID]

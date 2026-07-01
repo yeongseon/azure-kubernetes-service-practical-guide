@@ -25,8 +25,6 @@ Shared clusters fail socially before they fail technically. Resource governance 
 
 ## Why This Matters
 <!-- diagram-id: best-practices-resource-governance -->
-
-<!-- diagram-id: best-practices-resource-governance -->
 ```mermaid
 flowchart TD
     A[Resource Governance] --> B[Cluster Blueprint]

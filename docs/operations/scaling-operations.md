@@ -32,8 +32,6 @@ Scaling is operationally safe only when you understand which layer is changing: 
 
 ## Procedure
 <!-- diagram-id: operations-scaling-operations -->
-
-<!-- diagram-id: operations-scaling-operations -->
 ```mermaid
 flowchart TD
     A[Observe pressure] --> B[Check HPA and requests]
