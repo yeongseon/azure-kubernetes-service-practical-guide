@@ -21,9 +21,10 @@ Use this section to understand the guide scope, choose a learning path, and conf
 ```mermaid
 flowchart TD
     A[Overview] --> B[Prerequisites]
-    B --> C[Learning Path]
-    C --> D[AKS vs Other Compute]
-    D --> E[Platform]
+    B --> C[Learning Paths]
+    C --> D[Repository Map]
+    D --> E[AKS vs Other Compute]
+    E --> F[Platform]
 ```
 
 ## Main Content
@@ -31,7 +32,8 @@ flowchart TD
 | Document | Purpose |
 |---|---|
 | [Overview](overview.md) | Understand what AKS is, who this guide is for, and what is in scope. |
-| [Learning Path](learning-path.md) | Follow a role-based sequence for architect, operator, or troubleshooter work. |
+| [Learning Paths](learning-paths.md) | Follow a role-based sequence for architect, operator, or troubleshooter work. |
+| [Repository Map](repository-map.md) | Map of major sections and when to use them. |
 | [Prerequisites](prerequisites.md) | Confirm Azure, Kubernetes, networking, and tooling readiness. |
 | [AKS vs Other Compute](aks-vs-other-compute.md) | Compare AKS with App Service and Azure Container Apps. |
 
@@ -39,14 +41,16 @@ flowchart TD
 
 1. [Overview](overview.md)
 2. [Prerequisites](prerequisites.md)
-3. [Learning Path](learning-path.md)
-4. [AKS vs Other Compute](aks-vs-other-compute.md)
-5. [Platform](../platform/index.md)
+3. [Learning Paths](learning-paths.md)
+4. [Repository Map](repository-map.md)
+5. [AKS vs Other Compute](aks-vs-other-compute.md)
+6. [Platform](../platform/index.md)
 
 ## See Also
 
 - [Overview](overview.md)
-- [Learning Path](learning-path.md)
+- [Learning Paths](learning-paths.md)
+- [Repository Map](repository-map.md)
 - [Prerequisites](prerequisites.md)
 - [AKS vs Other Compute](aks-vs-other-compute.md)
 - [Platform](../platform/index.md)
