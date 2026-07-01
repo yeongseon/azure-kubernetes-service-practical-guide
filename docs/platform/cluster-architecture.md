@@ -19,8 +19,6 @@ AKS separates a Microsoft-managed control plane from customer-managed worker nod
 
 ## Main Content
 <!-- diagram-id: platform-cluster-architecture -->
-
-<!-- diagram-id: platform-cluster-architecture -->
 ```mermaid
 flowchart TD
     subgraph Azure Subscription

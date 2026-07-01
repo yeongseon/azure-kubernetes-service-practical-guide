@@ -31,8 +31,6 @@ AKS observability must cover cluster state, node health, workload health, and co
 
 ## Procedure
 <!-- diagram-id: operations-monitoring-logging -->
-
-<!-- diagram-id: operations-monitoring-logging -->
 ```mermaid
 flowchart TD
     A[Cluster Metrics] --> B[Logs]

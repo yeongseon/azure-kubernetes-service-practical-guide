@@ -20,8 +20,6 @@ This section contains day-2 runbooks for creating, changing, scaling, monitoring
 
 ## Main Content
 <!-- diagram-id: operations-index -->
-
-<!-- diagram-id: operations-index -->
 ```mermaid
 flowchart TD
     A[Operations] --> B[Cluster Creation]

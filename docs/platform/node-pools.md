@@ -22,8 +22,6 @@ Node pools are the core workload isolation and lifecycle boundary in AKS. Treat 
 
 ## Main Content
 <!-- diagram-id: platform-node-pools -->
-
-<!-- diagram-id: platform-node-pools -->
 ```mermaid
 graph TD
     A[Cluster] --> B[System Pool]

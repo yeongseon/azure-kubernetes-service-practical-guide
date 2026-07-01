@@ -25,8 +25,6 @@ A production AKS cluster needs a baseline for identity, network isolation, scali
 
 ## Why This Matters
 <!-- diagram-id: best-practices-production-baseline -->
-
-<!-- diagram-id: best-practices-production-baseline -->
 ```mermaid
 flowchart TD
     A[Production Baseline] --> B[Cluster Blueprint]

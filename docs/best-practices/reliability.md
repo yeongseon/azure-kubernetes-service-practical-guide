@@ -25,8 +25,6 @@ Reliable AKS platforms assume nodes, pods, images, and dependencies will fail re
 
 ## Why This Matters
 <!-- diagram-id: best-practices-reliability -->
-
-<!-- diagram-id: best-practices-reliability -->
 ```mermaid
 flowchart TD
     A[Reliability] --> B[Cluster Blueprint]

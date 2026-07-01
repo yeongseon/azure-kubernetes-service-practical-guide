@@ -31,8 +31,6 @@ Credential rotation in AKS includes more than Kubernetes certificates. You also 
 
 ## Procedure
 <!-- diagram-id: operations-credential-rotation -->
-
-<!-- diagram-id: operations-credential-rotation -->
 ```mermaid
 flowchart TD
     A[Inventory credentials] --> B[Rotate cluster certs or secrets]

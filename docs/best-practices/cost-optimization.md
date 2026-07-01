@@ -25,8 +25,6 @@ AKS cost optimization is primarily a platform design exercise: node pool shape, 
 
 ## Why This Matters
 <!-- diagram-id: best-practices-cost-optimization -->
-
-<!-- diagram-id: best-practices-cost-optimization -->
 ```mermaid
 flowchart TD
     A[Cost Optimization] --> B[Cluster Blueprint]
