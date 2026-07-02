@@ -89,7 +89,7 @@ The following scripts run against the repository today. There is no dashboard-ge
 | Script | Purpose | Where it runs |
 |---|---|---|
 | `scripts/validate_content_sources.py` | Enforces that every Mermaid block has a `diagram-id` HTML comment and a matching `content_sources.diagrams[]` entry with a valid `source` value. | **Blocking** PR check (`Validate Content Sources`) |
-| `scripts/validate_mermaid_format.py` | Enforces Mermaid orientation rules and formatting conventions. | **Blocking** PR check (same workflow) |
+| `scripts/validate_mermaid_format.py` | Checks for indented Mermaid code fences that would not render properly. | **Blocking** PR check (same workflow) |
 | `scripts/validate_mermaid_syntax.py` | Parses each Mermaid block to catch syntax errors before build. | **Blocking** PR check (same workflow) |
 | `scripts/validate_mslearn_urls.py` | Checks that Microsoft Learn URLs cited in `content_sources` are reachable. | **Reporting only:** runs on push to `main` with `continue-on-error`, not a blocking PR gate |
 | `scripts/generate_validation_status.py` | Regenerates `docs/reference/validation-status.md` — the **tutorial** validation dashboard, not this page. | Manual invocation by contributors |
@@ -103,7 +103,8 @@ There is intentionally no `scripts/generate_content_validation_status.py` in thi
     2. Every declared `diagram-id` must have a matching `content_sources.diagrams[]` entry.
     3. `mslearn-adapted` and `mslearn` diagrams must have either an `mslearn_url` field or a **non-empty** `based_on` list. The validator does **not** currently verify that every `based_on` URL points to `learn.microsoft.com`; that is a repository convention, not an enforced rule.
     4. `self-generated` diagrams must include a `justification` field.
-    5. Mermaid syntax must parse successfully.
+    5. Mermaid code fences must not be indented.
+    6. Mermaid syntax must parse successfully.
 
 ## Official Microsoft Learn References
 
