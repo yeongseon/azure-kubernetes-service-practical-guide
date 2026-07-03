@@ -3,16 +3,33 @@ name: Validate Content Sources
 on:
   pull_request:
     paths:
+      # Trigger set aligned with the sibling Azure Container Apps practical
+      # guide, trimmed for repo-specific structure (this repo has no apps/,
+      # labs/, jobs/, or infra/ directories today). If any of those
+      # directories are added later, extend this list before landing content
+      # under them so CI does not silently skip validation.
       - 'docs/**'
       - 'scripts/**'
-      - '.github/workflows/validate-content-sources.yml'
+      - 'AGENTS.md'
+      - 'README*.md'
+      - 'CONTRIBUTING.md'
+      - 'SECURITY.md'
+      - 'CODE_OF_CONDUCT.md'
+      - 'mkdocs.yml'
+      - '.github/workflows/**'
   push:
     branches:
       - main
     paths:
       - 'docs/**'
       - 'scripts/**'
-      - '.github/workflows/validate-content-sources.yml'
+      - 'AGENTS.md'
+      - 'README*.md'
+      - 'CONTRIBUTING.md'
+      - 'SECURITY.md'
+      - 'CODE_OF_CONDUCT.md'
+      - 'mkdocs.yml'
+      - '.github/workflows/**'
 
 jobs:
   validate-content-sources:
