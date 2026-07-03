@@ -42,7 +42,7 @@ extra_css:
   - stylesheets/extra.css
 
 extra_javascript:
-  - https://unpkg.com/mermaid@10/dist/mermaid.min.js
+  - https://unpkg.com/mermaid@10.9.1/dist/mermaid.min.js
   - javascripts/mermaid-zoom.js
 
 plugins:
@@ -162,14 +162,14 @@ nav:
       - Operations:
         - troubleshooting/playbooks/operations/upgrade-failure.md
         - troubleshooting/playbooks/operations/scaling-failure.md
-    - Reference:
-      - reference/index.md
-      - Validation Status: reference/validation-status.md
-      - Content Validation: reference/content-validation-status.md
-      - reference/cli-cheatsheet.md
-      - reference/limits-and-quotas.md
-      - reference/version-support.md
-      - reference/glossary.md
-      - reference/diagnostic-commands.md
+  - Reference:
+    - reference/index.md
+    - Validation Status: reference/validation-status.md
+    - Content Validation: reference/content-validation-status.md
+    - reference/cli-cheatsheet.md
+    - reference/limits-and-quotas.md
+    - reference/version-support.md
+    - reference/glossary.md
+    - reference/diagnostic-commands.md
   - Contributing:
     - contributing/index.md
