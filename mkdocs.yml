@@ -94,6 +94,7 @@ nav:
     - start-here/index.md
     - start-here/overview.md
     - start-here/learning-paths.md
+    - start-here/scenario-router.md
     - start-here/repository-map.md
     - start-here/prerequisites.md
     - start-here/aks-vs-other-compute.md

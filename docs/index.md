@@ -83,6 +83,7 @@ Primary product reference: [Azure Kubernetes Service (AKS) documentation (Micros
 ## See Also
 
 - [Start Here](start-here/overview.md)
+- [Scenario Router](start-here/scenario-router.md) — situation-to-destination index across Plan, Deploy, Operate, and Troubleshoot
 - [Platform](platform/index.md)
 - [Best Practices](best-practices/index.md)
 - [Tutorials](tutorials/lab-guides/lab-01-aks-cluster-deployment.md)

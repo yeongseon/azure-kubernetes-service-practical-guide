@@ -217,6 +217,7 @@ Read in order:
 ## See Also
 
 - [Overview](overview.md)
+- [Scenario Router](scenario-router.md) — situation-to-destination index when you already know what you need
 - [Prerequisites](prerequisites.md)
 - [AKS vs Other Compute](aks-vs-other-compute.md)
 - [Repository Map](repository-map.md)

@@ -63,6 +63,7 @@ graph TD
 
 - [Overview](overview.md)
 - [Learning Paths](learning-paths.md)
+- [Scenario Router](scenario-router.md) — situation-to-destination index across the four lifecycle phases
 - [Prerequisites](prerequisites.md)
 - [AKS vs Other Compute](aks-vs-other-compute.md)
 

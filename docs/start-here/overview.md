@@ -59,6 +59,7 @@ graph TD
 
 - [Start Here](index.md)
 - [Learning Paths](learning-paths.md)
+- [Scenario Router](scenario-router.md) — situation-to-destination index across Plan, Deploy, Operate, and Troubleshoot
 - [AKS vs Other Compute](aks-vs-other-compute.md)
 - [Cluster Architecture](../platform/cluster-architecture.md)
 - [Production Baseline](../best-practices/production-baseline.md)
