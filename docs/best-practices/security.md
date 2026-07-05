@@ -526,7 +526,7 @@ A practical FinOps review for AKS should therefore compare cost to avoided risk,
 - [Identity and Secrets](../platform/identity-and-secrets.md)
 - [Credential Rotation](../operations/credential-rotation.md)
 - [Common Anti-Patterns](common-anti-patterns.md)
-- [Lab 03: Azure Key Vault CSI Driver](../tutorials/lab-guides/lab-03-azure-key-vault-csi-driver.md)
+- [Tutorial 03: Azure Key Vault CSI Driver](../tutorials/lab-guides/lab-03-azure-key-vault-csi-driver.md)
 
 ## Sources
 

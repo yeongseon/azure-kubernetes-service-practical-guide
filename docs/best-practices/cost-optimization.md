@@ -526,7 +526,7 @@ A practical FinOps review for AKS should therefore compare cost to avoided risk,
 - [Scaling](../platform/scaling.md)
 - [Node Pool Operations](../operations/node-pool-operations.md)
 - [Cluster Autoscaler Issues](../troubleshooting/playbooks/cluster-autoscaler-issues.md)
-- [Lab 01: AKS Cluster Deployment](../tutorials/lab-guides/lab-01-aks-cluster-deployment.md)
+- [Tutorial 01: AKS Cluster Deployment](../tutorials/lab-guides/lab-01-aks-cluster-deployment.md)
 
 ## Sources
 

@@ -15,9 +15,9 @@ content_sources:
 
 
 
-# Lab 03: Azure Key Vault CSI Driver
+# Tutorial 03: Azure Key Vault CSI Driver
 
-This lab integrates the Azure Key Vault provider for Secrets Store CSI Driver so workloads can mount certificates and secrets without embedding static credentials in Kubernetes manifests.
+This tutorial integrates the Azure Key Vault provider for Secrets Store CSI Driver so workloads can mount certificates and secrets without embedding static credentials in Kubernetes manifests.
 
 ## Prerequisites
 

@@ -279,7 +279,7 @@ az aks nodepool update \
 
 - [Scaling Failure](operations/scaling-failure.md)
 - [Cost Optimization](../../best-practices/cost-optimization.md)
-- [Lab 05: AKS Disaster Recovery](../../tutorials/lab-guides/lab-05-aks-disaster-recovery.md)
+- [Tutorial 05: AKS Disaster Recovery](../../tutorials/lab-guides/lab-05-aks-disaster-recovery.md)
 
 ## Sources
 

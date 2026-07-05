@@ -55,7 +55,7 @@ This site is organized as a learning and operations guide so you can move from f
 | [Start Here](start-here/overview.md) | Orientation, learning paths, prerequisites, and AKS vs other compute comparison. |
 | [Platform](platform/index.md) | Understand core AKS architecture, node pools, networking, ingress, identity, storage, and scaling. |
 | [Best Practices](best-practices/index.md) | Apply production patterns for security, networking, resource governance, reliability, and cost. |
-| [Tutorials](tutorials/lab-guides/lab-01-aks-cluster-deployment.md) | Follow hands-on lab guides for cluster deployment, ingress, secrets, policy, and disaster recovery. |
+| [Tutorials](tutorials/lab-guides/lab-01-aks-cluster-deployment.md) | Follow hands-on tutorials for cluster deployment, ingress, secrets, policy, and disaster recovery. |
 | [Operations](operations/index.md) | Run production clusters with upgrades, scaling, monitoring, maintenance, and credential rotation. |
 | [Troubleshooting](troubleshooting/index.md) | Diagnose pod failures, connectivity issues, node problems, and scaling failures quickly. |
 | [Reference](reference/index.md) | Use quick lookups for CLI, limits, version support, glossary, and diagnostic commands. |

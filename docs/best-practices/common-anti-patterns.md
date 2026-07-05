@@ -526,7 +526,7 @@ A practical FinOps review for AKS should therefore compare cost to avoided risk,
 - [Security](security.md)
 - [Networking](networking.md)
 - [Troubleshooting](../troubleshooting/index.md)
-- [Lab 02: Application Gateway Ingress](../tutorials/lab-guides/lab-02-application-gateway-ingress.md)
+- [Tutorial 02: Application Gateway Ingress](../tutorials/lab-guides/lab-02-application-gateway-ingress.md)
 
 ## Sources
 

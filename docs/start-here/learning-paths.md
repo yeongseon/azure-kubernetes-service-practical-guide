@@ -142,11 +142,11 @@ Read in order:
 3. Best Practices sequence:
     - [Cost Optimization](../best-practices/cost-optimization.md)
     - [Common Anti-Patterns](../best-practices/common-anti-patterns.md)
-4. Tutorials — hands-on lab guides:
-    - [Lab 01: AKS Cluster Deployment](../tutorials/lab-guides/lab-01-aks-cluster-deployment.md)
-    - [Lab 02: Application Gateway Ingress](../tutorials/lab-guides/lab-02-application-gateway-ingress.md)
-    - [Lab 03: Azure Key Vault CSI Driver](../tutorials/lab-guides/lab-03-azure-key-vault-csi-driver.md)
-    - [Lab 05: AKS Disaster Recovery](../tutorials/lab-guides/lab-05-aks-disaster-recovery.md)
+4. Tutorials — hands-on tutorials:
+    - [Tutorial 01: AKS Cluster Deployment](../tutorials/lab-guides/lab-01-aks-cluster-deployment.md)
+    - [Tutorial 02: Application Gateway Ingress](../tutorials/lab-guides/lab-02-application-gateway-ingress.md)
+    - [Tutorial 03: Azure Key Vault CSI Driver](../tutorials/lab-guides/lab-03-azure-key-vault-csi-driver.md)
+    - [Tutorial 05: AKS Disaster Recovery](../tutorials/lab-guides/lab-05-aks-disaster-recovery.md)
 
 ### Outcomes
 

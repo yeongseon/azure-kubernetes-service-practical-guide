@@ -279,7 +279,7 @@ az aks nodepool update \
 
 - [Existing Node Not Ready](node-issues/node-not-ready.md)
 - [Networking](../../best-practices/networking.md)
-- [Lab 01: AKS Cluster Deployment](../../tutorials/lab-guides/lab-01-aks-cluster-deployment.md)
+- [Tutorial 01: AKS Cluster Deployment](../../tutorials/lab-guides/lab-01-aks-cluster-deployment.md)
 
 ## Sources
 

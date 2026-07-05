@@ -526,7 +526,7 @@ A practical FinOps review for AKS should therefore compare cost to avoided risk,
 - [Node Pools](../platform/node-pools.md)
 - [Scaling](../platform/scaling.md)
 - [Cluster Autoscaler Issues](../troubleshooting/playbooks/cluster-autoscaler-issues.md)
-- [Lab 04: Azure Policy for AKS](../tutorials/lab-guides/lab-04-azure-policy-for-aks.md)
+- [Tutorial 04: Azure Policy for AKS](../tutorials/lab-guides/lab-04-azure-policy-for-aks.md)
 
 ## Sources
 

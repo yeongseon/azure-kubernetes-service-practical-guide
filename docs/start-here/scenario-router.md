@@ -59,11 +59,11 @@ flowchart LR
 |---|---|
 | I'm confirming my Azure, tooling, and permissions are ready | [Prerequisites](prerequisites.md) — Azure, kubectl, and permissions checklist |
 | I'm creating my first AKS cluster | [Cluster Creation](../operations/cluster-creation.md) — CLI and IaC flows |
-| I want a hands-on lab to deploy AKS end-to-end | [Lab 01: AKS Cluster Deployment](../tutorials/lab-guides/lab-01-aks-cluster-deployment.md) — full guided deployment |
+| I want a hands-on tutorial to deploy AKS end-to-end | [Tutorial 01: AKS Cluster Deployment](../tutorials/lab-guides/lab-01-aks-cluster-deployment.md) — full guided deployment |
 | I'm configuring or adding node pools | [Node Pool Operations](../operations/node-pool-operations.md) — add, resize, and upgrade pools |
 | I'm designing ingress and load balancing | [Ingress and Load Balancing](../platform/ingress-load-balancing.md) — ingress patterns |
-| I want a hands-on lab for Application Gateway Ingress | [Lab 02: Application Gateway Ingress](../tutorials/lab-guides/lab-02-application-gateway-ingress.md) — AGIC end-to-end |
-| I want a hands-on lab for Azure Key Vault CSI driver | [Lab 03: Azure Key Vault CSI Driver](../tutorials/lab-guides/lab-03-azure-key-vault-csi-driver.md) — secret injection |
+| I want a hands-on tutorial for Application Gateway Ingress | [Tutorial 02: Application Gateway Ingress](../tutorials/lab-guides/lab-02-application-gateway-ingress.md) — AGIC end-to-end |
+| I want a hands-on tutorial for Azure Key Vault CSI driver | [Tutorial 03: Azure Key Vault CSI Driver](../tutorials/lab-guides/lab-03-azure-key-vault-csi-driver.md) — secret injection |
 
 ## I'm Operating in Production
 

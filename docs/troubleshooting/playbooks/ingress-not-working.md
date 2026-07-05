@@ -279,7 +279,7 @@ az aks nodepool update \
 
 - [Ingress Failure](connectivity/ingress-failure.md)
 - [Networking](../../best-practices/networking.md)
-- [Lab 02: Application Gateway Ingress](../../tutorials/lab-guides/lab-02-application-gateway-ingress.md)
+- [Tutorial 02: Application Gateway Ingress](../../tutorials/lab-guides/lab-02-application-gateway-ingress.md)
 
 ## Sources
 

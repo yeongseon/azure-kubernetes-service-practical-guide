@@ -279,7 +279,7 @@ az aks nodepool update \
 
 - [CrashLoop](pod-issues/crashloop.md)
 - [Reliability](../../best-practices/reliability.md)
-- [Lab 03: Azure Key Vault CSI Driver](../../tutorials/lab-guides/lab-03-azure-key-vault-csi-driver.md)
+- [Tutorial 03: Azure Key Vault CSI Driver](../../tutorials/lab-guides/lab-03-azure-key-vault-csi-driver.md)
 
 ## Sources
 

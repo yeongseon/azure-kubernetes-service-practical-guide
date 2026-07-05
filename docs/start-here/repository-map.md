@@ -42,7 +42,7 @@ graph TD
 - `docs/operations/`
     - Day-2 execution: cluster creation, node pool operations, upgrades, scaling operations, monitoring and logging, maintenance windows, and credential rotation.
 - `docs/tutorials/`
-    - Hands-on lab guides: AKS cluster deployment, Application Gateway ingress, Azure Key Vault CSI driver, Azure Policy for AKS, and disaster recovery.
+    - Hands-on tutorials: AKS cluster deployment, Application Gateway ingress, Azure Key Vault CSI driver, Azure Policy for AKS, and disaster recovery.
 - `docs/troubleshooting/`
     - Diagnosis-first content: architecture overview, decision tree, evidence map, mental model, quick diagnosis cards, first-10-minutes runbooks, and playbooks for pod, node, connectivity, and operations scenarios.
 - `docs/reference/`
@@ -55,7 +55,7 @@ graph TD
 | Understand AKS concepts | [Platform](../platform/index.md) |
 | Design a production cluster architecture | [Best Practices](../best-practices/index.md) |
 | Operate a cluster in production | [Operations](../operations/index.md) |
-| Practice with a hands-on lab | [Tutorials](../tutorials/lab-guides/lab-01-aks-cluster-deployment.md) |
+| Practice with a hands-on tutorial | [Tutorials](../tutorials/lab-guides/lab-01-aks-cluster-deployment.md) |
 | Diagnose a live incident | [Troubleshooting](../troubleshooting/index.md) |
 | Look up a command or limit | [Reference](../reference/index.md) |
 

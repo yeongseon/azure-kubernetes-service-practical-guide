@@ -117,7 +117,7 @@ nav:
     - best-practices/cost-optimization.md
     - best-practices/common-anti-patterns.md
   - Tutorials:
-    - Lab Guides:
+    - Hands-on Tutorials:
       - tutorials/lab-guides/lab-01-aks-cluster-deployment.md
       - tutorials/lab-guides/lab-02-application-gateway-ingress.md
       - tutorials/lab-guides/lab-03-azure-key-vault-csi-driver.md
