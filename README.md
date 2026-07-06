@@ -2,6 +2,8 @@
 
 [English](README.md) | [한국어](README.ko.md) | [日本語](README.ja.md) | [简体中文](README.zh-CN.md)
 
+📘 Documentation site: <https://yeongseon.github.io/azure-kubernetes-service-practical-guide/>
+
 Comprehensive guide for running containerized applications on Azure Kubernetes Service (AKS) — from first deployment to production operations.
 
 ## What's Inside
