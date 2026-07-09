@@ -1,6 +1,12 @@
 # MkDocs
 site/
 
+# Sisyphus agent artifacts (repo-local coordination plans should not be committed)
+.sisyphus/
+
+# Playwright MCP scratch artifacts
+.playwright-mcp/
+
 # Python
 __pycache__/
 *.py[cod]
