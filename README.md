@@ -4,6 +4,10 @@
 
 📘 Documentation site: <https://yeongseon.github.io/azure-kubernetes-service-practical-guide/>
 
+[![Docs](https://github.com/yeongseon/azure-kubernetes-service-practical-guide/actions/workflows/docs.yml/badge.svg)](https://github.com/yeongseon/azure-kubernetes-service-practical-guide/actions/workflows/docs.yml)
+[![CI](https://github.com/yeongseon/azure-kubernetes-service-practical-guide/actions/workflows/validate-content-sources.yml/badge.svg)](https://github.com/yeongseon/azure-kubernetes-service-practical-guide/actions/workflows/validate-content-sources.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 Comprehensive guide for running containerized applications on Azure Kubernetes Service (AKS) — from first deployment to production operations.
 
 ## What's Inside
@@ -75,4 +79,3 @@ This is an independent community project. Not affiliated with or endorsed by Mic
 ## License
 
 [MIT](LICENSE)
-
