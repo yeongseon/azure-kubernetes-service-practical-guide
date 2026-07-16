@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: keyvault-app
+  namespace: workload
+  annotations:
+    kubernetes.io/ingress.class: webapprouting.kubernetes.azure.com
+    # For AGIC instead, replace the ingress class and optionally add:
+    # appgw.ingress.kubernetes.io/backend-path-prefix: "/"
+spec:
+  rules:
+    - host: "<APP_HOSTNAME>"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: keyvault-app
+                port:
+                  number: 80

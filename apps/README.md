@@ -4,16 +4,16 @@ Baseline scaffolding for reference applications that demonstrate Azure Kubernete
 
 ## Status
 
-**Empty.** No reference applications are authored in this directory yet. This README is P2-3 baseline scaffolding — the directory establishes the shape but does not commit any application code.
+**Partially populated.** `apps/python/` now contains a minimal FastAPI reference application that demonstrates Workload Identity + Azure Key Vault CSI secret mounting, exposed through a Service and Ingress. Additional language-specific reference applications are still deferred.
 
 Per P2-3 non-goals (issue [#24](https://github.com/yeongseon/azure-kubernetes-service-practical-guide/issues/24)):
 
-- **Not authored in P2**: reference application code, Dockerfiles, Kubernetes manifests.
-- **Deferred to P3-D**: language-specific reference apps that demonstrate one AKS pattern each.
+- **Now authored**: `apps/python/` for the Key Vault CSI + Workload Identity lab pattern.
+- **Still deferred**: additional language-specific reference apps that demonstrate other AKS patterns.
 
 ## What Belongs Here
 
-When P3-D is executed, each subdirectory under `apps/` will contain one language-specific reference application that demonstrates a canonical AKS pattern (workload identity, ingress with AGIC, secrets via CSI, HPA/KEDA, etc.). Reference apps are minimal — they exist to back the tutorials in `docs/tutorials/lab-guides/`, not to be full production examples.
+Each subdirectory under `apps/` contains or will contain one language-specific reference application that demonstrates a canonical AKS pattern (workload identity, ingress with AGIC, secrets via CSI, HPA/KEDA, etc.). Reference apps are minimal — they exist to back the tutorials in `docs/tutorials/lab-guides/`, not to be full production examples.
 
 Suggested layout (mirrors the [Container Apps sibling repo](https://github.com/yeongseon/azure-container-apps-practical-guide/tree/main/apps)):
 
@@ -43,9 +43,9 @@ The Container Apps sibling repository ships four reference applications under [`
 
 ## Follow-up
 
-Content authoring is tracked as a named P3 follow-up:
+Remaining follow-up authoring is tracked as a named P3 follow-up:
 
-- **P3-D — AKS reference-app authoring** (unassigned, not yet opened as an issue): Author minimal Python/Node.js reference applications that back the tutorials in `docs/tutorials/lab-guides/`. Should include workload identity and Key Vault CSI patterns to align with `lab-03-azure-key-vault-csi-driver.md`.
+- **P3-D — AKS reference-app authoring**: Python is now present for the Key Vault CSI + Workload Identity pattern. Additional Node.js and other language samples that back future tutorials remain follow-up work.
 
 ## See Also
 
