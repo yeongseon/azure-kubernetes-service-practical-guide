@@ -57,6 +57,23 @@ az aks nodepool show --resource-group $RG --cluster-name $CLUSTER_NAME --name ap
 kubectl get pods -A -o wide
 ```
 
+The Azure Portal **Node pools** blade shows the same state across every pool in one view.
+
+![Azure Portal AKS Node pools blade showing a system pool and a user pool with healthy provisioning and power state](../assets/images/aks-node-pools.png)
+
+Purpose: Show where to verify AKS node pool mode, scale method, node counts, and provisioning state.
+
+Look for:
+
+- At least one pool is marked **System** (`systempool`) and workload pools use **User** mode (`userpool`).
+- Every pool shows **Provisioning state** `Succeeded` and **Power state** `Running`.
+- The **Scale method** matches intent — `Autoscale` for elastic user pools, `Manual` for fixed pools.
+- **Target nodes** and **Ready nodes** counts agree, and no autoscale warnings are raised.
+
+Expected result: The node pool table lists healthy system and user pools with the expected scale method and node counts.
+
+Next step: Continue to the scaling, upgrade, or workload placement procedure that depends on these pools.
+
 ## Rollback / Troubleshooting
 
 - If drain blocks, inspect PodDisruptionBudgets and unmanaged pods.
