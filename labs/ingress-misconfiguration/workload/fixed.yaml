@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ingress-lab
+  namespace: workload
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ingress-lab
+  template:
+    metadata:
+      labels:
+        app: ingress-lab
+    spec:
+      containers:
+        - name: app
+          image: "${LAB_IMAGE}"
+          ports:
+            - containerPort: 8000
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingress-lab
+  namespace: workload
+spec:
+  type: ClusterIP
+  selector:
+    app: ingress-lab
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8000
+      protocol: TCP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-lab
+  namespace: workload
+  annotations:
+    kubernetes.io/ingress.class: webapprouting.kubernetes.azure.com
+spec:
+  rules:
+    - host: "${APP_HOSTNAME}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ingress-lab
+                port:
+                  number: 80

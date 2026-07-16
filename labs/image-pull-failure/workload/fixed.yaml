@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-pull-lab
+  namespace: workload
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: image-pull-lab
+  template:
+    metadata:
+      labels:
+        app: image-pull-lab
+    spec:
+      containers:
+        - name: app
+          image: "${LAB_IMAGE}"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
