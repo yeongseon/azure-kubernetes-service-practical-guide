@@ -1,0 +1,179 @@
+name: Validate Artifacts
+
+on:
+  pull_request:
+    paths:
+      - 'apps/**'
+      - 'infra/**'
+      - 'labs/**'
+      - '.github/workflows/validate-artifacts.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'apps/**'
+      - 'infra/**'
+      - 'labs/**'
+      - '.github/workflows/validate-artifacts.yml'
+  workflow_dispatch:
+
+jobs:
+  bicep-build:
+    name: Bicep Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Ensure Azure CLI is available
+        run: |
+          if ! command -v az >/dev/null 2>&1; then
+            curl --silent --show-error --fail --location https://aka.ms/InstallAzureCLIDeb | sudo bash
+          fi
+
+          az version
+
+      - name: Install Bicep CLI
+        run: |
+          az bicep install
+          az bicep version
+
+      - name: Build Bicep templates
+        run: |
+          shopt -s nullglob
+
+          az bicep build --file infra/main.bicep
+          az bicep build --file infra/main-private.bicep
+
+          for file in infra/modules/*.bicep; do
+            az bicep build --file "$file"
+          done
+
+  k8s-manifests:
+    name: Validate Kubernetes Manifests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install YAML validation dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pyyaml
+
+      - name: Install kubeconform
+        run: |
+          KUBECONFORM_VERSION="0.6.7"
+          curl --silent --show-error --fail --location "https://github.com/yannh/kubeconform/releases/download/v${KUBECONFORM_VERSION}/kubeconform-linux-amd64.tar.gz" --output kubeconform.tar.gz
+          tar --extract --gzip --file kubeconform.tar.gz kubeconform
+          sudo install --mode 0755 kubeconform /usr/local/bin/kubeconform
+          kubeconform --version
+
+      - name: Validate YAML syntax
+        run: |
+          python - <<'PY'
+          from __future__ import annotations
+
+          from glob import glob
+          from pathlib import Path
+          import yaml
+
+          patterns = [
+              'apps/**/manifests/**/*.yaml',
+              'apps/**/manifests/**/*.yml',
+              'labs/**/workload/**/*.yaml',
+              'labs/**/workload/**/*.yml',
+          ]
+
+          files = sorted({Path(path) for pattern in patterns for path in glob(pattern, recursive=True)})
+          if not files:
+              raise SystemExit('No manifest files found under apps/**/manifests or labs/**/workload.')
+
+          for file_path in files:
+              with file_path.open('r', encoding='utf-8') as handle:
+                  list(yaml.safe_load_all(handle))
+              print(f'YAML OK: {file_path}')
+          PY
+
+      - name: Validate Kubernetes schemas
+        run: |
+          python - <<'PY' > manifest-files.txt
+          from __future__ import annotations
+
+          from glob import glob
+          from pathlib import Path
+
+          patterns = [
+              'apps/**/manifests/**/*.yaml',
+              'apps/**/manifests/**/*.yml',
+              'labs/**/workload/**/*.yaml',
+              'labs/**/workload/**/*.yml',
+          ]
+
+          files = sorted({Path(path) for pattern in patterns for path in glob(pattern, recursive=True)})
+          for file_path in files:
+              print(file_path.as_posix())
+          PY
+
+          while IFS= read -r file; do
+            [ -n "$file" ] || continue
+            kubeconform \
+              -ignore-missing-schemas \
+              -summary \
+              "$file"
+          done < manifest-files.txt
+
+  python-app:
+    name: Validate Python App
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install application dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install --requirement apps/python/requirements.txt
+
+      - name: Compile Python sources
+        run: |
+          python -m py_compile apps/python/src/*.py
+
+      - name: Ruff check
+        run: |
+          python -m pip install ruff
+          ruff check apps/python/src
+        continue-on-error: true
+
+  dockerfile-lint:
+    name: Lint Dockerfile
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install hadolint
+        run: |
+          HADOLINT_VERSION="2.12.0"
+          curl --silent --show-error --fail --location "https://github.com/hadolint/hadolint/releases/download/v${HADOLINT_VERSION}/hadolint-Linux-x86_64" --output hadolint
+          sudo install --mode 0755 hadolint /usr/local/bin/hadolint
+          hadolint --version
+
+      - name: Lint apps/python/Dockerfile
+        run: |
+          hadolint apps/python/Dockerfile
+        continue-on-error: true
