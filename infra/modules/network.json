@@ -1,0 +1,189 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.43.8.12551",
+      "templateHash": "15607658480873919911"
+    }
+  },
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Location for all network resources."
+      }
+    },
+    "vnetName": {
+      "type": "string",
+      "metadata": {
+        "description": "Virtual network name."
+      }
+    },
+    "aksSubnetName": {
+      "type": "string",
+      "defaultValue": "snet-aks",
+      "metadata": {
+        "description": "AKS subnet name."
+      }
+    },
+    "privateEndpointSubnetName": {
+      "type": "string",
+      "defaultValue": "snet-private-endpoints",
+      "metadata": {
+        "description": "Private endpoint subnet name."
+      }
+    },
+    "vnetAddressPrefixes": {
+      "type": "array",
+      "defaultValue": [
+        "10.40.0.0/16"
+      ],
+      "metadata": {
+        "description": "Virtual network address spaces."
+      }
+    },
+    "aksSubnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.40.0.0/22",
+      "metadata": {
+        "description": "AKS subnet address prefix. Azure CNI Overlay still requires node subnet capacity for nodes, upgrades, and autoscaler headroom."
+      }
+    },
+    "privateEndpointSubnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.40.4.0/24",
+      "metadata": {
+        "description": "Private endpoint subnet address prefix used by the private baseline."
+      }
+    },
+    "deployPrivateEndpointSubnet": {
+      "type": "bool",
+      "defaultValue": false,
+      "metadata": {
+        "description": "Deploy the private endpoint subnet and its NSG."
+      }
+    },
+    "aksSubnetNsgName": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "AKS subnet NSG name. Leave empty to derive from the VNet name."
+      }
+    },
+    "privateEndpointSubnetNsgName": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Private endpoint subnet NSG name. Leave empty to derive from the VNet name."
+      }
+    }
+  },
+  "variables": {
+    "resolvedAksSubnetNsgName": "[if(empty(parameters('aksSubnetNsgName')), format('nsg-{0}', parameters('aksSubnetName')), parameters('aksSubnetNsgName'))]",
+    "resolvedPrivateEndpointSubnetNsgName": "[if(empty(parameters('privateEndpointSubnetNsgName')), format('nsg-{0}', parameters('privateEndpointSubnetName')), parameters('privateEndpointSubnetNsgName'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Network/virtualNetworks",
+      "apiVersion": "2024-05-01",
+      "name": "[parameters('vnetName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": "[parameters('vnetAddressPrefixes')]"
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "apiVersion": "2024-05-01",
+      "name": "[variables('resolvedAksSubnetNsgName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "securityRules": []
+      }
+    },
+    {
+      "condition": "[parameters('deployPrivateEndpointSubnet')]",
+      "type": "Microsoft.Network/networkSecurityGroups",
+      "apiVersion": "2024-05-01",
+      "name": "[variables('resolvedPrivateEndpointSubnetNsgName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "securityRules": []
+      }
+    },
+    {
+      "type": "Microsoft.Network/virtualNetworks/subnets",
+      "apiVersion": "2024-05-01",
+      "name": "[format('{0}/{1}', parameters('vnetName'), parameters('aksSubnetName'))]",
+      "properties": {
+        "addressPrefix": "[parameters('aksSubnetPrefix')]",
+        "networkSecurityGroup": {
+          "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('resolvedAksSubnetNsgName'))]"
+        },
+        "privateEndpointNetworkPolicies": "Enabled",
+        "privateLinkServiceNetworkPolicies": "Enabled"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkSecurityGroups', variables('resolvedAksSubnetNsgName'))]",
+        "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]"
+      ]
+    },
+    {
+      "condition": "[parameters('deployPrivateEndpointSubnet')]",
+      "type": "Microsoft.Network/virtualNetworks/subnets",
+      "apiVersion": "2024-05-01",
+      "name": "[format('{0}/{1}', parameters('vnetName'), parameters('privateEndpointSubnetName'))]",
+      "properties": {
+        "addressPrefix": "[parameters('privateEndpointSubnetPrefix')]",
+        "networkSecurityGroup": {
+          "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('resolvedPrivateEndpointSubnetNsgName'))]"
+        },
+        "privateEndpointNetworkPolicies": "Disabled",
+        "privateLinkServiceNetworkPolicies": "Enabled"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkSecurityGroups', variables('resolvedPrivateEndpointSubnetNsgName'))]",
+        "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]"
+      ]
+    }
+  ],
+  "outputs": {
+    "vnetId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]"
+    },
+    "vnetName": {
+      "type": "string",
+      "value": "[parameters('vnetName')]"
+    },
+    "aksSubnetId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), parameters('aksSubnetName'))]"
+    },
+    "aksSubnetName": {
+      "type": "string",
+      "value": "[parameters('aksSubnetName')]"
+    },
+    "aksSubnetNsgId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('resolvedAksSubnetNsgName'))]"
+    },
+    "privateEndpointSubnetId": {
+      "type": "string",
+      "value": "[if(parameters('deployPrivateEndpointSubnet'), resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), parameters('privateEndpointSubnetName')), '')]"
+    },
+    "privateEndpointSubnetName": {
+      "type": "string",
+      "value": "[if(parameters('deployPrivateEndpointSubnet'), parameters('privateEndpointSubnetName'), '')]"
+    },
+    "privateEndpointSubnetNsgId": {
+      "type": "string",
+      "value": "[if(parameters('deployPrivateEndpointSubnet'), resourceId('Microsoft.Network/networkSecurityGroups', variables('resolvedPrivateEndpointSubnetNsgName')), '')]"
+    }
+  }
+}

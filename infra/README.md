@@ -4,16 +4,16 @@ Baseline scaffolding for shared Bicep / Terraform / Kubernetes templates that pr
 
 ## Status
 
-**Empty.** No infrastructure templates are authored in this directory yet. This README is P2-3 baseline scaffolding — the directory establishes the shape but does not commit any provisioning code.
+**Authored.** This directory now contains deployable Bicep baselines for AKS public and private cluster variants, reusable infrastructure modules, and deployment scripts aligned to the production baseline pattern.
 
-Per P2-3 non-goals (issue [#24](https://github.com/yeongseon/azure-kubernetes-service-practical-guide/issues/24)):
+Current contents for the shared AKS baseline:
 
-- **Not authored in P2**: `main.bicep`, `main-private.bicep`, deploy scripts, module templates.
-- **Deferred to P3-E**: AKS-cluster provisioning templates aligned with the tutorials.
+- **Authored**: `main.bicep`, `main-private.bicep`, `main.bicepparam`, `main-private.bicepparam`, `deploy.sh`, `deploy-private.sh`, and reusable module templates.
+- **Scope**: Shared Azure infrastructure for the cluster baseline only. Kubernetes application manifests remain in `apps/`.
 
 ## What Belongs Here
 
-When P3-E is executed, this directory will hold shared Bicep templates for a baseline AKS cluster (public and private variants), reusable modules (VNet, ACR, Key Vault, Log Analytics), and orchestration scripts. Templates in `infra/` are the *shared* infrastructure — per-lab infrastructure lives in `labs/<slug>/infra/` for scope isolation.
+This directory holds shared Bicep templates for a baseline AKS cluster (public and private variants), reusable modules (VNet, ACR, Key Vault, Log Analytics), and orchestration scripts. Templates in `infra/` are the *shared* infrastructure — per-lab infrastructure lives in `labs/<slug>/infra/` for scope isolation.
 
 Suggested layout (mirrors the [Container Apps sibling repo](https://github.com/yeongseon/azure-container-apps-practical-guide/tree/main/infra)):
 
@@ -21,13 +21,14 @@ Suggested layout (mirrors the [Container Apps sibling repo](https://github.com/y
 infra/
 ├── main.bicep                  # Public AKS baseline (VNet + AKS + Log Analytics + ACR)
 ├── main-private.bicep          # Private-cluster variant (Private Endpoint, Private DNS)
-├── main-private.json           # Compiled ARM (kept in sync with Bicep for portability)
+├── main.bicepparam             # Sample parameters for the public baseline
+├── main-private.bicepparam     # Sample parameters for the private baseline
 ├── deploy.sh                   # Orchestration for main.bicep
 ├── deploy-private.sh           # Orchestration for main-private.bicep
 └── modules/
     ├── network.bicep           # VNet, subnets, NSGs
     ├── acr-private.bicep       # ACR with Private Endpoint
-    ├── keyvault-private.bicep  # Key Vault with Private Endpoint
+    ├── keyvault-private.bicep  # Key Vault with optional Private Endpoint
     └── monitoring.bicep        # Log Analytics + Container Insights
 ```
 
@@ -51,9 +52,9 @@ The Container Apps sibling repository ships public and private Bicep baselines p
 
 ## Follow-up
 
-Content authoring is tracked as a named P3 follow-up:
+The original P3 follow-up has now been executed on this branch:
 
-- **P3-E — AKS shared infra authoring** (unassigned, not yet opened as an issue): Author `main.bicep` (public baseline: VNet + AKS + Log Analytics + ACR), `main-private.bicep` (private cluster with Private Endpoint on the API server), and reusable modules. Align with the "production baseline" pattern already documented in `docs/best-practices/production-baseline.md`.
+- **P3-E — AKS shared infra authoring**: Completed with public and private AKS baselines, reusable modules, sample parameter files, and deployment scripts aligned with `docs/best-practices/production-baseline.md`.
 
 ## See Also
 

@@ -1,0 +1,949 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.43.8.12551",
+      "templateHash": "2266825664744804890"
+    }
+  },
+  "parameters": {
+    "clusterName": {
+      "type": "string",
+      "metadata": {
+        "description": "AKS cluster name."
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Location for all resources."
+      }
+    },
+    "kubernetesVersion": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Optional Kubernetes version. Leave empty to let AKS choose the regional default supported version."
+      }
+    },
+    "dnsPrefix": {
+      "type": "string",
+      "defaultValue": "[take(replace(toLower(parameters('clusterName')), '-', ''), 20)]",
+      "metadata": {
+        "description": "DNS prefix for the AKS API server public endpoint."
+      }
+    },
+    "vnetName": {
+      "type": "string",
+      "defaultValue": "[format('vnet-{0}', parameters('clusterName'))]",
+      "metadata": {
+        "description": "Virtual network name."
+      }
+    },
+    "aksSubnetName": {
+      "type": "string",
+      "defaultValue": "snet-aks",
+      "metadata": {
+        "description": "AKS subnet name."
+      }
+    },
+    "logAnalyticsWorkspaceName": {
+      "type": "string",
+      "defaultValue": "[format('log-{0}', parameters('clusterName'))]",
+      "metadata": {
+        "description": "Log Analytics workspace name."
+      }
+    },
+    "acrName": {
+      "type": "string",
+      "defaultValue": "[take(format('{0}{1}', replace(toLower(parameters('clusterName')), '-', ''), take(uniqueString(resourceGroup().id, parameters('clusterName')), 8)), 50)]",
+      "metadata": {
+        "description": "Azure Container Registry name. Must be globally unique and alphanumeric."
+      }
+    },
+    "keyVaultName": {
+      "type": "string",
+      "defaultValue": "[take(concat('kv-', parameters('clusterName'), '-', take(uniqueString(resourceGroup().id, parameters('clusterName'), 'kv'), 6)), 24)]",
+      "metadata": {
+        "description": "Key Vault name. Must be globally unique and between 3 and 24 characters."
+      }
+    },
+    "vnetAddressPrefixes": {
+      "type": "array",
+      "defaultValue": [
+        "10.40.0.0/16"
+      ],
+      "metadata": {
+        "description": "Address spaces for the AKS virtual network."
+      }
+    },
+    "aksSubnetPrefix": {
+      "type": "string",
+      "defaultValue": "10.40.0.0/22",
+      "metadata": {
+        "description": "AKS subnet address prefix."
+      }
+    },
+    "podCidr": {
+      "type": "string",
+      "defaultValue": "192.168.0.0/16",
+      "metadata": {
+        "description": "Azure CNI Overlay pod CIDR."
+      }
+    },
+    "serviceCidr": {
+      "type": "string",
+      "defaultValue": "10.0.0.0/16",
+      "metadata": {
+        "description": "Kubernetes service CIDR."
+      }
+    },
+    "dnsServiceIP": {
+      "type": "string",
+      "defaultValue": "10.0.0.10",
+      "metadata": {
+        "description": "Kubernetes DNS service IP. Must be inside the service CIDR."
+      }
+    },
+    "logAnalyticsRetentionInDays": {
+      "type": "int",
+      "defaultValue": 30,
+      "minValue": 30,
+      "maxValue": 730,
+      "metadata": {
+        "description": "Log Analytics retention in days."
+      }
+    },
+    "systemNodeVmSize": {
+      "type": "string",
+      "defaultValue": "Standard_D4s_v5",
+      "metadata": {
+        "description": "System node pool VM size."
+      }
+    },
+    "systemNodeCount": {
+      "type": "int",
+      "defaultValue": 3,
+      "minValue": 3,
+      "metadata": {
+        "description": "System node pool node count."
+      }
+    },
+    "systemNodeMinCount": {
+      "type": "int",
+      "defaultValue": 3,
+      "minValue": 3,
+      "metadata": {
+        "description": "System node pool autoscaler minimum node count."
+      }
+    },
+    "systemNodeMaxCount": {
+      "type": "int",
+      "defaultValue": 6,
+      "minValue": 3,
+      "metadata": {
+        "description": "System node pool autoscaler maximum node count."
+      }
+    },
+    "availabilityZones": {
+      "type": "array",
+      "defaultValue": [
+        "1",
+        "2",
+        "3"
+      ],
+      "metadata": {
+        "description": "Availability zones for the baseline system node pool."
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.ContainerService/managedClusters",
+      "apiVersion": "2024-05-01",
+      "name": "[parameters('clusterName')]",
+      "location": "[parameters('location')]",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": "[union(createObject('dnsPrefix', parameters('dnsPrefix'), 'disableLocalAccounts', false(), 'enableRBAC', true(), 'aadProfile', createObject('managed', true(), 'enableAzureRBAC', true()), 'agentPoolProfiles', createArray(createObject('name', 'system', 'count', parameters('systemNodeCount'), 'vmSize', parameters('systemNodeVmSize'), 'osType', 'Linux', 'type', 'VirtualMachineScaleSets', 'mode', 'System', 'vnetSubnetID', reference(resourceId('Microsoft.Resources/deployments', 'network'), '2025-04-01').outputs.aksSubnetId.value, 'availabilityZones', parameters('availabilityZones'), 'enableAutoScaling', true(), 'minCount', parameters('systemNodeMinCount'), 'maxCount', parameters('systemNodeMaxCount'))), 'networkProfile', createObject('networkPlugin', 'azure', 'networkPluginMode', 'overlay', 'networkPolicy', 'azure', 'networkDataplane', 'azure', 'podCidr', parameters('podCidr'), 'serviceCidr', parameters('serviceCidr'), 'dnsServiceIP', parameters('dnsServiceIP'), 'loadBalancerSku', 'standard', 'outboundType', 'loadBalancer'), 'addonProfiles', createObject('omsagent', createObject('enabled', true(), 'config', createObject('logAnalyticsWorkspaceResourceID', reference(resourceId('Microsoft.Resources/deployments', 'monitoring'), '2025-04-01').outputs.workspaceId.value)), 'azureKeyvaultSecretsProvider', createObject('enabled', true(), 'config', createObject('enableSecretRotation', 'true', 'rotationPollInterval', '2m')), 'azurepolicy', createObject('enabled', true())), 'oidcIssuerProfile', createObject('enabled', true()), 'securityProfile', createObject('workloadIdentity', createObject('enabled', true())), 'sku', createObject('name', 'Base', 'tier', 'Standard')), if(empty(parameters('kubernetesVersion')), createObject(), createObject('kubernetesVersion', parameters('kubernetesVersion'))))]",
+      "dependsOn": [
+        "[resourceId('Microsoft.Resources/deployments', 'monitoring')]",
+        "[resourceId('Microsoft.Resources/deployments', 'network')]"
+      ]
+    },
+    {
+      "type": "Microsoft.Authorization/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "scope": "[resourceId('Microsoft.ContainerRegistry/registries', parameters('acrName'))]",
+      "name": "[guid(resourceGroup().id, parameters('acrName'), parameters('clusterName'), 'AcrPull')]",
+      "properties": {
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '7f951dda-4ed3-4680-a7ca-43fe172d538d')]",
+        "principalId": "[reference(resourceId('Microsoft.ContainerService/managedClusters', parameters('clusterName')), '2024-05-01').identityProfile.kubeletidentity.objectId]",
+        "principalType": "ServicePrincipal"
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.ContainerService/managedClusters', parameters('clusterName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2025-04-01",
+      "name": "network",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "location": {
+            "value": "[parameters('location')]"
+          },
+          "vnetName": {
+            "value": "[parameters('vnetName')]"
+          },
+          "aksSubnetName": {
+            "value": "[parameters('aksSubnetName')]"
+          },
+          "vnetAddressPrefixes": {
+            "value": "[parameters('vnetAddressPrefixes')]"
+          },
+          "aksSubnetPrefix": {
+            "value": "[parameters('aksSubnetPrefix')]"
+          },
+          "deployPrivateEndpointSubnet": {
+            "value": false
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.43.8.12551",
+              "templateHash": "15607658480873919911"
+            }
+          },
+          "parameters": {
+            "location": {
+              "type": "string",
+              "defaultValue": "[resourceGroup().location]",
+              "metadata": {
+                "description": "Location for all network resources."
+              }
+            },
+            "vnetName": {
+              "type": "string",
+              "metadata": {
+                "description": "Virtual network name."
+              }
+            },
+            "aksSubnetName": {
+              "type": "string",
+              "defaultValue": "snet-aks",
+              "metadata": {
+                "description": "AKS subnet name."
+              }
+            },
+            "privateEndpointSubnetName": {
+              "type": "string",
+              "defaultValue": "snet-private-endpoints",
+              "metadata": {
+                "description": "Private endpoint subnet name."
+              }
+            },
+            "vnetAddressPrefixes": {
+              "type": "array",
+              "defaultValue": [
+                "10.40.0.0/16"
+              ],
+              "metadata": {
+                "description": "Virtual network address spaces."
+              }
+            },
+            "aksSubnetPrefix": {
+              "type": "string",
+              "defaultValue": "10.40.0.0/22",
+              "metadata": {
+                "description": "AKS subnet address prefix. Azure CNI Overlay still requires node subnet capacity for nodes, upgrades, and autoscaler headroom."
+              }
+            },
+            "privateEndpointSubnetPrefix": {
+              "type": "string",
+              "defaultValue": "10.40.4.0/24",
+              "metadata": {
+                "description": "Private endpoint subnet address prefix used by the private baseline."
+              }
+            },
+            "deployPrivateEndpointSubnet": {
+              "type": "bool",
+              "defaultValue": false,
+              "metadata": {
+                "description": "Deploy the private endpoint subnet and its NSG."
+              }
+            },
+            "aksSubnetNsgName": {
+              "type": "string",
+              "defaultValue": "",
+              "metadata": {
+                "description": "AKS subnet NSG name. Leave empty to derive from the VNet name."
+              }
+            },
+            "privateEndpointSubnetNsgName": {
+              "type": "string",
+              "defaultValue": "",
+              "metadata": {
+                "description": "Private endpoint subnet NSG name. Leave empty to derive from the VNet name."
+              }
+            }
+          },
+          "variables": {
+            "resolvedAksSubnetNsgName": "[if(empty(parameters('aksSubnetNsgName')), format('nsg-{0}', parameters('aksSubnetName')), parameters('aksSubnetNsgName'))]",
+            "resolvedPrivateEndpointSubnetNsgName": "[if(empty(parameters('privateEndpointSubnetNsgName')), format('nsg-{0}', parameters('privateEndpointSubnetName')), parameters('privateEndpointSubnetNsgName'))]"
+          },
+          "resources": [
+            {
+              "type": "Microsoft.Network/virtualNetworks",
+              "apiVersion": "2024-05-01",
+              "name": "[parameters('vnetName')]",
+              "location": "[parameters('location')]",
+              "properties": {
+                "addressSpace": {
+                  "addressPrefixes": "[parameters('vnetAddressPrefixes')]"
+                }
+              }
+            },
+            {
+              "type": "Microsoft.Network/networkSecurityGroups",
+              "apiVersion": "2024-05-01",
+              "name": "[variables('resolvedAksSubnetNsgName')]",
+              "location": "[parameters('location')]",
+              "properties": {
+                "securityRules": []
+              }
+            },
+            {
+              "condition": "[parameters('deployPrivateEndpointSubnet')]",
+              "type": "Microsoft.Network/networkSecurityGroups",
+              "apiVersion": "2024-05-01",
+              "name": "[variables('resolvedPrivateEndpointSubnetNsgName')]",
+              "location": "[parameters('location')]",
+              "properties": {
+                "securityRules": []
+              }
+            },
+            {
+              "type": "Microsoft.Network/virtualNetworks/subnets",
+              "apiVersion": "2024-05-01",
+              "name": "[format('{0}/{1}', parameters('vnetName'), parameters('aksSubnetName'))]",
+              "properties": {
+                "addressPrefix": "[parameters('aksSubnetPrefix')]",
+                "networkSecurityGroup": {
+                  "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('resolvedAksSubnetNsgName'))]"
+                },
+                "privateEndpointNetworkPolicies": "Enabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('resolvedAksSubnetNsgName'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]"
+              ]
+            },
+            {
+              "condition": "[parameters('deployPrivateEndpointSubnet')]",
+              "type": "Microsoft.Network/virtualNetworks/subnets",
+              "apiVersion": "2024-05-01",
+              "name": "[format('{0}/{1}', parameters('vnetName'), parameters('privateEndpointSubnetName'))]",
+              "properties": {
+                "addressPrefix": "[parameters('privateEndpointSubnetPrefix')]",
+                "networkSecurityGroup": {
+                  "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('resolvedPrivateEndpointSubnetNsgName'))]"
+                },
+                "privateEndpointNetworkPolicies": "Disabled",
+                "privateLinkServiceNetworkPolicies": "Enabled"
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('resolvedPrivateEndpointSubnetNsgName'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]"
+              ]
+            }
+          ],
+          "outputs": {
+            "vnetId": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/virtualNetworks', parameters('vnetName'))]"
+            },
+            "vnetName": {
+              "type": "string",
+              "value": "[parameters('vnetName')]"
+            },
+            "aksSubnetId": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), parameters('aksSubnetName'))]"
+            },
+            "aksSubnetName": {
+              "type": "string",
+              "value": "[parameters('aksSubnetName')]"
+            },
+            "aksSubnetNsgId": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('resolvedAksSubnetNsgName'))]"
+            },
+            "privateEndpointSubnetId": {
+              "type": "string",
+              "value": "[if(parameters('deployPrivateEndpointSubnet'), resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('vnetName'), parameters('privateEndpointSubnetName')), '')]"
+            },
+            "privateEndpointSubnetName": {
+              "type": "string",
+              "value": "[if(parameters('deployPrivateEndpointSubnet'), parameters('privateEndpointSubnetName'), '')]"
+            },
+            "privateEndpointSubnetNsgId": {
+              "type": "string",
+              "value": "[if(parameters('deployPrivateEndpointSubnet'), resourceId('Microsoft.Network/networkSecurityGroups', variables('resolvedPrivateEndpointSubnetNsgName')), '')]"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2025-04-01",
+      "name": "monitoring",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "location": {
+            "value": "[parameters('location')]"
+          },
+          "workspaceName": {
+            "value": "[parameters('logAnalyticsWorkspaceName')]"
+          },
+          "retentionInDays": {
+            "value": "[parameters('logAnalyticsRetentionInDays')]"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.43.8.12551",
+              "templateHash": "12836245907144863426"
+            }
+          },
+          "parameters": {
+            "location": {
+              "type": "string",
+              "defaultValue": "[resourceGroup().location]",
+              "metadata": {
+                "description": "Location for the Log Analytics workspace."
+              }
+            },
+            "workspaceName": {
+              "type": "string",
+              "metadata": {
+                "description": "Log Analytics workspace name."
+              }
+            },
+            "retentionInDays": {
+              "type": "int",
+              "defaultValue": 30,
+              "minValue": 30,
+              "maxValue": 730,
+              "metadata": {
+                "description": "Workspace retention in days."
+              }
+            }
+          },
+          "resources": [
+            {
+              "type": "Microsoft.OperationalInsights/workspaces",
+              "apiVersion": "2023-09-01",
+              "name": "[parameters('workspaceName')]",
+              "location": "[parameters('location')]",
+              "properties": {
+                "sku": {
+                  "name": "PerGB2018"
+                },
+                "retentionInDays": "[parameters('retentionInDays')]",
+                "publicNetworkAccessForIngestion": "Enabled",
+                "publicNetworkAccessForQuery": "Enabled"
+              }
+            }
+          ],
+          "outputs": {
+            "workspaceId": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaceName'))]"
+            },
+            "workspaceName": {
+              "type": "string",
+              "value": "[parameters('workspaceName')]"
+            },
+            "customerId": {
+              "type": "string",
+              "value": "[reference(resourceId('Microsoft.OperationalInsights/workspaces', parameters('workspaceName')), '2023-09-01').customerId]"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2025-04-01",
+      "name": "acr",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "location": {
+            "value": "[parameters('location')]"
+          },
+          "acrName": {
+            "value": "[parameters('acrName')]"
+          },
+          "skuName": {
+            "value": "Standard"
+          },
+          "enablePrivateEndpoint": {
+            "value": false
+          },
+          "publicNetworkAccess": {
+            "value": "Enabled"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.43.8.12551",
+              "templateHash": "8103798319842749125"
+            }
+          },
+          "parameters": {
+            "location": {
+              "type": "string",
+              "defaultValue": "[resourceGroup().location]",
+              "metadata": {
+                "description": "Location for the Azure Container Registry."
+              }
+            },
+            "acrName": {
+              "type": "string",
+              "metadata": {
+                "description": "Azure Container Registry name."
+              }
+            },
+            "skuName": {
+              "type": "string",
+              "defaultValue": "Standard",
+              "allowedValues": [
+                "Basic",
+                "Standard",
+                "Premium"
+              ],
+              "metadata": {
+                "description": "ACR SKU. Use Premium when private endpoints are enabled."
+              }
+            },
+            "enablePrivateEndpoint": {
+              "type": "bool",
+              "defaultValue": false,
+              "metadata": {
+                "description": "Create a private endpoint and supporting private DNS zone for the registry."
+              }
+            },
+            "privateEndpointSubnetId": {
+              "type": "string",
+              "defaultValue": "",
+              "metadata": {
+                "description": "Subnet resource ID used for the registry private endpoint."
+              }
+            },
+            "vnetId": {
+              "type": "string",
+              "defaultValue": "",
+              "metadata": {
+                "description": "Virtual network resource ID linked to the private DNS zone."
+              }
+            },
+            "publicNetworkAccess": {
+              "type": "string",
+              "defaultValue": "Enabled",
+              "allowedValues": [
+                "Enabled",
+                "Disabled"
+              ],
+              "metadata": {
+                "description": "Public network access setting. Set to Disabled when using the private variant."
+              }
+            }
+          },
+          "variables": {
+            "privateDnsZoneName": "privatelink.azurecr.io",
+            "privateEndpointName": "[format('pe-{0}', parameters('acrName'))]",
+            "privateDnsZoneGroupName": "default",
+            "privateDnsVnetLinkName": "[format('link-{0}', parameters('acrName'))]"
+          },
+          "resources": [
+            {
+              "type": "Microsoft.ContainerRegistry/registries",
+              "apiVersion": "2023-11-01-preview",
+              "name": "[parameters('acrName')]",
+              "location": "[parameters('location')]",
+              "sku": {
+                "name": "[parameters('skuName')]"
+              },
+              "properties": {
+                "adminUserEnabled": false,
+                "publicNetworkAccess": "[parameters('publicNetworkAccess')]",
+                "networkRuleBypassOptions": "AzureServices"
+              }
+            },
+            {
+              "condition": "[parameters('enablePrivateEndpoint')]",
+              "type": "Microsoft.Network/privateDnsZones",
+              "apiVersion": "2024-06-01",
+              "name": "[variables('privateDnsZoneName')]",
+              "location": "global"
+            },
+            {
+              "condition": "[parameters('enablePrivateEndpoint')]",
+              "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+              "apiVersion": "2024-06-01",
+              "name": "[format('{0}/{1}', variables('privateDnsZoneName'), variables('privateDnsVnetLinkName'))]",
+              "location": "global",
+              "properties": {
+                "registrationEnabled": false,
+                "virtualNetwork": {
+                  "id": "[parameters('vnetId')]"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.Network/privateDnsZones', variables('privateDnsZoneName'))]"
+              ]
+            },
+            {
+              "condition": "[parameters('enablePrivateEndpoint')]",
+              "type": "Microsoft.Network/privateEndpoints",
+              "apiVersion": "2024-05-01",
+              "name": "[variables('privateEndpointName')]",
+              "location": "[parameters('location')]",
+              "properties": {
+                "subnet": {
+                  "id": "[parameters('privateEndpointSubnetId')]"
+                },
+                "privateLinkServiceConnections": [
+                  {
+                    "name": "acrRegistry",
+                    "properties": {
+                      "privateLinkServiceId": "[resourceId('Microsoft.ContainerRegistry/registries', parameters('acrName'))]",
+                      "groupIds": [
+                        "registry"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.ContainerRegistry/registries', parameters('acrName'))]"
+              ]
+            },
+            {
+              "condition": "[parameters('enablePrivateEndpoint')]",
+              "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups",
+              "apiVersion": "2024-05-01",
+              "name": "[format('{0}/{1}', variables('privateEndpointName'), variables('privateDnsZoneGroupName'))]",
+              "properties": {
+                "privateDnsZoneConfigs": [
+                  {
+                    "name": "registryDns",
+                    "properties": {
+                      "privateDnsZoneId": "[resourceId('Microsoft.Network/privateDnsZones', variables('privateDnsZoneName'))]"
+                    }
+                  }
+                ]
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.Network/privateDnsZones', variables('privateDnsZoneName'))]",
+                "[resourceId('Microsoft.Network/privateEndpoints', variables('privateEndpointName'))]"
+              ]
+            }
+          ],
+          "outputs": {
+            "acrId": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.ContainerRegistry/registries', parameters('acrName'))]"
+            },
+            "acrName": {
+              "type": "string",
+              "value": "[parameters('acrName')]"
+            },
+            "loginServer": {
+              "type": "string",
+              "value": "[reference(resourceId('Microsoft.ContainerRegistry/registries', parameters('acrName')), '2023-11-01-preview').loginServer]"
+            },
+            "privateEndpointId": {
+              "type": "string",
+              "value": "[if(parameters('enablePrivateEndpoint'), resourceId('Microsoft.Network/privateEndpoints', variables('privateEndpointName')), '')]"
+            },
+            "privateDnsZoneId": {
+              "type": "string",
+              "value": "[if(parameters('enablePrivateEndpoint'), resourceId('Microsoft.Network/privateDnsZones', variables('privateDnsZoneName')), '')]"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2025-04-01",
+      "name": "keyvault",
+      "properties": {
+        "expressionEvaluationOptions": {
+          "scope": "inner"
+        },
+        "mode": "Incremental",
+        "parameters": {
+          "location": {
+            "value": "[parameters('location')]"
+          },
+          "keyVaultName": {
+            "value": "[parameters('keyVaultName')]"
+          },
+          "enablePrivateEndpoint": {
+            "value": false
+          },
+          "publicNetworkAccess": {
+            "value": "Enabled"
+          }
+        },
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "metadata": {
+            "_generator": {
+              "name": "bicep",
+              "version": "0.43.8.12551",
+              "templateHash": "2464757106269965330"
+            }
+          },
+          "parameters": {
+            "location": {
+              "type": "string",
+              "defaultValue": "[resourceGroup().location]",
+              "metadata": {
+                "description": "Location for the Key Vault."
+              }
+            },
+            "keyVaultName": {
+              "type": "string",
+              "metadata": {
+                "description": "Key Vault name."
+              }
+            },
+            "tenantId": {
+              "type": "string",
+              "defaultValue": "[tenant().tenantId]",
+              "metadata": {
+                "description": "Tenant ID for the Key Vault."
+              }
+            },
+            "enablePrivateEndpoint": {
+              "type": "bool",
+              "defaultValue": false,
+              "metadata": {
+                "description": "Create a private endpoint and supporting private DNS zone for the Key Vault."
+              }
+            },
+            "privateEndpointSubnetId": {
+              "type": "string",
+              "defaultValue": "",
+              "metadata": {
+                "description": "Subnet resource ID used for the Key Vault private endpoint."
+              }
+            },
+            "vnetId": {
+              "type": "string",
+              "defaultValue": "",
+              "metadata": {
+                "description": "Virtual network resource ID linked to the private DNS zone."
+              }
+            },
+            "publicNetworkAccess": {
+              "type": "string",
+              "defaultValue": "Enabled",
+              "allowedValues": [
+                "Enabled",
+                "Disabled"
+              ],
+              "metadata": {
+                "description": "Public network access setting. Set to Disabled when using the private variant."
+              }
+            }
+          },
+          "variables": {
+            "privateDnsZoneName": "privatelink.vaultcore.azure.net",
+            "privateEndpointName": "[format('pe-{0}', parameters('keyVaultName'))]",
+            "privateDnsVnetLinkName": "[format('link-{0}', parameters('keyVaultName'))]"
+          },
+          "resources": [
+            {
+              "type": "Microsoft.KeyVault/vaults",
+              "apiVersion": "2023-07-01",
+              "name": "[parameters('keyVaultName')]",
+              "location": "[parameters('location')]",
+              "properties": {
+                "tenantId": "[parameters('tenantId')]",
+                "sku": {
+                  "family": "A",
+                  "name": "standard"
+                },
+                "enableRbacAuthorization": true,
+                "enabledForDeployment": false,
+                "enabledForDiskEncryption": false,
+                "enabledForTemplateDeployment": false,
+                "softDeleteRetentionInDays": 90,
+                "enablePurgeProtection": true,
+                "publicNetworkAccess": "[parameters('publicNetworkAccess')]",
+                "networkAcls": {
+                  "bypass": "AzureServices",
+                  "defaultAction": "[if(parameters('enablePrivateEndpoint'), 'Deny', 'Allow')]"
+                }
+              }
+            },
+            {
+              "condition": "[parameters('enablePrivateEndpoint')]",
+              "type": "Microsoft.Network/privateDnsZones",
+              "apiVersion": "2024-06-01",
+              "name": "[variables('privateDnsZoneName')]",
+              "location": "global"
+            },
+            {
+              "condition": "[parameters('enablePrivateEndpoint')]",
+              "type": "Microsoft.Network/privateDnsZones/virtualNetworkLinks",
+              "apiVersion": "2024-06-01",
+              "name": "[format('{0}/{1}', variables('privateDnsZoneName'), variables('privateDnsVnetLinkName'))]",
+              "location": "global",
+              "properties": {
+                "registrationEnabled": false,
+                "virtualNetwork": {
+                  "id": "[parameters('vnetId')]"
+                }
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.Network/privateDnsZones', variables('privateDnsZoneName'))]"
+              ]
+            },
+            {
+              "condition": "[parameters('enablePrivateEndpoint')]",
+              "type": "Microsoft.Network/privateEndpoints",
+              "apiVersion": "2024-05-01",
+              "name": "[variables('privateEndpointName')]",
+              "location": "[parameters('location')]",
+              "properties": {
+                "subnet": {
+                  "id": "[parameters('privateEndpointSubnetId')]"
+                },
+                "privateLinkServiceConnections": [
+                  {
+                    "name": "keyVault",
+                    "properties": {
+                      "privateLinkServiceId": "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]",
+                      "groupIds": [
+                        "vault"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+              ]
+            },
+            {
+              "condition": "[parameters('enablePrivateEndpoint')]",
+              "type": "Microsoft.Network/privateEndpoints/privateDnsZoneGroups",
+              "apiVersion": "2024-05-01",
+              "name": "[format('{0}/{1}', variables('privateEndpointName'), 'default')]",
+              "properties": {
+                "privateDnsZoneConfigs": [
+                  {
+                    "name": "keyVaultDns",
+                    "properties": {
+                      "privateDnsZoneId": "[resourceId('Microsoft.Network/privateDnsZones', variables('privateDnsZoneName'))]"
+                    }
+                  }
+                ]
+              },
+              "dependsOn": [
+                "[resourceId('Microsoft.Network/privateDnsZones', variables('privateDnsZoneName'))]",
+                "[resourceId('Microsoft.Network/privateEndpoints', variables('privateEndpointName'))]"
+              ]
+            }
+          ],
+          "outputs": {
+            "keyVaultId": {
+              "type": "string",
+              "value": "[resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName'))]"
+            },
+            "keyVaultName": {
+              "type": "string",
+              "value": "[parameters('keyVaultName')]"
+            },
+            "keyVaultUri": {
+              "type": "string",
+              "value": "[reference(resourceId('Microsoft.KeyVault/vaults', parameters('keyVaultName')), '2023-07-01').vaultUri]"
+            },
+            "privateEndpointId": {
+              "type": "string",
+              "value": "[if(parameters('enablePrivateEndpoint'), resourceId('Microsoft.Network/privateEndpoints', variables('privateEndpointName')), '')]"
+            },
+            "privateDnsZoneId": {
+              "type": "string",
+              "value": "[if(parameters('enablePrivateEndpoint'), resourceId('Microsoft.Network/privateDnsZones', variables('privateDnsZoneName')), '')]"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "clusterName": {
+      "type": "string",
+      "value": "[parameters('clusterName')]"
+    },
+    "oidcIssuerUrl": {
+      "type": "string",
+      "value": "[reference(resourceId('Microsoft.ContainerService/managedClusters', parameters('clusterName')), '2024-05-01').oidcIssuerProfile.issuerURL]"
+    },
+    "kubeletIdentity": {
+      "type": "object",
+      "value": "[reference(resourceId('Microsoft.ContainerService/managedClusters', parameters('clusterName')), '2024-05-01').identityProfile.kubeletidentity]"
+    },
+    "acrLoginServer": {
+      "type": "string",
+      "value": "[reference(resourceId('Microsoft.Resources/deployments', 'acr'), '2025-04-01').outputs.loginServer.value]"
+    },
+    "keyVaultName": {
+      "type": "string",
+      "value": "[reference(resourceId('Microsoft.Resources/deployments', 'keyvault'), '2025-04-01').outputs.keyVaultName.value]"
+    },
+    "keyVaultUri": {
+      "type": "string",
+      "value": "[reference(resourceId('Microsoft.Resources/deployments', 'keyvault'), '2025-04-01').outputs.keyVaultUri.value]"
+    }
+  }
+}
