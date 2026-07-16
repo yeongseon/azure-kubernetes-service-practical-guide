@@ -18,11 +18,21 @@ Comprehensive guide for running containerized applications on Azure Kubernetes S
 | [Platform](https://yeongseon.github.io/azure-kubernetes-service-practical-guide/platform/) | AKS architecture deep dive: node pools, networking models, identity, and storage | Comprehensive |
 | [Best Practices](https://yeongseon.github.io/azure-kubernetes-service-practical-guide/best-practices/) | Production-ready design for security, governance, reliability, and cost optimization | Comprehensive |
 | [Operations](https://yeongseon.github.io/azure-kubernetes-service-practical-guide/operations/) | Day-2 guide for upgrades, scaling, monitoring, and credential rotation | Comprehensive |
+| [Language Guides](https://yeongseon.github.io/azure-kubernetes-service-practical-guide/language-guides/) | Python containerize-and-deploy on-ramp for AKS workloads | Published |
 | [Tutorials](https://yeongseon.github.io/azure-kubernetes-service-practical-guide/tutorials/) | Hands-on labs for AGIC ingress, Key Vault CSI, and disaster recovery | Published |
 | [Troubleshooting](https://yeongseon.github.io/azure-kubernetes-service-practical-guide/troubleshooting/) | Diagnosis playbooks for pod failures, CNI IP exhaustion, and ingress issues | Published |
-| [Reference](https://yeongseon.github.io/azure-kubernetes-service-practical-guide/reference/) | Quick-lookup CLI cheatsheet, diagnostic commands, and limits and quotas | Comprehensive |
+| [Visualization](https://yeongseon.github.io/azure-kubernetes-service-practical-guide/visualization/) | Architecture, networking, identity, and troubleshooting maps | Published |
+| [Reference](https://yeongseon.github.io/azure-kubernetes-service-practical-guide/reference/) | Quick-lookup CLI cheatsheet, limits, quotas, and repository meta-model | Comprehensive |
 
 **Status legend**: **Lab-validated** = Comprehensive + reproducible labs prove the guidance · **Comprehensive** = Full section, MSLearn-verified, production-ready · **Published** = Core content in place, still expanding · **In progress** = Partial content, active development · **Planned** = Placeholder, content not yet started
+
+## Runnable Artifacts
+
+This repository includes deployable assets to accelerate your AKS implementation:
+
+- [apps/python/](apps/python/): FastAPI reference app featuring Workload Identity and Key Vault CSI integration
+- [infra/](infra/): Production-ready Bicep baseline for both public and private AKS cluster topologies
+- [labs/](labs/): Reproducible fault-injection lab templates for hands-on troubleshooting practice
 
 ## Focus Areas
 
