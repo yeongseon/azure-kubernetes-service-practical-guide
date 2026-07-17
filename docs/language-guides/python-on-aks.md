@@ -1,11 +1,14 @@
 ---
 content_sources:
-  - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
-  - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/aks/workload-identity-deploy-cluster
-  - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/aks/csi-secrets-store-driver
+  diagrams:
+  - id: python-on-aks-build-deploy-flow
+    type: flowchart
+    source: self-generated
+    justification: Synthesized build-and-deployment flow for containerizing a Python FastAPI app and deploying it to AKS with Workload Identity and the Key Vault Secrets Store CSI driver.
+    based_on:
+    - https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+    - https://learn.microsoft.com/en-us/azure/aks/workload-identity-deploy-cluster
+    - https://learn.microsoft.com/en-us/azure/aks/csi-secrets-store-driver
 ---
 
 # Python on AKS
@@ -32,6 +35,7 @@ You will deploy the [Python Reference App](https://github.com/yeongseon/azure-ku
 
 ### Build and Deployment Flow
 
+<!-- diagram-id: python-on-aks-build-deploy-flow -->
 ```mermaid
 flowchart TD
     START[Local Python Code] --> DOCKER[Build Docker Image]

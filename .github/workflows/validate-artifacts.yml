@@ -74,7 +74,7 @@ jobs:
           curl --silent --show-error --fail --location "https://github.com/yannh/kubeconform/releases/download/v${KUBECONFORM_VERSION}/kubeconform-linux-amd64.tar.gz" --output kubeconform.tar.gz
           tar --extract --gzip --file kubeconform.tar.gz kubeconform
           sudo install --mode 0755 kubeconform /usr/local/bin/kubeconform
-          kubeconform --version
+          kubeconform -v
 
       - name: Validate YAML syntax
         run: |
