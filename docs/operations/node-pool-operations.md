@@ -59,7 +59,7 @@ kubectl get pods -A -o wide
 
 The Azure Portal **Node pools** blade shows the same state across every pool in one view.
 
-![Azure Portal AKS Node pools blade showing a system pool and a user pool with healthy provisioning and power state](../assets/images/aks-node-pools.png)
+[[[ shot("aks-operations-node-pools") ]]]
 
 Purpose: Show where to verify AKS node pool mode, scale method, node counts, and provisioning state.
 

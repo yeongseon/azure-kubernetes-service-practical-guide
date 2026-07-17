@@ -127,3 +127,17 @@ screenshots:
   diff_threshold: 0.02
   captured: '2026-07-17'
   verified: '2026-07-17'
+- id: aks-operations-cluster-overview
+  file: operations/cluster-creation/aks-operations-cluster-overview.webp
+  alt: Azure Portal AKS cluster Overview blade showing sanitized cluster essentials and a healthy running status
+  page: AKS cluster Overview blade
+  diff_threshold: 0.02
+  captured: '2026-07-17'
+  verified: '2026-07-17'
+- id: aks-operations-node-pools
+  file: operations/node-pool-operations/aks-operations-node-pools.webp
+  alt: Azure Portal AKS Node pools blade showing a system pool and a user pool with healthy provisioning and power state
+  page: AKS Node pools blade
+  diff_threshold: 0.02
+  captured: '2026-07-17'
+  verified: '2026-07-17'

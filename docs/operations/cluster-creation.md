@@ -63,7 +63,7 @@ kubectl get pods -n kube-system
 
 You can confirm the same state in the Azure Portal on the cluster **Overview** blade.
 
-![Azure Portal AKS cluster Overview blade showing sanitized cluster essentials and a healthy running status](../assets/images/aks-cluster-overview.png)
+[[[ shot("aks-operations-cluster-overview") ]]]
 
 Purpose: Show where to confirm the AKS cluster's basic health and identity in the Azure Portal after creation.
 
