@@ -51,6 +51,42 @@ kubectl get serviceaccount -A
 kubectl get secret -A
 ```
 
+### Review cluster access in the Azure Portal
+
+The **Access control (IAM)** blade shows Azure RBAC role assignments that govern who can manage the cluster and its resources.
+
+[[[ shot("aks-identity-access-control-iam") ]]]
+
+Purpose: Confirm that human and workload access to the cluster is governed by explicit Azure RBAC assignments.
+
+Look for:
+
+- The **Check access** tab lets you verify effective permissions for a specific identity.
+- Role assignments follow least privilege — no broad `Owner` grants where a scoped role suffices.
+- Account and directory identifiers are sanitized (`user@example.com`, `<object-id>`).
+
+Expected result: Cluster access is explicit and auditable through Azure RBAC rather than implicit or shared credentials.
+
+Next step: Confirm workload identity and OIDC settings on the Security configuration blade.
+
+### Confirm workload identity configuration
+
+The **Security configuration** blade shows whether the OIDC issuer and workload identity are enabled — the foundation for secret-free pod authentication.
+
+[[[ shot("aks-identity-security-configuration") ]]]
+
+Purpose: Verify that workload identity is enabled so pods can authenticate to Azure without stored secrets.
+
+Look for:
+
+- **Workload identity** is enabled and the **OIDC issuer URL** is populated.
+- Tenant and cluster identifiers in the issuer URL are sanitized (`<tenant-id>`).
+- The configuration matches the `--enable-oidc-issuer --enable-workload-identity` flags used at setup.
+
+Expected result: The cluster exposes an OIDC issuer with workload identity enabled, allowing federated pod-to-Azure authentication.
+
+Next step: Bind a Kubernetes service account to a managed identity following [Best Practices: Security](../best-practices/security.md).
+
 ## See Also
 
 - [Cluster Architecture](cluster-architecture.md)

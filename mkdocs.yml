@@ -119,6 +119,7 @@ nav:
   - Best Practices:
     - best-practices/index.md
     - best-practices/production-baseline.md
+    - best-practices/deployment-strategies.md
     - best-practices/security.md
     - best-practices/networking.md
     - best-practices/resource-governance.md
@@ -132,6 +133,15 @@ nav:
       - tutorials/lab-guides/lab-03-azure-key-vault-csi-driver.md
       - tutorials/lab-guides/lab-04-azure-policy-for-aks.md
       - tutorials/lab-guides/lab-05-aks-disaster-recovery.md
+    - Fault Injection Labs:
+      - tutorials/lab-guides/fault-lab-01-image-pull-failure.md
+      - tutorials/lab-guides/fault-lab-02-crashloopbackoff.md
+      - tutorials/lab-guides/fault-lab-03-pending-pods-resources.md
+      - tutorials/lab-guides/fault-lab-04-ingress-misconfiguration.md
+      - tutorials/lab-guides/fault-lab-05-node-pressure-scheduling.md
+    - Language Guides:
+      - language-guides/index.md
+      - language-guides/python-on-aks.md
   - Operations:
     - operations/index.md
     - operations/cluster-creation.md
@@ -172,6 +182,8 @@ nav:
       - Operations:
         - troubleshooting/playbooks/operations/upgrade-failure.md
         - troubleshooting/playbooks/operations/scaling-failure.md
+    - Evidence Packs:
+      - troubleshooting/evidence-packs/index.md
   - Reference:
     - reference/index.md
     - Validation Status: reference/validation-status.md
@@ -181,5 +193,17 @@ nav:
     - reference/version-support.md
     - reference/glossary.md
     - reference/diagnostic-commands.md
+    - Metrics:
+      - reference/metrics/index.md
+      - reference/metrics/aks-metrics.md
+  - Visualization:
+    - visualization/index.md
+    - visualization/architecture-map.md
+    - visualization/networking-path-map.md
+    - visualization/identity-map.md
+    - visualization/troubleshooting-decision-map.md
   - Contributing:
     - contributing/index.md
+    - Meta:
+      - meta/index.md
+      - meta/content-model.md

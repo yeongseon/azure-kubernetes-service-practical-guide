@@ -61,6 +61,23 @@ az aks show --resource-group $RG --name $CLUSTER_NAME --query "{powerState:power
 kubectl get pods -n kube-system
 ```
 
+You can confirm the same state in the Azure Portal on the cluster **Overview** blade.
+
+[[[ shot("aks-operations-cluster-overview") ]]]
+
+Purpose: Show where to confirm the AKS cluster's basic health and identity in the Azure Portal after creation.
+
+Look for:
+
+- The **Power state** shows `Running` and **Cluster operation status** shows `Succeeded`.
+- The **Kubernetes version** matches the version expected by this runbook.
+- The **Resource group**, **Subscription**, **Subscription ID**, and **API server address** are sanitized in the screenshot (`<subscription-id>`, `Contoso Demo Subscription`, `aks-demo-dns-xxxxxxxx.hcp.<region>.azmk8s.io`).
+- No provisioning failures or critical warnings are visible.
+
+Expected result: The cluster is in a healthy running state with core identity and version fields visible, and `2 node pools` are reported.
+
+Next step: Open the Node pools blade to verify system and user node pool health and sizing.
+
 ## Rollback / Troubleshooting
 
 - Delete the cluster only if it was a failed greenfield setup and no state was attached.

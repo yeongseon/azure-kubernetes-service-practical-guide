@@ -53,6 +53,24 @@ kubectl describe ingress <ingress-name> -n <namespace>
 az network public-ip list --resource-group MC_<managed-resource-group>_<cluster-name>_<location> --output table
 ```
 
+### View services and ingresses in the Azure Portal
+
+The **Services and ingresses** blade lists Kubernetes Services with their type and external endpoint, so you can confirm a `LoadBalancer` service received a public IP.
+
+[[[ shot("aks-networking-services-ingresses") ]]]
+
+Purpose: Confirm that a workload exposed through a `LoadBalancer` service obtained an external endpoint.
+
+Look for:
+
+- The service **type** shows `LoadBalancer` for the exposed workload.
+- The **external IP** is populated (and sanitized as `<public-ip>` in this screenshot).
+- The service maps to the expected namespace and backing pods.
+
+Expected result: The exposed service has a reachable external endpoint, confirming the Azure load balancer provisioned correctly.
+
+Next step: Add an ingress controller for HTTP routing and TLS termination as described above.
+
 ## See Also
 
 - [Networking Models](networking-models.md)

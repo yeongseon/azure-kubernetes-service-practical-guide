@@ -35,4 +35,109 @@ meta:
   target_width: 1440
   webp_quality: 82
 
-screenshots: []
+screenshots:
+- id: aks-cluster-overview-properties
+  file: platform/architecture/aks-cluster-overview-properties.webp
+  alt: Azure Portal AKS Properties blade showing sanitized cluster essentials, control plane version, and networking profile
+  page: AKS cluster Properties blade
+  diff_threshold: 0.02
+  captured: '2026-07-17'
+  verified: '2026-07-17'
+- id: aks-cluster-namespaces
+  file: platform/workloads/aks-cluster-namespaces.webp
+  alt: Azure Portal AKS Namespaces blade showing system namespaces and an application namespace, all Active
+  page: AKS Namespaces blade
+  diff_threshold: 0.02
+  captured: '2026-07-17'
+  verified: '2026-07-17'
+- id: aks-node-pools-list
+  file: platform/node-pools/aks-node-pools-list.webp
+  alt: Azure Portal AKS Node pools blade showing a system pool and a user pool with healthy provisioning and power state
+  page: AKS Node pools blade
+  diff_threshold: 0.02
+  captured: '2026-07-17'
+  verified: '2026-07-17'
+- id: aks-node-pools-upgrades
+  file: platform/node-pools/aks-node-pools-upgrades.webp
+  alt: Azure Portal AKS Upgrades blade showing the current Kubernetes version and disabled automatic upgrade channel
+  page: AKS Upgrades blade
+  diff_threshold: 0.02
+  captured: '2026-07-17'
+  verified: '2026-07-17'
+- id: aks-networking-blade
+  file: platform/networking/aks-networking-blade.webp
+  alt: Azure Portal AKS Networking blade showing Azure CNI, the service CIDR, and the DNS service IP
+  page: AKS Networking blade
+  diff_threshold: 0.02
+  captured: '2026-07-17'
+  verified: '2026-07-17'
+- id: aks-networking-services-ingresses
+  file: platform/networking/aks-networking-services-ingresses.webp
+  alt: Azure Portal AKS Services and ingresses blade showing a LoadBalancer service with a sanitized external IP
+  page: AKS Services and ingresses blade
+  diff_threshold: 0.02
+  captured: '2026-07-17'
+  verified: '2026-07-17'
+- id: aks-identity-access-control-iam
+  file: platform/identity/aks-identity-access-control-iam.webp
+  alt: Azure Portal AKS Access control (IAM) blade showing the Check access tab for reviewing role assignments
+  page: AKS Access control (IAM) blade
+  diff_threshold: 0.02
+  captured: '2026-07-17'
+  verified: '2026-07-17'
+- id: aks-identity-security-configuration
+  file: platform/identity/aks-identity-security-configuration.webp
+  alt: Azure Portal AKS Security configuration blade showing an enabled OIDC issuer URL and workload identity
+  page: AKS Security configuration blade
+  diff_threshold: 0.02
+  captured: '2026-07-17'
+  verified: '2026-07-17'
+- id: aks-scaling-workloads
+  file: platform/workloads/aks-scaling-workloads.webp
+  alt: Azure Portal AKS Workloads blade showing a Deployment with all replicas ready
+  page: AKS Workloads blade
+  diff_threshold: 0.02
+  captured: '2026-07-17'
+  verified: '2026-07-17'
+- id: aks-scaling-application-scaling
+  file: platform/scaling/aks-scaling-application-scaling.webp
+  alt: Azure Portal AKS Application scaling blade showing the option to enable the KEDA add-on
+  page: AKS Application scaling blade
+  diff_threshold: 0.02
+  captured: '2026-07-17'
+  verified: '2026-07-17'
+- id: aks-monitoring-insights
+  file: platform/monitoring/aks-monitoring-insights.webp
+  alt: Azure Portal AKS Monitor Insights blade showing live node CPU and memory utilization
+  page: AKS Monitor Insights blade
+  diff_threshold: 0.02
+  captured: '2026-07-17'
+  verified: '2026-07-17'
+- id: aks-monitoring-metrics
+  file: platform/monitoring/aks-monitoring-metrics.webp
+  alt: Azure Portal AKS Metrics blade showing the metric chart builder with the Container service namespace
+  page: AKS Metrics blade
+  diff_threshold: 0.02
+  captured: '2026-07-17'
+  verified: '2026-07-17'
+- id: aks-monitoring-diagnostic-settings
+  file: platform/monitoring/aks-monitoring-diagnostic-settings.webp
+  alt: Azure Portal AKS Diagnostic settings blade listing the available log categories to export
+  page: AKS Diagnostic settings blade
+  diff_threshold: 0.02
+  captured: '2026-07-17'
+  verified: '2026-07-17'
+- id: aks-operations-cluster-overview
+  file: operations/cluster-creation/aks-operations-cluster-overview.webp
+  alt: Azure Portal AKS cluster Overview blade showing sanitized cluster essentials and a healthy running status
+  page: AKS cluster Overview blade
+  diff_threshold: 0.02
+  captured: '2026-07-17'
+  verified: '2026-07-17'
+- id: aks-operations-node-pools
+  file: operations/node-pool-operations/aks-operations-node-pools.webp
+  alt: Azure Portal AKS Node pools blade showing a system pool and a user pool with healthy provisioning and power state
+  page: AKS Node pools blade
+  diff_threshold: 0.02
+  captured: '2026-07-17'
+  verified: '2026-07-17'

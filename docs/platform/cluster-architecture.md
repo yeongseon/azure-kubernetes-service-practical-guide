@@ -61,6 +61,43 @@ flowchart TD
 - Load balancers, managed disks, NICs, and public IPs often live there.
 - Incident triage often requires checking both the cluster resource group and the node resource group.
 
+### Confirm cluster identity in the Azure Portal
+
+The **Overview** and **Properties** blades summarize the control plane, node pool count, Kubernetes version, and networking profile in one place.
+
+[[[ shot("aks-cluster-overview-properties") ]]]
+
+Purpose: Show where to confirm the layered cluster identity — control plane version, node pool count, and networking profile — after provisioning.
+
+Look for:
+
+- **Provisioning state** shows `Succeeded` and **Power state** shows `Running`.
+- The **Kubernetes version** matches the version this guide targets.
+- The **API server address**, **Subscription ID**, and account header are sanitized (`aks-demo-dns-xxxxxxxx.hcp.<region>.azmk8s.io`, `<subscription-id>`, `user@example.com`).
+- The **networking profile** (Azure CNI) and **node pool count** reflect the intended topology.
+
+Expected result: The cluster reports a healthy managed control plane paired with the expected worker node pools and network plugin.
+
+Next step: Open the Node pools blade to inspect system and user pool health and sizing.
+
+### Review namespace boundaries
+
+The **Namespaces** blade lists the Kubernetes namespaces that form your workload isolation boundaries, including system namespaces and your application namespaces.
+
+[[[ shot("aks-cluster-namespaces") ]]]
+
+Purpose: Confirm the namespace layout that separates platform add-ons from application workloads.
+
+Look for:
+
+- System namespaces (`kube-system`, `kube-public`, `kube-node-lease`, `default`) are present and `Active`.
+- Your application namespace (for example, a dedicated app namespace) is `Active`.
+- No unexpected namespaces exist that could indicate stray or unmanaged workloads.
+
+Expected result: Namespaces cleanly separate system components from application workloads, supporting isolation and RBAC scoping.
+
+Next step: Scope Kubernetes RBAC and resource quotas per namespace as described in [Resource Governance](../best-practices/resource-governance.md).
+
 ## See Also
 
 - [Platform](index.md)

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pending-resources-lab
+  namespace: workload
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pending-resources-lab
+  template:
+    metadata:
+      labels:
+        app: pending-resources-lab
+    spec:
+      containers:
+        - name: app
+          image: "${LAB_IMAGE}"
+          ports:
+            - containerPort: 8000
+              protocol: TCP
+          resources:
+            requests:
+              cpu: "16"
+              memory: 64Gi
+            limits:
+              cpu: "16"
+              memory: 64Gi

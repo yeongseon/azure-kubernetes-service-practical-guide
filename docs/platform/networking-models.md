@@ -51,6 +51,24 @@ flowchart TD
 az aks create     --resource-group $RG     --name $CLUSTER_NAME     --location $LOCATION     --network-plugin azure     --network-plugin-mode overlay     --pod-cidr 192.168.0.0/16     --service-cidr 10.0.0.0/16     --dns-service-ip 10.0.0.10
 ```
 
+### Confirm the network profile in the Azure Portal
+
+The **Networking** blade shows the active network plugin, service CIDR, DNS service IP, and add-ons such as Advanced Container Networking Services.
+
+[[[ shot("aks-networking-blade") ]]]
+
+Purpose: Verify the network model chosen at creation time, since it is painful to change later.
+
+Look for:
+
+- The **network plugin** shows `Azure CNI` (with overlay mode if selected).
+- The **Service CIDR** and **DNS service IP** match your planned address ranges.
+- Any private cluster or network policy settings reflect the intended design.
+
+Expected result: The cluster's networking profile matches the model you deliberately selected, with no surprise defaults.
+
+Next step: Review [Ingress and Load Balancing](ingress-load-balancing.md) to plan north-south traffic entry.
+
 ## See Also
 
 - [Cluster Architecture](cluster-architecture.md)

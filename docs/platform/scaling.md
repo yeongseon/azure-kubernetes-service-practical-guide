@@ -51,6 +51,41 @@ az aks update     --resource-group $RG     --name $CLUSTER_NAME     --enable-clu
 - Autoscaler is enabled but subnet IPs or quotas block node growth.
 - Workloads have no CPU/memory requests, so autoscaling decisions are noisy.
 
+### Inspect workload health in the Azure Portal
+
+The **Workloads** blade lists Deployments, ReplicaSets, and Pods with ready/desired replica counts, so you can confirm scaling actions converged.
+
+[[[ shot("aks-scaling-workloads") ]]]
+
+Purpose: Confirm that a Deployment reached its desired replica count after an HPA or manual scaling event.
+
+Look for:
+
+- The Deployment shows **Ready** equal to **Desired** (for example, `3/3`).
+- No pods are stuck in `Pending`, which would indicate capacity or scheduling limits.
+- Replica counts match what the HPA target or manual scale command requested.
+
+Expected result: The workload is fully scheduled with all replicas Ready, confirming the scaling path worked end to end.
+
+Next step: Enable event-driven scaling from the **Application scaling** blade if your workload scales on external signals.
+
+### Enable event-driven scaling (KEDA)
+
+The **Application scaling** blade is where you enable the KEDA add-on for event-driven autoscaling based on external scalers.
+
+[[[ shot("aks-scaling-application-scaling") ]]]
+
+Purpose: Show where to enable KEDA when workloads must scale on events (queues, cron, custom metrics) rather than CPU/memory alone.
+
+Look for:
+
+- The **Scale with KEDA** panel and **Enable KEDA add-on** action are available.
+- The supported scaler list (Azure Service Bus, Cron, Memory & CPU) matches your scaling triggers.
+
+Expected result: You can enable KEDA to complement HPA with event-driven scaling for bursty or queue-based workloads.
+
+Next step: Follow [Scaling Operations](../operations/scaling-operations.md) to configure a ScaledObject.
+
 ## See Also
 
 - [Node Pools](node-pools.md)
