@@ -56,6 +56,42 @@ kubectl describe node <node-name>
 - Spot pools for interruptible work.
 - Autoscaler enabled or fixed-capacity pools.
 
+### Inspect node pools in the Azure Portal
+
+The **Node pools** blade lists every pool with its mode, node count, VM size, Kubernetes version, and provisioning/power state.
+
+![Azure Portal AKS Node pools blade showing a system pool and a user pool with healthy provisioning and power state](../assets/platform/node-pools/01-node-pools-list.png)
+
+Purpose: Confirm the system/user pool split and per-pool health after provisioning or scaling.
+
+Look for:
+
+- A dedicated **system** pool and at least one **user** pool are present.
+- **Provisioning state** shows `Succeeded` and **Power state** shows `Running` for each pool.
+- The **node count** and **VM size** match the intended sizing for each workload class.
+
+Expected result: Each node pool is healthy and sized as designed, with the system pool isolated from user workloads.
+
+Next step: Open the Upgrades blade to review the cluster Kubernetes version and upgrade policy.
+
+### Review upgrade posture
+
+The **Upgrades** blade shows the current Kubernetes version, automatic upgrade channel, and any planned maintenance schedule.
+
+![Azure Portal AKS Upgrades blade showing the current Kubernetes version and disabled automatic upgrade channel](../assets/platform/node-pools/02-upgrades.png)
+
+Purpose: Confirm the cluster version and upgrade strategy that govern node pool lifecycle.
+
+Look for:
+
+- The **Kubernetes version** matches what this guide targets.
+- The **Automatic upgrade type** and **Node channel type** reflect your intended maintenance policy.
+- The **AKS pricing tier** matches the tier your workloads require.
+
+Expected result: The cluster's version and upgrade channel are known and intentional, not left at unexpected defaults.
+
+Next step: Plan node pool upgrades from the [Node Pool Operations](../operations/node-pool-operations.md) runbook.
+
 ## See Also
 
 - [Cluster Architecture](cluster-architecture.md)
