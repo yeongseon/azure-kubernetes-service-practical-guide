@@ -158,6 +158,9 @@ nav:
     - troubleshooting/evidence-map.md
     - troubleshooting/mental-model.md
     - troubleshooting/quick-diagnosis-cards.md
+    - Methodology:
+      - troubleshooting/methodology/index.md
+      - troubleshooting/methodology/troubleshooting-method.md
     - First 10 Minutes:
       - troubleshooting/first-10-minutes/index.md
       - troubleshooting/first-10-minutes/pod-failures.md
@@ -182,6 +185,28 @@ nav:
       - Operations:
         - troubleshooting/playbooks/operations/upgrade-failure.md
         - troubleshooting/playbooks/operations/scaling-failure.md
+    - KQL Query Packs:
+      - troubleshooting/kql/index.md
+      - Workloads:
+        - troubleshooting/kql/workloads/index.md
+        - troubleshooting/kql/workloads/pod-restarts.md
+        - troubleshooting/kql/workloads/crashloopbackoff.md
+        - troubleshooting/kql/workloads/pending-pods.md
+      - Nodes:
+        - troubleshooting/kql/nodes/index.md
+        - troubleshooting/kql/nodes/node-not-ready.md
+        - troubleshooting/kql/nodes/node-cpu-memory-pressure.md
+        - troubleshooting/kql/nodes/node-pod-density.md
+      - Logs and Events:
+        - troubleshooting/kql/logs-events/index.md
+        - troubleshooting/kql/logs-events/container-errors.md
+        - troubleshooting/kql/logs-events/oomkilled-events.md
+        - troubleshooting/kql/logs-events/warning-events.md
+      - Correlation:
+        - troubleshooting/kql/correlation/index.md
+        - troubleshooting/kql/correlation/namespace-incident-timeline.md
+        - troubleshooting/kql/correlation/pod-log-event-correlation.md
+        - troubleshooting/kql/correlation/recent-cluster-changes.md
     - Evidence Packs:
       - troubleshooting/evidence-packs/index.md
   - Reference:
