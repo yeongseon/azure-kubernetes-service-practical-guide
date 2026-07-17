@@ -55,7 +55,7 @@ az aks create     --resource-group $RG     --name $CLUSTER_NAME     --location $
 
 The **Networking** blade shows the active network plugin, service CIDR, DNS service IP, and add-ons such as Advanced Container Networking Services.
 
-![Azure Portal AKS Networking blade showing Azure CNI, the service CIDR, and the DNS service IP](../assets/platform/networking/01-networking-blade.png)
+[[[ shot("aks-networking-blade") ]]]
 
 Purpose: Verify the network model chosen at creation time, since it is painful to change later.
 

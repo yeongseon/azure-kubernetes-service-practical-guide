@@ -65,7 +65,7 @@ flowchart TD
 
 The **Overview** and **Properties** blades summarize the control plane, node pool count, Kubernetes version, and networking profile in one place.
 
-![Azure Portal AKS Properties blade showing sanitized cluster essentials, control plane version, and networking profile](../assets/platform/architecture/01-overview-properties.png)
+[[[ shot("aks-cluster-overview-properties") ]]]
 
 Purpose: Show where to confirm the layered cluster identity — control plane version, node pool count, and networking profile — after provisioning.
 
@@ -84,7 +84,7 @@ Next step: Open the Node pools blade to inspect system and user pool health and 
 
 The **Namespaces** blade lists the Kubernetes namespaces that form your workload isolation boundaries, including system namespaces and your application namespaces.
 
-![Azure Portal AKS Namespaces blade showing system namespaces and an application namespace, all Active](../assets/platform/workloads/02-namespaces.png)
+[[[ shot("aks-cluster-namespaces") ]]]
 
 Purpose: Confirm the namespace layout that separates platform add-ons from application workloads.
 

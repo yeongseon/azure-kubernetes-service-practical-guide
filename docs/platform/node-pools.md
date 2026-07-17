@@ -60,7 +60,7 @@ kubectl describe node <node-name>
 
 The **Node pools** blade lists every pool with its mode, node count, VM size, Kubernetes version, and provisioning/power state.
 
-![Azure Portal AKS Node pools blade showing a system pool and a user pool with healthy provisioning and power state](../assets/platform/node-pools/01-node-pools-list.png)
+[[[ shot("aks-node-pools-list") ]]]
 
 Purpose: Confirm the system/user pool split and per-pool health after provisioning or scaling.
 
@@ -78,7 +78,7 @@ Next step: Open the Upgrades blade to review the cluster Kubernetes version and 
 
 The **Upgrades** blade shows the current Kubernetes version, automatic upgrade channel, and any planned maintenance schedule.
 
-![Azure Portal AKS Upgrades blade showing the current Kubernetes version and disabled automatic upgrade channel](../assets/platform/node-pools/02-upgrades.png)
+[[[ shot("aks-node-pools-upgrades") ]]]
 
 Purpose: Confirm the cluster version and upgrade strategy that govern node pool lifecycle.
 

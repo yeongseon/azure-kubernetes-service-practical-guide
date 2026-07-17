@@ -57,7 +57,7 @@ az network public-ip list --resource-group MC_<managed-resource-group>_<cluster-
 
 The **Services and ingresses** blade lists Kubernetes Services with their type and external endpoint, so you can confirm a `LoadBalancer` service received a public IP.
 
-![Azure Portal AKS Services and ingresses blade showing a LoadBalancer service with a sanitized external IP](../assets/platform/networking/02-services-ingresses.png)
+[[[ shot("aks-networking-services-ingresses") ]]]
 
 Purpose: Confirm that a workload exposed through a `LoadBalancer` service obtained an external endpoint.
 

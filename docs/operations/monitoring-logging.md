@@ -56,7 +56,7 @@ kubectl get pods -n kube-system
 
 You can confirm the same telemetry in the Azure Portal on the cluster monitoring blades.
 
-![Azure Portal AKS Monitor Insights blade showing live node CPU and memory utilization](../assets/platform/monitoring/01-insights.png)
+[[[ shot("aks-monitoring-insights") ]]]
 
 Purpose: Confirm Container insights is collecting live node and workload telemetry after enabling the monitoring add-on.
 
@@ -70,7 +70,7 @@ Expected result: Container insights reports live utilization, confirming the mon
 
 Next step: Build a custom chart on the Metrics blade for a specific signal.
 
-![Azure Portal AKS Metrics blade showing the metric chart builder with the Container service namespace](../assets/platform/monitoring/02-metrics.png)
+[[[ shot("aks-monitoring-metrics") ]]]
 
 Purpose: Show where to build ad hoc charts from platform metrics for a specific investigation.
 
@@ -84,7 +84,7 @@ Expected result: You can compose a metric chart for any supported AKS signal and
 
 Next step: Configure a diagnostic setting to stream control-plane logs to Log Analytics.
 
-![Azure Portal AKS Diagnostic settings blade listing the available log categories to export](../assets/platform/monitoring/03-diagnostic-settings.png)
+[[[ shot("aks-monitoring-diagnostic-settings") ]]]
 
 Purpose: Show where to enable streaming export of control-plane logs (API server, audit, scheduler) to a destination.
 

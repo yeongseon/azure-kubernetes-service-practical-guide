@@ -55,7 +55,7 @@ kubectl get secret -A
 
 The **Access control (IAM)** blade shows Azure RBAC role assignments that govern who can manage the cluster and its resources.
 
-![Azure Portal AKS Access control (IAM) blade showing the Check access tab for reviewing role assignments](../assets/platform/identity/01-access-control-iam.png)
+[[[ shot("aks-identity-access-control-iam") ]]]
 
 Purpose: Confirm that human and workload access to the cluster is governed by explicit Azure RBAC assignments.
 
@@ -73,7 +73,7 @@ Next step: Confirm workload identity and OIDC settings on the Security configura
 
 The **Security configuration** blade shows whether the OIDC issuer and workload identity are enabled — the foundation for secret-free pod authentication.
 
-![Azure Portal AKS Security configuration blade showing an enabled OIDC issuer URL and workload identity](../assets/platform/identity/02-security-configuration.png)
+[[[ shot("aks-identity-security-configuration") ]]]
 
 Purpose: Verify that workload identity is enabled so pods can authenticate to Azure without stored secrets.
 

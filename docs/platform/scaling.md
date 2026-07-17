@@ -55,7 +55,7 @@ az aks update     --resource-group $RG     --name $CLUSTER_NAME     --enable-clu
 
 The **Workloads** blade lists Deployments, ReplicaSets, and Pods with ready/desired replica counts, so you can confirm scaling actions converged.
 
-![Azure Portal AKS Workloads blade showing a Deployment with all replicas ready](../assets/platform/workloads/01-workloads.png)
+[[[ shot("aks-scaling-workloads") ]]]
 
 Purpose: Confirm that a Deployment reached its desired replica count after an HPA or manual scaling event.
 
@@ -73,7 +73,7 @@ Next step: Enable event-driven scaling from the **Application scaling** blade if
 
 The **Application scaling** blade is where you enable the KEDA add-on for event-driven autoscaling based on external scalers.
 
-![Azure Portal AKS Application scaling blade showing the option to enable the KEDA add-on](../assets/platform/scaling/01-application-scaling.png)
+[[[ shot("aks-scaling-application-scaling") ]]]
 
 Purpose: Show where to enable KEDA when workloads must scale on events (queues, cron, custom metrics) rather than CPU/memory alone.
 
