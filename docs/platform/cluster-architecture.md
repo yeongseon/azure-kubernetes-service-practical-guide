@@ -96,6 +96,8 @@ Look for:
 
 Expected result: Namespaces cleanly separate system components from application workloads, supporting isolation and RBAC scoping.
 
+Next step: Scope Kubernetes RBAC and resource quotas per namespace as described in [Resource Governance](../best-practices/resource-governance.md).
+
 ## See Also
 
 - [Platform](index.md)
