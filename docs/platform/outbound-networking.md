@@ -14,7 +14,7 @@ content_validation:
   last_reviewed: 2026-07-18
   reviewer: agent
   core_claims:
-    - claim: "AKS supports the outbound types loadBalancer, managedNATGateway, userAssignedNATGateway, and userDefinedRouting."
+    - claim: "AKS commonly used outbound types include loadBalancer, managedNATGateway, userAssignedNATGateway, and userDefinedRouting, and Microsoft Learn also documents additional types such as managedNATGatewayV2, none, and block."
       source: https://learn.microsoft.com/en-us/azure/aks/egress-outboundtype
       verified: true
     - claim: "The loadBalancer outbound type uses an AKS-managed Standard Load Balancer for egress."
@@ -33,7 +33,7 @@ content_validation:
 
 # Outbound Networking
 
-Outbound networking in AKS decides how cluster traffic leaves the virtual network, which public egress identity downstream systems see, and who owns SNAT and firewall capacity. It is a creation-time design choice because changing the egress model later is harder than validating it up front.
+Outbound networking in AKS decides how cluster traffic leaves the virtual network, which public egress identity downstream systems see, and who owns SNAT and firewall capacity. Treat it as a creation-time design choice: `outboundType` can be updated after cluster creation, but the supported transitions are limited and the change is disruptive, so it is far cheaper to validate the egress model up front.
 
 ## Main Content
 
@@ -55,6 +55,8 @@ Outbound networking controls these operator concerns:
 | `managedNATGateway` | AKS-managed Azure NAT Gateway | Managed virtual network clusters that need higher NAT SNAT scale with less network-team ownership | NAT behavior improves scale, but AKS still needs required outbound dependencies allowed |
 | `userAssignedNATGateway` | Customer NAT Gateway attached to the subnet | Enterprise environments where the subnet and NAT lifecycle are centrally owned | Requires subnet, NAT Gateway, and public IP lifecycle ownership outside AKS |
 | `userDefinedRouting` | Customer route table plus firewall, NVA, or forced-tunnel path | Compliance-driven egress inspection, Azure Firewall, or centralized forced tunneling | UDR shifts egress ownership to the customer; it does not remove the need to allow required AKS outbound destinations |
+
+The four types above cover the mainstream production choices. Microsoft Learn also documents additional outbound types — `managedNATGatewayV2` (Preview), and `none` / `block` (Preview) for clusters that intentionally have no AKS-managed outbound path. Confirm the current preview status and regional availability in the Microsoft Learn source before designing around them.
 
 ### Decision criteria
 
