@@ -539,6 +539,10 @@ A practical FinOps review for AKS should therefore compare cost to avoided risk,
 
 ## See Also
 
+- [Governance](governance.md)
+- [Azure Policy Add-on](../platform/azure-policy-addon.md)
+- [Defender for Containers](../platform/defender-for-containers.md)
+- [Pod Security Standards](../platform/pod-security-standards.md)
 - [Production Baseline](production-baseline.md)
 - [Identity and Secrets](../platform/identity-and-secrets.md)
 - [Credential Rotation](../operations/credential-rotation.md)
