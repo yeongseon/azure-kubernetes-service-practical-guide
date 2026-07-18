@@ -191,6 +191,9 @@ nav:
         - workload-guides/stateless-web-api-on-aks.md
         - workload-guides/internal-service.md
         - workload-guides/background-worker.md
+        - workload-guides/cronjob-scheduled-job.md
+        - workload-guides/gpu-workload.md
+        - workload-guides/stateful-workload.md
   - Operations:
     - operations/index.md
     - Cluster Lifecycle & Scaling:
