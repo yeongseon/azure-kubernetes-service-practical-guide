@@ -9,6 +9,23 @@ content_sources:
     based_on:
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "CNI plug-ins in AKS are responsible for assigning IP addresses to pods, network routing between pods, and Kubernetes service routing."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network-cni-overview
+      verified: true
+    - claim: "Overlay networking assigns pod IPs from a separate pod CIDR that is distinct from the node subnet in the virtual network."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network-cni-overview
+      verified: true
+    - claim: "In a flat network model, pod IPs are assigned from the same Azure virtual network subnet as the AKS nodes."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network-cni-overview
+      verified: true
+    - claim: "Traffic that leaves an overlay-based AKS cluster is SNAT'd to the node's IP address."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network-cni-overview
+      verified: true
 ---
 
 

@@ -8,6 +8,23 @@ content_sources:
     url: https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/kubeevents
   - type: mslearn-adapted
     url: https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/perf
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "Container insights collects performance metrics, inventory data, and health state information from Kubernetes container hosts and containers."
+      source: https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-log-query
+      verified: true
+    - claim: "The KubeEvents table stores Kubernetes events in Azure Monitor Logs."
+      source: https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/kubeevents
+      verified: true
+    - claim: "The KubePodInventory table includes pod and container fields such as ContainerStatusReason and ServiceName."
+      source: https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/kubepodinventory
+      verified: true
+    - claim: "If performance data collection is disabled or changed from default settings, queries that use the Perf table might not return results."
+      source: https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-log-query
+      verified: true
 ---
 
 # Evidence Packs

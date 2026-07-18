@@ -9,6 +9,20 @@ content_sources:
     based_on:
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "In Kubernetes on AKS, the kubelet uses liveness probes to determine when to restart a container, and a failed liveness probe causes the container to be restarted."
+      source: https://learn.microsoft.com/en-us/azure/aks/best-practices-app-cluster-reliability
+      verified: true
+    - claim: "When a startup probe is configured, readiness and liveness probes do not start until the startup probe succeeds."
+      source: https://learn.microsoft.com/en-us/azure/aks/best-practices-app-cluster-reliability
+      verified: true
+    - claim: "AKS provides recommended alerts for both restarting pods (KubePodContainerRestart) and pods in CrashLoop status (KubePodCrashLooping)."
+      source: https://learn.microsoft.com/en-us/azure/aks/best-practices-monitoring-proactive
+      verified: true
 ---
 
 

@@ -11,6 +11,23 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
     - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
     - https://learn.microsoft.com/en-us/azure/aks/concepts-network
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "AKS uses Node Problem Detector on Linux nodes by default to detect node-related problems and emit events and node conditions."
+      source: https://learn.microsoft.com/en-us/azure/aks/node-problem-detector
+      verified: true
+    - claim: "Node Problem Detector can expose permanent node problems such as KubeletProblem with reason KubeletIsDown and ContainerRuntimeProblem with reason ContainerRuntimeIsDown."
+      source: https://learn.microsoft.com/en-us/azure/aks/node-problem-detector
+      verified: true
+    - claim: "AKS exposes node condition status as the platform metric kube_node_status_condition."
+      source: https://learn.microsoft.com/en-us/azure/aks/monitor-aks-reference
+      verified: true
+    - claim: "Container insights collects stdout and stderr logs and Kubernetes events from each node in an AKS cluster."
+      source: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
+      verified: true
 ---
 
 

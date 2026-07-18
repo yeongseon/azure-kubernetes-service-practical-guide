@@ -11,6 +11,20 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
     - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
     - https://learn.microsoft.com/en-us/azure/aks/concepts-network
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "Ingress in AKS manages external HTTP-like traffic access to services within a cluster."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network-ingress
+      verified: true
+    - claim: "Ingress controllers provide layer 7 routing and can route HTTP traffic to different applications based on the inbound URL."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network-ingress
+      verified: true
+    - claim: "A LoadBalancer-type Service creates an Azure load balancer resource that operates at layer 4 and doesn't implement complex routing rules."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network-ingress
+      verified: true
 ---
 
 

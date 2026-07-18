@@ -9,6 +9,23 @@ content_sources:
     based_on:
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "AKS treats a node as unhealthy for auto-repair when it reports NotReady on consecutive checks within a 10-minute time frame or doesn't report any status within 10 minutes."
+      source: https://learn.microsoft.com/en-us/azure/aks/node-auto-repair
+      verified: true
+    - claim: "If an unhealthy node stays unhealthy for at least five minutes, AKS attempts reboot, then reimage, and then redeploy for Linux nodes."
+      source: https://learn.microsoft.com/en-us/azure/aks/node-auto-repair
+      verified: true
+    - claim: "Node Problem Detector runs as a systemd service on each node, detects node-related problems, and generates events or node conditions."
+      source: https://learn.microsoft.com/en-us/azure/aks/node-problem-detector
+      verified: true
+    - claim: "AKS uses Node Problem Detector node conditions such as KubeletProblem and ContainerRuntimeProblem to expose permanent problems on a node."
+      source: https://learn.microsoft.com/en-us/azure/aks/node-problem-detector
+      verified: true
 ---
 
 
