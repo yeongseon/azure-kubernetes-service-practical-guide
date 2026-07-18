@@ -55,6 +55,8 @@ flowchart TD
 | Azure CNI Pod Subnet | Pods get IPs from delegated subnets | Deep VNet integration and direct routability | Subnet sizing becomes critical |
 | Kubenet | Pods use private address space with NAT through nodes | Legacy/smaller clusters | Feature limits and future preference toward Azure CNI options |
 
+CNI selection decides pod addressing and routability; outbound networking decides how traffic leaves the cluster and who owns SNAT capacity. After choosing the CNI model, review [Outbound Networking](outbound-networking.md) for `loadBalancer`, NAT Gateway, and UDR decisions.
+
 ### What to decide early
 
 - Required pod-to-VNet routability.
@@ -90,10 +92,11 @@ Next step: Review [Ingress and Load Balancing](ingress-load-balancing.md) to pla
 
 - [Cluster Architecture](cluster-architecture.md)
 - [Ingress and Load Balancing](ingress-load-balancing.md)
+- [Outbound Networking](outbound-networking.md)
 - [Best Practices: Networking](../best-practices/networking.md)
 - [CNI IP Exhaustion](../troubleshooting/playbooks/node-issues/cni-ip-exhaustion.md)
 
 ## Sources
 
-- [AKS network concepts](https://learn.microsoft.com/azure/aks/concepts-network)
-- [Create an AKS cluster with Azure CNI Overlay](https://learn.microsoft.com/azure/aks/azure-cni-overlay)
+- [AKS network concepts](https://learn.microsoft.com/en-us/azure/aks/concepts-network)
+- [Create an AKS cluster with Azure CNI Overlay](https://learn.microsoft.com/en-us/azure/aks/azure-cni-overlay)

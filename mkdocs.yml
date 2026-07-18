@@ -112,6 +112,7 @@ nav:
     - platform/cluster-architecture.md
     - platform/node-pools.md
     - platform/networking-models.md
+    - platform/outbound-networking.md
     - platform/ingress-load-balancing.md
     - platform/identity-and-secrets.md
     - platform/storage-options.md
@@ -122,6 +123,7 @@ nav:
     - best-practices/deployment-strategies.md
     - best-practices/security.md
     - best-practices/networking.md
+    - best-practices/private-cluster-api-connectivity.md
     - best-practices/resource-governance.md
     - best-practices/reliability.md
     - best-practices/cost-optimization.md
@@ -182,6 +184,11 @@ nav:
       - Node Issues:
         - troubleshooting/playbooks/node-issues/node-not-ready.md
         - troubleshooting/playbooks/node-issues/cni-ip-exhaustion.md
+      - Networking:
+        - troubleshooting/playbooks/networking/api-server-kubectl-unreachable.md
+        - troubleshooting/playbooks/networking/image-pull-restricted-egress.md
+        - troubleshooting/playbooks/networking/webhook-control-plane-blocked.md
+        - troubleshooting/playbooks/networking/snat-port-exhaustion.md
       - Operations:
         - troubleshooting/playbooks/operations/upgrade-failure.md
         - troubleshooting/playbooks/operations/scaling-failure.md

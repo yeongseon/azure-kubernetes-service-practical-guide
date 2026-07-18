@@ -59,6 +59,9 @@ flowchart TD
     D --> E[Enable baseline add-ons]
 ```
 
+!!! note "Creation-time decisions"
+    Before creating the cluster, decide the outbound type and API server exposure model. Use `--outbound-type` when the default egress path is not acceptable, `--enable-private-cluster` for private API access, and `--api-server-authorized-ip-ranges` when using a public API endpoint restricted to known operator egress IPs. See [Outbound Networking](../platform/outbound-networking.md) and [Private Cluster API Connectivity](../best-practices/private-cluster-api-connectivity.md).
+
 
 ```bash
 export RG="rg-aks-demo"
@@ -109,8 +112,8 @@ Next step: Open the Node pools blade to verify system and user node pool health 
 
 ## Sources
 
-- [Create an AKS cluster](https://learn.microsoft.com/azure/aks/learn/quick-kubernetes-deploy-cli)
-- [Upgrade an AKS cluster](https://learn.microsoft.com/azure/aks/upgrade-cluster)
-- [Monitor AKS with Container insights](https://learn.microsoft.com/azure/azure-monitor/containers/container-insights-overview)
-- [AKS network concepts](https://learn.microsoft.com/azure/aks/concepts-network)
-- [Create an AKS cluster with Azure CNI Overlay](https://learn.microsoft.com/azure/aks/azure-cni-overlay)
+- [Create an AKS cluster](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli)
+- [Upgrade an AKS cluster](https://learn.microsoft.com/en-us/azure/aks/upgrade-cluster)
+- [Monitor AKS with Container insights](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview)
+- [AKS network concepts](https://learn.microsoft.com/en-us/azure/aks/concepts-network)
+- [Create an AKS cluster with Azure CNI Overlay](https://learn.microsoft.com/en-us/azure/aks/azure-cni-overlay)
