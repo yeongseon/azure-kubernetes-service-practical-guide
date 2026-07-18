@@ -129,6 +129,26 @@ def generate_dashboard(tutorials: list[dict[str, Any]], today: date) -> str:
             not_tested += 1
 
     lines: list[str] = []
+    lines.append("---")
+    lines.append("content_sources:")
+    lines.append("  diagrams:")
+    lines.append("  - id: reference-validation-status")
+    lines.append("    type: pie")
+    lines.append("    source: self-generated")
+    lines.append(
+        "    justification: Reference visualization synthesized from the Microsoft"
+        " Learn sources"
+    )
+    lines.append(
+        "      linked in this page or the repository validation data for this guide."
+    )
+    lines.append("    based_on:")
+    lines.append(
+        "    - https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli"
+    )
+    lines.append("    - https://learn.microsoft.com/en-us/azure/aks/what-is-aks")
+    lines.append("---")
+    lines.append("")
     lines.append("# Tutorial Validation Status")
     lines.append("")
     lines.append(
@@ -137,6 +157,26 @@ def generate_dashboard(tutorials: list[dict[str, Any]], today: date) -> str:
         f"Tutorials not tested within {STALENESS_DAYS} days are marked as stale."
     )
     lines.append("")
+
+    # Honest trust-model disclaimer: absence of validation is the accurate
+    # default state, not a data gap, and no automated or AI process may stamp a
+    # tutorial as validated (see AGENTS.md "Tutorial Validation Tracking").
+    if validated == 0 and stale == 0 and failed == 0:
+        lines.append('!!! warning "No tutorials have been validated on real Azure yet"')
+        lines.append(
+            "    Every tutorial below is marked **Not Tested**. This is the accurate"
+            " current state, not a missing-data placeholder: no maintainer has"
+            " executed these tutorials end-to-end against a live Azure subscription"
+            " and recorded a result."
+        )
+        lines.append("")
+        lines.append(
+            "    A tutorial only becomes **Validated** after a human runs every step"
+            " on real Azure and stamps the `validation` frontmatter (see"
+            " [How to Update](#how-to-update)). Validation status is **never**"
+            " fabricated or auto-stamped by tooling or AI agents."
+        )
+        lines.append("")
 
     # Summary section
     lines.append("## Summary")
@@ -153,8 +193,9 @@ def generate_dashboard(tutorials: list[dict[str, Any]], today: date) -> str:
     lines.append("")
 
     # Mermaid pie chart
+    lines.append("<!-- diagram-id: reference-validation-status -->")
     lines.append("```mermaid")
-    lines.append('pie title Tutorial Validation Status')
+    lines.append("pie title Tutorial Validation Status")
     if validated > 0:
         lines.append(f'    "Validated" : {validated}')
     if stale > 0:
@@ -230,17 +271,21 @@ def generate_dashboard(tutorials: list[dict[str, Any]], today: date) -> str:
     lines.append("python3 scripts/generate_validation_status.py")
     lines.append("```")
     lines.append("")
-    lines.append("!!! info \"Validation fields\"")
+    lines.append('!!! info "Validation fields"')
     lines.append("    - `result`: `pass`, `fail`, or `not_tested`")
     lines.append("    - `last_tested`: ISO date (YYYY-MM-DD) or `null`")
     lines.append("    - `cli_version`: Azure CLI version used")
-    lines.append(f"    - Tutorials older than {STALENESS_DAYS} days are flagged as **stale**")
+    lines.append(
+        f"    - Tutorials older than {STALENESS_DAYS} days are flagged as **stale**"
+    )
     lines.append("")
 
     # See Also
     lines.append("## See Also")
     lines.append("")
-    lines.append("- [Tutorials](../tutorials/lab-guides/lab-01-aks-cluster-deployment.md)")
+    lines.append(
+        "- [Tutorials](../tutorials/lab-guides/lab-01-aks-cluster-deployment.md)"
+    )
     lines.append("- [CLI Cheatsheet](cli-cheatsheet.md)")
     lines.append("- [Limits and Quotas](limits-and-quotas.md)")
     lines.append("- [Diagnostic Commands](diagnostic-commands.md)")

@@ -11,14 +11,18 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/aks/what-is-aks
 ---
 
-
 # Tutorial Validation Status
 
 This page tracks which tutorials have been validated against real Azure deployments. Each tutorial can be tested via **az-cli** (manual CLI commands) or **Bicep** (infrastructure as code). Tutorials not tested within 90 days are marked as stale.
 
+!!! warning "No tutorials have been validated on real Azure yet"
+    Every tutorial below is marked **Not Tested**. This is the accurate current state, not a missing-data placeholder: no maintainer has executed these tutorials end-to-end against a live Azure subscription and recorded a result.
+
+    A tutorial only becomes **Validated** after a human runs every step on real Azure and stamps the `validation` frontmatter (see [How to Update](#how-to-update)). Validation status is **never** fabricated or auto-stamped by tooling or AI agents.
+
 ## Summary
 
-*Generated: 2026-04-09*
+*Generated: 2026-07-18*
 
 | Metric | Count |
 |---|---:|
@@ -50,6 +54,8 @@ To mark a tutorial as validated, add a `validation` block to its YAML frontmatte
 
 ```yaml
 ---
+hide:
+  - toc
 validation:
   az_cli:
     last_tested: 2026-04-09
@@ -79,3 +85,4 @@ python3 scripts/generate_validation_status.py
 - [CLI Cheatsheet](cli-cheatsheet.md)
 - [Limits and Quotas](limits-and-quotas.md)
 - [Diagnostic Commands](diagnostic-commands.md)
+
