@@ -3,22 +3,27 @@ content_sources:
   - type: mslearn-adapted
     url: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
   - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/prometheus-metrics-overview
-  - type: mslearn-adapted
     url: https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+  - type: mslearn-adapted
+    url: https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/prometheus-metrics-overview
+  - type: mslearn-adapted
+    url: https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/prometheus-grafana
 content_validation:
   status: verified
   last_reviewed: 2026-07-18
   reviewer: agent
   core_claims:
-    - claim: "AKS monitoring spans multiple telemetry types, including platform metrics, Prometheus metrics, activity logs, resource logs, and Container insights."
-      source: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
+    - claim: "Azure Monitor provides a fully managed service for Prometheus that enables you to collect, store, and analyze Prometheus metrics without maintaining your own Prometheus server."
+      source: https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/prometheus-metrics-overview
       verified: true
-    - claim: "Azure Monitor automatically collects AKS platform metrics at no cost."
-      source: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
+    - claim: "Azure Monitor managed service for Prometheus provides a highly scalable metrics store that retains data for up to 18 months."
+      source: https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/prometheus-metrics-overview
       verified: true
-    - claim: "Container insights collects stdout and stderr logs and Kubernetes events from each node in an AKS cluster."
-      source: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
+    - claim: "Azure Monitor managed service for Prometheus fully supports Prometheus Query Language (PromQL)."
+      source: https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/prometheus-metrics-overview
+      verified: true
+    - claim: "Grafana uses the Azure Monitor workspace query endpoint to access Prometheus metrics stored in an Azure Monitor workspace."
+      source: https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/prometheus-grafana
       verified: true
 ---
 
@@ -67,5 +72,6 @@ Use this page to decide which AKS signals belong in Managed Prometheus and Grafa
 ## Sources
 
 - [Monitor AKS](https://learn.microsoft.com/en-us/azure/aks/monitor-aks)
-- [Azure Monitor managed service for Prometheus overview](https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/prometheus-metrics-overview)
+- [Overview of Azure Monitor with Prometheus](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/prometheus-metrics-overview)
+- [Connect Grafana to Azure Monitor managed service for Prometheus](https://learn.microsoft.com/en-us/azure/azure-monitor/metrics/prometheus-grafana)
 - [Monitor AKS with Container insights](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview)

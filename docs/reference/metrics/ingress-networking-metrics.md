@@ -6,19 +6,23 @@ content_sources:
     url: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
   - type: mslearn-adapted
     url: https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+  - type: mslearn-adapted
+    url: https://learn.microsoft.com/en-us/azure/aks/load-balancer-standard
+  - type: mslearn-adapted
+    url: https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections
 content_validation:
   status: verified
   last_reviewed: 2026-07-18
   reviewer: agent
   core_claims:
-    - claim: "AKS monitoring spans multiple telemetry types, including platform metrics, Prometheus metrics, activity logs, resource logs, and Container insights."
-      source: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
+    - claim: "The AKS standard load balancer provides outbound connections to cluster nodes by translating a node's private IP address to a public IP address in its outbound pool."
+      source: https://learn.microsoft.com/en-us/azure/aks/load-balancer-standard
       verified: true
-    - claim: "Azure Monitor automatically collects AKS platform metrics at no cost."
-      source: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
+    - claim: "When a public IP address is added as a frontend IP to a load balancer, 64,000 ports are eligible for SNAT."
+      source: https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections
       verified: true
-    - claim: "Container insights collects stdout and stderr logs and Kubernetes events from each node in an AKS cluster."
-      source: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
+    - claim: "New outbound connections to a destination IP fail when SNAT port exhaustion occurs and succeed again when a port becomes available."
+      source: https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections
       verified: true
 ---
 
@@ -60,5 +64,5 @@ Ingress and networking metrics help you decide whether traffic failures come fro
 ## Sources
 
 - [AKS monitoring reference](https://learn.microsoft.com/en-us/azure/aks/monitor-aks-reference)
-- [Monitor AKS](https://learn.microsoft.com/en-us/azure/aks/monitor-aks)
-- [Monitor AKS with Container insights](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview)
+- [Use a public Standard Load Balancer in AKS](https://learn.microsoft.com/en-us/azure/aks/load-balancer-standard)
+- [Source Network Address Translation (SNAT) for outbound connections](https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections)

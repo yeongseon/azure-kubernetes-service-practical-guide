@@ -8,6 +8,8 @@ content_sources:
     url: https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
   - type: mslearn-adapted
     url: https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-metric-alerts
+  - type: mslearn-adapted
+    url: https://learn.microsoft.com/en-us/azure/azure-monitor/containers/kubernetes-metric-alerts
 content_validation:
   status: verified
   last_reviewed: 2026-07-18
@@ -22,8 +24,8 @@ content_validation:
     - claim: "AKS monitoring spans multiple telemetry types, including platform metrics, Prometheus metrics, activity logs, resource logs, and Container insights."
       source: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
       verified: true
-    - claim: "AKS exposes `working_set_memory_bytes` as a bytes-based metric for container working-set memory with `node` and `nodepool` dimensions."
-      source: https://learn.microsoft.com/en-us/azure/aks/monitor-aks-reference
+    - claim: "Azure Monitor maps the legacy Container insights custom metric `memoryWorkingSetBytes` to the Prometheus metric `container_memory_working_set_bytes{cluster=\"$cluster\"}`."
+      source: https://learn.microsoft.com/en-us/azure/azure-monitor/containers/kubernetes-metric-alerts
       verified: true
 ---
 
@@ -39,7 +41,7 @@ Pod and container metrics answer whether a failure belongs to the workload itsel
 |---|---|---|---|---|
 | `kube_pod_container_status_restarts_total` | Managed Prometheus | Restart counter for containers in a pod. Rapid increases usually mean a crash loop, probe failure, or repeated OOM exit. | Detect unstable workloads and confirm whether restarts are still increasing after a rollout or fix. | Use change over time, not only the absolute value. Long-lived pods naturally accumulate restarts. |
 | `kube_pod_status_phase` | Azure Monitor platform metric or Managed Prometheus view | Count of pods by lifecycle phase such as `Pending`, `Running`, `Succeeded`, or `Failed`. | Separate scheduling issues from runtime issues before reading logs. | `phase`, `namespace`, and `pod` dimensions can explode quickly; alert on filtered phase subsets such as `Pending` or `Failed`. |
-| `container_memory_working_set_bytes` / `working_set_memory_bytes` | Managed Prometheus and Azure Monitor metric views | Memory actively used by the container working set. | Compare usage against memory limits and explain OOM-related instability. | The useful denominator is the container limit or request, not node memory. |
+| `container_memory_working_set_bytes` | Managed Prometheus and Azure Monitor metric views | Memory actively used by the container working set. | Compare usage against memory limits and explain OOM-related instability. | The useful denominator is the container limit or request, not node memory. |
 | `container_cpu_usage_seconds_total` | Managed Prometheus | Cumulative CPU consumed by the container. | Convert to a rate to find sustained CPU usage and compare it with CPU requests or limits. | Always apply a rate window. Raw cumulative values are not interpretable on their own. |
 | CPU throttling signals | Managed Prometheus | Indicates that CPU limits are preventing a container from using requested runtime, even when nodes have spare CPU. | Distinguish application slowness caused by limits from cluster-wide CPU exhaustion. | Interpret together with usage rate and configured CPU limits; throttling without saturation often means a limit is too tight. |
 
