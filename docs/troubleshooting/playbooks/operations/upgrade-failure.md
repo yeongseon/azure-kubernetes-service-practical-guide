@@ -1,111 +1,94 @@
 ---
 content_sources:
   diagrams:
-  - id: troubleshooting-playbooks-operations-upgrade-failure
-    type: flowchart
-    source: self-generated
-    justification: Diagnostic flow synthesized from Microsoft Learn troubleshooting
-      guidance linked in this page.
-    based_on:
-    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
-    - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
+    - id: troubleshooting-operations-upgrade-failure-router
+      type: flowchart
+      source: self-generated
+      justification: Upgrade-failure routing flow synthesized from Microsoft Learn AKS upgrade validation, PDB, subnet, and node image guidance.
+      based_on:
+        - https://learn.microsoft.com/en-us/azure/aks/upgrade-options
+        - https://learn.microsoft.com/en-us/azure/aks/auto-upgrade-node-os-image
 content_validation:
   status: verified
   last_reviewed: 2026-07-18
   reviewer: agent
   core_claims:
-    - claim: "During an AKS rolling upgrade, AKS adds surge nodes, cordons and drains old nodes, reimages them, and repeats the process until the node pool is upgraded."
-      source: https://learn.microsoft.com/en-us/azure/aks/upgrade-aks-node-pools-rolling
+    - claim: "AKS upgrade failures commonly map to validation blockers such as deprecated APIs, Pod Disruption Budget constraints, and subnet or capacity shortages."
+      source: https://learn.microsoft.com/en-us/azure/aks/upgrade-options
       verified: true
-    - claim: "Node surges during AKS upgrades require subscription quota for the requested max surge count, and Azure CNI upgrades also require enough available subnet IP addresses."
-      source: https://learn.microsoft.com/en-us/azure/aks/upgrade-aks-node-pools-rolling
-      verified: true
-    - claim: "Using maxUnavailable during an AKS upgrade can cause more failures due to unsatisfied Pod Disruption Budgets because fewer resources are available for pods to be scheduled."
-      source: https://learn.microsoft.com/en-us/azure/aks/upgrade-aks-node-pools-rolling
-      verified: true
-    - claim: "AKS can automatically block minor version control plane upgrades when it detects recent usage of Kubernetes APIs deprecated or removed in the target version."
-      source: https://learn.microsoft.com/en-us/azure/aks/stop-cluster-upgrade-api-breaking-changes
+    - claim: "Node OS and node image rollout issues are a distinct operational path from Kubernetes minor-version upgrade issues."
+      source: https://learn.microsoft.com/en-us/azure/aks/auto-upgrade-node-os-image
       verified: true
 ---
 
-
-
 # Upgrade Failure
 
-## 1. Summary
+## Symptom
 
-An AKS upgrade stalls, partially completes, or leaves workloads unhealthy. The problem is usually compatibility, disruption controls, or insufficient pre-checking.
+An AKS upgrade does not start, stalls mid-rollout, or completes on the control plane while one or more node pools remain unhealthy.
 
-<!-- diagram-id: troubleshooting-playbooks-operations-upgrade-failure -->
+## Possible Causes
+
+- PodDisruptionBudgets block drain and surge progression.
+- Deprecated APIs or incompatible controllers block the target Kubernetes version.
+- Node image rollout is stuck after the version move is accepted.
+- Surge nodes cannot be created because subnet or IP capacity is exhausted.
+
+## Diagnosis Steps
+
+<!-- diagram-id: troubleshooting-operations-upgrade-failure-router -->
 ```mermaid
 flowchart TD
-    A[Symptom] --> B[Hypotheses]
-    B --> C[Evidence]
-    C --> D[Disprove weak paths]
-    D --> E[Mitigation]
+    A[Upgrade failed or stalled] --> B{Where is the failure?}
+    B -->|Drain blocked| C[Upgrade Blocked by Pod Disruption Budget]
+    B -->|Target rejected| D[Upgrade Blocked by Deprecated API]
+    B -->|Node image rollout stuck| E[Node Image Upgrade Stuck]
+    B -->|Surge nodes cannot start| F[Surge Upgrade IP Exhaustion]
 ```
 
-## 2. Common Misreadings
+1. Review the control-plane result and node-pool state.
 
-- The first visible symptom is the root cause.
-- Restarting the pod proves the issue is fixed.
-- If one namespace is affected, the cluster is healthy.
+    ```bash
+    az aks show \
+        --resource-group "$RG" \
+        --name "$CLUSTER_NAME" \
+        --query "{version:currentKubernetesVersion,autoUpgradeProfile:autoUpgradeProfile,provisioningState:provisioningState}" \
+        --output yaml
+    ```
 
-## 3. Competing Hypotheses
+2. Review cluster events and the current node and PDB picture.
 
-- H1: Deprecated APIs, controllers, or CRDs are incompatible with the target version.
-- H2: PDBs or workload topology block draining.
-- H3: Node image or daemonset components fail during rollout.
-- H4: The cluster was upgraded, but workload validation was insufficient.
+    ```bash
+    kubectl get events --all-namespaces --sort-by=.lastTimestamp
+    kubectl get nodes
+    kubectl get pdb --all-namespaces
+    ```
 
-## 4. What to Check First
+3. Route to the focused playbook that matches the first hard failure:
 
-```bash
-az aks get-upgrades --resource-group $RG --name $CLUSTER_NAME --output table
-kubectl get events -A --sort-by=.lastTimestamp
-kubectl get pdb -A
-```
+- [Upgrade Blocked by Pod Disruption Budget](upgrade-blocked-pdb.md)
+- [Upgrade Blocked by Deprecated API](upgrade-blocked-deprecated-api.md)
+- [Node Image Upgrade Stuck](node-image-upgrade-stuck.md)
+- [Surge Upgrade IP Exhaustion](surge-upgrade-ip-exhaustion.md)
 
-## 5. Evidence to Collect
+## Resolution
 
-- Upgrade history and current version.
-- Event stream during drain and rescheduling.
-- Controller and daemonset health.
-- Application readiness after node replacement.
+- Use the focused playbook that matches the actual blocker.
+- Do not keep retrying the same upgrade path until the blocking condition is removed.
 
-## 6. Validation and Disproof by Hypothesis
+## Prevention
 
-- If nodes cannot drain because of PDBs, disprove version-compatibility-only theories.
-- If platform upgrade succeeded but workloads fail later, focus on workload or controller compatibility.
-- If only one pool fails, isolate node image or pool-specific constraints.
-
-## 7. Likely Root Cause Patterns
-
-- Deprecated APIs or unsupported operators.
-- Singleton workloads with strict disruption budgets.
-- Node-level add-on incompatibility.
-- No staged upgrade process.
-
-## 8. Immediate Mitigations
-
-- Pause expansion of the change.
-- Stabilize affected workloads or pools.
-- Restore capacity and validate critical controllers.
-- Rework the upgrade plan before the next attempt.
-
-## 9. Prevention
-
-- Track support windows continuously.
-- Test upgrades in lower environments.
-- Keep workload APIs and controllers current.
+- Keep support-window tracking continuous, not quarterly.
+- Rehearse upgrade and validation in non-production with the same PDB and surge assumptions.
+- Prefer blue/green for the highest-risk production upgrades.
 
 ## See Also
 
 - [Upgrades](../../../operations/upgrades.md)
-- [Version Support](../../../reference/version-support.md)
-- [Reliability](../../../best-practices/reliability.md)
+- [Auto-Upgrade Channels](../../../operations/auto-upgrade-channels.md)
+- [Blue-Green Upgrades](../../../operations/blue-green-upgrades.md)
 
 ## Sources
 
-- [Troubleshoot AKS clusters](https://learn.microsoft.com/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes)
-- [AKS troubleshooting articles](https://learn.microsoft.com/troubleshoot/azure/azure-kubernetes/)
+- [Upgrade options and recommendations for AKS clusters](https://learn.microsoft.com/en-us/azure/aks/upgrade-options)
+- [Autoupgrade node OS images in AKS](https://learn.microsoft.com/en-us/azure/aks/auto-upgrade-node-os-image)
