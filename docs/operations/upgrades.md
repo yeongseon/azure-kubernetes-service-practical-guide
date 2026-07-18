@@ -11,6 +11,23 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
     - https://learn.microsoft.com/en-us/azure/aks/supported-kubernetes-versions
     - https://learn.microsoft.com/en-us/azure/aks/release-tracker
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "AKS supports the latest GA Kubernetes minor version and the two previous GA minor versions (N, N-1, and N-2)."
+      source: https://learn.microsoft.com/en-us/azure/aks/supported-kubernetes-versions
+      verified: true
+    - claim: "AKS performs pre-upgrade validations that check for API breaking changes, valid upgrade versions, Pod Disruption Budget issues, quota, subnet capacity, expired credentials, and managed resource locks."
+      source: https://learn.microsoft.com/en-us/azure/aks/upgrade-options
+      verified: true
+    - claim: "Surge nodes require additional IP capacity, and AKS documents the subnet sizing formula as (number of nodes + maxSurge) * (1 + maxPods)."
+      source: https://learn.microsoft.com/en-us/azure/aks/upgrade-options
+      verified: true
+    - claim: "AKS node image versions can't be downgraded."
+      source: https://learn.microsoft.com/en-us/azure/aks/upgrade-node-image
+      verified: true
 ---
 
 

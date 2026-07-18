@@ -11,6 +11,23 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
     - https://learn.microsoft.com/en-us/azure/aks/concepts-network
     - https://learn.microsoft.com/en-us/azure/aks/azure-cni-overlay
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "AKS automatically creates a second resource group to store cluster infrastructure resources when you create a new cluster."
+      source: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+      verified: true
+    - claim: "The az aks get-credentials command downloads cluster credentials and configures kubectl to use them."
+      source: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+      verified: true
+    - claim: "Azure CNI Overlay is enabled by creating the cluster with --network-plugin azure and --network-plugin-mode overlay."
+      source: https://learn.microsoft.com/en-us/azure/aks/azure-cni-overlay
+      verified: true
+    - claim: "If you omit --pod-cidr for an Azure CNI Overlay cluster, AKS assigns the default pod CIDR 10.244.0.0/16."
+      source: https://learn.microsoft.com/en-us/azure/aks/azure-cni-overlay
+      verified: true
 ---
 
 

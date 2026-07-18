@@ -8,6 +8,23 @@ content_sources:
     based_on:
     - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
     - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-data-collection-configure
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "AKS monitoring spans multiple telemetry types, including platform metrics, Prometheus metrics, activity logs, resource logs, and Container insights."
+      source: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
+      verified: true
+    - claim: "Azure Monitor automatically collects AKS platform metrics at no cost."
+      source: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
+      verified: true
+    - claim: "AKS control plane logs are implemented as Azure Monitor resource logs and are collected only after you create a diagnostic setting."
+      source: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
+      verified: true
+    - claim: "Container insights collects stdout and stderr logs and Kubernetes events from each node in an AKS cluster."
+      source: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
+      verified: true
 ---
 
 
