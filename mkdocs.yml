@@ -274,5 +274,6 @@ nav:
   - Contributing:
     - contributing/index.md
     - contributing/navigation-ia.md
+    - contributing/ci-validation.md
     - Meta:
       - meta/index.md
