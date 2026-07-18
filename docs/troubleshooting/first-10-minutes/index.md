@@ -33,6 +33,9 @@ flowchart TD
 | [Pod Failures](pod-failures.md) | Pods are Pending, CrashLooping, or failing image pulls |
 | [Connectivity](connectivity.md) | Service or ingress traffic is failing |
 | [Performance](performance.md) | Requests are slow, throttled, or timing out |
+| [Scaling](scaling.md) | HPA, autoscaler, or node-capacity response is too slow |
+| [Upgrade](upgrade.md) | You need to tell upgrade-in-progress from upgrade-failed |
+| [Control Plane](control-plane.md) | API server, audit, or webhook symptoms point above the workload layer |
 
 ## See Also
 
@@ -42,5 +45,5 @@ flowchart TD
 
 ## Sources
 
-- [Troubleshoot AKS clusters](https://learn.microsoft.com/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes)
-- [AKS troubleshooting articles](https://learn.microsoft.com/troubleshoot/azure/azure-kubernetes/)
+- [Troubleshoot AKS clusters](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes)
+- [AKS troubleshooting articles](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/)

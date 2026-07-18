@@ -181,6 +181,9 @@ nav:
     - operations/node-os-upgrades.md
     - operations/scaling-operations.md
     - operations/monitoring-logging.md
+    - operations/diagnostic-settings.md
+    - operations/managed-prometheus.md
+    - operations/baseline-alerts.md
     - operations/maintenance-windows.md
     - operations/blue-green-upgrades.md
     - operations/credential-rotation.md
@@ -199,6 +202,9 @@ nav:
       - troubleshooting/first-10-minutes/pod-failures.md
       - troubleshooting/first-10-minutes/connectivity.md
       - troubleshooting/first-10-minutes/performance.md
+      - troubleshooting/first-10-minutes/scaling.md
+      - troubleshooting/first-10-minutes/upgrade.md
+      - troubleshooting/first-10-minutes/control-plane.md
     - Playbooks:
       - troubleshooting/playbooks/index.md
       - troubleshooting/playbooks/pod-crashloopbackoff.md
@@ -282,6 +288,15 @@ nav:
         - troubleshooting/kql/correlation/namespace-incident-timeline.md
         - troubleshooting/kql/correlation/pod-log-event-correlation.md
         - troubleshooting/kql/correlation/recent-cluster-changes.md
+      - Control Plane:
+        - troubleshooting/kql/control-plane/index.md
+        - troubleshooting/kql/control-plane/api-server-health-latency.md
+        - troubleshooting/kql/control-plane/audit-log-analysis.md
+        - troubleshooting/kql/control-plane/cluster-autoscaler-decisions.md
+      - Storage:
+        - troubleshooting/kql/storage/index.md
+        - troubleshooting/kql/storage/csi-attach-mount-failures.md
+        - troubleshooting/kql/storage/pvc-binding-latency.md
     - Evidence Packs:
       - troubleshooting/evidence-packs/index.md
   - Reference:

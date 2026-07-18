@@ -58,17 +58,20 @@ flowchart TD
 
 
 ```bash
-az aks enable-addons     --resource-group $RG     --name $CLUSTER_NAME     --addons monitoring
+az aks enable-addons \
+    --resource-group "$RG" \
+    --name "$CLUSTER_NAME" \
+    --addons monitoring
 kubectl top nodes
-kubectl top pods -A
-kubectl get events -A --sort-by=.lastTimestamp
+kubectl top pods --all-namespaces
+kubectl get events --all-namespaces --sort-by=.lastTimestamp
 ```
 
 ## Verification
 
 ```bash
 az aks show --resource-group $RG --name $CLUSTER_NAME --query addonProfiles.omsagent.enabled --output tsv
-kubectl get pods -n kube-system
+kubectl get pods --namespace kube-system
 ```
 
 You can confirm the same telemetry in the Azure Portal on the cluster monitoring blades.
@@ -118,16 +121,22 @@ Next step: Query the exported logs from the [Diagnostic Commands](../reference/d
 ## Rollback / Troubleshooting
 
 - If metrics are missing, check Metrics Server and Azure Monitor agent health.
+- If control-plane KQL queries return no data, create the AKS diagnostic setting before assuming the cluster emitted no logs.
 - If logs exist but are unusable, refine namespace, workload, and owner labeling.
 - If alerts are noisy, fix thresholds and missing suppression logic instead of disabling visibility.
+- If Prometheus dashboards are empty but Container insights works, check the Azure Monitor workspace and Grafana linkage separately from the Log Analytics workspace.
 
 ## See Also
 
 - [Reference: Diagnostic Commands](../reference/diagnostic-commands.md)
+- [Diagnostic Settings](diagnostic-settings.md)
+- [Managed Prometheus](managed-prometheus.md)
+- [Baseline Alerts](baseline-alerts.md)
 - [Evidence Map](../troubleshooting/evidence-map.md)
 - [Performance Checklist](../troubleshooting/first-10-minutes/performance.md)
+- [KQL Query Packs](../troubleshooting/kql/index.md)
 
 ## Sources
 
-- [Monitor AKS with Container insights](https://learn.microsoft.com/azure/azure-monitor/containers/container-insights-overview)
-- [Use managed Prometheus with AKS](https://learn.microsoft.com/azure/azure-monitor/containers/container-insights-data-collection-configure)
+- [Monitor AKS with Container insights](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview)
+- [Enable monitoring for AKS clusters](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/kubernetes-monitoring-enable)
