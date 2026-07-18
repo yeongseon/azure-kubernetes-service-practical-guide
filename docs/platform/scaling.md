@@ -23,7 +23,10 @@ content_validation:
     - claim: "The Vertical Pod Autoscaler provides recommendations for CPU and memory requests and can automatically set resource requests and limits for containers based on past usage."
       source: https://learn.microsoft.com/en-us/azure/aks/vertical-pod-autoscaler
       verified: true
-    - claim: "KEDA is event-driven autoscaling that extends Kubernetes with a ScaledObject custom resource, while HPA is metrics-driven based on resource utilization."
+    - claim: "KEDA extends Kubernetes with a custom resource definition named ScaledObject."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-scale
+      verified: true
+    - claim: "HPA is metrics-driven based on resource utilization such as CPU and memory."
       source: https://learn.microsoft.com/en-us/azure/aks/concepts-scale
       verified: true
 ---
@@ -53,13 +56,22 @@ flowchart TD
 - **Horizontal Pod Autoscaler (HPA)** changes replica count.
 - **Cluster Autoscaler** adds or removes nodes when pods cannot schedule or capacity is idle.
 - **Vertical Pod Autoscaler (VPA)** recommends or applies request changes based on observed usage.
+- **KEDA** adds event-driven and scale-to-zero behavior for external triggers.
+- **Node autoprovisioning (NAP)** replaces fixed-pool growth logic with constraint-based node provisioning.
 
 ### Operational examples
 
 ```bash
-kubectl get hpa -A
-kubectl top pods -A
-az aks update     --resource-group $RG     --name $CLUSTER_NAME     --enable-cluster-autoscaler     --min-count 3     --max-count 10
+kubectl get hpa \
+    --all-namespaces
+kubectl top pods \
+    --all-namespaces
+az aks update \
+    --resource-group "$RG" \
+    --name "$CLUSTER_NAME" \
+    --enable-cluster-autoscaler \
+    --min-count 3 \
+    --max-count 10
 ```
 
 ### Common failure modes
@@ -67,6 +79,23 @@ az aks update     --resource-group $RG     --name $CLUSTER_NAME     --enable-clu
 - HPA scales replicas but requests are too large for existing nodes.
 - Autoscaler is enabled but subnet IPs or quotas block node growth.
 - Workloads have no CPU/memory requests, so autoscaling decisions are noisy.
+
+### When you outgrow HPA + Cluster Autoscaler
+
+The default HPA-plus-Cluster-Autoscaler model is still the best starting point for many clusters. Move beyond it when one of these becomes true:
+
+- **Demand is event-driven**, not resource-driven.
+- **Scale-to-zero** matters for worker cost control.
+- **One fixed VM pool per workload class** is creating too much operational sprawl.
+- **Application metrics** such as backlog, concurrency, or latency are better scaling signals than CPU.
+
+Use this decision guide:
+
+| If the real problem is... | Prefer | Why |
+|---|---|---|
+| Queue depth, event lag, or bursty asynchronous work | [KEDA on AKS](keda-on-aks.md) | KEDA scales from external demand and supports scale-to-zero |
+| Too many near-duplicate node pools and VM-shape choices | [Node Autoprovisioning](node-autoprovisioning.md) | NAP provisions node shapes from constraints instead of only scaling fixed pools |
+| CPU and memory are poor proxies for demand | [Custom Metrics Scaling](custom-metrics-scaling.md) | HPA or KEDA can follow custom or Prometheus-backed signals instead |
 
 ### Inspect workload health in the Azure Portal
 
@@ -106,12 +135,16 @@ Next step: Follow [Scaling Operations](../operations/scaling-operations.md) to c
 ## See Also
 
 - [Node Pools](node-pools.md)
+- [KEDA on AKS](keda-on-aks.md)
+- [Node Autoprovisioning](node-autoprovisioning.md)
+- [Custom Metrics Scaling](custom-metrics-scaling.md)
 - [Best Practices: Cost Optimization](../best-practices/cost-optimization.md)
+- [Best Practices: Autoscaling](../best-practices/autoscaling.md)
 - [Scaling Operations](../operations/scaling-operations.md)
 - [Scaling Failure](../troubleshooting/playbooks/operations/scaling-failure.md)
 
 ## Sources
 
-- [Scale applications in AKS](https://learn.microsoft.com/azure/aks/concepts-scale)
-- [Cluster autoscaler in AKS](https://learn.microsoft.com/azure/aks/cluster-autoscaler)
-- [Vertical Pod Autoscaler for AKS](https://learn.microsoft.com/azure/aks/vertical-pod-autoscaler)
+- [Scale applications in AKS](https://learn.microsoft.com/en-us/azure/aks/concepts-scale)
+- [Cluster autoscaler in AKS](https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler)
+- [Vertical Pod Autoscaler for AKS](https://learn.microsoft.com/en-us/azure/aks/vertical-pod-autoscaler)

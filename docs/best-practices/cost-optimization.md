@@ -537,21 +537,24 @@ These practices are designed to improve both resilience and spend efficiency. De
 
 A practical FinOps review for AKS should therefore compare cost to avoided risk, not only monthly node price. Spot node pools, autoscaler tuning, and request-rightsizing provide the main savings lever, while governance and security controls prevent hidden operational waste.
 
+If the team is now debating HPA damping, spot interruption handling, or whether Cluster Autoscaler should give way to node autoprovisioning, continue in [Best Practices: Autoscaling](autoscaling.md). Keep this page focused on cost posture and use the autoscaling page for control-loop design.
+
 ## See Also
 
 - [Best Practices](index.md)
 - [Scaling](../platform/scaling.md)
+- [Autoscaling](autoscaling.md)
 - [Node Pool Operations](../operations/node-pool-operations.md)
 - [Cluster Autoscaler Issues](../troubleshooting/playbooks/cluster-autoscaler-issues.md)
 - [Tutorial 01: AKS Cluster Deployment](../tutorials/lab-guides/lab-01-aks-cluster-deployment.md)
 
 ## Sources
 
-- [Azure / Aks / Best Practices](https://learn.microsoft.com/azure/aks/best-practices)
-- [Azure / Architecture / Reference Architectures / Containers / Aks / Secure Baseline Aks](https://learn.microsoft.com/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks)
-- [Azure / Aks / Concepts Network](https://learn.microsoft.com/azure/aks/concepts-network)
-- [Azure / Aks / Use Network Policies](https://learn.microsoft.com/azure/aks/use-network-policies)
-- [Azure / Aks / Operator Best Practices Pod Security](https://learn.microsoft.com/azure/aks/operator-best-practices-pod-security)
-- [Azure / Aks / Cluster Autoscaler](https://learn.microsoft.com/azure/aks/cluster-autoscaler)
-- [Azure / Azure Monitor / Containers / Container Insights Overview](https://learn.microsoft.com/azure/azure-monitor/containers/container-insights-overview)
-- [Azure / Aks / Quotas Skus Regions](https://learn.microsoft.com/azure/aks/quotas-skus-regions)
+- [Azure / Aks / Best Practices](https://learn.microsoft.com/en-us/azure/aks/best-practices)
+- [Azure / Architecture / Reference Architectures / Containers / Aks / Secure Baseline Aks](https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks)
+- [Azure / Aks / Concepts Network](https://learn.microsoft.com/en-us/azure/aks/concepts-network)
+- [Azure / Aks / Use Network Policies](https://learn.microsoft.com/en-us/azure/aks/use-network-policies)
+- [Azure / Aks / Operator Best Practices Pod Security](https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security)
+- [Azure / Aks / Cluster Autoscaler](https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler)
+- [Azure / Azure Monitor / Containers / Container Insights Overview](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview)
+- [Azure / Aks / Quotas Skus Regions](https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions)

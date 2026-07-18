@@ -128,6 +128,9 @@ nav:
     - platform/azure-blob-csi-driver.md
     - platform/nfs-on-aks.md
     - platform/scaling.md
+    - platform/keda-on-aks.md
+    - platform/node-autoprovisioning.md
+    - platform/custom-metrics-scaling.md
   - Best Practices:
     - best-practices/index.md
     - best-practices/production-baseline.md
@@ -138,6 +141,7 @@ nav:
     - best-practices/resource-governance.md
     - best-practices/reliability.md
     - best-practices/cost-optimization.md
+    - best-practices/autoscaling.md
     - best-practices/common-anti-patterns.md
   - Tutorials:
     - Hands-on Tutorials:
@@ -226,6 +230,11 @@ nav:
         - troubleshooting/playbooks/operations/node-image-upgrade-stuck.md
         - troubleshooting/playbooks/operations/surge-upgrade-ip-exhaustion.md
         - troubleshooting/playbooks/operations/scaling-failure.md
+      - Scaling:
+        - troubleshooting/playbooks/scaling/keda-scaler-not-triggering.md
+        - troubleshooting/playbooks/scaling/nap-fails-to-provision.md
+        - troubleshooting/playbooks/scaling/hpa-flapping.md
+        - troubleshooting/playbooks/scaling/spot-eviction-storm.md
       - Storage:
         - troubleshooting/playbooks/storage/pvc-stuck-pending.md
         - troubleshooting/playbooks/storage/volume-attach-failure.md
