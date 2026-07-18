@@ -8,6 +8,23 @@ content_sources:
     based_on:
     - https://learn.microsoft.com/en-us/azure/aks/concepts-network
     - https://learn.microsoft.com/en-us/azure/aks/azure-cni-overlay
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "In the AKS overlay network model, pods receive IP addresses from a private CIDR that is separate from the Azure virtual network subnet used by the nodes."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network
+      verified: true
+    - claim: "In the AKS flat network model, pods receive IP addresses from the same Azure virtual network subnet as the AKS nodes."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network
+      verified: true
+    - claim: "When you create Services such as a LoadBalancer in AKS, Azure automatically configures the necessary network security group rules."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network
+      verified: true
+    - claim: "When you create an Azure CNI Overlay cluster, --network-plugin must be set to azure and --network-plugin-mode must be set to overlay."
+      source: https://learn.microsoft.com/en-us/azure/aks/azure-cni-overlay
+      verified: true
 ---
 
 

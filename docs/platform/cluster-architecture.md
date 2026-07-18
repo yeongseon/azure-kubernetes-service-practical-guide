@@ -8,6 +8,20 @@ content_sources:
     based_on:
     - https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads
     - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "An AKS cluster is divided into a control plane and nodes."
+      source: https://learn.microsoft.com/en-us/azure/aks/core-aks-concepts
+      verified: true
+    - claim: "Azure manages the AKS control plane components, including kube-apiserver, etcd, kube-scheduler, kube-controller-manager, and cloud-controller-manager."
+      source: https://learn.microsoft.com/en-us/azure/aks/core-aks-concepts
+      verified: true
+    - claim: "When you create an AKS cluster, the AKS resource provider automatically creates a node resource group that contains infrastructure resources associated with the cluster, including VMs, virtual machine scale sets, and storage."
+      source: https://learn.microsoft.com/en-us/azure/aks/core-aks-concepts
+      verified: true
 ---
 
 

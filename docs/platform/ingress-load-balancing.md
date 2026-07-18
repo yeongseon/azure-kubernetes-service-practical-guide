@@ -8,6 +8,23 @@ content_sources:
     based_on:
     - https://learn.microsoft.com/en-us/azure/aks/internal-lb
     - https://learn.microsoft.com/en-us/azure/aks/app-routing
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "Creating a Kubernetes load balancer on Azure also creates the corresponding Azure Load Balancer resource."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network
+      verified: true
+    - claim: "An internal load balancer in AKS has no public IP address and makes a Kubernetes service reachable only through its private IP."
+      source: https://learn.microsoft.com/en-us/azure/aks/internal-lb
+      verified: true
+    - claim: "When you create an Ingress object that uses the application routing add-on NGINX ingress classes, the add-on creates, configures, and manages one or more Ingress controllers in the AKS cluster."
+      source: https://learn.microsoft.com/en-us/azure/aks/app-routing
+      verified: true
+    - claim: "AKS is moving to Gateway API as the long-term standard for ingress and Layer 7 traffic management."
+      source: https://learn.microsoft.com/en-us/azure/aks/app-routing
+      verified: true
 ---
 
 

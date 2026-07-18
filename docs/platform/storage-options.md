@@ -9,6 +9,23 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/aks/concepts-storage
     - https://learn.microsoft.com/en-us/azure/aks/azure-disk-csi
     - https://learn.microsoft.com/en-us/azure/aks/azure-files-csi
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "An emptyDir volume persists only for the lifetime of the pod and is deleted when the pod is deleted."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-storage
+      verified: true
+    - claim: "Azure Disks are mounted as ReadWriteOnce and are available to only one node in AKS."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-storage
+      verified: true
+    - claim: "Azure Files can share data across multiple nodes and pods."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-storage
+      verified: true
+    - claim: "The CSI storage driver support on AKS allows Azure Disks, Azure Files, and Azure Blob storage to be used as persistent storage for AKS applications."
+      source: https://learn.microsoft.com/en-us/azure/aks/csi-storage-drivers
+      verified: true
 ---
 
 
