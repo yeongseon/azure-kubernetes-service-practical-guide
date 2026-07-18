@@ -27,6 +27,8 @@ flowchart TD
     A --> D[Node Issues]
     A --> E[Operations]
     A --> F[Networking]
+    A --> G[DNS]
+    A --> H[Network Policy]
 ```
 
 
@@ -35,7 +37,9 @@ flowchart TD
 | High-Signal Root Playbooks | [Pod CrashLoopBackOff](pod-crashloopbackoff.md), [Node Not Ready](node-not-ready.md), [Ingress Not Working](ingress-not-working.md), [Cluster Autoscaler Issues](cluster-autoscaler-issues.md) |
 | Pod Issues | [Image Pull Failure](pod-issues/image-pull-failure.md), [CrashLoop](pod-issues/crashloop.md), [Pending Pods](pod-issues/pending-pods.md) |
 | Connectivity | [Ingress Failure](connectivity/ingress-failure.md), [Service Unreachable](connectivity/service-unreachable.md) |
+| DNS | [CoreDNS Query Latency or Drops](dns/coredns-query-latency-drops.md), [External Hostname Resolution Failure](dns/external-hostname-resolution-failure.md) |
 | Node Issues | [Node Not Ready](node-issues/node-not-ready.md), [CNI IP Exhaustion](node-issues/cni-ip-exhaustion.md) |
+| Network Policy | [NetworkPolicy Denies Legitimate Traffic](network-policy/networkpolicy-denies-legitimate-traffic.md), [NetworkPolicy Not Blocking Traffic](network-policy/networkpolicy-not-blocking-traffic.md), [Cilium Dataplane Migration Issues](network-policy/cilium-dataplane-migration-issues.md) |
 | Operations | [Upgrade Failure](operations/upgrade-failure.md), [Upgrade Blocked by Pod Disruption Budget](operations/upgrade-blocked-pdb.md), [Upgrade Blocked by Deprecated API](operations/upgrade-blocked-deprecated-api.md), [Node Image Upgrade Stuck](operations/node-image-upgrade-stuck.md), [Surge Upgrade IP Exhaustion](operations/surge-upgrade-ip-exhaustion.md), [Scaling Failure](operations/scaling-failure.md) |
 | Storage | [PVC Stuck in Pending](storage/pvc-stuck-pending.md), [Volume Attach Failure](storage/volume-attach-failure.md), [Volume Mount Failure](storage/volume-mount-failure.md), [Volume Expansion Failure](storage/volume-expansion-failure.md), [StatefulSet Stuck During Rolling Update](storage/statefulset-stuck-rolling-update.md) |
 | Networking | [API Server / kubectl Unreachable](networking/api-server-kubectl-unreachable.md), [Image Pull Fails in Restricted Egress](networking/image-pull-restricted-egress.md), [Webhook / Control-Plane Calls Blocked](networking/webhook-control-plane-blocked.md), [SNAT Port Exhaustion](networking/snat-port-exhaustion.md) |
