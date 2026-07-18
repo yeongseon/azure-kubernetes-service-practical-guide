@@ -50,6 +50,10 @@ flowchart TD
 - You want scale-to-zero or revision-based release behavior without cluster management.
 - Your team does not want to own Kubernetes upgrades and diagnostics.
 
+### Escalating from Container Apps
+
+Move from Container Apps to AKS when the requirement is no longer just "more knobs," but explicit workload placement and disruption policy such as zonal spread, node-pool targeting, or Pod Disruption Budget design. Start with [When You Need Explicit Placement and Disruption Control](../best-practices/explicit-placement-disruption-control.md) for the AKS-side trade-off: more control over placement and voluntary disruption, but not a guarantee that involuntary disruption windows disappear.
+
 ## See Also
 
 - [Overview](overview.md)
@@ -59,7 +63,7 @@ flowchart TD
 
 ## Sources
 
-- [Azure Kubernetes Service (AKS) documentation](https://learn.microsoft.com/azure/aks/)
-- [What is Azure Kubernetes Service (AKS)?](https://learn.microsoft.com/azure/aks/intro-kubernetes)
-- [Azure App Service overview](https://learn.microsoft.com/azure/app-service/overview)
-- [Azure Container Apps overview](https://learn.microsoft.com/azure/container-apps/overview)
+- [Azure Kubernetes Service (AKS) documentation](https://learn.microsoft.com/en-us/azure/aks/)
+- [What is Azure Kubernetes Service (AKS)?](https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes)
+- [Azure App Service overview](https://learn.microsoft.com/en-us/azure/app-service/overview)
+- [Azure Container Apps overview](https://learn.microsoft.com/en-us/azure/container-apps/overview)
