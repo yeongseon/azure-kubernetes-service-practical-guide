@@ -115,6 +115,9 @@ nav:
     - platform/outbound-networking.md
     - platform/ingress-load-balancing.md
     - platform/identity-and-secrets.md
+    - platform/workload-identity.md
+    - platform/identity-model-comparison.md
+    - platform/key-vault-csi.md
     - platform/storage-options.md
     - platform/scaling.md
   - Best Practices:
@@ -189,6 +192,11 @@ nav:
         - troubleshooting/playbooks/networking/image-pull-restricted-egress.md
         - troubleshooting/playbooks/networking/webhook-control-plane-blocked.md
         - troubleshooting/playbooks/networking/snat-port-exhaustion.md
+      - Identity:
+        - troubleshooting/playbooks/identity/oidc-issuer-mismatch.md
+        - troubleshooting/playbooks/identity/audience-mismatch.md
+        - troubleshooting/playbooks/identity/rbac-success-key-vault-fail.md
+        - troubleshooting/playbooks/identity/token-exchange-failure.md
       - Operations:
         - troubleshooting/playbooks/operations/upgrade-failure.md
         - troubleshooting/playbooks/operations/scaling-failure.md
