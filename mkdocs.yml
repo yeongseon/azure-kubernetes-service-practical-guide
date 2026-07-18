@@ -220,7 +220,13 @@ nav:
     - reference/diagnostic-commands.md
     - Metrics:
       - reference/metrics/index.md
-      - reference/metrics/aks-metrics.md
+      - Cluster Metrics: reference/metrics/cluster-metrics.md
+      - Node Metrics: reference/metrics/node-metrics.md
+      - Pod and Container Metrics: reference/metrics/pod-container-metrics.md
+      - Ingress and Networking Metrics: reference/metrics/ingress-networking-metrics.md
+      - Autoscaler Metrics: reference/metrics/autoscaler-metrics.md
+      - Managed Prometheus and Grafana: reference/metrics/managed-prometheus-grafana.md
+      - AKS Metrics Catalog: reference/metrics/aks-metrics.md
   - Visualization:
     - visualization/index.md
     - visualization/architecture-map.md
