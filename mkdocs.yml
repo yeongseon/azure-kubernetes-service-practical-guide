@@ -120,6 +120,10 @@ nav:
     - platform/identity-model-comparison.md
     - platform/key-vault-csi.md
     - platform/storage-options.md
+    - platform/azure-disk-csi-driver.md
+    - platform/azure-files-csi-driver.md
+    - platform/azure-blob-csi-driver.md
+    - platform/nfs-on-aks.md
     - platform/scaling.md
   - Best Practices:
     - best-practices/index.md
@@ -152,6 +156,10 @@ nav:
     - operations/index.md
     - operations/cluster-creation.md
     - operations/node-pool-operations.md
+    - operations/cluster-resource-pv-backup.md
+    - operations/restore-drills.md
+    - operations/statefulset-day-2-operations.md
+    - operations/snapshot-operations.md
     - operations/upgrades.md
     - operations/auto-upgrade-channels.md
     - operations/node-os-upgrades.md
@@ -208,6 +216,12 @@ nav:
         - troubleshooting/playbooks/operations/node-image-upgrade-stuck.md
         - troubleshooting/playbooks/operations/surge-upgrade-ip-exhaustion.md
         - troubleshooting/playbooks/operations/scaling-failure.md
+      - Storage:
+        - troubleshooting/playbooks/storage/pvc-stuck-pending.md
+        - troubleshooting/playbooks/storage/volume-attach-failure.md
+        - troubleshooting/playbooks/storage/volume-mount-failure.md
+        - troubleshooting/playbooks/storage/volume-expansion-failure.md
+        - troubleshooting/playbooks/storage/statefulset-stuck-rolling-update.md
     - KQL Query Packs:
       - troubleshooting/kql/index.md
       - Workloads:

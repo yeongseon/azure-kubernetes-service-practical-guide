@@ -543,6 +543,10 @@ A practical FinOps review for AKS should therefore compare cost to avoided risk,
 ## See Also
 
 - [Production Baseline](production-baseline.md)
+- [Cluster Resource and PV Backup](../operations/cluster-resource-pv-backup.md)
+- [Restore Drills](../operations/restore-drills.md)
+- [StatefulSet Day-2 Operations](../operations/statefulset-day-2-operations.md)
+- [Snapshot Operations](../operations/snapshot-operations.md)
 - [Upgrades](../operations/upgrades.md)
 - [Scaling Operations](../operations/scaling-operations.md)
 - [Pod CrashLoopBackOff](../troubleshooting/playbooks/pod-crashloopbackoff.md)
