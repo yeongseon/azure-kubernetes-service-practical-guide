@@ -1,19 +1,36 @@
 ---
 content_sources:
   diagrams:
-  - id: best-practices-networking
-    type: flowchart
-    source: mslearn-adapted
-    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/best-practices
-    based_on:
-    - https://learn.microsoft.com/en-us/azure/aks/best-practices
-    - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
-    - https://learn.microsoft.com/en-us/azure/aks/concepts-network
-    - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
-    - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
-    - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
-    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
-    - https://learn.microsoft.com/en-us/azure/aks/azure-cni-overlay
+    - id: best-practices-networking
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/aks/best-practices
+      based_on:
+        - https://learn.microsoft.com/en-us/azure/aks/best-practices
+        - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
+        - https://learn.microsoft.com/en-us/azure/aks/concepts-network
+        - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
+        - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
+        - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+        - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+        - https://learn.microsoft.com/en-us/azure/aks/azure-cni-overlay
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "In the AKS overlay network model, pods get IP addresses from a private CIDR that is separate from the Azure virtual network subnet used by the nodes."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network
+      verified: true
+    - claim: "In the AKS flat network model, pod IP addresses come from the same virtual network subnet as the AKS nodes, and traffic leaving the cluster isn't SNATed."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network
+      verified: true
+    - claim: "By default, all pods in an AKS cluster can send and receive traffic without limitations."
+      source: https://learn.microsoft.com/en-us/azure/aks/use-network-policies
+      verified: true
+    - claim: "When you create a Kubernetes load balancer in AKS, Azure also creates the corresponding Azure load balancer resource and configures the required network security group rules."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network
+      verified: true
 ---
 
 

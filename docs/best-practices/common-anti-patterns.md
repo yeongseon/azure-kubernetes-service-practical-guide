@@ -1,19 +1,36 @@
 ---
 content_sources:
   diagrams:
-  - id: best-practices-common-anti-patterns
-    type: flowchart
-    source: mslearn-adapted
-    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/best-practices
-    based_on:
-    - https://learn.microsoft.com/en-us/azure/aks/best-practices
-    - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
-    - https://learn.microsoft.com/en-us/azure/aks/concepts-network
-    - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
-    - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
-    - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
-    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
-    - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-cluster-isolation
+    - id: best-practices-common-anti-patterns
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/aks/best-practices
+      based_on:
+        - https://learn.microsoft.com/en-us/azure/aks/best-practices
+        - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
+        - https://learn.microsoft.com/en-us/azure/aks/concepts-network
+        - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
+        - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
+        - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+        - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+        - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-cluster-isolation
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "By default, all pods in an AKS cluster can send and receive traffic without limitations."
+      source: https://learn.microsoft.com/en-us/azure/aks/use-network-policies
+      verified: true
+    - claim: "Cluster Autoscaler watches for pods that can't be scheduled because of resource constraints and scales up the node pool; it also scales down nodes that lack running pods."
+      source: https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+      verified: true
+    - claim: "Pod Security Admission uses labels to enforce Pod Security Standards policies on pods running in a namespace, and it's enabled by default in AKS."
+      source: https://learn.microsoft.com/en-us/azure/aks/use-psa
+      verified: true
+    - claim: "Container insights collects stdout and stderr logs and Kubernetes events from each node in an AKS cluster."
+      source: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
+      verified: true
 ---
 
 

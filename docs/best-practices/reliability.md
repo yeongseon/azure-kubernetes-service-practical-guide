@@ -1,19 +1,36 @@
 ---
 content_sources:
   diagrams:
-  - id: best-practices-reliability
-    type: flowchart
-    source: mslearn-adapted
-    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/best-practices
-    based_on:
-    - https://learn.microsoft.com/en-us/azure/aks/best-practices
-    - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
-    - https://learn.microsoft.com/en-us/azure/aks/concepts-network
-    - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
-    - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
-    - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
-    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
-    - https://learn.microsoft.com/en-us/azure/aks/upgrade-cluster
+    - id: best-practices-reliability
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/aks/best-practices
+      based_on:
+        - https://learn.microsoft.com/en-us/azure/aks/best-practices
+        - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
+        - https://learn.microsoft.com/en-us/azure/aks/concepts-network
+        - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
+        - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
+        - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+        - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+        - https://learn.microsoft.com/en-us/azure/aks/upgrade-cluster
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "AKS uses best-effort zone balancing in node pools, and upgrade surge nodes can temporarily create an unbalanced zone configuration."
+      source: https://learn.microsoft.com/en-us/azure/aks/upgrade-options
+      verified: true
+    - claim: "AKS pre-upgrade validations check for deprecated APIs, valid upgrade paths, PDB configuration, quota, subnet capacity, expired credentials, and managed resource locks."
+      source: https://learn.microsoft.com/en-us/azure/aks/upgrade-options
+      verified: true
+    - claim: "AKS upgrades drain nodes by evicting pods, and drains can fail when strict Pod Disruption Budgets block those evictions."
+      source: https://learn.microsoft.com/en-us/azure/aks/upgrade-options
+      verified: true
+    - claim: "In AKS Standard, the default node drain timeout is 30 minutes and the default node soak time is 0 minutes."
+      source: https://learn.microsoft.com/en-us/azure/aks/upgrade-options
+      verified: true
 ---
 
 

@@ -1,19 +1,36 @@
 ---
 content_sources:
   diagrams:
-  - id: best-practices-cost-optimization
-    type: flowchart
-    source: mslearn-adapted
-    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/best-practices
-    based_on:
-    - https://learn.microsoft.com/en-us/azure/aks/best-practices
-    - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
-    - https://learn.microsoft.com/en-us/azure/aks/concepts-network
-    - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
-    - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
-    - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
-    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
-    - https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions
+    - id: best-practices-cost-optimization
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/aks/best-practices
+      based_on:
+        - https://learn.microsoft.com/en-us/azure/aks/best-practices
+        - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
+        - https://learn.microsoft.com/en-us/azure/aks/concepts-network
+        - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
+        - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
+        - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+        - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+        - https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "Azure Monitor platform metrics for AKS clusters are collected automatically at no cost."
+      source: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
+      verified: true
+    - claim: "Container insights data collection can be customized with Azure Monitor Data Collection Rules to control costs and reduce ingestion volume."
+      source: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
+      verified: true
+    - claim: "AKS resource logs in resource-specific mode support Basic logs configuration for significant cost savings."
+      source: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
+      verified: true
+    - claim: "The cluster autoscaler enforces the minimum node count when the actual count drops below the minimum because of external factors such as spot eviction."
+      source: https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+      verified: true
 ---
 
 

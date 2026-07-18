@@ -1,19 +1,36 @@
 ---
 content_sources:
   diagrams:
-  - id: best-practices-security
-    type: flowchart
-    source: mslearn-adapted
-    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/best-practices
-    based_on:
-    - https://learn.microsoft.com/en-us/azure/aks/best-practices
-    - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
-    - https://learn.microsoft.com/en-us/azure/aks/concepts-network
-    - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
-    - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
-    - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
-    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
-    - https://learn.microsoft.com/security/benchmark/azure/baselines/azure-kubernetes-service-security-baseline
+    - id: best-practices-security
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/aks/best-practices
+      based_on:
+        - https://learn.microsoft.com/en-us/azure/aks/best-practices
+        - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
+        - https://learn.microsoft.com/en-us/azure/aks/concepts-network
+        - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
+        - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
+        - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+        - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+        - https://learn.microsoft.com/security/benchmark/azure/baselines/azure-kubernetes-service-security-baseline
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "The securityContext for a pod or container can define settings such as runAsUser or fsGroup."
+      source: https://learn.microsoft.com/en-us/azure/aks/developer-best-practices-pod-security
+      verified: true
+    - claim: "allowPrivilegeEscalation defines whether a pod can assume root privileges."
+      source: https://learn.microsoft.com/en-us/azure/aks/developer-best-practices-pod-security
+      verified: true
+    - claim: "Microsoft Entra Workload ID uses Service Account Token Volume Projection and OIDC federation so pods can access Azure resources securely with Microsoft Entra ID."
+      source: https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview
+      verified: true
+    - claim: "On AKS Automatic, workload identity and the OIDC cluster issuer are preconfigured by default."
+      source: https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview
+      verified: true
 ---
 
 

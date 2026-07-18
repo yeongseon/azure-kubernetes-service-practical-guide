@@ -1,19 +1,36 @@
 ---
 content_sources:
   diagrams:
-  - id: best-practices-production-baseline
-    type: flowchart
-    source: mslearn-adapted
-    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/best-practices
-    based_on:
-    - https://learn.microsoft.com/en-us/azure/aks/best-practices
-    - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
-    - https://learn.microsoft.com/en-us/azure/aks/concepts-network
-    - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
-    - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
-    - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
-    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
-    - https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+    - id: best-practices-production-baseline
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/aks/best-practices
+      based_on:
+        - https://learn.microsoft.com/en-us/azure/aks/best-practices
+        - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
+        - https://learn.microsoft.com/en-us/azure/aks/concepts-network
+        - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
+        - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
+        - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+        - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+        - https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "A system-assigned managed identity is enabled by default when you create a new AKS cluster."
+      source: https://learn.microsoft.com/en-us/azure/aks/system-assigned-managed-identity
+      verified: true
+    - claim: "System node pools must contain at least two nodes, and user node pools may contain zero or more nodes."
+      source: https://learn.microsoft.com/en-us/azure/aks/create-node-pools
+      verified: true
+    - claim: "Pod Security Admission is enabled by default in AKS."
+      source: https://learn.microsoft.com/en-us/azure/aks/use-psa
+      verified: true
+    - claim: "AKS control plane logs are implemented as Azure Monitor resource logs and aren't collected until you create a diagnostic setting."
+      source: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
+      verified: true
 ---
 
 
