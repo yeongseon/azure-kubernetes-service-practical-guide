@@ -149,6 +149,7 @@ nav:
     - best-practices/private-cluster-api-connectivity.md
     - best-practices/resource-governance.md
     - best-practices/reliability.md
+    - best-practices/explicit-placement-disruption-control.md
     - best-practices/cost-optimization.md
     - best-practices/autoscaling.md
     - best-practices/common-anti-patterns.md
@@ -255,6 +256,12 @@ nav:
         - troubleshooting/playbooks/operations/node-image-upgrade-stuck.md
         - troubleshooting/playbooks/operations/surge-upgrade-ip-exhaustion.md
         - troubleshooting/playbooks/operations/scaling-failure.md
+      - Scheduling / Placement:
+        - troubleshooting/playbooks/scheduling/index.md
+        - troubleshooting/playbooks/scheduling/topology-spread-skew-under-capacity.md
+        - troubleshooting/playbooks/scheduling/ready-capacity-drops-below-desired.md
+        - troubleshooting/playbooks/scheduling/pdb-drain-disruption-contract.md
+        - troubleshooting/playbooks/scheduling/az-imbalanced-node-pools-spread.md
       - Scaling:
         - troubleshooting/playbooks/scaling/keda-scaler-not-triggering.md
         - troubleshooting/playbooks/scaling/nap-fails-to-provision.md

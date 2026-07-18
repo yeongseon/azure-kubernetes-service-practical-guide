@@ -65,6 +65,8 @@ flowchart TD
 
 Design clusters for failure isolation, safe scaling, observable incidents, and repeatable recovery instead of hoping restarts solve everything.
 
+If you are arriving from Azure Container Apps because you now need workload-level placement and disruption primitives, start with [When You Need Explicit Placement and Disruption Control](explicit-placement-disruption-control.md). That page frames the AKS trade-off correctly: explicit controls are powerful, but they do not eliminate involuntary disruption windows.
+
 Typical operating questions this page answers:
 
 - Which node pool model should be considered the default for production?
