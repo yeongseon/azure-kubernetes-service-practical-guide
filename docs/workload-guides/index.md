@@ -14,8 +14,8 @@ Workload Guides are implementation-pattern guides organized by Kubernetes worklo
 | Workload Pattern | Focus | Status |
 |---|---|---|
 | [Stateless web API](./stateless-web-api-on-aks.md) | External HTTP API, HPA, Ingress | Available |
-| Internal service | East-west service-to-service traffic, ClusterIP, policy boundaries | Planned |
-| Background worker | Queue or event-driven processing, retries, graceful shutdown | Planned |
+| [Internal service](./internal-service.md) | East-west service-to-service traffic, ClusterIP, policy boundaries | Available |
+| [Background worker](./background-worker.md) | Queue or event-driven processing, retries, graceful shutdown | Available |
 | CronJob (scheduled job) | Time-based execution, concurrency policy, job history | Planned |
 | GPU workload (overview) | Node pools, scheduling constraints, accelerator operations | Planned |
 | Stateful workload considerations | Persistent storage, disruption handling, rollout boundaries | Planned |

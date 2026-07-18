@@ -189,6 +189,8 @@ nav:
       - Workload Guides:
         - workload-guides/index.md
         - workload-guides/stateless-web-api-on-aks.md
+        - workload-guides/internal-service.md
+        - workload-guides/background-worker.md
   - Operations:
     - operations/index.md
     - Cluster Lifecycle & Scaling:
