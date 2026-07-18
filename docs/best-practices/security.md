@@ -13,7 +13,7 @@ content_sources:
         - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
         - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
         - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
-        - https://learn.microsoft.com/security/benchmark/azure/baselines/azure-kubernetes-service-security-baseline
+        - https://learn.microsoft.com/en-us/security/benchmark/azure/baselines/azure-kubernetes-service-security-baseline
 content_validation:
   status: verified
   last_reviewed: 2026-07-18
@@ -313,7 +313,7 @@ Pod security review prompts:
 
 - Does the workload run as non-root and drop unnecessary Linux capabilities?
 - Are host namespaces, host networking, or hostPath volumes truly required?
-- Is the workload using Microsoft Entra Workload ID or another approved identity path instead of static secrets?
+- Is the workload using [Microsoft Entra Workload ID](../platform/workload-identity.md) or another approved identity path instead of static secrets?
 - If Gatekeeper requires an exception, who owns removal of that exception?
 
 ### Practice 6: Standardize ingress controller patterns
@@ -547,11 +547,11 @@ A practical FinOps review for AKS should therefore compare cost to avoided risk,
 
 ## Sources
 
-- [Azure / Aks / Best Practices](https://learn.microsoft.com/azure/aks/best-practices)
-- [Azure / Architecture / Reference Architectures / Containers / Aks / Secure Baseline Aks](https://learn.microsoft.com/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks)
-- [Azure / Aks / Concepts Network](https://learn.microsoft.com/azure/aks/concepts-network)
-- [Azure / Aks / Use Network Policies](https://learn.microsoft.com/azure/aks/use-network-policies)
-- [Azure / Aks / Operator Best Practices Pod Security](https://learn.microsoft.com/azure/aks/operator-best-practices-pod-security)
-- [Azure / Aks / Cluster Autoscaler](https://learn.microsoft.com/azure/aks/cluster-autoscaler)
-- [Azure / Azure Monitor / Containers / Container Insights Overview](https://learn.microsoft.com/azure/azure-monitor/containers/container-insights-overview)
-- [Security / Benchmark / Azure / Baselines / Azure Kubernetes Service Security Baseline](https://learn.microsoft.com/security/benchmark/azure/baselines/azure-kubernetes-service-security-baseline)
+- [Azure / Aks / Best Practices](https://learn.microsoft.com/en-us/azure/aks/best-practices)
+- [Azure / Architecture / Reference Architectures / Containers / Aks / Secure Baseline Aks](https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks)
+- [Azure / Aks / Concepts Network](https://learn.microsoft.com/en-us/azure/aks/concepts-network)
+- [Azure / Aks / Use Network Policies](https://learn.microsoft.com/en-us/azure/aks/use-network-policies)
+- [Azure / Aks / Operator Best Practices Pod Security](https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security)
+- [Azure / Aks / Cluster Autoscaler](https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler)
+- [Azure / Azure Monitor / Containers / Container Insights Overview](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview)
+- [Security / Benchmark / Azure / Baselines / Azure Kubernetes Service Security Baseline](https://learn.microsoft.com/en-us/security/benchmark/azure/baselines/azure-kubernetes-service-security-baseline)

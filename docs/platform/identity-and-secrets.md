@@ -48,7 +48,14 @@ flowchart TD
 
 - **Cluster access**: Microsoft Entra ID-backed authentication and Kubernetes RBAC.
 - **Cluster identity**: managed identity used by AKS to manage Azure resources.
-- **Workload identity**: pod-to-Azure-resource authentication without storing secrets in Kubernetes.
+- **Workload identity**: pod-to-Azure-resource authentication without storing secrets in Kubernetes. Use the full [Microsoft Entra Workload Identity](workload-identity.md) deep-dive for the OIDC issuer, federated identity credential, service account subject, projected token, and Azure token exchange flow.
+
+### Identity model boundaries
+
+AKS uses different Azure identities for different scopes. Do not troubleshoot image pull, infrastructure mutation, and application secret access as the same problem.
+
+- Use [Identity Model Comparison](identity-model-comparison.md) to separate control-plane identity, kubelet identity, and workload identity responsibilities.
+- Use [Azure Key Vault CSI Driver](key-vault-csi.md) for mount flow, sync-to-Kubernetes-Secret behavior, and rotation expectations.
 
 ### Secret handling guidance
 
@@ -59,10 +66,22 @@ flowchart TD
 ### Example commands
 
 ```bash
-az aks update --resource-group $RG --name $CLUSTER_NAME --enable-oidc-issuer --enable-workload-identity
-az aks get-credentials --resource-group $RG --name $CLUSTER_NAME --overwrite-existing
-kubectl get serviceaccount -A
-kubectl get secret -A
+az aks update \
+    --resource-group "$RG" \
+    --name "$CLUSTER_NAME" \
+    --enable-oidc-issuer \
+    --enable-workload-identity
+
+az aks get-credentials \
+    --resource-group "$RG" \
+    --name "$CLUSTER_NAME" \
+    --overwrite-existing
+
+kubectl get serviceaccount \
+    --all-namespaces
+
+kubectl get secret \
+    --all-namespaces
 ```
 
 ### Review cluster access in the Azure Portal
@@ -104,12 +123,15 @@ Next step: Bind a Kubernetes service account to a managed identity following [Be
 ## See Also
 
 - [Cluster Architecture](cluster-architecture.md)
+- [Microsoft Entra Workload Identity](workload-identity.md)
+- [Identity Model Comparison](identity-model-comparison.md)
+- [Azure Key Vault CSI Driver](key-vault-csi.md)
 - [Best Practices: Security](../best-practices/security.md)
 - [Credential Rotation](../operations/credential-rotation.md)
 - [Image Pull Failure](../troubleshooting/playbooks/pod-issues/image-pull-failure.md)
 
 ## Sources
 
-- [Use Microsoft Entra ID with AKS](https://learn.microsoft.com/azure/aks/managed-azure-ad)
-- [Deploy and configure workload identity on AKS](https://learn.microsoft.com/azure/aks/workload-identity-deploy-cluster)
-- [Use the Azure Key Vault provider for Secrets Store CSI Driver in AKS](https://learn.microsoft.com/azure/aks/csi-secrets-store-driver)
+- [Use Microsoft Entra ID with AKS](https://learn.microsoft.com/en-us/azure/aks/managed-azure-ad)
+- [Deploy and configure workload identity on AKS](https://learn.microsoft.com/en-us/azure/aks/workload-identity-deploy-cluster)
+- [Use the Azure Key Vault provider for Secrets Store CSI Driver in AKS](https://learn.microsoft.com/en-us/azure/aks/csi-secrets-store-driver)
