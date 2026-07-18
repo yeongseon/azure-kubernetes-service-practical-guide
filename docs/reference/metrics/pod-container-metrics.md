@@ -73,3 +73,4 @@ Pod and container metrics answer whether a failure belongs to the workload itsel
 - [Monitor AKS](https://learn.microsoft.com/en-us/azure/aks/monitor-aks)
 - [Monitor AKS with Container insights](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview)
 - [Metric alerts for Container insights](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-metric-alerts)
+- [Kubernetes metric alerts (recommended)](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/kubernetes-metric-alerts)
