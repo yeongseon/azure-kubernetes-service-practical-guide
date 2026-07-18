@@ -11,6 +11,7 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/aks/concepts-network
     - https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview
     - https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads
+    - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
 ---
 
 # Internal Service
@@ -79,11 +80,15 @@ Networking is the defining choice for this workload shape.
 
 An internal load balancer on AKS is created by annotating a Kubernetes `Service` of type `LoadBalancer` so Azure provisions a private frontend instead of a public one. This is the right pattern for private north-south traffic, not for purely in-cluster service discovery.
 
+Private exposure is not an access-control boundary. A `ClusterIP` or internal IP restricts *where* the service can be reached from, not *which* pods may connect to it. By default any pod in the cluster can reach any Service. Constrain east-west traffic explicitly with Kubernetes `NetworkPolicy` (or Cilium/Azure network policy, depending on your CNI) so only the intended caller pods and namespaces can open connections to this service. Adopt a default-deny posture per namespace and allow specific caller identities rather than relying on the private IP alone.
+
 ## Identity
 
 Private connectivity does not remove the need for strong workload identity. Internal services still call Azure resources and should still use Microsoft Entra Workload Identity as the recommended pattern.
 
 Use separate service accounts for services with different authorization boundaries. Private traffic and private IPs are not substitutes for identity scoping.
+
+Workload identity covers *workload-to-Azure* authentication. It does not authenticate *caller-to-callee* traffic between two services inside the cluster. Network reachability (`ClusterIP`, private IP) is not caller authentication: any pod that can reach the service can call it unless the application enforces its own identity check. For east-west (service-to-service) auth, add an application-layer mechanism appropriate to your trust requirements — for example mutual TLS, signed tokens validated by the callee, or a service mesh / gateway that mediates and authenticates internal calls. Pair that app-layer auth with `NetworkPolicy` so that reachability and identity are both constrained.
 
 For the implementation model, use [Identity and Secrets](../platform/identity-and-secrets.md). When federation is configured incorrectly, start with [Token Exchange Failure](../troubleshooting/playbooks/identity/token-exchange-failure.md) or [Audience Mismatch](../troubleshooting/playbooks/identity/audience-mismatch.md).
 
@@ -128,3 +133,4 @@ Container Insights helps correlate pod behavior, controller state, and node cond
 - https://learn.microsoft.com/en-us/azure/aks/concepts-network
 - https://learn.microsoft.com/en-us/azure/aks/workload-identity-overview
 - https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads
+- https://learn.microsoft.com/en-us/azure/aks/use-network-policies
