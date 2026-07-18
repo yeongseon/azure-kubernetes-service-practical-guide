@@ -67,6 +67,8 @@ Contributions welcome! Please see our [Contributing Guide](https://yeongseon.git
 - Local development setup and build validation
 - Pull request process
 
+AI agents and automated contributors should also review [`AGENTS.md`](AGENTS.md) for repository conventions, content-validation rules, navigation budget, and documentation standards.
+
 ## Related Projects
 
 | Repository | Description |
