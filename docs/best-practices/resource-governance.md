@@ -1,19 +1,36 @@
 ---
 content_sources:
   diagrams:
-  - id: best-practices-resource-governance
-    type: flowchart
-    source: mslearn-adapted
-    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/best-practices
-    based_on:
-    - https://learn.microsoft.com/en-us/azure/aks/best-practices
-    - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
-    - https://learn.microsoft.com/en-us/azure/aks/concepts-network
-    - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
-    - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
-    - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
-    - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
-    - https://learn.microsoft.com/en-us/azure/governance/policy/concepts/policy-for-kubernetes
+    - id: best-practices-resource-governance
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/aks/best-practices
+      based_on:
+        - https://learn.microsoft.com/en-us/azure/aks/best-practices
+        - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
+        - https://learn.microsoft.com/en-us/azure/aks/concepts-network
+        - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
+        - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
+        - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+        - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+        - https://learn.microsoft.com/en-us/azure/governance/policy/concepts/policy-for-kubernetes
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "Azure Policy extends Gatekeeper v3, an admission controller webhook for Open Policy Agent, to enforce safeguards on Kubernetes cluster components."
+      source: https://learn.microsoft.com/en-us/azure/governance/policy/concepts/policy-for-kubernetes
+      verified: true
+    - claim: "The Azure Policy add-on for AKS is part of Kubernetes version 1.27 with long term support."
+      source: https://learn.microsoft.com/en-us/azure/governance/policy/concepts/policy-for-kubernetes
+      verified: true
+    - claim: "Azure Policy deploys Kubernetes policy definitions into the cluster as constraint templates, constraints, or mutation template resources."
+      source: https://learn.microsoft.com/en-us/azure/governance/policy/concepts/policy-for-kubernetes
+      verified: true
+    - claim: "The Azure Policy add-on checks Azure Policy for assignment changes every 15 minutes and performs a full cluster scan every 15 minutes."
+      source: https://learn.microsoft.com/en-us/azure/governance/policy/concepts/policy-for-kubernetes
+      verified: true
 ---
 
 
