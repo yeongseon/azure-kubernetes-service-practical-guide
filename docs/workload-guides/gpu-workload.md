@@ -48,7 +48,7 @@ Key placement mechanics:
 |---|---|---|
 | Dedicated GPU node pool | Isolates accelerator capacity | Keep GPU nodes in their own pool so scaling and cost stay separate |
 | Node taint + pod toleration | Repels non-GPU pods | Taint GPU nodes so only GPU workloads schedule there |
-| `nvidia.com/gpu` resource request | Reserves a GPU per pod | Request the GPU resource explicitly so the scheduler places the pod correctly |
+| `nvidia.com/gpu` resource limit | Reserves a GPU per pod | Set the GPU count under resource `limits` (Kubernetes copies it to `requests`) so the scheduler places the pod correctly |
 | Node selector or affinity | Targets the right pool | Pin the workload to the GPU pool and to a compatible VM SKU |
 
 Confirm the GPU driver and device plugin path for the cluster before deploying. Whether drivers are managed by the platform or installed by the workload changes both operations and troubleshooting.
@@ -112,7 +112,7 @@ Container Insights provides the cluster and node context. Pair it with accelerat
 | Symptom | Likely pattern failure | First place to look |
 |---|---|---|
 | GPU pods stay Pending | no GPU node capacity, quota exhausted, or missing toleration | pending pod reasons, node pool size, taint and toleration match |
-| pod runs but cannot use the GPU | driver or device-plugin not ready, missing resource request | node events, device plugin status, `nvidia.com/gpu` request |
+| pod runs but cannot use the GPU | driver or device-plugin not ready, missing resource limit | node events, device plugin status, `nvidia.com/gpu` limit |
 | non-GPU pods land on GPU nodes | GPU nodes not tainted | node taints, workload tolerations |
 | GPU cost is unexpectedly high | idle-but-allocated accelerators or over-scaled pool | utilization signals, GPU-to-pod ratio, autoscaler bounds |
 | training jobs die mid-run | spot eviction on an interruptible pool | eviction events, spot pool configuration, checkpointing model |

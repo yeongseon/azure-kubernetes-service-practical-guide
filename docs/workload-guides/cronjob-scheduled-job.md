@@ -113,7 +113,7 @@ Container Insights correlates pod and node context for each run. Pair it with th
 | runs never start | schedule, time zone assumption, or missed-run deadline too tight | CronJob spec, `startingDeadlineSeconds`, controller events |
 | runs overlap and corrupt shared state | `concurrencyPolicy` allows overlap for a non-idempotent task | concurrency policy, job idempotency, external state model |
 | job pods stay Pending at trigger time | synchronized schedules exhausted node capacity | pending pod reasons, cluster autoscaler status, schedule staggering |
-| a bad run retries endlessly | `backoffLimit` unbounded or too high | Job spec, exit codes, poison-work handling |
+| a bad run retries too many times | `backoffLimit` set too high for a poison task | Job spec, exit codes, poison-work handling |
 | runs hang and block later schedules | no `activeDeadlineSeconds` under a `Forbid` policy | active deadline, run duration trend, controller events |
 
 ## See Also
