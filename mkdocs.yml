@@ -92,6 +92,12 @@ validation:
     absolute_links: warn
     unrecognized_links: warn
 
+not_in_nav: |
+  /troubleshooting/playbooks/*.md
+  /troubleshooting/playbooks/*/*.md
+  /troubleshooting/kql/*/*.md
+  /meta/content-model.md
+
 extra:
   social:
     - icon: fontawesome/brands/github
@@ -109,49 +115,59 @@ nav:
     - start-here/aks-vs-other-compute.md
   - Platform:
     - platform/index.md
-    - platform/cluster-architecture.md
-    - platform/version-lifecycle.md
-    - platform/node-pools.md
-    - platform/networking-models.md
-    - platform/azure-cni-powered-by-cilium.md
-    - platform/coredns-on-aks.md
-    - platform/node-local-dns-cache.md
-    - platform/outbound-networking.md
-    - platform/ingress-load-balancing.md
-    - platform/application-gateway-for-containers.md
-    - platform/istio-managed-addon.md
-    - platform/identity-and-secrets.md
-    - platform/workload-identity.md
-    - platform/identity-model-comparison.md
-    - platform/key-vault-csi.md
-    - platform/azure-policy-addon.md
-    - platform/defender-for-containers.md
-    - platform/pod-security-standards.md
-    - platform/storage-options.md
-    - platform/azure-disk-csi-driver.md
-    - platform/azure-files-csi-driver.md
-    - platform/azure-blob-csi-driver.md
-    - platform/nfs-on-aks.md
-    - platform/scaling.md
-    - platform/keda-on-aks.md
-    - platform/node-autoprovisioning.md
-    - platform/custom-metrics-scaling.md
-    - platform/flux-gitops-extension.md
-    - platform/dapr-extension.md
+    - Architecture:
+      - platform/cluster-architecture.md
+      - platform/version-lifecycle.md
+      - platform/node-pools.md
+    - Networking:
+      - platform/networking-models.md
+      - platform/azure-cni-powered-by-cilium.md
+      - platform/coredns-on-aks.md
+      - platform/node-local-dns-cache.md
+      - platform/outbound-networking.md
+      - platform/ingress-load-balancing.md
+      - platform/application-gateway-for-containers.md
+      - platform/istio-managed-addon.md
+    - Identity, Security & Policy:
+      - platform/identity-and-secrets.md
+      - platform/workload-identity.md
+      - platform/identity-model-comparison.md
+      - platform/key-vault-csi.md
+      - platform/azure-policy-addon.md
+      - platform/defender-for-containers.md
+      - platform/pod-security-standards.md
+    - Storage:
+      - platform/storage-options.md
+      - platform/azure-disk-csi-driver.md
+      - platform/azure-files-csi-driver.md
+      - platform/azure-blob-csi-driver.md
+      - platform/nfs-on-aks.md
+    - Scaling:
+      - platform/scaling.md
+      - platform/keda-on-aks.md
+      - platform/node-autoprovisioning.md
+      - platform/custom-metrics-scaling.md
+    - Extensions & GitOps:
+      - platform/flux-gitops-extension.md
+      - platform/dapr-extension.md
   - Best Practices:
     - best-practices/index.md
     - best-practices/production-baseline.md
-    - best-practices/deployment-strategies.md
-    - best-practices/security.md
-    - best-practices/governance.md
-    - best-practices/platform-extensions.md
-    - best-practices/networking.md
-    - best-practices/private-cluster-api-connectivity.md
-    - best-practices/resource-governance.md
-    - best-practices/reliability.md
-    - best-practices/explicit-placement-disruption-control.md
-    - best-practices/cost-optimization.md
-    - best-practices/autoscaling.md
+    - Security & Governance:
+      - best-practices/security.md
+      - best-practices/governance.md
+      - best-practices/resource-governance.md
+    - Networking & Connectivity:
+      - best-practices/networking.md
+      - best-practices/private-cluster-api-connectivity.md
+    - Reliability & Scaling:
+      - best-practices/reliability.md
+      - best-practices/autoscaling.md
+      - best-practices/explicit-placement-disruption-control.md
+      - best-practices/deployment-strategies.md
+    - Cost & Extensions:
+      - best-practices/cost-optimization.md
+      - best-practices/platform-extensions.md
     - best-practices/common-anti-patterns.md
   - Tutorials:
     - Hands-on Tutorials:
@@ -171,31 +187,36 @@ nav:
       - language-guides/python-on-aks.md
   - Operations:
     - operations/index.md
-    - operations/cluster-creation.md
-    - operations/node-pool-operations.md
-    - operations/cluster-resource-pv-backup.md
-    - operations/restore-drills.md
-    - operations/statefulset-day-2-operations.md
-    - operations/snapshot-operations.md
-    - operations/upgrades.md
-    - operations/auto-upgrade-channels.md
-    - operations/node-os-upgrades.md
-    - operations/scaling-operations.md
-    - operations/monitoring-logging.md
-    - operations/diagnostic-settings.md
-    - operations/managed-prometheus.md
-    - operations/baseline-alerts.md
-    - operations/maintenance-windows.md
-    - operations/blue-green-upgrades.md
-    - operations/credential-rotation.md
+    - Cluster Lifecycle & Scaling:
+      - operations/cluster-creation.md
+      - operations/node-pool-operations.md
+      - operations/scaling-operations.md
+    - Backup & Recovery:
+      - operations/cluster-resource-pv-backup.md
+      - operations/restore-drills.md
+      - operations/snapshot-operations.md
+      - operations/statefulset-day-2-operations.md
+    - Upgrades & Maintenance:
+      - operations/upgrades.md
+      - operations/auto-upgrade-channels.md
+      - operations/node-os-upgrades.md
+      - operations/maintenance-windows.md
+      - operations/blue-green-upgrades.md
+    - Observability:
+      - operations/monitoring-logging.md
+      - operations/diagnostic-settings.md
+      - operations/managed-prometheus.md
+      - operations/baseline-alerts.md
+    - Security:
+      - operations/credential-rotation.md
   - Troubleshooting:
     - troubleshooting/index.md
-    - troubleshooting/architecture-overview.md
-    - troubleshooting/decision-tree.md
-    - troubleshooting/evidence-map.md
-    - troubleshooting/mental-model.md
-    - troubleshooting/quick-diagnosis-cards.md
-    - Methodology:
+    - Diagnosis Approach:
+      - troubleshooting/architecture-overview.md
+      - troubleshooting/mental-model.md
+      - troubleshooting/decision-tree.md
+      - troubleshooting/evidence-map.md
+      - troubleshooting/quick-diagnosis-cards.md
       - troubleshooting/methodology/index.md
       - troubleshooting/methodology/troubleshooting-method.md
     - First 10 Minutes:
@@ -208,113 +229,33 @@ nav:
       - troubleshooting/first-10-minutes/control-plane.md
     - Playbooks:
       - troubleshooting/playbooks/index.md
-      - troubleshooting/playbooks/pod-crashloopbackoff.md
-      - troubleshooting/playbooks/node-not-ready.md
-      - troubleshooting/playbooks/ingress-not-working.md
-      - troubleshooting/playbooks/cluster-autoscaler-issues.md
-      - Pod Issues:
-        - troubleshooting/playbooks/pod-issues/image-pull-failure.md
-        - troubleshooting/playbooks/pod-issues/crashloop.md
-        - troubleshooting/playbooks/pod-issues/pending-pods.md
-      - Connectivity:
-        - troubleshooting/playbooks/connectivity/ingress-failure.md
-        - troubleshooting/playbooks/connectivity/service-unreachable.md
-      - DNS:
-        - troubleshooting/playbooks/dns/coredns-query-latency-drops.md
-        - troubleshooting/playbooks/dns/external-hostname-resolution-failure.md
-      - Extensions:
-        - troubleshooting/playbooks/extensions/agc-traffic-not-flowing.md
-        - troubleshooting/playbooks/extensions/istio-sidecar-injection-failure.md
-        - troubleshooting/playbooks/extensions/flux-reconciliation-stuck.md
-        - troubleshooting/playbooks/extensions/dapr-sidecar-fails-to-start.md
-      - Node Issues:
-        - troubleshooting/playbooks/node-issues/node-not-ready.md
-        - troubleshooting/playbooks/node-issues/cni-ip-exhaustion.md
-      - Network Policy:
-        - troubleshooting/playbooks/network-policy/networkpolicy-denies-legitimate-traffic.md
-        - troubleshooting/playbooks/network-policy/networkpolicy-not-blocking-traffic.md
-        - troubleshooting/playbooks/network-policy/cilium-dataplane-migration-issues.md
-      - Networking:
-        - troubleshooting/playbooks/networking/api-server-kubectl-unreachable.md
-        - troubleshooting/playbooks/networking/image-pull-restricted-egress.md
-        - troubleshooting/playbooks/networking/webhook-control-plane-blocked.md
-        - troubleshooting/playbooks/networking/snat-port-exhaustion.md
-      - Identity:
-        - troubleshooting/playbooks/identity/oidc-issuer-mismatch.md
-        - troubleshooting/playbooks/identity/audience-mismatch.md
-        - troubleshooting/playbooks/identity/rbac-success-key-vault-fail.md
-        - troubleshooting/playbooks/identity/token-exchange-failure.md
-      - Security:
-        - troubleshooting/playbooks/security/azure-policy-denies-workload.md
-        - troubleshooting/playbooks/security/defender-alert-false-positive.md
-        - troubleshooting/playbooks/security/pss-enforcement-breaks-deployment.md
-        - troubleshooting/playbooks/security/image-signature-verification-failure.md
-      - Operations:
-        - troubleshooting/playbooks/operations/upgrade-failure.md
-        - troubleshooting/playbooks/operations/upgrade-blocked-pdb.md
-        - troubleshooting/playbooks/operations/upgrade-blocked-deprecated-api.md
-        - troubleshooting/playbooks/operations/node-image-upgrade-stuck.md
-        - troubleshooting/playbooks/operations/surge-upgrade-ip-exhaustion.md
-        - troubleshooting/playbooks/operations/scaling-failure.md
-      - Scheduling / Placement:
-        - troubleshooting/playbooks/scheduling/index.md
-        - troubleshooting/playbooks/scheduling/topology-spread-skew-under-capacity.md
-        - troubleshooting/playbooks/scheduling/ready-capacity-drops-below-desired.md
-        - troubleshooting/playbooks/scheduling/pdb-drain-disruption-contract.md
-        - troubleshooting/playbooks/scheduling/az-imbalanced-node-pools-spread.md
-      - Scaling:
-        - troubleshooting/playbooks/scaling/keda-scaler-not-triggering.md
-        - troubleshooting/playbooks/scaling/nap-fails-to-provision.md
-        - troubleshooting/playbooks/scaling/hpa-flapping.md
-        - troubleshooting/playbooks/scaling/spot-eviction-storm.md
-      - Storage:
-        - troubleshooting/playbooks/storage/pvc-stuck-pending.md
-        - troubleshooting/playbooks/storage/volume-attach-failure.md
-        - troubleshooting/playbooks/storage/volume-mount-failure.md
-        - troubleshooting/playbooks/storage/volume-expansion-failure.md
-        - troubleshooting/playbooks/storage/statefulset-stuck-rolling-update.md
     - KQL Query Packs:
       - troubleshooting/kql/index.md
       - Workloads:
         - troubleshooting/kql/workloads/index.md
-        - troubleshooting/kql/workloads/pod-restarts.md
-        - troubleshooting/kql/workloads/crashloopbackoff.md
-        - troubleshooting/kql/workloads/pending-pods.md
       - Nodes:
         - troubleshooting/kql/nodes/index.md
-        - troubleshooting/kql/nodes/node-not-ready.md
-        - troubleshooting/kql/nodes/node-cpu-memory-pressure.md
-        - troubleshooting/kql/nodes/node-pod-density.md
-      - Logs and Events:
+      - Logs Events:
         - troubleshooting/kql/logs-events/index.md
-        - troubleshooting/kql/logs-events/container-errors.md
-        - troubleshooting/kql/logs-events/oomkilled-events.md
-        - troubleshooting/kql/logs-events/warning-events.md
       - Correlation:
         - troubleshooting/kql/correlation/index.md
-        - troubleshooting/kql/correlation/namespace-incident-timeline.md
-        - troubleshooting/kql/correlation/pod-log-event-correlation.md
-        - troubleshooting/kql/correlation/recent-cluster-changes.md
       - Control Plane:
         - troubleshooting/kql/control-plane/index.md
-        - troubleshooting/kql/control-plane/api-server-health-latency.md
-        - troubleshooting/kql/control-plane/audit-log-analysis.md
-        - troubleshooting/kql/control-plane/cluster-autoscaler-decisions.md
       - Storage:
         - troubleshooting/kql/storage/index.md
-        - troubleshooting/kql/storage/csi-attach-mount-failures.md
-        - troubleshooting/kql/storage/pvc-binding-latency.md
     - Evidence Packs:
       - troubleshooting/evidence-packs/index.md
   - Reference:
     - reference/index.md
-    - Validation Status: reference/validation-status.md
-    - Content Validation: reference/content-validation-status.md
-    - reference/cli-cheatsheet.md
-    - reference/limits-and-quotas.md
-    - reference/version-support.md
-    - reference/glossary.md
-    - reference/diagnostic-commands.md
+    - Quick Lookup:
+      - reference/cli-cheatsheet.md
+      - reference/diagnostic-commands.md
+      - reference/limits-and-quotas.md
+      - reference/version-support.md
+      - reference/glossary.md
+    - Validation Status:
+      - Tutorial Validation: reference/validation-status.md
+      - Content Validation: reference/content-validation-status.md
     - Metrics:
       - reference/metrics/index.md
       - Cluster Metrics: reference/metrics/cluster-metrics.md
@@ -324,14 +265,14 @@ nav:
       - Autoscaler Metrics: reference/metrics/autoscaler-metrics.md
       - Managed Prometheus and Grafana: reference/metrics/managed-prometheus-grafana.md
       - AKS Metrics Catalog: reference/metrics/aks-metrics.md
-  - Visualization:
-    - visualization/index.md
-    - visualization/architecture-map.md
-    - visualization/networking-path-map.md
-    - visualization/identity-map.md
-    - visualization/troubleshooting-decision-map.md
+    - Visual Maps:
+      - visualization/index.md
+      - visualization/architecture-map.md
+      - visualization/networking-path-map.md
+      - visualization/identity-map.md
+      - visualization/troubleshooting-decision-map.md
   - Contributing:
     - contributing/index.md
+    - contributing/navigation-ia.md
     - Meta:
       - meta/index.md
-      - meta/content-model.md
