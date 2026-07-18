@@ -20,10 +20,14 @@ flowchart TD
     QP --> ND[Nodes]
     QP --> LE[Logs & Events]
     QP --> CR[Correlation]
+    QP --> CP[Control Plane]
+    QP --> ST[Storage]
     WL --> PR[Pod Restarts]
     ND --> RP[Resource Pressure]
     LE --> CE[Container Errors]
     CR --> IT[Incident Timeline]
+    CP --> AP[API Server Health]
+    ST --> PV[PVC and CSI]
 ```
 
 ## Categories
@@ -34,6 +38,8 @@ flowchart TD
 | Nodes | Node readiness, CPU/memory pressure, pod density | [Nodes](nodes/index.md) |
 | Logs & Events | Container errors, OOMKilled, warning events | [Logs & Events](logs-events/index.md) |
 | Correlation | Incident timelines, cross-signal views | [Correlation](correlation/index.md) |
+| Control Plane | API server health, audit, autoscaler decisions | [Control Plane](control-plane/index.md) |
+| Storage | CSI controller failures and PVC binding latency | [Storage](storage/index.md) |
 
 ## Prerequisites
 

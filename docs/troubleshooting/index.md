@@ -39,6 +39,7 @@ flowchart TD
 | Jump to symptom cards | [Quick Diagnosis Cards](quick-diagnosis-cards.md) |
 | Respond in the first minutes | [First 10 Minutes](first-10-minutes/index.md) |
 | Execute detailed runbooks | [Playbooks](playbooks/index.md) |
+| Run reusable log investigations | [KQL Query Packs](kql/index.md) |
 
 ## Quick Routing Areas
 
@@ -46,6 +47,8 @@ flowchart TD
 - **Connectivity**: ingress routing, Services, DNS, and egress.
 - **Nodes**: readiness, pressure, and IP exhaustion.
 - **Operations**: upgrade failures, scaling failures, and maintenance side effects.
+- **Control plane**: API server latency, audit denies, autoscaler decisions, and webhook issues.
+- **Storage**: PVC binding, attach failures, and CSI-controller evidence.
 
 ## See Also
 
@@ -53,9 +56,10 @@ flowchart TD
 - [Decision Tree](decision-tree.md)
 - [First 10 Minutes](first-10-minutes/index.md)
 - [Playbooks](playbooks/index.md)
+- [KQL Query Packs](kql/index.md)
 - [Reference: Diagnostic Commands](../reference/diagnostic-commands.md)
 
 ## Sources
 
-- [Troubleshoot AKS clusters](https://learn.microsoft.com/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes)
-- [AKS troubleshooting articles](https://learn.microsoft.com/troubleshoot/azure/azure-kubernetes/)
+- [Troubleshoot AKS clusters](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes)
+- [AKS troubleshooting articles](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/)
