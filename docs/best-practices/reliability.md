@@ -95,12 +95,15 @@ az aks maintenanceconfiguration add \
     --resource-group "$RG" \
     --cluster-name "$CLUSTER_NAME" \
     --name aksManagedAutoUpgradeSchedule \
-    --weekday Saturday \
-    --start-hour 2 \
-    --duration 4
+    --schedule-type Weekly \
+    --day-of-week Saturday \
+    --interval-weeks 1 \
+    --duration 4 \
+    --start-time 02:00 \
+    --utc-offset +00:00
 ```
 
-Creates a weekly planned-maintenance window for cluster auto-upgrade activity.
+Creates a weekly planned-maintenance window for cluster auto-upgrade activity. The `aksManagedAutoUpgradeSchedule` configuration requires schedule-type flags (`--schedule-type`, `--day-of-week`, `--interval-weeks`); the `--weekday`/`--start-hour` flags apply only to the `default` maintenance configuration.
 
 **Validation**:
 
@@ -180,13 +183,14 @@ Adds a small fallback pool that can host non-system workloads when a primary poo
 - Plan at least one recovery path for cluster resource restore and one for full regional failure.
 
 ```bash
-az aks backup show \
+az k8s-extension show \
     --resource-group "$RG" \
-    --name "$BACKUP_EXTENSION_NAME" \
-    --vault-name "$BACKUP_VAULT_NAME"
+    --cluster-name "$CLUSTER_NAME" \
+    --cluster-type managedClusters \
+    --name azure-aks-backup
 ```
 
-Checks the AKS Backup extension state and associated backup vault configuration.
+Checks the AKS Backup extension state. To inspect a backup instance's protection status, use `az dataprotection backup-instance show` (or `list`) against the backup vault instead.
 
 **Validation**:
 

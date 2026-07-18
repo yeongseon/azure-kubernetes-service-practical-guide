@@ -110,7 +110,7 @@ Verify the CSI components are running before application teams depend on them.
 ```bash
 kubectl get pods \
     --namespace kube-system \
-    --selector app in (secrets-store-csi-driver,secrets-store-provider-azure) \
+    --selector "app in (secrets-store-csi-driver,secrets-store-provider-azure)" \
     --output wide
 ```
 

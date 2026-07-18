@@ -164,7 +164,7 @@ AKS starts with pod-to-pod traffic effectively open. Move to a **default-deny mi
 
 Practical decision points:
 
-- **Cilium** is the preferred default for new AKS network policy designs.
+- **Azure CNI Powered by Cilium** is a strong default for new AKS network policy designs when the cluster uses Azure CNI, because it provides an eBPF-based policy engine managed by AKS.
 - **Azure NPM** should be treated as a platform compatibility choice, not an automatic default.
 - **Calico** is appropriate when teams already depend on its policy model or operational patterns.
 - Policy enforcement design belongs here; policy enforcement governance belongs in [Governance](governance.md).
