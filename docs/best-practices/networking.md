@@ -28,8 +28,11 @@ content_validation:
     - claim: "By default, all pods in an AKS cluster can send and receive traffic without limitations."
       source: https://learn.microsoft.com/en-us/azure/aks/use-network-policies
       verified: true
-    - claim: "When you create a Kubernetes load balancer in AKS, Azure also creates the corresponding Azure load balancer resource and configures the required network security group rules."
-      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network
+    - claim: "AKS provides three network policy engines: Cilium, Azure Network Policy Manager, and Calico."
+      source: https://learn.microsoft.com/en-us/azure/aks/use-network-policies
+      verified: true
+    - claim: "Microsoft Learn recommends using Cilium as the network policy engine for AKS."
+      source: https://learn.microsoft.com/en-us/azure/aks/use-network-policies
       verified: true
 ---
 
@@ -228,7 +231,7 @@ CNI selection heuristics:
 | Need routable pod IPs on a dedicated subnet | Azure CNI Pod Subnet | Best when network teams need first-class pod addresses |
 | Small learning environment | Kubenet only if still supported in your landing zone standards | Simpler for labs, but less aligned with current enterprise patterns |
 
-### Practice 4: Enforce network policies for east-west isolation
+### Practice 4: Author network policies from a default-deny baseline
 
 **Why**: Default-allow pod traffic makes lateral movement and blast radius much worse during incidents. Network policy gives teams a way to prove what should and should not talk inside the cluster.
 
@@ -237,13 +240,6 @@ CNI selection heuristics:
 **Focus for CNI selection, ingress standards, and east-west policy**: This practice should be interpreted through the lens of CNI selection, ingress standards, and east-west policy. Reviewers should ask whether the chosen implementation strengthens or weakens that focus area.
 
 **How**:
-
-```bash
-az aks update \
-    --resource-group "$RG" \
-    --name "$CLUSTER_NAME" \
-    --network-policy azure
-```
 
 ```bash
 kubectl apply \
@@ -270,7 +266,94 @@ Minimal network policy sequence for a new namespace:
 4. Add egress to required private endpoints or service CIDRs explicitly.
 5. Validate with application smoke tests and Container Insights logs before rollout.
 
-### Practice 5: Apply pod security standards and admission controls
+Authoring rules that prevent most false denies:
+
+- Keep the first policy small: start with **default deny**, then add only DNS, ingress, and one application dependency at a time.
+- Treat `kube-system` traffic as an explicit dependency, not an implicit exception.
+- When using LocalDNS, allow DNS egress to the node-local path defined for the cluster instead of assuming CoreDNS-only traffic.
+- Keep ingress-controller exceptions explicit by namespace label or pod label. Do not rely on a vague “allow all cluster ingress” rule.
+- Use stable namespace labels owned by the platform team so policy intent does not drift when app teams rename namespaces or labels.
+
+Example namespace baseline:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-all
+  namespace: production
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+    - Egress
+```
+
+Example DNS egress allow rule for a namespace using Kubernetes `NetworkPolicy` semantics:
+
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-dns
+  namespace: production
+spec:
+  podSelector: {}
+  policyTypes:
+    - Egress
+  egress:
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+      ports:
+        - port: 53
+          protocol: UDP
+        - port: 53
+          protocol: TCP
+```
+
+For deeper defense-in-depth context, keep the security rationale in [Best Practices: Security](security.md) and use this page for the networking authoring patterns and operational trade-offs.
+
+### Practice 5: Choose the right network policy engine deliberately
+
+**Why**: Policy YAML is only part of the design. The enforcement engine determines performance, migration path, supported advanced features, and future retirement risk.
+
+**Real-world scenario**: A team writes policies assuming Cilium behavior, but the cluster still runs Azure NPM. Another team migrates to Cilium without retesting LocalDNS and ingress exceptions. Both teams think they are troubleshooting “policy bugs,” but the real issue is engine mismatch.
+
+**Focus for CNI selection, ingress standards, and east-west policy**: This practice should be interpreted through the lens of CNI selection, ingress standards, and east-west policy. Reviewers should ask whether the chosen implementation strengthens or weakens that focus area.
+
+**How**:
+
+```bash
+az aks show \
+    --resource-group "$RG" \
+    --name "$CLUSTER_NAME" \
+    --query "networkProfile.{plugin:networkPlugin,mode:networkPluginMode,dataplane:networkDataplane,policy:networkPolicy}" \
+    --output yaml
+```
+
+```bash
+kubectl get networkpolicy \
+    --all-namespaces \
+    --output wide
+```
+
+**Validation**:
+
+- The cluster’s current engine is documented in the platform baseline.
+- New clusters choose Cilium unless a documented exception exists.
+- Existing Azure NPM and Calico clusters have an explicit migration or retirement plan.
+
+Engine comparison for AKS operators:
+
+| Engine | Where it fits | Strengths | Watch-outs |
+|---|---|---|---|
+| Cilium | Preferred default on Azure CNI based clusters | eBPF-based dataplane, recommended by Microsoft Learn, direct path to advanced observability and security features | Validate LocalDNS and policy behavior during migration; use the Learn page for current feature status |
+| Azure NPM | Legacy estates that have not yet migrated | Azure-supported and familiar in older clusters | Retirement planning now matters, especially for Linux and Windows support timelines |
+| Calico | Teams that intentionally need Calico as the AKS-managed policy choice | Familiar to teams already standardized on Calico | AKS only supports standard Kubernetes network policies and does not test or support all Calico-specific capabilities |
+
+### Practice 6: Apply pod security standards and admission controls
 
 **Why**: The easiest container escape paths come from privileged pods, hostPath mounts, and broad Linux capability sets. Pod Security Standards and Gatekeeper rules keep risky manifests from reaching production.
 
@@ -316,7 +399,7 @@ Pod security review prompts:
 - Is the workload using Microsoft Entra Workload ID or another approved identity path instead of static secrets?
 - If Gatekeeper requires an exception, who owns removal of that exception?
 
-### Practice 6: Standardize ingress controller patterns
+### Practice 7: Standardize ingress controller patterns
 
 **Why**: Ingress is where application routing, TLS, private and public exposure, and operational ownership meet. Running multiple controllers without documented intent multiplies certificate, DNS, and support complexity.
 
@@ -365,7 +448,7 @@ Ingress controller comparison:
 | ingress-nginx | Mature Kubernetes-native annotations and broad community patterns | Teams needing flexible in-cluster routing and fast iteration | Watch for duplicate ingress classes and unmanaged public load balancers |
 | Traefik | Strong CRD-driven routing and middleware features | API gateway-like use cases and developer-driven routing logic | Keep TLS, observability, and support boundaries explicit |
 
-### Practice 7: Tune cost optimization with autoscaler and spot pools
+### Practice 8: Tune cost optimization with autoscaler and spot pools
 
 **Why**: Healthy clusters still waste money if requests are inflated, min counts are too high, or spot capacity is not isolated from critical services. Cost discipline must preserve SLOs, not undercut them.
 
@@ -414,7 +497,7 @@ Cost governance checkpoints:
 - Check node resource group artifacts for orphaned disks, load balancers, and public IP addresses.
 - Separate developer convenience add-ons from mandatory production add-ons so platform cost discussions stay honest.
 
-### Practice 8: Use Container Insights as the operational baseline
+### Practice 9: Use Container Insights as the operational baseline
 
 **Why**: Without baseline monitoring, AKS incidents start with guesswork. Container Insights gives a shared first responder view of node health, restart trends, and container logs even before application-specific dashboards are ready.
 
@@ -524,6 +607,8 @@ kubectl get events \
 - [ ] Cluster autoscaler min and max values have been reviewed against business recovery and upgrade requirements.
 - [ ] Azure CNI choice is documented together with subnet or overlay growth assumptions.
 - [ ] Every production namespace uses network policies and Pod Security Standard labels.
+- [ ] Namespace default-deny, DNS allow rules, and ingress-controller exceptions are part of the standard policy starter set.
+- [ ] The active network policy engine is documented together with its migration posture.
 - [ ] OPA Gatekeeper or Azure Policy for Kubernetes rejects unsafe manifests before rollout.
 - [ ] Ingress controller ownership, certificate source, and DNS workflow are documented.
 - [ ] Container Insights is enabled and first-responder KQL queries are tested.
@@ -541,17 +626,24 @@ A practical FinOps review for AKS should therefore compare cost to avoided risk,
 
 - [Best Practices](index.md)
 - [Networking Models](../platform/networking-models.md)
+- [Azure CNI Powered by Cilium](../platform/azure-cni-powered-by-cilium.md)
+- [CoreDNS on AKS](../platform/coredns-on-aks.md)
+- [LocalDNS on AKS](../platform/node-local-dns-cache.md)
 - [Ingress and Load Balancing](../platform/ingress-load-balancing.md)
+- [NetworkPolicy Denies Legitimate Traffic](../troubleshooting/playbooks/network-policy/networkpolicy-denies-legitimate-traffic.md)
+- [NetworkPolicy Not Blocking Traffic](../troubleshooting/playbooks/network-policy/networkpolicy-not-blocking-traffic.md)
 - [Node Not Ready](../troubleshooting/playbooks/node-not-ready.md)
 - [Ingress Not Working](../troubleshooting/playbooks/ingress-not-working.md)
 
 ## Sources
 
-- [Azure / Aks / Best Practices](https://learn.microsoft.com/azure/aks/best-practices)
-- [Azure / Architecture / Reference Architectures / Containers / Aks / Secure Baseline Aks](https://learn.microsoft.com/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks)
-- [Azure / Aks / Concepts Network](https://learn.microsoft.com/azure/aks/concepts-network)
-- [Azure / Aks / Use Network Policies](https://learn.microsoft.com/azure/aks/use-network-policies)
-- [Azure / Aks / Operator Best Practices Pod Security](https://learn.microsoft.com/azure/aks/operator-best-practices-pod-security)
-- [Azure / Aks / Cluster Autoscaler](https://learn.microsoft.com/azure/aks/cluster-autoscaler)
-- [Azure / Azure Monitor / Containers / Container Insights Overview](https://learn.microsoft.com/azure/azure-monitor/containers/container-insights-overview)
-- [Azure / Aks / Azure Cni Overlay](https://learn.microsoft.com/azure/aks/azure-cni-overlay)
+- [AKS best practices](https://learn.microsoft.com/en-us/azure/aks/best-practices)
+- [AKS secure baseline architecture](https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks)
+- [AKS network concepts](https://learn.microsoft.com/en-us/azure/aks/concepts-network)
+- [Secure pod traffic with network policies in AKS](https://learn.microsoft.com/en-us/azure/aks/use-network-policies)
+- [Pod security best practices for AKS](https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security)
+- [Cluster autoscaler on AKS](https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler)
+- [Container Insights overview](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview)
+- [Azure CNI Overlay for AKS](https://learn.microsoft.com/en-us/azure/aks/azure-cni-overlay)
+- [Configure Azure CNI Powered by Cilium in AKS](https://learn.microsoft.com/en-us/azure/aks/azure-cni-powered-by-cilium)
+- [DNS in AKS](https://learn.microsoft.com/en-us/azure/aks/dns-concepts)

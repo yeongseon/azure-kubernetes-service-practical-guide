@@ -1,13 +1,14 @@
 ---
 content_sources:
   diagrams:
-  - id: platform-networking-models
-    type: flowchart
-    source: mslearn-adapted
-    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/concepts-network
-    based_on:
-    - https://learn.microsoft.com/en-us/azure/aks/concepts-network
-    - https://learn.microsoft.com/en-us/azure/aks/azure-cni-overlay
+    - id: platform-networking-models
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/aks/concepts-network
+      based_on:
+        - https://learn.microsoft.com/en-us/azure/aks/concepts-network
+        - https://learn.microsoft.com/en-us/azure/aks/azure-cni-powered-by-cilium
+        - https://learn.microsoft.com/en-us/azure/aks/update-azure-cni
 content_validation:
   status: verified
   last_reviewed: 2026-07-18
@@ -19,22 +20,23 @@ content_validation:
     - claim: "In the AKS flat network model, pods receive IP addresses from the same Azure virtual network subnet as the AKS nodes."
       source: https://learn.microsoft.com/en-us/azure/aks/concepts-network
       verified: true
-    - claim: "When you create Services such as a LoadBalancer in AKS, Azure automatically configures the necessary network security group rules."
-      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network
+    - claim: "Azure CNI Powered by Cilium is supported on Azure CNI node-subnet, pod-subnet, and overlay IPAM modes."
+      source: https://learn.microsoft.com/en-us/azure/aks/update-azure-cni
       verified: true
-    - claim: "When you create an Azure CNI Overlay cluster, --network-plugin must be set to azure and --network-plugin-mode must be set to overlay."
-      source: https://learn.microsoft.com/en-us/azure/aks/azure-cni-overlay
+    - claim: "Updating the dataplane to Azure CNI Powered by Cilium does not change the cluster IPAM mode."
+      source: https://learn.microsoft.com/en-us/azure/aks/update-azure-cni
+      verified: true
+    - claim: "AKS Automatic uses Azure CNI Overlay powered by Cilium as the default virtual network."
+      source: https://learn.microsoft.com/en-us/azure/aks/azure-cni-powered-by-cilium
       verified: true
 ---
 
-
-
-
 # Networking Models
 
-AKS networking determines pod IP assignment, routability, and subnet pressure. This is one of the most important design choices because it is painful to change later.
+AKS networking determines pod IP assignment, routability, subnet pressure, and now the dataplane used for packet forwarding and policy enforcement. It is one of the hardest platform choices to change later, so design the IP model and the dataplane together.
 
 ## Main Content
+
 <!-- diagram-id: platform-networking-models -->
 ```mermaid
 flowchart TD
@@ -43,9 +45,11 @@ flowchart TD
     A --> D[Kubenet]
     B --> E[Large pod density with overlay addressing]
     C --> F[Direct VNet-routable pod IPs]
-    D --> G[Simpler basic model with route management limits]
+    D --> G[Legacy route-table based model]
+    A --> H[Dataplane Choice]
+    H --> I[kube-proxy oriented dataplane]
+    H --> J[Azure CNI Powered by Cilium]
 ```
-
 
 ### Comparison summary
 
@@ -53,45 +57,68 @@ flowchart TD
 |---|---|---|---|
 | Azure CNI Overlay | Pods use overlay addresses while nodes stay in VNet | Most new AKS clusters | Requires understanding overlay routing behavior |
 | Azure CNI Pod Subnet | Pods get IPs from delegated subnets | Deep VNet integration and direct routability | Subnet sizing becomes critical |
-| Kubenet | Pods use private address space with NAT through nodes | Legacy/smaller clusters | Feature limits and future preference toward Azure CNI options |
+| Kubenet | Pods use private address space with NAT through nodes | Legacy or transitional clusters only | Retirement planning and migration constraints matter |
 
-CNI selection decides pod addressing and routability; outbound networking decides how traffic leaves the cluster and who owns SNAT capacity. After choosing the CNI model, review [Outbound Networking](outbound-networking.md) for `loadBalancer`, NAT Gateway, and UDR decisions.
+CNI selection decides pod addressing and routability. Outbound networking decides how traffic leaves the cluster and who owns SNAT capacity. After choosing the CNI model, review [Outbound Networking](outbound-networking.md) for `loadBalancer`, NAT Gateway, and UDR decisions.
+
+### Dataplane choice after the CNI mode comparison
+
+The IP model answers **where pod IPs come from**. The dataplane answers **how packets are forwarded and how policy is enforced on the node**.
+
+#### Common operator combinations
+
+| IP model | Typical dataplane posture | Notes |
+|---|---|---|
+| Azure CNI Overlay | Often paired with Azure CNI Powered by Cilium | This is the default virtual-network posture for AKS Automatic |
+| Azure CNI Pod Subnet | Can stay on a non-Cilium dataplane or move to Cilium | Useful when direct pod routability matters |
+| Azure CNI Node Subnet | Can move to Cilium without changing IPAM mode | Still needs careful subnet planning |
+| Kubenet | Cannot move directly to Cilium dataplane | Must migrate to Azure CNI Overlay first |
+
+#### Practical decision rule
+
+- If you are designing a **new** AKS platform, prefer choosing both the IP model and the dataplane deliberately up front.
+- If you are changing an **existing** cluster, remember that an IPAM migration and a dataplane migration are separate operations with separate blast radius.
 
 ### What to decide early
 
 - Required pod-to-VNet routability.
 - Subnet size and IP growth model.
-- Network policy engine and private cluster requirements.
-- Whether your org standardizes on overlay for simpler IP planning.
+- Network policy engine and private-cluster requirements.
+- Whether the organization standardizes on overlay for simpler IP planning.
+- Whether the cluster should adopt Azure CNI Powered by Cilium now or only as part of a later migration.
 
 ### Example cluster creation
 
 ```bash
-az aks create     --resource-group $RG     --name $CLUSTER_NAME     --location $LOCATION     --network-plugin azure     --network-plugin-mode overlay     --pod-cidr 192.168.0.0/16     --service-cidr 10.0.0.0/16     --dns-service-ip 10.0.0.10
+az aks create \
+    --resource-group "$RG" \
+    --name "$CLUSTER_NAME" \
+    --location "$LOCATION" \
+    --network-plugin azure \
+    --network-plugin-mode overlay \
+    --network-dataplane cilium \
+    --pod-cidr 192.168.0.0/16 \
+    --service-cidr 10.0.0.0/16 \
+    --dns-service-ip 10.0.0.10 \
+    --generate-ssh-keys
 ```
 
-### Confirm the network profile in the Azure Portal
+### Confirm the active network profile
 
-The **Networking** blade shows the active network plugin, service CIDR, DNS service IP, and add-ons such as Advanced Container Networking Services.
-
-[[[ shot("aks-networking-blade") ]]]
-
-Purpose: Verify the network model chosen at creation time, since it is painful to change later.
-
-Look for:
-
-- The **network plugin** shows `Azure CNI` (with overlay mode if selected).
-- The **Service CIDR** and **DNS service IP** match your planned address ranges.
-- Any private cluster or network policy settings reflect the intended design.
-
-Expected result: The cluster's networking profile matches the model you deliberately selected, with no surprise defaults.
-
-Next step: Review [Ingress and Load Balancing](ingress-load-balancing.md) to plan north-south traffic entry.
+```bash
+az aks show \
+    --resource-group "$RG" \
+    --name "$CLUSTER_NAME" \
+    --query "networkProfile.{plugin:networkPlugin,mode:networkPluginMode,dataplane:networkDataplane,policy:networkPolicy,serviceCidr:serviceCidr,dnsServiceIp:dnsServiceIP}" \
+    --output yaml
+```
 
 ## See Also
 
 - [Cluster Architecture](cluster-architecture.md)
-- [Ingress and Load Balancing](ingress-load-balancing.md)
+- [Azure CNI Powered by Cilium](azure-cni-powered-by-cilium.md)
+- [CoreDNS on AKS](coredns-on-aks.md)
+- [LocalDNS on AKS](node-local-dns-cache.md)
 - [Outbound Networking](outbound-networking.md)
 - [Best Practices: Networking](../best-practices/networking.md)
 - [CNI IP Exhaustion](../troubleshooting/playbooks/node-issues/cni-ip-exhaustion.md)
@@ -99,4 +126,5 @@ Next step: Review [Ingress and Load Balancing](ingress-load-balancing.md) to pla
 ## Sources
 
 - [AKS network concepts](https://learn.microsoft.com/en-us/azure/aks/concepts-network)
-- [Create an AKS cluster with Azure CNI Overlay](https://learn.microsoft.com/en-us/azure/aks/azure-cni-overlay)
+- [Configure Azure CNI Powered by Cilium in AKS](https://learn.microsoft.com/en-us/azure/aks/azure-cni-powered-by-cilium)
+- [Update Azure CNI IPAM mode and data plane for AKS clusters](https://learn.microsoft.com/en-us/azure/aks/update-azure-cni)

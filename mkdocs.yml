@@ -113,6 +113,9 @@ nav:
     - platform/version-lifecycle.md
     - platform/node-pools.md
     - platform/networking-models.md
+    - platform/azure-cni-powered-by-cilium.md
+    - platform/coredns-on-aks.md
+    - platform/node-local-dns-cache.md
     - platform/outbound-networking.md
     - platform/ingress-load-balancing.md
     - platform/identity-and-secrets.md
@@ -196,9 +199,16 @@ nav:
       - Connectivity:
         - troubleshooting/playbooks/connectivity/ingress-failure.md
         - troubleshooting/playbooks/connectivity/service-unreachable.md
+      - DNS:
+        - troubleshooting/playbooks/dns/coredns-query-latency-drops.md
+        - troubleshooting/playbooks/dns/external-hostname-resolution-failure.md
       - Node Issues:
         - troubleshooting/playbooks/node-issues/node-not-ready.md
         - troubleshooting/playbooks/node-issues/cni-ip-exhaustion.md
+      - Network Policy:
+        - troubleshooting/playbooks/network-policy/networkpolicy-denies-legitimate-traffic.md
+        - troubleshooting/playbooks/network-policy/networkpolicy-not-blocking-traffic.md
+        - troubleshooting/playbooks/network-policy/cilium-dataplane-migration-issues.md
       - Networking:
         - troubleshooting/playbooks/networking/api-server-kubectl-unreachable.md
         - troubleshooting/playbooks/networking/image-pull-restricted-egress.md
