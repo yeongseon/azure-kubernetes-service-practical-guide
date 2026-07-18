@@ -9,6 +9,23 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/aks/concepts-scale
     - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
     - https://learn.microsoft.com/en-us/azure/aks/vertical-pod-autoscaler
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "The Horizontal Pod Autoscaler monitors resource demand and automatically scales the number of pods."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-scale
+      verified: true
+    - claim: "The cluster autoscaler adjusts the number of nodes in a node pool based on requested compute resources and unschedulable pods."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-scale
+      verified: true
+    - claim: "The Vertical Pod Autoscaler provides recommendations for CPU and memory requests and can automatically set resource requests and limits for containers based on past usage."
+      source: https://learn.microsoft.com/en-us/azure/aks/vertical-pod-autoscaler
+      verified: true
+    - claim: "KEDA is event-driven autoscaling that extends Kubernetes with a ScaledObject custom resource, while HPA is metrics-driven based on resource utilization."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-scale
+      verified: true
 ---
 
 

@@ -11,6 +11,20 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/aks/concepts-scale
     - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
     - https://learn.microsoft.com/en-us/azure/aks/vertical-pod-autoscaler
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "In AKS, nodes with the same configuration are grouped into node pools, and those node pools contain the underlying virtual machine scale sets and virtual machines that run applications."
+      source: https://learn.microsoft.com/en-us/azure/aks/core-aks-concepts
+      verified: true
+    - claim: "When you create an AKS cluster, the initial node definition creates a system node pool."
+      source: https://learn.microsoft.com/en-us/azure/aks/core-aks-concepts
+      verified: true
+    - claim: "System node pools host critical system pods such as CoreDNS and konnectivity-agent, while user node pools primarily host application pods."
+      source: https://learn.microsoft.com/en-us/azure/aks/core-aks-concepts
+      verified: true
 ---
 
 

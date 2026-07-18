@@ -9,6 +9,20 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/aks/managed-azure-ad
     - https://learn.microsoft.com/en-us/azure/aks/workload-identity-deploy-cluster
     - https://learn.microsoft.com/en-us/azure/aks/csi-secrets-store-driver
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "AKS resource provider manages the client and server apps used for Microsoft Entra integration with the AKS control plane."
+      source: https://learn.microsoft.com/en-us/azure/aks/entra-id-control-plane-authentication
+      verified: true
+    - claim: "You can enable Microsoft Entra Workload ID on a new or existing AKS cluster by enabling the OIDC issuer and workload identity."
+      source: https://learn.microsoft.com/en-us/azure/aks/workload-identity-deploy-cluster
+      verified: true
+    - claim: "The Azure Key Vault provider for Secrets Store CSI Driver can mount secrets, keys, and certificates into a pod by using a CSI volume."
+      source: https://learn.microsoft.com/en-us/azure/aks/csi-secrets-store-driver
+      verified: true
 ---
 
 
