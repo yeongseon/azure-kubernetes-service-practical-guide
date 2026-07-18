@@ -122,6 +122,9 @@ nav:
     - platform/workload-identity.md
     - platform/identity-model-comparison.md
     - platform/key-vault-csi.md
+    - platform/azure-policy-addon.md
+    - platform/defender-for-containers.md
+    - platform/pod-security-standards.md
     - platform/storage-options.md
     - platform/azure-disk-csi-driver.md
     - platform/azure-files-csi-driver.md
@@ -136,6 +139,7 @@ nav:
     - best-practices/production-baseline.md
     - best-practices/deployment-strategies.md
     - best-practices/security.md
+    - best-practices/governance.md
     - best-practices/networking.md
     - best-practices/private-cluster-api-connectivity.md
     - best-practices/resource-governance.md
@@ -223,6 +227,11 @@ nav:
         - troubleshooting/playbooks/identity/audience-mismatch.md
         - troubleshooting/playbooks/identity/rbac-success-key-vault-fail.md
         - troubleshooting/playbooks/identity/token-exchange-failure.md
+      - Security:
+        - troubleshooting/playbooks/security/azure-policy-denies-workload.md
+        - troubleshooting/playbooks/security/defender-alert-false-positive.md
+        - troubleshooting/playbooks/security/pss-enforcement-breaks-deployment.md
+        - troubleshooting/playbooks/security/image-signature-verification-failure.md
       - Operations:
         - troubleshooting/playbooks/operations/upgrade-failure.md
         - troubleshooting/playbooks/operations/upgrade-blocked-pdb.md

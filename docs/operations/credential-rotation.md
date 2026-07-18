@@ -177,6 +177,7 @@ kubectl get secret "$SECRET_NAME" \
 - If token exchange fails after a credential edit, use [Audience Mismatch](../troubleshooting/playbooks/identity/audience-mismatch.md).
 - If Key Vault still fails after apparent RBAC success, use [RBAC Success but Key Vault Still Fails](../troubleshooting/playbooks/identity/rbac-success-key-vault-fail.md).
 - If image pulls fail after kubelet credential changes, validate ACR integration and kubelet identity role assignments immediately.
+- If Defender for Containers starts surfacing identity-related alerts after a rotation, validate the alert against the cluster's [Defender for Containers](../platform/defender-for-containers.md) coverage before creating a suppression rule.
 
 ## See Also
 
@@ -184,6 +185,7 @@ kubectl get secret "$SECRET_NAME" \
 - [Microsoft Entra Workload Identity](../platform/workload-identity.md)
 - [Identity Model Comparison](../platform/identity-model-comparison.md)
 - [Azure Key Vault CSI Driver](../platform/key-vault-csi.md)
+- [Defender for Containers](../platform/defender-for-containers.md)
 - [Security](../best-practices/security.md)
 - [Image Pull Failure](../troubleshooting/playbooks/pod-issues/image-pull-failure.md)
 
