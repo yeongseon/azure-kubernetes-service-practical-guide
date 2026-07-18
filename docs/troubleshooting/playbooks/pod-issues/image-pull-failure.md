@@ -9,6 +9,23 @@ content_sources:
     based_on:
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "AKS to ACR integration assigns the AcrPull role to the Microsoft Entra managed identity associated with the AKS agent pool."
+      source: https://learn.microsoft.com/en-us/azure/aks/cluster-container-registry-integration
+      verified: true
+    - claim: "If you need to pull an image from a private external registry instead of ACR, Kubernetes uses an image pull secret rather than AKS-ACR automatic authentication."
+      source: https://learn.microsoft.com/en-us/azure/aks/cluster-container-registry-integration
+      verified: true
+    - claim: "If an AKS cluster uses an HTTP proxy and ACR uses Private Link, both ACR endpoints must be added to the cluster noProxy list."
+      source: https://learn.microsoft.com/en-us/azure/aks/cluster-container-registry-integration
+      verified: true
+    - claim: "AKS requires HTTPS access to mcr.microsoft.com and *.data.mcr.microsoft.com so nodes can pull first-party images that are required for correct cluster creation and operation."
+      source: https://learn.microsoft.com/en-us/azure/aks/outbound-rules-control-egress
+      verified: true
 ---
 
 

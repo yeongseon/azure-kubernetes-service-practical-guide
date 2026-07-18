@@ -9,6 +9,23 @@ content_sources:
     based_on:
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "The horizontal pod autoscaler uses Metrics Server to monitor pod resource demand and automatically scale the number of pods."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-scale
+      verified: true
+    - claim: "The cluster autoscaler watches for pods that can't be scheduled because of resource constraints and scales up the node pool when it detects those unscheduled pods."
+      source: https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler-overview
+      verified: true
+    - claim: "In AKS, the cluster autoscaler scales up based on pending pods rather than CPU or memory pressure on nodes."
+      source: https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler-overview
+      verified: true
+    - claim: "Cluster autoscaler scale-up failures in AKS can be caused by IP address exhaustion in the subnet, core quota exhaustion, or the node pool reaching its maximum size."
+      source: https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler-overview
+      verified: true
 ---
 
 

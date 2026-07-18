@@ -9,6 +9,20 @@ content_sources:
     based_on:
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "The KubeEvents table in Azure Monitor Logs stores Kubernetes events."
+      source: https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/kubeevents
+      verified: true
+    - claim: "The KubePodInventory table stores Kubernetes pod and container information."
+      source: https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/kubepodinventory
+      verified: true
+    - claim: "Container insights log data is stored in a Log Analytics workspace and is available for log queries in Azure Monitor."
+      source: https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-log-query
+      verified: true
 ---
 
 

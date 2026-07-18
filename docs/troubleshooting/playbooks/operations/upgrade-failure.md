@@ -9,6 +9,23 @@ content_sources:
     based_on:
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "During an AKS rolling upgrade, AKS adds surge nodes, cordons and drains old nodes, reimages them, and repeats the process until the node pool is upgraded."
+      source: https://learn.microsoft.com/en-us/azure/aks/upgrade-aks-node-pools-rolling
+      verified: true
+    - claim: "Node surges during AKS upgrades require subscription quota for the requested max surge count, and Azure CNI upgrades also require enough available subnet IP addresses."
+      source: https://learn.microsoft.com/en-us/azure/aks/upgrade-aks-node-pools-rolling
+      verified: true
+    - claim: "Using maxUnavailable during an AKS upgrade can cause more failures due to unsatisfied Pod Disruption Budgets because fewer resources are available for pods to be scheduled."
+      source: https://learn.microsoft.com/en-us/azure/aks/upgrade-aks-node-pools-rolling
+      verified: true
+    - claim: "AKS can automatically block minor version control plane upgrades when it detects recent usage of Kubernetes APIs deprecated or removed in the target version."
+      source: https://learn.microsoft.com/en-us/azure/aks/stop-cluster-upgrade-api-breaking-changes
+      verified: true
 ---
 
 

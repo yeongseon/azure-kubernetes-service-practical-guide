@@ -9,6 +9,23 @@ content_sources:
     based_on:
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "If a node does not have sufficient compute resources to run a requested pod, the pod cannot progress through scheduling and cannot start until more compute resources are available in the node pool."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-scale
+      verified: true
+    - claim: "When the cluster autoscaler notices pods that cannot be scheduled because of node pool resource constraints, it increases the number of nodes in the node pool."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-scale
+      verified: true
+    - claim: "If cluster autoscaler scheduling simulation determines that restrictive topology spread constraints would still prevent a pod from being scheduled on a new node, it does not attempt to scale up."
+      source: https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler-overview
+      verified: true
+    - claim: "AKS exposes cluster_autoscaler_unschedulable_pods_count as a cluster autoscaler platform metric for unschedulable pods."
+      source: https://learn.microsoft.com/en-us/azure/aks/monitor-aks-reference
+      verified: true
 ---
 
 

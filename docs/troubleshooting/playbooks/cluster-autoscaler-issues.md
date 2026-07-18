@@ -11,6 +11,23 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
     - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
     - https://learn.microsoft.com/en-us/azure/aks/concepts-network
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "The cluster autoscaler watches for pods that can't be scheduled because of resource constraints and scales up the node pool when needed."
+      source: https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+      verified: true
+    - claim: "The cluster autoscaler regularly checks nodes for a lack of running pods and scales down the number of nodes as needed."
+      source: https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+      verified: true
+    - claim: "AKS manages the cluster autoscaler in the managed control plane, and you can enable control plane logging to see its logs and operations."
+      source: https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+      verified: true
+    - claim: "The cluster autoscaler writes health status to a ConfigMap named cluster-autoscaler-status in the kube-system namespace."
+      source: https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+      verified: true
 ---
 
 

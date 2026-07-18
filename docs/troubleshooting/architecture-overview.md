@@ -11,6 +11,20 @@ content_sources:
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
     - https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads
     - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "An AKS cluster is divided into two main components: the control plane and nodes."
+      source: https://learn.microsoft.com/en-us/azure/aks/core-aks-concepts
+      verified: true
+    - claim: "Ingress in AKS manages external HTTP-like traffic access to services within a cluster."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network-ingress
+      verified: true
+    - claim: "Kubernetes Services in AKS logically group pods and provide network connectivity through an IP address or DNS name on a designated port."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network-services
+      verified: true
 ---
 
 

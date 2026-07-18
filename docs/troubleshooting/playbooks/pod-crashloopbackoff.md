@@ -11,6 +11,23 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
     - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
     - https://learn.microsoft.com/en-us/azure/aks/concepts-network
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "In Kubernetes on AKS, the kubelet uses liveness probes to determine when to restart a container, and a failed liveness probe causes the container to be restarted."
+      source: https://learn.microsoft.com/en-us/azure/aks/best-practices-app-cluster-reliability
+      verified: true
+    - claim: "When a startup probe is configured, readiness and liveness probes do not start until the startup probe succeeds."
+      source: https://learn.microsoft.com/en-us/azure/aks/best-practices-app-cluster-reliability
+      verified: true
+    - claim: "Container insights collects stdout and stderr logs and Kubernetes events from each node in an AKS cluster."
+      source: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
+      verified: true
+    - claim: "AKS provides a recommended alert for pods in CrashLoop status through the KubePodCrashLooping Azure Managed Prometheus metric alert."
+      source: https://learn.microsoft.com/en-us/azure/aks/best-practices-monitoring-proactive
+      verified: true
 ---
 
 

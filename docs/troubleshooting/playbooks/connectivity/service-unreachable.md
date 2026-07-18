@@ -9,6 +9,23 @@ content_sources:
     based_on:
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "Kubernetes Services in AKS logically group pods and provide network connectivity through an IP address or DNS name on a designated port."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network-services
+      verified: true
+    - claim: "ClusterIP creates an internal IP address for use within the AKS cluster and is the default Service type if none is specified."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network-services
+      verified: true
+    - claim: "When a pod is not ready, Kubernetes removes it from service load balancers."
+      source: https://learn.microsoft.com/en-us/azure/aks/best-practices-app-cluster-reliability
+      verified: true
+    - claim: "Network policy in AKS lets you control traffic flow between pods by allowing or denying traffic based on labels, namespace, or port."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network
+      verified: true
 ---
 
 
