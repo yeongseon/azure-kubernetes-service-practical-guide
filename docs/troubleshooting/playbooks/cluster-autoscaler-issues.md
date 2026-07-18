@@ -22,7 +22,10 @@ content_validation:
     - claim: "The cluster autoscaler regularly checks nodes for a lack of running pods and scales down the number of nodes as needed."
       source: https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
       verified: true
-    - claim: "AKS manages the cluster autoscaler in the managed control plane, and you can enable control plane logging to see its logs and operations."
+    - claim: "AKS manages the cluster autoscaler in the managed control plane."
+      source: https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
+      verified: true
+    - claim: "You can enable control plane logging to see cluster autoscaler logs and operations."
       source: https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
       verified: true
     - claim: "The cluster autoscaler writes health status to a ConfigMap named cluster-autoscaler-status in the kube-system namespace."
@@ -269,6 +272,8 @@ kubectl describe pod <pod-name> \
 4. Tune PDBs, requests, and daemonset placement so scale-in can happen safely.
 5. Review cost and reliability implications after every autoscaler policy change.
 
+If the incident pattern keeps recurring because workload shapes no longer fit a fixed-pool model, stop treating it as a one-off autoscaler tuning issue and evaluate [Node Autoprovisioning](../../platform/node-autoprovisioning.md).
+
 Example resolution commands:
 
 ```bash
@@ -295,12 +300,14 @@ az aks nodepool update \
 ## See Also
 
 - [Scaling Failure](operations/scaling-failure.md)
+- [Node Autoprovisioning](../../platform/node-autoprovisioning.md)
+- [Best Practices: Autoscaling](../../best-practices/autoscaling.md)
 - [Cost Optimization](../../best-practices/cost-optimization.md)
 - [Tutorial 05: AKS Disaster Recovery](../../tutorials/lab-guides/lab-05-aks-disaster-recovery.md)
 
 ## Sources
 
-- [Troubleshoot / Azure / Azure Kubernetes / Welcome Azure Kubernetes](https://learn.microsoft.com/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes)
-- [Azure / Aks / Cluster Autoscaler](https://learn.microsoft.com/azure/aks/cluster-autoscaler)
-- [Azure / Azure Monitor / Containers / Container Insights Overview](https://learn.microsoft.com/azure/azure-monitor/containers/container-insights-overview)
-- [Azure / Aks / Concepts Network](https://learn.microsoft.com/azure/aks/concepts-network)
+- [Troubleshoot / Azure / Azure Kubernetes / Welcome Azure Kubernetes](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes)
+- [Azure / Aks / Cluster Autoscaler](https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler)
+- [Azure / Azure Monitor / Containers / Container Insights Overview](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview)
+- [Azure / Aks / Concepts Network](https://learn.microsoft.com/en-us/azure/aks/concepts-network)

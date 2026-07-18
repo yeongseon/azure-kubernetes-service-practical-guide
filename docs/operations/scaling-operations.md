@@ -14,7 +14,10 @@ content_validation:
   last_reviewed: 2026-07-18
   reviewer: agent
   core_claims:
-    - claim: "By default, the horizontal pod autoscaler checks the Metrics API every 15 seconds, while the Metrics API retrieves data from kubelet every 60 seconds."
+    - claim: "By default, the horizontal pod autoscaler checks the Metrics API every 15 seconds."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-scale
+      verified: true
+    - claim: "By default, the Metrics API retrieves data from kubelet every 60 seconds."
       source: https://learn.microsoft.com/en-us/azure/aks/concepts-scale
       verified: true
     - claim: "The AKS cluster autoscaler checks for required node-count changes every 10 seconds by default."
@@ -59,18 +62,32 @@ flowchart TD
 
 
 ```bash
-kubectl get hpa -A
+kubectl get hpa \
+    --all-namespaces
 kubectl top nodes
-kubectl top pods -A
-az aks update     --resource-group $RG     --name $CLUSTER_NAME     --enable-cluster-autoscaler     --min-count 3     --max-count 10
+kubectl top pods \
+    --all-namespaces
+az aks update \
+    --resource-group "$RG" \
+    --name "$CLUSTER_NAME" \
+    --enable-cluster-autoscaler \
+    --min-count 3 \
+    --max-count 10
 ```
 
 ## Verification
 
 ```bash
-kubectl describe hpa <hpa-name> -n <namespace>
-kubectl get pods -A --field-selector=status.phase=Pending
-az aks show --resource-group $RG --name $CLUSTER_NAME --query "agentPoolProfiles[].{name:name,min:minCount,max:maxCount,count:count}" --output table
+kubectl describe hpa <hpa-name> \
+    --namespace <namespace>
+kubectl get pods \
+    --all-namespaces \
+    --field-selector=status.phase=Pending
+az aks show \
+    --resource-group "$RG" \
+    --name "$CLUSTER_NAME" \
+    --query "agentPoolProfiles[].{name:name,min:minCount,max:maxCount,count:count}" \
+    --output table
 ```
 
 ## Rollback / Troubleshooting
@@ -78,15 +95,21 @@ az aks show --resource-group $RG --name $CLUSTER_NAME --query "agentPoolProfiles
 - Reduce aggressive HPA targets if scale churn causes instability.
 - If node growth stalls, inspect quota and subnet IP capacity.
 - If scaling works but latency remains high, investigate application bottlenecks rather than adding more nodes blindly.
+- If queue-driven workers are not scaling, troubleshoot the KEDA path instead of only the HPA path.
+- If fixed node pools are becoming hard to manage, reassess whether node autoprovisioning is the better operating model.
 
 ## See Also
 
 - [Scaling](../platform/scaling.md)
+- [KEDA on AKS](../platform/keda-on-aks.md)
+- [Node Autoprovisioning](../platform/node-autoprovisioning.md)
+- [Custom Metrics Scaling](../platform/custom-metrics-scaling.md)
+- [Best Practices: Autoscaling](../best-practices/autoscaling.md)
 - [Cost Optimization](../best-practices/cost-optimization.md)
 - [Scaling Failure](../troubleshooting/playbooks/operations/scaling-failure.md)
 
 ## Sources
 
-- [Scale applications in AKS](https://learn.microsoft.com/azure/aks/concepts-scale)
-- [Cluster autoscaler in AKS](https://learn.microsoft.com/azure/aks/cluster-autoscaler)
-- [Vertical Pod Autoscaler for AKS](https://learn.microsoft.com/azure/aks/vertical-pod-autoscaler)
+- [Scale applications in AKS](https://learn.microsoft.com/en-us/azure/aks/concepts-scale)
+- [Cluster autoscaler in AKS](https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler)
+- [Vertical Pod Autoscaler for AKS](https://learn.microsoft.com/en-us/azure/aks/vertical-pod-autoscaler)
