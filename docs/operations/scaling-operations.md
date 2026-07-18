@@ -9,6 +9,23 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/aks/concepts-scale
     - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
     - https://learn.microsoft.com/en-us/azure/aks/vertical-pod-autoscaler
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "By default, the horizontal pod autoscaler checks the Metrics API every 15 seconds, while the Metrics API retrieves data from kubelet every 60 seconds."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-scale
+      verified: true
+    - claim: "The AKS cluster autoscaler checks for required node-count changes every 10 seconds by default."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-scale
+      verified: true
+    - claim: "By default, nodes that remain unneeded for 10 minutes are scheduled for deletion by the cluster autoscaler."
+      source: https://learn.microsoft.com/en-us/azure/aks/concepts-scale
+      verified: true
+    - claim: "When configured, the Vertical Pod Autoscaler automatically sets container resource requests and limits based on past usage."
+      source: https://learn.microsoft.com/en-us/azure/aks/vertical-pod-autoscaler
+      verified: true
 ---
 
 

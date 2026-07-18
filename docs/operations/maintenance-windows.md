@@ -8,6 +8,23 @@ content_sources:
     based_on:
     - https://learn.microsoft.com/en-us/azure/aks/planned-maintenance
     - https://learn.microsoft.com/en-us/azure/aks/auto-upgrade-cluster
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "Planned maintenance in AKS lets you schedule and control cluster upgrades and node image upgrades."
+      source: https://learn.microsoft.com/en-us/azure/aks/planned-maintenance
+      verified: true
+    - claim: "Planned maintenance schedules maintenance timing, but enabling or disabling it does not enable or disable automatic upgrades."
+      source: https://learn.microsoft.com/en-us/azure/aks/planned-maintenance
+      verified: true
+    - claim: "AKS planned maintenance supports three schedule configuration types: default, aksManagedAutoUpgradeSchedule, and aksManagedNodeOSUpgradeSchedule."
+      source: https://learn.microsoft.com/en-us/azure/aks/planned-maintenance
+      verified: true
+    - claim: "AKS recommends using a maintenance window of four hours or more for cluster autoupgrade and planned maintenance."
+      source: https://learn.microsoft.com/en-us/azure/aks/auto-upgrade-cluster
+      verified: true
 ---
 
 

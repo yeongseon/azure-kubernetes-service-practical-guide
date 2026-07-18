@@ -11,6 +11,23 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
     - https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads
     - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "AKS supports separate CRUD operations on individual node pools through the az aks nodepool command set."
+      source: https://learn.microsoft.com/en-us/azure/aks/create-node-pools
+      verified: true
+    - claim: "System node pools in AKS must contain at least two nodes, while user node pools may contain zero or more nodes."
+      source: https://learn.microsoft.com/en-us/azure/aks/create-node-pools
+      verified: true
+    - claim: "If a cluster has both system and user node pools, applications should run on user mode node pools instead of the default system mode node pool."
+      source: https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+      verified: true
+    - claim: "All AKS node pools in a cluster must reside in the same virtual network."
+      source: https://learn.microsoft.com/en-us/azure/aks/create-node-pools
+      verified: true
 ---
 
 

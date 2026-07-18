@@ -8,6 +8,23 @@ content_sources:
     based_on:
     - https://learn.microsoft.com/en-us/azure/aks/certificate-rotation
     - https://learn.microsoft.com/en-us/azure/aks/use-managed-identity
+content_validation:
+  status: verified
+  last_reviewed: 2026-07-18
+  reviewer: agent
+  core_claims:
+    - claim: "AKS uses certificates for authentication between managed control plane components and data plane components."
+      source: https://learn.microsoft.com/en-us/azure/aks/certificate-rotation
+      verified: true
+    - claim: "AKS clusters created after May 2019 have cluster CA certificates that expire after 30 years."
+      source: https://learn.microsoft.com/en-us/azure/aks/certificate-rotation
+      verified: true
+    - claim: "When you manually rotate the cluster CA certificate, AKS also refreshes service account tokens, API server certificates, kubelet client certificates, and kubelet server certificates if serving certificate rotation is enabled."
+      source: https://learn.microsoft.com/en-us/azure/aks/certificate-rotation
+      verified: true
+    - claim: "After rotating the cluster CA certificate, you must refresh kubectl client certificates with az aks get-credentials to maintain API server access."
+      source: https://learn.microsoft.com/en-us/azure/aks/certificate-rotation
+      verified: true
 ---
 
 
