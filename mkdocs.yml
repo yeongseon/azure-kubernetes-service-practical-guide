@@ -118,6 +118,8 @@ nav:
     - platform/node-local-dns-cache.md
     - platform/outbound-networking.md
     - platform/ingress-load-balancing.md
+    - platform/application-gateway-for-containers.md
+    - platform/istio-managed-addon.md
     - platform/identity-and-secrets.md
     - platform/workload-identity.md
     - platform/identity-model-comparison.md
@@ -134,12 +136,15 @@ nav:
     - platform/keda-on-aks.md
     - platform/node-autoprovisioning.md
     - platform/custom-metrics-scaling.md
+    - platform/flux-gitops-extension.md
+    - platform/dapr-extension.md
   - Best Practices:
     - best-practices/index.md
     - best-practices/production-baseline.md
     - best-practices/deployment-strategies.md
     - best-practices/security.md
     - best-practices/governance.md
+    - best-practices/platform-extensions.md
     - best-practices/networking.md
     - best-practices/private-cluster-api-connectivity.md
     - best-practices/resource-governance.md
@@ -210,6 +215,11 @@ nav:
       - DNS:
         - troubleshooting/playbooks/dns/coredns-query-latency-drops.md
         - troubleshooting/playbooks/dns/external-hostname-resolution-failure.md
+      - Extensions:
+        - troubleshooting/playbooks/extensions/agc-traffic-not-flowing.md
+        - troubleshooting/playbooks/extensions/istio-sidecar-injection-failure.md
+        - troubleshooting/playbooks/extensions/flux-reconciliation-stuck.md
+        - troubleshooting/playbooks/extensions/dapr-sidecar-fails-to-start.md
       - Node Issues:
         - troubleshooting/playbooks/node-issues/node-not-ready.md
         - troubleshooting/playbooks/node-issues/cni-ip-exhaustion.md

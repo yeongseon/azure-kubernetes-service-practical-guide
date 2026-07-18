@@ -549,6 +549,7 @@ A practical FinOps review for AKS should therefore compare cost to avoided risk,
 - [Snapshot Operations](../operations/snapshot-operations.md)
 - [Upgrades](../operations/upgrades.md)
 - [Scaling Operations](../operations/scaling-operations.md)
+- [Best Practices: Platform Extensions](platform-extensions.md)
 - [Pod CrashLoopBackOff](../troubleshooting/playbooks/pod-crashloopbackoff.md)
 - [Tutorial 05: AKS Disaster Recovery](../tutorials/lab-guides/lab-05-aks-disaster-recovery.md)
 
