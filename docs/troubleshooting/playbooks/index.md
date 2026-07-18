@@ -26,6 +26,7 @@ flowchart TD
     A --> C[Connectivity]
     A --> D[Node Issues]
     A --> E[Operations]
+    A --> F[Networking]
 ```
 
 
@@ -36,6 +37,7 @@ flowchart TD
 | Connectivity | [Ingress Failure](connectivity/ingress-failure.md), [Service Unreachable](connectivity/service-unreachable.md) |
 | Node Issues | [Node Not Ready](node-issues/node-not-ready.md), [CNI IP Exhaustion](node-issues/cni-ip-exhaustion.md) |
 | Operations | [Upgrade Failure](operations/upgrade-failure.md), [Scaling Failure](operations/scaling-failure.md) |
+| Networking | [API Server / kubectl Unreachable](networking/api-server-kubectl-unreachable.md), [Image Pull Fails in Restricted Egress](networking/image-pull-restricted-egress.md), [Webhook / Control-Plane Calls Blocked](networking/webhook-control-plane-blocked.md), [SNAT Port Exhaustion](networking/snat-port-exhaustion.md) |
 
 ## See Also
 
@@ -45,5 +47,5 @@ flowchart TD
 
 ## Sources
 
-- [Troubleshoot AKS clusters](https://learn.microsoft.com/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes)
-- [AKS troubleshooting articles](https://learn.microsoft.com/troubleshoot/azure/azure-kubernetes/)
+- [Troubleshoot AKS clusters](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes)
+- [AKS troubleshooting articles](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/)
