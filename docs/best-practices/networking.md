@@ -4,195 +4,75 @@ content_sources:
     - id: best-practices-networking
       type: flowchart
       source: mslearn-adapted
-      mslearn_url: https://learn.microsoft.com/en-us/azure/aks/best-practices
+      mslearn_url: https://learn.microsoft.com/en-us/azure/aks/concepts-network
       based_on:
-        - https://learn.microsoft.com/en-us/azure/aks/best-practices
-        - https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks
         - https://learn.microsoft.com/en-us/azure/aks/concepts-network
-        - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
-        - https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security
-        - https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler
-        - https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
         - https://learn.microsoft.com/en-us/azure/aks/azure-cni-overlay
+        - https://learn.microsoft.com/en-us/azure/aks/configure-azure-cni
+        - https://learn.microsoft.com/en-us/azure/aks/use-network-policies
+        - https://learn.microsoft.com/en-us/azure/aks/egress-outboundtype
+        - https://learn.microsoft.com/en-us/azure/aks/private-clusters
+        - https://learn.microsoft.com/en-us/azure/aks/app-gateway-ingress-controller-overview
 content_validation:
   status: verified
   last_reviewed: 2026-07-18
   reviewer: agent
   core_claims:
-    - claim: "In the AKS overlay network model, pods get IP addresses from a private CIDR that is separate from the Azure virtual network subnet used by the nodes."
-      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network
+    - claim: "Azure CNI Overlay assigns pod IP addresses from a private CIDR that is logically different from the VNet subnet used by AKS nodes."
+      source: https://learn.microsoft.com/en-us/azure/aks/azure-cni-overlay
       verified: true
-    - claim: "In the AKS flat network model, pod IP addresses come from the same virtual network subnet as the AKS nodes, and traffic leaving the cluster isn't SNATed."
-      source: https://learn.microsoft.com/en-us/azure/aks/concepts-network
+    - claim: "Azure CNI Pod Subnet assigns pod IP addresses from a separate subnet in the virtual network."
+      source: https://learn.microsoft.com/en-us/azure/aks/configure-azure-cni
       verified: true
     - claim: "By default, all pods in an AKS cluster can send and receive traffic without limitations."
       source: https://learn.microsoft.com/en-us/azure/aks/use-network-policies
       verified: true
-    - claim: "AKS provides three network policy engines: Cilium, Azure Network Policy Manager, and Calico."
-      source: https://learn.microsoft.com/en-us/azure/aks/use-network-policies
-      verified: true
-    - claim: "Microsoft Learn recommends using Cilium as the network policy engine for AKS."
-      source: https://learn.microsoft.com/en-us/azure/aks/use-network-policies
+    - claim: "AKS supports multiple outbound types to control egress design."
+      source: https://learn.microsoft.com/en-us/azure/aks/egress-outboundtype
       verified: true
 ---
 
-
-
-
 # Networking
 
-AKS networking decisions shape scale limits, security boundaries, ingress patterns, and troubleshooting speed. Good clusters are designed around network intent before workloads arrive.
+AKS networking should define how traffic enters the cluster, how pods receive addresses, how east-west traffic is constrained, and how outbound dependencies are reached. This page owns those design choices so teams can separate network architecture from security, governance, and cost policy details.
 
 ## Why This Matters
 <!-- diagram-id: best-practices-networking -->
 ```mermaid
 flowchart TD
-    A[Networking] --> B[Cluster Blueprint]
-    A --> C[Node Pools and Autoscaling]
-    A --> D[CNI and Network Policies]
-    A --> E[Pod Security and Gatekeeper]
-    A --> F[Ingress Standards]
-    A --> G[Cost Controls]
-    A --> H[Container Insights]
-    C --> C1[System/User separation]
-    C --> C2[Zone and surge headroom]
-    D --> D1[Azure CNI selection]
-    D --> D2[Default-deny east-west traffic]
-    E --> E1[Pod Security Standards]
-    E --> E2[Admission guardrails]
-    F --> F1[AGIC]
-    F --> F2[ingress-nginx or Traefik]
-    G --> G1[Spot pools]
-    G --> G2[Cluster autoscaler]
+    A[AKS network architecture] --> B[Ingress entry]
+    A --> C[AKS node subnet]
+    A --> D[Pod addressing model]
+    A --> E[Service CIDR]
+    A --> F[Network policy layer]
+    A --> G[Egress path]
+    A --> H[Private endpoints and private API access]
+    B --> B1[Application Gateway for Containers]
+    B --> B2[AGIC or ingress-nginx]
+    C --> C1[Subnet sized for nodes and surge]
+    D --> D1[Azure CNI Overlay]
+    D --> D2[Routable pod networking]
+    G --> G1[Load balancer or managed NAT]
+    G --> G2[Firewall and UDR path]
 ```
 
-Pick one well-understood connectivity model and document how traffic enters, moves inside, and leaves the cluster.
+Most AKS networking incidents are design mistakes discovered late: exhausted subnets during scale-out, ingress patterns that do not match the application boundary, uncontrolled outbound paths, and east-west traffic that stayed default-allow too long. Deciding these patterns early reduces disruptive rework after workloads are live.
 
-Typical operating questions this page answers:
-
-- Which node pool model should be considered the default for production?
-- When should the team choose Azure CNI Overlay versus routable pod IP models?
-- How should network policies, Pod Security Standards, and Gatekeeper combine?
-- Which ingress controller patterns are acceptable and who owns them?
-- How do cost optimization and cluster autoscaler settings avoid harming reliability?
-- Which Container Insights signals should first responders trust during an incident?
-
-## Prerequisites
-
-- Azure subscription with permission to manage AKS, networking, and Log Analytics resources
-- Existing or planned resource group, virtual network, and Log Analytics workspace
-- Azure CLI 2.57 or later with the `aks-preview` extension only where Microsoft Learn requires it
-- Access to `kubectl` configured for the target cluster
-- Agreement between platform, security, and network teams on ownership boundaries
-- Variables defined for examples: `$RG`, `$CLUSTER_NAME`, `$LOCATION`, `$VNET_NAME`, `$AKS_SUBNET_NAME`, `$WORKSPACE_ID`, `$APPGW_RG`, `$APPGW_NAME`
+Network architecture also determines which teams own routing, DNS, firewall rules, and IP allocations. A clear design prevents the common failure mode where the platform team assumes Azure handles a path automatically while the network team assumes AKS is isolated from shared enterprise controls.
 
 ## Recommended Practices
 
-### Practice 1: Establish a standard production cluster blueprint
+### 1. Choose one pod networking model on purpose
 
-**Why**: Standard cluster blueprints reduce one-off design drift. They make it easier to review new environments because identity, node pool separation, logging, and ingress follow the same known-good pattern.
+Use **Azure CNI Overlay** when you want simpler VNet IP planning and do not need each pod IP to be directly routable inside the virtual network. Use **flat or routable pod networking** only when downstream network controls, inspection tools, or legacy integrations require pod IPs to be first-class addresses.
 
-**Real-world scenario**: A platform team supports six product squads. When each squad creates its own AKS defaults, on-call engineers cannot quickly tell whether an outage is caused by workload behavior or by cluster-by-cluster configuration differences. A blueprint removes that ambiguity.
+Recommended decision points:
 
-**Focus for CNI selection, ingress standards, and east-west policy**: This practice should be interpreted through the lens of CNI selection, ingress standards, and east-west policy. Reviewers should ask whether the chosen implementation strengthens or weakens that focus area.
+- Prefer Overlay for most new multi-team clusters because pod growth does not consume node-subnet IPs.
+- Prefer routable pod networking only when a real requirement exists for pod-level reachability or subnet-based network controls.
+- Document the ownership boundary: who manages VNet routes, who owns pod CIDR allocation, and who approves exceptions.
 
-**How**:
-
-```bash
-az aks create \
-    --resource-group "$RG" \
-    --name "$CLUSTER_NAME" \
-    --location "$LOCATION" \
-    --enable-managed-identity \
-    --enable-aad \
-    --enable-azure-rbac \
-    --network-plugin azure \
-    --network-plugin-mode overlay \
-    --nodepool-name system \
-    --node-count 3 \
-    --node-vm-size Standard_D4s_v5 \
-    --zones 1 2 3 \
-    --enable-cluster-autoscaler \
-    --min-count 3 \
-    --max-count 6 \
-    --tier standard \
-    --enable-oidc-issuer \
-    --enable-workload-identity \
-    --workspace-resource-id "$WORKSPACE_ID"
-```
-
-```bash
-az aks show \
-    --resource-group "$RG" \
-    --name "$CLUSTER_NAME" \
-    --query "{kubernetesVersion:kubernetesVersion,privateFqdn:privateFqdn,networkPlugin:networkProfile.networkPlugin,networkMode:networkProfile.networkPluginMode,identity:identity.type}" \
-    --output json
-```
-
-**Validation**:
-
-- Control plane identity is managed, not service principal based.
-- System and user workloads are not sharing the same pool by default.
-- Microsoft Entra integration, Azure RBAC, and Container Insights are visible from day one.
-
-### Practice 2: Right-size node pools and keep roles separate
-
-**Why**: Node pool separation prevents noisy application bursts from starving cluster-critical add-ons. It also lets you scale stateful, CPU-heavy, GPU, or spot workloads independently.
-
-**Real-world scenario**: A bursty CI runner workload lands on the same nodes as CoreDNS and ingress. Cluster DNS latency spikes and every application looks unhealthy even though the real problem is node contention. Dedicated pools prevent that kind of shared failure.
-
-**Focus for CNI selection, ingress standards, and east-west policy**: This practice should be interpreted through the lens of CNI selection, ingress standards, and east-west policy. Reviewers should ask whether the chosen implementation strengthens or weakens that focus area.
-
-**How**:
-
-```bash
-az aks nodepool add \
-    --resource-group "$RG" \
-    --cluster-name "$CLUSTER_NAME" \
-    --name userapps \
-    --mode User \
-    --node-vm-size Standard_D8s_v5 \
-    --node-count 2 \
-    --enable-cluster-autoscaler \
-    --min-count 2 \
-    --max-count 10 \
-    --labels workload=app team=platform
-```
-
-```bash
-kubectl get nodes \
-    --selector kubernetes.azure.com/mode=user \
-    --output wide
-```
-
-```bash
-kubectl describe node <node-name>
-```
-
-**Validation**:
-
-- System pool keeps enough headroom for CoreDNS, metrics agents, and ingress control planes.
-- User pools map to workload classes such as general, memory-optimized, GPU, or spot.
-- Requests and limits align with the VM SKU so cluster autoscaler can make sensible choices.
-
-Sizing guidance for review meetings:
-
-| Workload profile | Suggested starting pool | Why it works | Watch-outs |
-|---|---|---|---|
-| Cluster-critical add-ons | `system` pool, 3 nodes across zones | Preserves DNS, CNI, and ingress health during drain or surge events | Do not schedule business workloads here by default |
-| General web APIs | `userapps` pool, `Standard_D4s_v5` or `Standard_D8s_v5` | Balanced CPU and memory for HPA-driven services | Review memory pressure before increasing replicas only |
-| Memory-heavy services | Dedicated memory-optimized pool | Prevents eviction storms on general pools | Requests must match observed usage, not guesses |
-| Batch or interruptible jobs | Spot pool with min count `0` | Keeps costs low for disposable work | Never place ingress, DNS, or stateful services here |
-
-### Practice 3: Choose the right CNI mode and reserve enough IP space
-
-**Why**: AKS networking problems usually begin with an under-sized address plan or an unsupported assumption about how pods receive addresses. CNI mode affects scale limits, routing, and operational ownership.
-
-**Real-world scenario**: A team uses Azure CNI traditional mode in a subnet sized only for initial node count. Two months later autoscaler cannot add nodes because pod IP reservations have consumed the subnet. The incident looks like a compute failure but is really IP planning debt.
-
-**Focus for CNI selection, ingress standards, and east-west policy**: This practice should be interpreted through the lens of CNI selection, ingress standards, and east-west policy. Reviewers should ask whether the chosen implementation strengthens or weakens that focus area.
-
-**How**:
+Review the active network profile during design validation:
 
 ```bash
 az aks show \
@@ -202,223 +82,46 @@ az aks show \
     --output json
 ```
 
+This command confirms the cluster's network plugin, plugin mode, policy engine, outbound type, and CIDR settings before application onboarding starts.
+
+### 2. Treat IP planning as a scale and upgrade requirement
+
+Size node subnets, pod CIDRs, and service CIDRs for the cluster's **peak** state, not its first deployment. Headroom must cover autoscaler growth, upgrade surge, replacement nodes, and future node pools.
+
+Plan for these questions up front:
+
+- How many nodes can exist during the largest expected surge or upgrade window?
+- Does the chosen CNI model consume VNet IPs for pods, for nodes only, or from a separate pod subnet?
+- Are service CIDRs large enough to avoid overlapping with existing on-premises, peered, or private endpoint ranges?
+- Can a new node pool be added later without renumbering the cluster?
+
+Check the current subnet allocation before increasing node-pool ceilings:
+
 ```bash
 az network vnet subnet show \
     --resource-group "$RG" \
     --vnet-name "$VNET_NAME" \
     --name "$AKS_SUBNET_NAME" \
-    --query "{addressPrefix:addressPrefix,delegations:delegations}" \
+    --query "{addressPrefix:addressPrefix,routeTable:routeTable.id,natGateway:natGateway.id}" \
     --output json
 ```
 
-```bash
-kubectl get pods \
-    --all-namespaces \
-    --output wide
-```
+This command shows whether the AKS node subnet is already tied to route or NAT decisions that affect scale headroom.
 
-**Validation**:
+### 3. Standardize ingress around a small set of supported topologies
 
-- Azure CNI Overlay is chosen for large pod scale with simpler IP planning, or Azure CNI Pod Subnet is chosen intentionally for routable pod IPs.
-- Subnet growth model documents node, surge upgrade, and autoscaler headroom.
-- Network team and platform team agree on route ownership, DNS, and private endpoint strategy.
+Do not let each workload team choose a different ingress pattern. Standardize a short list based on whether traffic is north-south internet traffic, private east-west traffic, or internal-only enterprise traffic.
 
-CNI selection heuristics:
+Recommended topology choices:
 
-| Requirement | Recommended choice | Reason |
+| Requirement | Preferred topology | Design note |
 |---|---|---|
-| Large pod scale with simpler subnet planning | Azure CNI Overlay | Pods consume overlay addresses instead of VNet IPs |
-| Need routable pod IPs on a dedicated subnet | Azure CNI Pod Subnet | Best when network teams need first-class pod addresses |
-| Small learning environment | Kubenet only if still supported in your landing zone standards | Simpler for labs, but less aligned with current enterprise patterns |
+| New Application Gateway-based ingress | Application Gateway for Containers | Good fit when you want a managed ingress layer aligned to Azure application delivery patterns |
+| Existing estate already standardized on Application Gateway integration | AGIC | Keep when the operational model is already built around Application Gateway |
+| Kubernetes-native ingress with platform-owned configuration | ingress-nginx | Good fit when the team wants in-cluster ingress behavior and explicit controller ownership |
+| Internal-only application entry | Internal ingress endpoint | Use private load-balancing paths instead of exposing a public frontend |
 
-### Practice 4: Author network policies from a default-deny baseline
-
-**Why**: Default-allow pod traffic makes lateral movement and blast radius much worse during incidents. Network policy gives teams a way to prove what should and should not talk inside the cluster.
-
-**Real-world scenario**: A compromised pod in a shared namespace scans every service in the cluster because no policy exists. The initial security event becomes a platform-wide outage investigation. Simple default-deny rules would have limited the spread and the scope of triage.
-
-**Focus for CNI selection, ingress standards, and east-west policy**: This practice should be interpreted through the lens of CNI selection, ingress standards, and east-west policy. Reviewers should ask whether the chosen implementation strengthens or weakens that focus area.
-
-**How**:
-
-```bash
-kubectl apply \
-    --filename networkpolicy-default-deny.yaml
-```
-
-```bash
-kubectl get networkpolicy \
-    --all-namespaces \
-    --output wide
-```
-
-**Validation**:
-
-- Every production namespace has a default-deny baseline and explicit allow rules.
-- Ingress controllers, DNS, and monitoring agents are accounted for in allow lists.
-- Teams test policy behavior in pre-production before rollout.
-
-Minimal network policy sequence for a new namespace:
-
-1. Apply a default-deny ingress and egress policy.
-2. Add DNS egress to `kube-system` CoreDNS endpoints.
-3. Add ingress from the approved ingress controller namespace only.
-4. Add egress to required private endpoints or service CIDRs explicitly.
-5. Validate with application smoke tests and Container Insights logs before rollout.
-
-Authoring rules that prevent most false denies:
-
-- Keep the first policy small: start with **default deny**, then add only DNS, ingress, and one application dependency at a time.
-- Treat `kube-system` traffic as an explicit dependency, not an implicit exception.
-- When using LocalDNS, allow DNS egress to the node-local path defined for the cluster instead of assuming CoreDNS-only traffic.
-- Keep ingress-controller exceptions explicit by namespace label or pod label. Do not rely on a vague “allow all cluster ingress” rule.
-- Use stable namespace labels owned by the platform team so policy intent does not drift when app teams rename namespaces or labels.
-
-Example namespace baseline:
-
-```yaml
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: default-deny-all
-  namespace: production
-spec:
-  podSelector: {}
-  policyTypes:
-    - Ingress
-    - Egress
-```
-
-Example DNS egress allow rule for a namespace using Kubernetes `NetworkPolicy` semantics:
-
-```yaml
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: allow-dns
-  namespace: production
-spec:
-  podSelector: {}
-  policyTypes:
-    - Egress
-  egress:
-    - to:
-        - namespaceSelector:
-            matchLabels:
-              kubernetes.io/metadata.name: kube-system
-      ports:
-        - port: 53
-          protocol: UDP
-        - port: 53
-          protocol: TCP
-```
-
-For deeper defense-in-depth context, keep the security rationale in [Best Practices: Security](security.md) and use this page for the networking authoring patterns and operational trade-offs.
-
-### Practice 5: Choose the right network policy engine deliberately
-
-**Why**: Policy YAML is only part of the design. The enforcement engine determines performance, migration path, supported advanced features, and future retirement risk.
-
-**Real-world scenario**: A team writes policies assuming Cilium behavior, but the cluster still runs Azure NPM. Another team migrates to Cilium without retesting LocalDNS and ingress exceptions. Both teams think they are troubleshooting “policy bugs,” but the real issue is engine mismatch.
-
-**Focus for CNI selection, ingress standards, and east-west policy**: This practice should be interpreted through the lens of CNI selection, ingress standards, and east-west policy. Reviewers should ask whether the chosen implementation strengthens or weakens that focus area.
-
-**How**:
-
-```bash
-az aks show \
-    --resource-group "$RG" \
-    --name "$CLUSTER_NAME" \
-    --query "networkProfile.{plugin:networkPlugin,mode:networkPluginMode,dataplane:networkDataplane,policy:networkPolicy}" \
-    --output yaml
-```
-
-```bash
-kubectl get networkpolicy \
-    --all-namespaces \
-    --output wide
-```
-
-**Validation**:
-
-- The cluster’s current engine is documented in the platform baseline.
-- New clusters choose Cilium unless a documented exception exists.
-- Existing Azure NPM and Calico clusters have an explicit migration or retirement plan.
-
-Engine comparison for AKS operators:
-
-| Engine | Where it fits | Strengths | Watch-outs |
-|---|---|---|---|
-| Cilium | Preferred default on Azure CNI based clusters | eBPF-based dataplane, recommended by Microsoft Learn, direct path to advanced observability and security features | Validate LocalDNS and policy behavior during migration; use the Learn page for current feature status |
-| Azure NPM | Legacy estates that have not yet migrated | Azure-supported and familiar in older clusters | Retirement planning now matters, especially for Linux and Windows support timelines |
-| Calico | Teams that intentionally need Calico as the AKS-managed policy choice | Familiar to teams already standardized on Calico | AKS only supports standard Kubernetes network policies and does not test or support all Calico-specific capabilities |
-
-### Practice 6: Apply pod security standards and admission controls
-
-**Why**: The easiest container escape paths come from privileged pods, hostPath mounts, and broad Linux capability sets. Pod Security Standards and Gatekeeper rules keep risky manifests from reaching production.
-
-**Real-world scenario**: A developer deploys a debugging DaemonSet with privileged access and host networking into a shared cluster. The cluster remains working, but the security posture collapses instantly. Admission control catches this before it becomes an incident.
-
-**Focus for CNI selection, ingress standards, and east-west policy**: This practice should be interpreted through the lens of CNI selection, ingress standards, and east-west policy. Reviewers should ask whether the chosen implementation strengthens or weakens that focus area.
-
-**How**:
-
-```bash
-kubectl label namespace production \
-    pod-security.kubernetes.io/enforce=restricted \
-    pod-security.kubernetes.io/audit=restricted \
-    pod-security.kubernetes.io/warn=baseline \
-    --overwrite
-```
-
-```bash
-kubectl apply \
-    --filename gatekeeper-constrainttemplate.yaml
-```
-
-```bash
-kubectl apply \
-    --filename gatekeeper-k8spspprivilegedcontainer.yaml
-```
-
-```bash
-kubectl get constrainttemplates \
-    --output wide
-```
-
-**Validation**:
-
-- Restricted namespaces reject privileged, hostPath, and root-user workloads unless explicitly exempted.
-- Exemptions are tracked, approved, and time-bound.
-- Security review includes image provenance, workload identity, and secret mount strategy.
-
-Pod security review prompts:
-
-- Does the workload run as non-root and drop unnecessary Linux capabilities?
-- Are host namespaces, host networking, or hostPath volumes truly required?
-- Is the workload using Microsoft Entra Workload ID or another approved identity path instead of static secrets?
-- If Gatekeeper requires an exception, who owns removal of that exception?
-
-### Practice 7: Standardize ingress controller patterns
-
-**Why**: Ingress is where application routing, TLS, private and public exposure, and operational ownership meet. Running multiple controllers without documented intent multiplies certificate, DNS, and support complexity.
-
-**Real-world scenario**: One team deploys ingress-nginx, another installs Traefik, and a third expects Application Gateway Ingress Controller (AGIC) to own north-south traffic. Certificate renewals and DNS records drift because nobody knows which controller is authoritative.
-
-**Focus for CNI selection, ingress standards, and east-west policy**: This practice should be interpreted through the lens of CNI selection, ingress standards, and east-west policy. Reviewers should ask whether the chosen implementation strengthens or weakens that focus area.
-
-**How**:
-
-```bash
-az aks approuting enable \
-    --resource-group "$RG" \
-    --name "$CLUSTER_NAME"
-```
-
-```bash
-kubectl get ingressclass \
-    --output wide
-```
+Validate Kubernetes ingress exposure during reviews:
 
 ```bash
 kubectl get ingress \
@@ -426,224 +129,113 @@ kubectl get ingress \
     --output wide
 ```
 
-```bash
-az network application-gateway show \
-    --resource-group "$APPGW_RG" \
-    --name "$APPGW_NAME" \
-    --query "{provisioningState:provisioningState,frontendIpConfigurations:frontendIpConfigurations[].privateIPAddress}" \
-    --output json
-```
+This command helps confirm which namespaces publish ingress objects and whether the expected internal or external address is being assigned.
 
-**Validation**:
+Keep detailed private API access procedures in [Private Cluster API Connectivity](private-cluster-api-connectivity.md). This page stays at the topology decision level only.
 
-- Public ingress standard and internal ingress standard are both documented.
-- AGIC is chosen when teams need Application Gateway features such as WAF and central network ownership.
-- Ingress-nginx or Traefik are chosen when Kubernetes-native routing flexibility is more important than Azure-managed edge features.
+### 4. Design egress paths explicitly instead of accepting the default path
 
-Ingress controller comparison:
+Egress architecture affects SNAT behavior, firewall inspection, private endpoint reachability, and incident response. Pick an outbound model that matches the enterprise network path before the cluster starts calling external registries, databases, or SaaS APIs.
 
-| Pattern | Strengths | Best fit | Operational note |
-|---|---|---|---|
-| AGIC | Reuses Application Gateway, WAF, centralized network ownership | Enterprise north-south traffic where network teams own edge controls | Coordinate listener, backend, and certificate lifecycle with network teams |
-| ingress-nginx | Mature Kubernetes-native annotations and broad community patterns | Teams needing flexible in-cluster routing and fast iteration | Watch for duplicate ingress classes and unmanaged public load balancers |
-| Traefik | Strong CRD-driven routing and middleware features | API gateway-like use cases and developer-driven routing logic | Keep TLS, observability, and support boundaries explicit |
+Design review topics:
 
-### Practice 8: Tune cost optimization with autoscaler and spot pools
+- Which `outboundType` matches the landing zone: managed load balancer, user-defined routing, NAT Gateway, or another approved enterprise path?
+- Where can SNAT exhaustion occur during fan-out traffic or burst scale events?
+- Which destinations must stay on private routing through private endpoints instead of public internet egress?
+- If Azure Firewall or another appliance is in the path, who owns route tables and exception workflows?
 
-**Why**: Healthy clusters still waste money if requests are inflated, min counts are too high, or spot capacity is not isolated from critical services. Cost discipline must preserve SLOs, not undercut them.
-
-**Real-world scenario**: A batch team moves low-priority workers onto the system pool because spot nodes were never introduced. The cluster pays premium rates for interruptible work and still risks starving critical add-ons during demand spikes.
-
-**Focus for CNI selection, ingress standards, and east-west policy**: This practice should be interpreted through the lens of CNI selection, ingress standards, and east-west policy. Reviewers should ask whether the chosen implementation strengthens or weakens that focus area.
-
-**How**:
+Inspect the configured outbound type:
 
 ```bash
-az aks nodepool add \
-    --resource-group "$RG" \
-    --cluster-name "$CLUSTER_NAME" \
-    --name spotpool \
-    --mode User \
-    --priority Spot \
-    --eviction-policy Delete \
-    --spot-max-price -1 \
-    --node-vm-size Standard_D4s_v5 \
-    --enable-cluster-autoscaler \
-    --min-count 0 \
-    --max-count 20 \
-    --labels workload=batch capacity=spot
-```
-
-```bash
-kubectl top nodes
-```
-
-```bash
-kubectl get pods \
-    --all-namespaces \
-    --output custom-columns=NAMESPACE:.metadata.namespace,NAME:.metadata.name,REQUEST_CPU:.spec.containers[*].resources.requests.cpu,REQUEST_MEMORY:.spec.containers[*].resources.requests.memory
-```
-
-**Validation**:
-
-- Critical services avoid spot pools and use PodDisruptionBudgets.
-- Autoscaler min and max counts are reviewed against actual hourly utilization.
-- Teams remove idle node pools, unused load balancers, and stale public IPs from the node resource group.
-
-Cost governance checkpoints:
-
-- Compare requested CPU and memory to actual `kubectl top` usage every sprint.
-- Review autoscaler min counts before assuming the cluster is already optimized.
-- Check node resource group artifacts for orphaned disks, load balancers, and public IP addresses.
-- Separate developer convenience add-ons from mandatory production add-ons so platform cost discussions stay honest.
-
-### Practice 9: Use Container Insights as the operational baseline
-
-**Why**: Without baseline monitoring, AKS incidents start with guesswork. Container Insights gives a shared first responder view of node health, restart trends, and container logs even before application-specific dashboards are ready.
-
-**Real-world scenario**: An application team says the cluster is broken, but nobody can answer whether nodes are Ready, pods are restarting, or one namespace alone is failing. Container Insights shortens that first ten minutes dramatically.
-
-**Focus for CNI selection, ingress standards, and east-west policy**: This practice should be interpreted through the lens of CNI selection, ingress standards, and east-west policy. Reviewers should ask whether the chosen implementation strengthens or weakens that focus area.
-
-**How**:
-
-```bash
-az aks enable-addons \
+az aks show \
     --resource-group "$RG" \
     --name "$CLUSTER_NAME" \
-    --addons monitoring \
-    --workspace-resource-id "$WORKSPACE_ID"
+    --query "networkProfile.outboundType" \
+    --output tsv
 ```
+
+This command confirms whether the cluster is using the expected egress pattern before teams depend on firewall or NAT assumptions.
+
+For idle public IP and load balancer cost posture, use [Cost Optimization](cost-optimization.md) instead of restating that guidance here.
+
+### 5. Start network policy from the intended trust boundary
+
+AKS starts with pod-to-pod traffic effectively open. Move to a **default-deny mindset** for production namespaces, then choose the enforcement engine that matches the required feature set and migration path.
+
+Practical decision points:
+
+- **Cilium** is the preferred default for new AKS network policy designs.
+- **Azure NPM** should be treated as a platform compatibility choice, not an automatic default.
+- **Calico** is appropriate when teams already depend on its policy model or operational patterns.
+- Policy enforcement design belongs here; policy enforcement governance belongs in [Governance](governance.md).
+
+Confirm the network policy engine and baseline objects:
 
 ```bash
-az monitor log-analytics query \
-    --workspace "$WORKSPACE_ID" \
-    --analytics-query "KubePodInventory | where TimeGenerated > ago(15m) | summarize Pods=dcount(PodUid) by Namespace | order by Pods desc" \
-    --timespan "PT15M"
+az aks show \
+    --resource-group "$RG" \
+    --name "$CLUSTER_NAME" \
+    --query "networkProfile.networkPolicy" \
+    --output tsv
 ```
+
+This command verifies which policy engine the cluster was built with.
 
 ```bash
-az monitor log-analytics query \
-    --workspace "$WORKSPACE_ID" \
-    --analytics-query "ContainerLogV2 | where TimeGenerated > ago(15m) | summarize RestartSignals=countif(LogMessage has 'Back-off') by Namespace" \
-    --timespan "PT15M"
+kubectl get networkpolicy \
+    --all-namespaces \
+    --output wide
 ```
 
-**Validation**:
+This command verifies whether production namespaces actually have policy objects instead of relying on undocumented trust.
 
-- Node inventory, pod inventory, and container logs appear within expected delay windows.
-- The operations team has saved KQL queries for crash loops, node pressure, ingress failures, and autoscaler anomalies.
-- Action groups and runbooks are linked to the monitoring data that first responders actually use.
+Keep workload identity, secret access, and Kubernetes or Azure RBAC details in [Security](security.md).
 
-Container Insights signals to bookmark:
+### 6. Use private cluster networking when control-plane isolation is a design requirement
 
-- `KubePodInventory` for namespace-level pod count and restart context
-- `KubeNodeInventory` for node readiness and OS details
-- `ContainerLogV2` for recent app and platform errors
-- `InsightsMetrics` for CPU, memory, and disk telemetry from the monitored cluster
-- `KubeEvents` for scheduling failures, image pull errors, and probe churn
+Choose a private cluster design when platform operators, compliance boundaries, or enterprise network policy require API access to stay on private addressing. Make the decision based on network isolation goals, not because a private cluster is assumed to be a universal default.
+
+Private design is usually appropriate when:
+
+- Administrative access must traverse private network paths or approved jump environments.
+- The cluster is part of a broader private endpoint and private DNS architecture.
+- Internet-exposed API server access would conflict with landing zone controls.
+
+Keep this page at the design level. For connection troubleshooting, DNS path checks, and operator runbooks, use [Private Cluster API Connectivity](private-cluster-api-connectivity.md).
 
 ## Common Mistakes / Anti-Patterns
 
-### Anti-Pattern 1: Single shared pool for everything
-
-**What happens**: System add-ons, production APIs, batch jobs, and test workloads all land on the same nodes.
-
-**Why it is wrong**: This collapses isolation. Node pressure, kernel upgrades, or noisy neighbors affect every workload simultaneously and make incident ownership unclear.
-
-**Correct approach**: Create dedicated system and user pools, add taints where needed, and schedule sensitive workloads deliberately.
-
-```bash
-kubectl get events \
-    --all-namespaces \
-    --sort-by=.lastTimestamp
-```
-
-### Anti-Pattern 2: Default-allow networking
-
-**What happens**: Pods can talk to any other pod or external destination because no policy was ever introduced.
-
-**Why it is wrong**: Security incidents become cluster-wide investigations and troubleshooting is slower because expected communication paths were never defined.
-
-**Correct approach**: Start with namespace default-deny and then add allow rules for DNS, ingress, telemetry, and explicit app dependencies.
-
-```bash
-kubectl get events \
-    --all-namespaces \
-    --sort-by=.lastTimestamp
-```
-
-### Anti-Pattern 3: Policy after the incident
-
-**What happens**: Platform teams wait until after a privileged workload or bad manifest reaches production before thinking about admission control.
-
-**Why it is wrong**: Retrospective policy design usually creates exceptions for the exact unsafe behavior that caused the issue.
-
-**Correct approach**: Adopt Pod Security Standards and Gatekeeper constraints before the first production namespace is onboarded.
-
-```bash
-kubectl get events \
-    --all-namespaces \
-    --sort-by=.lastTimestamp
-```
-
-### Anti-Pattern 4: Observability as an optional add-on
-
-**What happens**: Teams promise to enable monitoring later, after the first release is stable.
-
-**Why it is wrong**: The first production incident then happens with no restart history, no node condition trend, and no shared KQL runbooks.
-
-**Correct approach**: Enable Container Insights and define ownership for alerts, dashboards, and troubleshooting queries before go-live.
-
-```bash
-kubectl get events \
-    --all-namespaces \
-    --sort-by=.lastTimestamp
-```
+- **Picking routable pod networking without a real routing requirement**: This increases IP-management complexity for little gain. If your main goal is scale simplicity, use Overlay instead.
+- **Sizing subnets for day-one nodes only**: This is a recurring platform anti-pattern. Keep the local rule simple: if the subnet cannot absorb autoscaler growth and upgrade surge, the design is incomplete. See [Common Anti-Patterns](common-anti-patterns.md).
+- **Running both internal and external ingress without an ownership model**: Mixed ingress paths create inconsistent TLS, WAF, and troubleshooting behavior. Standardize which controller handles each exposure type.
+- **Treating egress as "whatever the cluster does by default"**: Unplanned outbound paths hide SNAT risk and break private endpoint assumptions when enterprise routing is added later.
+- **Leaving east-west traffic default-allow in production namespaces**: This is also cataloged in [Common Anti-Patterns](common-anti-patterns.md). Keep the local rule brief: define the trust boundary first, then encode it with the chosen policy engine.
 
 ## Validation Checklist
 
-- [ ] Node pool strategy documents system, general, specialized, and spot capacity separately.
-- [ ] Cluster autoscaler min and max values have been reviewed against business recovery and upgrade requirements.
-- [ ] Azure CNI choice is documented together with subnet or overlay growth assumptions.
-- [ ] Every production namespace uses network policies and Pod Security Standard labels.
-- [ ] Namespace default-deny, DNS allow rules, and ingress-controller exceptions are part of the standard policy starter set.
-- [ ] The active network policy engine is documented together with its migration posture.
-- [ ] OPA Gatekeeper or Azure Policy for Kubernetes rejects unsafe manifests before rollout.
-- [ ] Ingress controller ownership, certificate source, and DNS workflow are documented.
-- [ ] Container Insights is enabled and first-responder KQL queries are tested.
-- [ ] Cost reviews include node resource group artifacts, observability volume, and spot-pool safety checks.
-- [ ] Application teams know which standards are mandatory and which require exception approval.
-- [ ] See Also and Sources sections are updated when this page changes so navigational context stays accurate.
-
-## Cost Impact
-
-These practices are designed to improve both resilience and spend efficiency. Dedicated system pools increase baseline cost a little, but they prevent expensive outage escalation. Azure CNI planning avoids emergency subnet rebuilds. Network policy and pod security reduce breach scope. Standard ingress patterns prevent duplicate load balancers and certificate sprawl. Container Insights adds monitoring cost, but it often pays for itself the first time responders can isolate a node, namespace, or image problem in minutes instead of hours.
-
-A practical FinOps review for AKS should therefore compare cost to avoided risk, not only monthly node price. Spot node pools, autoscaler tuning, and request-rightsizing provide the main savings lever, while governance and security controls prevent hidden operational waste.
+- The cluster networking design explicitly chooses Azure CNI Overlay or a routable pod model and records why.
+- Pod CIDRs, service CIDRs, and node-subnet ranges include autoscaler and upgrade-surge headroom.
+- The ingress standard is limited to approved topologies, with clear internal versus external exposure rules.
+- The egress path is documented, including outbound type, NAT or firewall ownership, and private endpoint routing expectations.
+- The network policy posture is defined as default-allow by exception or default-deny by design, with an explicit engine choice.
+- The decision to use or not use a private cluster is based on control-plane isolation requirements, not habit.
 
 ## See Also
 
-- [Best Practices](index.md)
-- [Networking Models](../platform/networking-models.md)
-- [Azure CNI Powered by Cilium](../platform/azure-cni-powered-by-cilium.md)
-- [CoreDNS on AKS](../platform/coredns-on-aks.md)
-- [LocalDNS on AKS](../platform/node-local-dns-cache.md)
-- [Ingress and Load Balancing](../platform/ingress-load-balancing.md)
-- [NetworkPolicy Denies Legitimate Traffic](../troubleshooting/playbooks/network-policy/networkpolicy-denies-legitimate-traffic.md)
-- [NetworkPolicy Not Blocking Traffic](../troubleshooting/playbooks/network-policy/networkpolicy-not-blocking-traffic.md)
-- [Node Not Ready](../troubleshooting/playbooks/node-not-ready.md)
-- [Ingress Not Working](../troubleshooting/playbooks/ingress-not-working.md)
+- [Production Baseline](production-baseline.md)
+- [Security](security.md)
+- [Governance](governance.md)
+- [Cost Optimization](cost-optimization.md)
+- [Private Cluster API Connectivity](private-cluster-api-connectivity.md)
+- [Platform: Networking Models](../platform/networking-models.md)
+- [Platform: Outbound Networking](../platform/outbound-networking.md)
 
 ## Sources
 
-- [AKS best practices](https://learn.microsoft.com/en-us/azure/aks/best-practices)
-- [AKS secure baseline architecture](https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks)
 - [AKS network concepts](https://learn.microsoft.com/en-us/azure/aks/concepts-network)
-- [Secure pod traffic with network policies in AKS](https://learn.microsoft.com/en-us/azure/aks/use-network-policies)
-- [Pod security best practices for AKS](https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security)
-- [Cluster autoscaler on AKS](https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler)
-- [Container Insights overview](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview)
-- [Azure CNI Overlay for AKS](https://learn.microsoft.com/en-us/azure/aks/azure-cni-overlay)
-- [Configure Azure CNI Powered by Cilium in AKS](https://learn.microsoft.com/en-us/azure/aks/azure-cni-powered-by-cilium)
-- [DNS in AKS](https://learn.microsoft.com/en-us/azure/aks/dns-concepts)
+- [Azure CNI Overlay networking](https://learn.microsoft.com/en-us/azure/aks/azure-cni-overlay)
+- [Configure Azure CNI Pod Subnet](https://learn.microsoft.com/en-us/azure/aks/configure-azure-cni)
+- [Use network policies in AKS](https://learn.microsoft.com/en-us/azure/aks/use-network-policies)
+- [Customize cluster egress with outbound types in AKS](https://learn.microsoft.com/en-us/azure/aks/egress-outboundtype)
+- [Create private AKS clusters](https://learn.microsoft.com/en-us/azure/aks/private-clusters)
+- [Application Gateway Ingress Controller overview](https://learn.microsoft.com/en-us/azure/aks/app-gateway-ingress-controller-overview)
