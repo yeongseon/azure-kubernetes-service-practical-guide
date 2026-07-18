@@ -131,6 +131,9 @@ az aks show \
 - Control plane identity is managed, not service principal based.
 - System and user workloads are not sharing the same pool by default.
 - Microsoft Entra integration, Azure RBAC, and Container Insights are visible from day one.
+- Version lifecycle ownership is explicit: support window review, auto-upgrade posture, and maintenance windows are defined before production handoff.
+
+**Upgrade lifecycle note**: Practice 1 is incomplete if the blueprint stops at cluster creation. A production blueprint should also define which environments use manual upgrades versus auto-upgrade channels, which node OS channel the cluster uses, how much surge and subnet headroom is reserved, and whether the highest-risk releases require a blue/green cluster pattern.
 
 ### Practice 2: Right-size node pools and keep roles separate
 
@@ -547,11 +550,11 @@ A practical FinOps review for AKS should therefore compare cost to avoided risk,
 
 ## Sources
 
-- [Azure / Aks / Best Practices](https://learn.microsoft.com/azure/aks/best-practices)
-- [Azure / Architecture / Reference Architectures / Containers / Aks / Secure Baseline Aks](https://learn.microsoft.com/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks)
-- [Azure / Aks / Concepts Network](https://learn.microsoft.com/azure/aks/concepts-network)
-- [Azure / Aks / Use Network Policies](https://learn.microsoft.com/azure/aks/use-network-policies)
-- [Azure / Aks / Operator Best Practices Pod Security](https://learn.microsoft.com/azure/aks/operator-best-practices-pod-security)
-- [Azure / Aks / Cluster Autoscaler](https://learn.microsoft.com/azure/aks/cluster-autoscaler)
-- [Azure / Azure Monitor / Containers / Container Insights Overview](https://learn.microsoft.com/azure/azure-monitor/containers/container-insights-overview)
-- [Azure / Aks / Upgrade Cluster](https://learn.microsoft.com/azure/aks/upgrade-cluster)
+- [Azure / Aks / Best Practices](https://learn.microsoft.com/en-us/azure/aks/best-practices)
+- [Azure / Architecture / Reference Architectures / Containers / Aks / Secure Baseline Aks](https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks)
+- [Azure / Aks / Concepts Network](https://learn.microsoft.com/en-us/azure/aks/concepts-network)
+- [Azure / Aks / Use Network Policies](https://learn.microsoft.com/en-us/azure/aks/use-network-policies)
+- [Azure / Aks / Operator Best Practices Pod Security](https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security)
+- [Azure / Aks / Cluster Autoscaler](https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler)
+- [Azure / Azure Monitor / Containers / Container Insights Overview](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview)
+- [Azure / Aks / Upgrade Cluster](https://learn.microsoft.com/en-us/azure/aks/upgrade-cluster)

@@ -110,6 +110,7 @@ nav:
   - Platform:
     - platform/index.md
     - platform/cluster-architecture.md
+    - platform/version-lifecycle.md
     - platform/node-pools.md
     - platform/networking-models.md
     - platform/outbound-networking.md
@@ -152,9 +153,12 @@ nav:
     - operations/cluster-creation.md
     - operations/node-pool-operations.md
     - operations/upgrades.md
+    - operations/auto-upgrade-channels.md
+    - operations/node-os-upgrades.md
     - operations/scaling-operations.md
     - operations/monitoring-logging.md
     - operations/maintenance-windows.md
+    - operations/blue-green-upgrades.md
     - operations/credential-rotation.md
   - Troubleshooting:
     - troubleshooting/index.md
@@ -199,6 +203,10 @@ nav:
         - troubleshooting/playbooks/identity/token-exchange-failure.md
       - Operations:
         - troubleshooting/playbooks/operations/upgrade-failure.md
+        - troubleshooting/playbooks/operations/upgrade-blocked-pdb.md
+        - troubleshooting/playbooks/operations/upgrade-blocked-deprecated-api.md
+        - troubleshooting/playbooks/operations/node-image-upgrade-stuck.md
+        - troubleshooting/playbooks/operations/surge-upgrade-ip-exhaustion.md
         - troubleshooting/playbooks/operations/scaling-failure.md
     - KQL Query Packs:
       - troubleshooting/kql/index.md

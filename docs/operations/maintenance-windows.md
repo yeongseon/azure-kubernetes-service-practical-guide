@@ -1,86 +1,164 @@
 ---
 content_sources:
   diagrams:
-  - id: operations-maintenance-windows
-    type: flowchart
-    source: mslearn-adapted
-    mslearn_url: https://learn.microsoft.com/en-us/azure/aks/planned-maintenance
-    based_on:
-    - https://learn.microsoft.com/en-us/azure/aks/planned-maintenance
-    - https://learn.microsoft.com/en-us/azure/aks/auto-upgrade-cluster
+    - id: operations-maintenance-windows-configs
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/aks/planned-maintenance
+      based_on:
+        - https://learn.microsoft.com/en-us/azure/aks/planned-maintenance
+        - https://learn.microsoft.com/en-us/azure/aks/auto-upgrade-cluster
+        - https://learn.microsoft.com/en-us/azure/aks/auto-upgrade-node-os-image
 content_validation:
   status: verified
   last_reviewed: 2026-07-18
   reviewer: agent
   core_claims:
-    - claim: "Planned maintenance in AKS lets you schedule and control cluster upgrades and node image upgrades."
+    - claim: "Planned maintenance in AKS has three schedule configuration types: default, aksManagedAutoUpgradeSchedule, and aksManagedNodeOSUpgradeSchedule."
       source: https://learn.microsoft.com/en-us/azure/aks/planned-maintenance
       verified: true
-    - claim: "Planned maintenance schedules maintenance timing, but enabling or disabling it does not enable or disable automatic upgrades."
+    - claim: "Planned maintenance controls when maintenance can run, but enabling or disabling it does not enable or disable automatic upgrades."
       source: https://learn.microsoft.com/en-us/azure/aks/planned-maintenance
       verified: true
-    - claim: "AKS planned maintenance supports three schedule configuration types: default, aksManagedAutoUpgradeSchedule, and aksManagedNodeOSUpgradeSchedule."
+    - claim: "Maintenance windows for auto-upgrade and node OS auto-upgrade should be four hours or longer."
       source: https://learn.microsoft.com/en-us/azure/aks/planned-maintenance
       verified: true
-    - claim: "AKS recommends using a maintenance window of four hours or more for cluster autoupgrade and planned maintenance."
-      source: https://learn.microsoft.com/en-us/azure/aks/auto-upgrade-cluster
+    - claim: "AKS supports notAllowedDates in maintenance-window configuration files so operators can block maintenance during specific date ranges."
+      source: https://learn.microsoft.com/en-us/azure/aks/planned-maintenance
       verified: true
 ---
 
-
-
-
 # Maintenance Windows
 
-Maintenance windows align AKS upgrades and disruptive platform changes with business-approved change periods. They reduce surprise, but they do not remove the need for validation.
+Maintenance windows tell AKS when cluster auto-upgrades, node OS updates, and AKS-managed releases are allowed to run. They do not constrain manual `az aks upgrade` operations, which run when you invoke them. They reduce surprise, but they do not replace upgrade planning or workload validation.
 
 ## Prerequisites
 
-- Business change windows are known.
-- Upgrade and node image rollout cadence is defined.
-- Critical workload disruption tolerance is understood.
+- Business change windows and blackout periods are known.
+- Cluster auto-upgrade and node OS channel decisions are already made.
+- Production workloads can tolerate node drains inside the selected window length.
 
 ## When to Use
 
-- Defining production change governance.
-- Preparing auto-upgrade and node image update policies.
-- Reducing overlap with peak traffic periods.
+- Aligning cluster lifecycle work to approved change windows.
+- Separating Kubernetes minor-version movement from node OS image movement.
+- Blocking maintenance during holidays, freezes, or high-risk business periods.
 
 ## Procedure
-<!-- diagram-id: operations-maintenance-windows -->
+
+<!-- diagram-id: operations-maintenance-windows-configs -->
 ```mermaid
 flowchart TD
-    A[Define business windows] --> B[Map to AKS maintenance policy]
-    B --> C[Test in non-production]
-    C --> D[Review after each cycle]
+    A[Pick maintenance intent] --> B{AKS releases only?}
+    B -->|Yes| C[default]
+    B -->|No| D{Cluster auto-upgrade timing?}
+    D -->|Yes| E[aksManagedAutoUpgradeSchedule]
+    D -->|No| F[aksManagedNodeOSUpgradeSchedule]
 ```
 
+### Configuration types
 
-1. Choose maintenance windows that avoid peak business traffic.
-2. Align maintenance policy with upgrade cadence and on-call coverage.
-3. Test how workloads behave during node drains and rolling updates.
-4. Review whether the maintenance window is still appropriate after growth or regional expansion.
+| Configuration | Controls | Use when |
+|---|---|---|
+| `default` | AKS weekly releases for control-plane components and system add-ons. | You want a window for AKS-initiated platform maintenance. |
+| `aksManagedAutoUpgradeSchedule` | Cluster auto-upgrade timing. | You want Kubernetes version automation to happen in a specific window. |
+| `aksManagedNodeOSUpgradeSchedule` | Node OS security or node image rollout timing. | You want node OS maintenance to happen independently from cluster-version automation. |
+
+All three configurations can coexist.
+
+### Maintenance window design rules
+
+- Use **four hours or more** for auto-upgrade and node OS maintenance.
+- Stagger windows across clusters instead of lining up every cluster in a subscription at the same time.
+- Use `notAllowedDates` to block maintenance during change freezes and business-critical dates.
+- Treat windows as best-effort scheduling, not a guarantee that AKS will never need urgent reactive maintenance outside them.
+
+### Add the configurations
+
+```bash
+az aks maintenanceconfiguration add \
+    --resource-group "$RG" \
+    --cluster-name "$CLUSTER_NAME" \
+    --name default \
+    --schedule-type Weekly \
+    --day-of-week Sunday \
+    --interval-weeks 1 \
+    --duration 4 \
+    --utc-offset +00:00 \
+    --start-time 01:00
+
+az aks maintenanceconfiguration add \
+    --resource-group "$RG" \
+    --cluster-name "$CLUSTER_NAME" \
+    --name aksManagedAutoUpgradeSchedule \
+    --schedule-type Weekly \
+    --day-of-week Sunday \
+    --interval-weeks 1 \
+    --duration 4 \
+    --utc-offset +00:00 \
+    --start-time 02:00
+```
+
+Use a JSON configuration file when you need `notAllowedDates`:
+
+```json
+{
+  "properties": {
+    "maintenanceWindow": {
+      "schedule": {
+        "weekly": {
+          "intervalWeeks": 1,
+          "dayOfWeek": "Sunday"
+        }
+      },
+      "durationHours": 4,
+      "utcOffset": "+00:00",
+      "startTime": "02:00",
+      "notAllowedDates": [
+        {
+          "start": "2026-12-20",
+          "end": "2027-01-03"
+        }
+      ]
+    }
+  }
+}
+```
+
+### Inspect the effective configuration
+
+```bash
+az aks maintenanceconfiguration list \
+    --resource-group "$RG" \
+    --cluster-name "$CLUSTER_NAME"
+
+az aks maintenanceconfiguration show \
+    --resource-group "$RG" \
+    --cluster-name "$CLUSTER_NAME" \
+    --name aksManagedNodeOSUpgradeSchedule
+```
 
 ## Verification
 
-```bash
-az aks show --resource-group $RG --name $CLUSTER_NAME --query autoUpgradeProfile --output yaml
-kubectl get pdb -A
-kubectl get nodes
-```
+- All intended maintenance configurations exist.
+- Cluster auto-upgrade and node OS channels each map to their own schedule where needed.
+- Blackout periods are represented in `notAllowedDates` for sensitive periods.
 
 ## Rollback / Troubleshooting
 
-- If maintenance events still create incidents, review PDBs, readiness behavior, and workload singleton patterns.
-- If auto-upgrade timing is too risky, pause or narrow the automation scope and move to a controlled manual process.
+- If maintenance lands at the wrong time, verify that you edited the correct configuration type rather than only the `default` schedule.
+- If upgrades do not occur, confirm the cluster was running during the window and that the window was long enough.
+- If production risk remains high even with maintenance windows, use [Blue-Green Upgrades](blue-green-upgrades.md) for the workload move instead of relying on window timing alone.
 
 ## See Also
 
+- [Auto-Upgrade Channels](auto-upgrade-channels.md)
+- [Node OS Upgrades](node-os-upgrades.md)
 - [Upgrades](upgrades.md)
-- [Reliability](../best-practices/reliability.md)
-- [Upgrade Failure](../troubleshooting/playbooks/operations/upgrade-failure.md)
+- [Version Support](../reference/version-support.md)
 
 ## Sources
 
-- [Planned maintenance in AKS](https://learn.microsoft.com/azure/aks/planned-maintenance)
-- [Auto-upgrade AKS clusters](https://learn.microsoft.com/azure/aks/auto-upgrade-cluster)
+- [Use planned maintenance to schedule and control upgrades for AKS clusters](https://learn.microsoft.com/en-us/azure/aks/planned-maintenance)
+- [Automatically upgrade an AKS cluster](https://learn.microsoft.com/en-us/azure/aks/auto-upgrade-cluster)
+- [Autoupgrade node OS images in AKS](https://learn.microsoft.com/en-us/azure/aks/auto-upgrade-node-os-image)
