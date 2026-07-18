@@ -182,9 +182,13 @@ nav:
       - tutorials/lab-guides/fault-lab-03-pending-pods-resources.md
       - tutorials/lab-guides/fault-lab-04-ingress-misconfiguration.md
       - tutorials/lab-guides/fault-lab-05-node-pressure-scheduling.md
-    - Language Guides:
-      - language-guides/index.md
-      - language-guides/python-on-aks.md
+    - Application Guides:
+      - Language Guides:
+        - language-guides/index.md
+        - language-guides/python-on-aks.md
+      - Workload Guides:
+        - workload-guides/index.md
+        - workload-guides/stateless-web-api-on-aks.md
   - Operations:
     - operations/index.md
     - Cluster Lifecycle & Scaling:

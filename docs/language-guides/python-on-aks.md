@@ -1,4 +1,5 @@
 ---
+description: Python FastAPI on Azure Kubernetes Service — containerize, publish to ACR, use workload identity, mount Key Vault secrets, and verify runtime health.
 content_sources:
   diagrams:
   - id: python-on-aks-build-deploy-flow
@@ -131,6 +132,14 @@ kubectl apply \
     --filename ../../apps/python/manifests/
 ```
 
+### Environment and Configuration
+
+The sample keeps non-secret runtime settings in the pod spec and secret material in Azure Key Vault.
+
+- `PYTHONUNBUFFERED=1` is set through the Deployment `env:` block so Python writes logs directly to stdout and stderr.
+- Secret values stay out of the manifest and are mounted from Azure Key Vault through the Secrets Store CSI Driver.
+- If you need non-secret application settings beyond simple environment variables, add a ConfigMap and mount or reference it from the Deployment.
+
 ## Verification
 
 ### 1. Check Pod Status
@@ -143,7 +152,28 @@ kubectl get pods \
     --selector app=keyvault-app
 ```
 
-### 2. Test the Secret Endpoint
+### 2. Health Probes
+
+The Deployment already defines HTTP probes against the FastAPI endpoints in `apps/python/manifests/deployment.yaml`:
+
+- **Readiness probe**: `GET /readyz` on port `http`, `initialDelaySeconds: 5`, `periodSeconds: 10`
+- **Liveness probe**: `GET /healthz` on port `http`, `initialDelaySeconds: 10`, `periodSeconds: 10`
+
+Readiness determines when the pod is added to Service endpoints, while liveness tells the kubelet when the container should be restarted after it becomes unhealthy.
+
+### 3. Review Logs and Metrics
+
+Use pod logs for workload-level verification and Container Insights or Azure Monitor metrics for cluster-level behavior.
+
+```bash
+kubectl logs \
+    --namespace workload \
+    --selector app=keyvault-app
+```
+
+In Azure Monitor, confirm that Container Insights is collecting pod and node metrics so you can watch CPU usage, restart counts, and request health during rollout validation.
+
+### 4. Test the Secret Endpoint
 
 Use `kubectl port-forward` to access the application locally and verify it can see the secret mounted from Key Vault.
 
@@ -181,3 +211,6 @@ Expected response:
 - https://learn.microsoft.com/en-us/azure/aks/workload-identity-deploy-cluster
 - https://learn.microsoft.com/en-us/azure/aks/csi-secrets-store-driver
 - https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+- https://learn.microsoft.com/en-us/azure/aks/best-practices-app-cluster-reliability
+- https://learn.microsoft.com/en-us/azure/aks/monitor-aks
+- https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
