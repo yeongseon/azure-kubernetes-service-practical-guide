@@ -63,6 +63,18 @@ kubectl get nodes --show-labels
 kubectl describe node <node-name>
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks nodepool add` | Add a user node pool for applications. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--name` | Name of the new node pool. |
+| `--mode` | Node pool mode, User for application workloads. |
+| `--node-count` | Initial number of nodes in the pool. |
+| `--node-vm-size` | VM size for the pool nodes. |
+| `kubectl get nodes` | List nodes with labels. |
+| `kubectl describe node` | Show node details and capacity. |
+
 ### Decision points
 
 - Linux-only or mixed Linux/Windows cluster.

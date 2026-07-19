@@ -66,6 +66,15 @@ kubectl get secret -n <namespace>
 az aks check-acr --resource-group $RG --name $CLUSTER_NAME --acr <acr-name>.azurecr.io
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `kubectl describe pod` | Show pod details and image pull events. |
+| `kubectl get secret` | List secrets in the namespace. |
+| `az aks check-acr` | Test cluster connectivity to a container registry. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--acr` | Container registry login server to test. |
+
 ## 5. Evidence to Collect
 
 - Pod events showing `ErrImagePull` or `ImagePullBackOff`.

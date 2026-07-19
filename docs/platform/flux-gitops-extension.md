@@ -106,6 +106,14 @@ az k8s-extension list \
     --output table
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az k8s-extension list` | List the cluster extensions installed on the cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--cluster-type` | Cluster type, managedClusters for AKS. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--output` | Output format for the result. |
+
 Show Flux pods:
 
 ```bash

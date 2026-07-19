@@ -104,6 +104,14 @@ flowchart TD
         --output table
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks nodepool list` | List node pools with zones and scaling. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--cluster-name` | Name of the AKS cluster. |
+    | `--query` | Selects name, zones, count, autoscaling, and VM size. |
+    | `--output` | Output format for the result. |
+
 5. If a zone is empty or constrained, verify whether the SKU and region can satisfy the request.
 
     ```bash
@@ -111,6 +119,12 @@ flowchart TD
         --location "$LOCATION" \
         --output table
     ```
+
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks list-vm-skus` | List VM SKUs supported for AKS node pools. |
+    | `--location` | Azure region to query. |
+    | `--output` | Output format for the result. |
 
 6. If autoscaler is enabled, inspect whether it has a path to restore the missing zone.
 
@@ -120,6 +134,13 @@ flowchart TD
         --name "$CLUSTER_NAME" \
         --query "autoScalerProfile"
     ```
+
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks show` | Show the cluster autoscaler profile. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--name` | Name of the AKS cluster. |
+    | `--query` | Selects the autoscaler profile. |
 
     If the cluster relies on per-zone pools, confirm `balance-similar-node-groups` is enabled where appropriate.
 

@@ -51,6 +51,14 @@ Pods stay in `ImagePullBackOff` or `ErrImagePull` after deployment in a cluster 
         --output yaml
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks show` | Show the outbound type and network plugin. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--name` | Name of the AKS cluster. |
+    | `--query` | Selects the outbound type and network plugin. |
+    | `--output` | Output format for the result. |
+
 3. Inspect the registry exposure model.
 
     ```bash
@@ -64,6 +72,17 @@ Pods stay in `ImagePullBackOff` or `ErrImagePull` after deployment in a cluster 
         --id "/subscriptions/<subscription-id>/resourceGroups/$ACR_RG/providers/Microsoft.ContainerRegistry/registries/$ACR_NAME" \
         --output table
     ```
+
+    | Command | Purpose |
+    | --- | --- |
+    | `az acr show` | Show the registry login server and public access. |
+    | `--resource-group` | Resource group that contains the registry. |
+    | `--name` | Name of the container registry. |
+    | `--query` | Selects the login server and public network access. |
+    | `--output` | Output format for the result. |
+    | `az network private-endpoint-connection list` | List private endpoint connections on the registry. |
+    | `--id` | Resource ID of the container registry. |
+    | `--output` | Output format for the result. |
 
 4. Check whether core platform pods show a wider egress problem.
 

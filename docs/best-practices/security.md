@@ -75,6 +75,14 @@ az aks update \
     --enable-workload-identity
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks update` | Enable the OIDC issuer and workload identity on the cluster. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--enable-oidc-issuer` | Enable the OIDC issuer for workload identity. |
+| `--enable-workload-identity` | Enable Microsoft Entra Workload ID. |
+
 Confirm the cluster exposes the issuer endpoint and workload identity support.
 
 ```bash
@@ -84,6 +92,14 @@ az aks show \
     --query "{oidcIssuerProfile:oidcIssuerProfile,securityProfile:securityProfile}" \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show the OIDC issuer and security profile. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the OIDC issuer and security profile. |
+| `--output` | Output format for the result. |
 
 Baseline guidance:
 
@@ -104,6 +120,13 @@ az aks enable-addons \
     --name "$CLUSTER_NAME" \
     --addons azure-keyvault-secrets-provider
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks enable-addons` | Enable the Azure Key Vault secrets provider add-on. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--addons` | Add-on to enable, the Key Vault secrets provider. |
 
 Verify the CSI components are running before application teams depend on them.
 
@@ -136,6 +159,14 @@ az aks show \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show the managed Entra and Azure RBAC state. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects managed Entra and Azure RBAC flags. |
+| `--output` | Output format for the result. |
+
 Retrieve user credentials only when needed and avoid sharing generated kubeconfig files.
 
 ```bash
@@ -144,6 +175,13 @@ az aks get-credentials \
     --name "$CLUSTER_NAME" \
     --overwrite-existing
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks get-credentials` | Merge cluster credentials into the local kubeconfig. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--overwrite-existing` | Overwrite any existing kubeconfig entry for the cluster. |
 
 Baseline guidance:
 
@@ -210,6 +248,13 @@ az aks nodepool list \
     --cluster-name "$CLUSTER_NAME" \
     --output table
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks nodepool list` | List the node pools in the cluster. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--output` | Output format for the result. |
 
 Inspect node scheduling boundaries for privileged or infrastructure workloads.
 

@@ -144,6 +144,14 @@ az aks show \
     --output tsv
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Check whether the KEDA add-on is enabled. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the KEDA enabled flag. |
+| `--output` | Output format for the result. |
+
 Validate Prometheus metrics are available through the AKS monitoring stack:
 
 ```bash
@@ -153,6 +161,14 @@ az aks show \
     --query "azureMonitorProfile.metrics.enabled" \
     --output tsv
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Check whether managed Prometheus metrics are enabled. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the metrics enabled flag. |
+| `--output` | Output format for the result. |
 
 ## See Also
 

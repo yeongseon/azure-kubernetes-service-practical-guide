@@ -99,6 +99,19 @@ az aks maintenanceconfiguration add \
     --start-time 02:00
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks maintenanceconfiguration add` | Add the weekly maintenance schedules for the cluster. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--name` | Name of the maintenance configuration. |
+| `--schedule-type` | Recurrence type for the schedule. |
+| `--day-of-week` | Day of week the maintenance window opens. |
+| `--interval-weeks` | Number of weeks between windows. |
+| `--duration` | Length of the maintenance window in hours. |
+| `--utc-offset` | UTC offset applied to the start time. |
+| `--start-time` | Local start time of the window. |
+
 Use a JSON configuration file when you need `notAllowedDates`:
 
 ```json
@@ -137,6 +150,16 @@ az aks maintenanceconfiguration show \
     --cluster-name "$CLUSTER_NAME" \
     --name aksManagedNodeOSUpgradeSchedule
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks maintenanceconfiguration list` | List the maintenance configurations on the cluster. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `az aks maintenanceconfiguration show` | Show a single maintenance configuration. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--name` | Name of the maintenance configuration to show. |
 
 ## Verification
 

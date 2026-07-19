@@ -151,6 +151,13 @@ az aks create --resource-group $RG --name $CLUSTER_NAME --node-count 3
 az aks create -g $RG -n $CLUSTER_NAME  # ❌ Don't do this
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks create` | Create a cluster using the preferred long-flag form. |
+| `--resource-group` | Resource group that contains the AKS cluster, preferred long form of `-g`. |
+| `--name` | Name of the AKS cluster, preferred long form of `-n`. |
+| `--node-count` | Number of nodes in the default pool. |
+
 ### Variables
 | Variable | Description | Example |
 |----------|-------------|---------|

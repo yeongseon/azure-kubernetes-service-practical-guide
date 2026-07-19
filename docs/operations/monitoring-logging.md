@@ -67,12 +67,31 @@ kubectl top pods --all-namespaces
 kubectl get events --all-namespaces --sort-by=.lastTimestamp
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks enable-addons` | Enable the Container Insights monitoring add-on. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--addons` | Add-on to enable, monitoring for Container Insights. |
+| `kubectl top nodes` | Show current node CPU and memory usage. |
+| `kubectl top pods` | Show current pod CPU and memory usage. |
+| `kubectl get events` | List Kubernetes events for troubleshooting. |
+
 ## Verification
 
 ```bash
 az aks show --resource-group $RG --name $CLUSTER_NAME --query addonProfiles.omsagent.enabled --output tsv
 kubectl get pods --namespace kube-system
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Check whether the Container Insights agent is enabled. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the monitoring add-on enabled flag. |
+| `--output` | Output format for the result. |
+| `kubectl get pods` | List monitoring pods in the kube-system namespace. |
 
 You can confirm the same telemetry in the Azure Portal on the cluster monitoring blades.
 

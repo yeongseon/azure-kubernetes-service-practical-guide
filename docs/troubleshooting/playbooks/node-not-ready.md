@@ -109,6 +109,14 @@ flowchart TD
         --output json
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks show` | Show core cluster properties. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--name` | Name of the AKS cluster. |
+    | `--query` | Selects name, provisioning state, version, and node resource group. |
+    | `--output` | Output format for the result. |
+
 4. **List node pools and autoscaler settings**
 
     ```bash
@@ -118,6 +126,13 @@ flowchart TD
         --output table
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks nodepool list` | List the node pools in the cluster. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--cluster-name` | Name of the AKS cluster. |
+    | `--output` | Output format for the result. |
+
 5. **Run a fast Container Insights control query**
 
     ```bash
@@ -126,6 +141,13 @@ flowchart TD
         --analytics-query "KubePodInventory | where TimeGenerated > ago(15m) | summarize Restarts=sum(ContainerRestartCount) by Namespace | order by Restarts desc" \
         --timespan "PT15M"
     ```
+
+    | Command | Purpose |
+    | --- | --- |
+    | `az monitor log-analytics query` | Query per-namespace container restarts. |
+    | `--workspace` | Log Analytics workspace to query. |
+    | `--analytics-query` | KQL query text to execute. |
+    | `--timespan` | Time range for the query. |
 
 ## 5. Evidence to Collect
 
@@ -203,6 +225,14 @@ az vmss list-instances \
     --query "[].{instanceId:instanceId,provisioningState:provisioningState,latestModelApplied:latestModelApplied}" \
     --output table
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az vmss list-instances` | List scale set instances backing a node pool. |
+| `--resource-group` | Node resource group that contains the scale set. |
+| `--name` | Name of the virtual machine scale set. |
+| `--query` | Selects instance ID, state, and model status. |
+| `--output` | Output format for the result. |
 
 Interpretation: when the problem is node- or ingress-related, VMSS state and model drift provide important Azure-side evidence.
 
@@ -283,6 +313,14 @@ az aks nodepool update \
     --name "$NODEPOOL_NAME" \
     --max-count 10
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks nodepool update` | Raise a node pool's autoscaler maximum. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--name` | Name of the node pool to update. |
+| `--max-count` | New maximum node count for autoscaling. |
 
 ## 9. Prevention Checklist
 

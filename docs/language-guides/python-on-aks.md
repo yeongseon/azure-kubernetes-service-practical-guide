@@ -73,6 +73,12 @@ az acr build \
     ../../apps/python/
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az acr build` | Build and push the container image using an ACR Task. |
+| `--registry` | Azure Container Registry that runs the build. |
+| `--image` | Image name and tag to produce. |
+
 ### 3. Configure Workload Identity
 
 The application needs a User-Assigned Managed Identity (UAMI) to access Key Vault.
@@ -103,6 +109,33 @@ az identity federated-credential create \
     --audience api://AzureADTokenExchange
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az identity create` | Create the user-assigned managed identity. |
+| `--resource-group` | Resource group that contains the identity. |
+| `--name` | Name of the managed identity. |
+| `--location` | Azure region for the identity. |
+| `az identity show` | Read the identity client and principal IDs. |
+| `--resource-group` | Resource group that contains the identity. |
+| `--name` | Name of the managed identity. |
+| `--query` | Selects the client ID or principal ID. |
+| `--output` | Output format for the result. |
+| `az account show` | Read the current subscription tenant ID. |
+| `--query` | Selects the tenant ID. |
+| `--output` | Output format for the result. |
+| `az aks show` | Read the cluster OIDC issuer URL. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the OIDC issuer URL. |
+| `--output` | Output format for the result. |
+| `az identity federated-credential create` | Federate the identity with the Kubernetes service account. |
+| `--resource-group` | Resource group that contains the identity. |
+| `--identity-name` | Managed identity to federate. |
+| `--name` | Name of the federated credential. |
+| `--issuer` | OIDC issuer URL of the cluster. |
+| `--subject` | Kubernetes service account subject to trust. |
+| `--audience` | Token audience for the federation. |
+
 ### 4. Grant Key Vault Permissions
 
 Authorize the identity to read secrets from your Key Vault.
@@ -116,6 +149,18 @@ az role assignment create \
     --role "Key Vault Secrets User" \
     --scope "$KEYVAULT_ID"
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az keyvault show` | Read the Key Vault resource ID for the role scope. |
+| `--name` | Name of the Key Vault. |
+| `--query` | Selects the Key Vault resource ID. |
+| `--output` | Output format for the result. |
+| `az role assignment create` | Grant the identity access to Key Vault secrets. |
+| `--assignee-object-id` | Object ID of the identity to grant. |
+| `--assignee-principal-type` | Principal type of the assignee. |
+| `--role` | Role to assign. |
+| `--scope` | Resource scope the role applies to. |
 
 ### 5. Deploy Manifests
 

@@ -70,6 +70,14 @@ flowchart TD
         --output yaml
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks show` | Show the API server FQDN and access profile. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--name` | Name of the AKS cluster. |
+    | `--query` | Selects FQDN, private FQDN, and API server access profile. |
+    | `--output` | Output format for the result. |
+
 2. Re-download kubeconfig to eliminate a stale endpoint hypothesis.
 
     ```bash
@@ -78,6 +86,13 @@ flowchart TD
         --name "$CLUSTER_NAME" \
         --overwrite-existing
     ```
+
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks get-credentials` | Merge cluster credentials into the local kubeconfig. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--name` | Name of the AKS cluster. |
+    | `--overwrite-existing` | Overwrite any existing kubeconfig entry for the cluster. |
 
 3. Test whether the client can reach the API server at all.
 
@@ -99,6 +114,17 @@ flowchart TD
         --vnet-name "$VNET_NAME" \
         --output table
     ```
+
+    | Command | Purpose |
+    | --- | --- |
+    | `nslookup` | Resolve the private API server FQDN. |
+    | `az network private-dns zone list` | List private DNS zones in the resource group. |
+    | `--resource-group` | Resource group that contains the private DNS zones. |
+    | `--output` | Output format for the result. |
+    | `az network vnet peering list` | List virtual network peerings. |
+    | `--resource-group` | Resource group that contains the virtual network. |
+    | `--vnet-name` | Name of the virtual network. |
+    | `--output` | Output format for the result. |
 
 5. For public endpoints, compare the operator egress IP with the authorized IP range configuration and inspect any firewall, proxy, or UDR path in front of the API traffic.
 

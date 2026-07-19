@@ -61,6 +61,16 @@ kubectl get nodes -o wide
 az aks show --resource-group $RG --name $CLUSTER_NAME --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `kubectl get events` | List Kubernetes events sorted by time. |
+| `kubectl get pods` | List pods across namespaces. |
+| `kubectl get nodes` | List cluster nodes. |
+| `az aks show` | Show the cluster's full properties. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--output` | Output format for the result. |
+
 ## See Also
 
 - [Mental Model](mental-model.md)

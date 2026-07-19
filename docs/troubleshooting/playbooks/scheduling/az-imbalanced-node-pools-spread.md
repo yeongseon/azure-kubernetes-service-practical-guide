@@ -73,6 +73,14 @@ flowchart TD
         --output table
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks nodepool list` | List node pools with zones and scaling. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--cluster-name` | Name of the AKS cluster. |
+    | `--query` | Selects name, zones, count, autoscaling, and VM size. |
+    | `--output` | Output format for the result. |
+
 3. If a zone looks empty or permanently smaller, check whether the pool design itself is asymmetric.
 
     Look for patterns such as:
@@ -88,6 +96,12 @@ flowchart TD
         --output table
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks list-vm-skus` | List VM SKUs supported for AKS node pools. |
+    | `--location` | Azure region to query. |
+    | `--output` | Output format for the result. |
+
 5. Check the cluster autoscaler design if the workload depends on zone-aligned recovery.
 
     ```bash
@@ -97,6 +111,13 @@ flowchart TD
         --query "autoScalerProfile"
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks show` | Show the cluster autoscaler profile. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--name` | Name of the AKS cluster. |
+    | `--query` | Selects the autoscaler profile. |
+
 6. If a zone cannot scale because of quota or broader capacity, pivot to Azure-side capacity evidence.
 
     ```bash
@@ -104,6 +125,12 @@ flowchart TD
         --location "$LOCATION" \
         --output table
     ```
+
+    | Command | Purpose |
+    | --- | --- |
+    | `az vm list-usage` | Show regional vCPU quota usage. |
+    | `--location` | Azure region to query. |
+    | `--output` | Output format for the result. |
 
     If the cluster uses node auto-provisioning for some workloads, also cross-check [NAP Fails to Provision](../scaling/nap-fails-to-provision.md).
 

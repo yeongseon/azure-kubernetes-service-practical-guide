@@ -60,6 +60,14 @@ flowchart TD
         --output yaml
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks show` | Show the OIDC issuer and workload identity state. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--name` | Name of the AKS cluster. |
+    | `--query` | Selects the issuer URL and workload identity profile. |
+    | `--output` | Output format for the result. |
+
 2. Confirm the deployment and pod are bound to the expected service account.
 
     ```bash
@@ -80,6 +88,14 @@ flowchart TD
         --federated-credential-name "$FEDERATED_CREDENTIAL_NAME" \
         --output json
     ```
+
+    | Command | Purpose |
+    | --- | --- |
+    | `az identity federated-credential show` | Show a federated credential on the identity. |
+    | `--resource-group` | Resource group that contains the identity. |
+    | `--identity-name` | Managed identity that owns the credential. |
+    | `--federated-credential-name` | Name of the federated credential. |
+    | `--output` | Output format for the result. |
 
 4. Review application logs to confirm whether the failure is token exchange or downstream authorization.
 

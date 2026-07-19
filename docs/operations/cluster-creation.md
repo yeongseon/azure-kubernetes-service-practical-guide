@@ -74,12 +74,44 @@ az aks get-credentials --resource-group $RG --name $CLUSTER_NAME --overwrite-exi
 kubectl get nodes -o wide
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az group create` | Create the resource group for the cluster. |
+| `--name` | Name of the resource group. |
+| `--location` | Azure region for the resource group. |
+| `az aks create` | Create the demo AKS cluster. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--location` | Azure region for the cluster. |
+| `--node-count` | Number of nodes in the default pool. |
+| `--node-vm-size` | VM size for the default pool nodes. |
+| `--enable-managed-identity` | Use a managed identity instead of a service principal. |
+| `--enable-oidc-issuer` | Enable the OIDC issuer for workload identity. |
+| `--enable-workload-identity` | Enable Microsoft Entra Workload ID. |
+| `--network-plugin` | Container networking plugin. |
+| `--network-plugin-mode` | Network plugin mode such as overlay. |
+| `--generate-ssh-keys` | Generate SSH keys if none are provided. |
+| `az aks get-credentials` | Merge cluster credentials into the local kubeconfig. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--overwrite-existing` | Overwrite any existing kubeconfig entry for the cluster. |
+| `kubectl get nodes` | List cluster nodes to confirm the cluster is ready. |
+
 ## Verification
 
 ```bash
 az aks show --resource-group $RG --name $CLUSTER_NAME --query "{powerState:powerState.code,kubernetesVersion:kubernetesVersion,networkPlugin:networkProfile.networkPlugin,networkMode:networkProfile.networkPluginMode}" --output yaml
 kubectl get pods -n kube-system
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show cluster power state, version, and network mode. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects power state, version, and network fields. |
+| `--output` | Output format for the result. |
+| `kubectl get pods` | List system pods to confirm cluster health. |
 
 You can confirm the same state in the Azure Portal on the cluster **Overview** blade.
 

@@ -84,6 +84,18 @@ az aks show \
     --output yaml
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks get-upgrades` | List available Kubernetes upgrade versions. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--output` | Output format for the result. |
+| `az aks show` | Show current version and support plan. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects version, auto-upgrade profile, and support plan. |
+| `--output` | Output format for the result. |
+
 ### 2) Run preflight checks before touching production
 
 At minimum, review these failure domains before the first upgrade action:
@@ -108,6 +120,17 @@ az aks show \
     --query "networkProfile" \
     --output yaml
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `kubectl get pdb` | List PodDisruptionBudgets across namespaces. |
+| `kubectl api-resources` | List the API resources available in the cluster. |
+| `kubectl get nodes` | List nodes with labels. |
+| `az aks show` | Show the cluster network profile. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the network profile. |
+| `--output` | Output format for the result. |
 
 ### 3) Choose the operating model
 
@@ -142,6 +165,14 @@ az aks upgrade \
     --yes
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks upgrade` | Upgrade the cluster to a target Kubernetes version. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--kubernetes-version` | Target Kubernetes version. |
+| `--yes` | Skip the confirmation prompt. |
+
 During execution, watch for:
 
 - Drain failures caused by PDBs.
@@ -165,6 +196,17 @@ kubectl get nodes
 kubectl get pods --all-namespaces
 kubectl get events --all-namespaces --sort-by=.lastTimestamp
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show version, node resource group, and upgrade profile. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects version, node resource group, and upgrade profile. |
+| `--output` | Output format for the result. |
+| `kubectl get nodes` | List nodes to confirm the upgrade result. |
+| `kubectl get pods` | List pods across namespaces. |
+| `kubectl get events` | List Kubernetes events for troubleshooting. |
 
 Validate at least:
 

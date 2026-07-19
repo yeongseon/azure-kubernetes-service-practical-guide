@@ -61,6 +61,15 @@ flowchart TD
         --output yaml
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks show` | Read the cluster OIDC issuer URL. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--name` | Name of the AKS cluster. |
+    | `--query` | Selects the OIDC issuer URL. |
+    | `--output` | Output format for the result. |
+    | `kubectl get serviceaccount` | Show the workload service account definition. |
+
 2. Inspect the federated identity credential definition.
 
     ```bash
@@ -70,6 +79,14 @@ flowchart TD
         --federated-credential-name "$FEDERATED_CREDENTIAL_NAME" \
         --output json
     ```
+
+    | Command | Purpose |
+    | --- | --- |
+    | `az identity federated-credential show` | Show a federated credential on the identity. |
+    | `--resource-group` | Resource group that contains the identity. |
+    | `--identity-name` | Managed identity that owns the credential. |
+    | `--federated-credential-name` | Name of the federated credential. |
+    | `--output` | Output format for the result. |
 
 3. Correlate application logs with token exchange attempts.
 
@@ -87,6 +104,13 @@ flowchart TD
         --scope "$RESOURCE_ID" \
         --output table
     ```
+
+    | Command | Purpose |
+    | --- | --- |
+    | `az role assignment list` | List role assignments for the identity. |
+    | `--assignee` | Object ID of the identity to inspect. |
+    | `--scope` | Resource scope to filter assignments. |
+    | `--output` | Output format for the result. |
 
 ## Resolution
 

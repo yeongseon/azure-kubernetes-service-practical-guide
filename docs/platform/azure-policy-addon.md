@@ -130,6 +130,13 @@ az aks enable-addons \
     --resource-group "$RG"
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks enable-addons` | Enable the Azure Policy add-on. |
+| `--addons` | Add-on to enable, azure-policy. |
+| `--name` | Name of the AKS cluster. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+
 Verify the AKS add-on profile:
 
 ```bash
@@ -139,6 +146,14 @@ az aks show \
     --query "addonProfiles.azurepolicy" \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show the Azure Policy add-on profile. |
+| `--name` | Name of the AKS cluster. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--query` | Selects the Azure Policy add-on profile. |
+| `--output` | Output format for the result. |
 
 Verify Azure Policy and Gatekeeper pods:
 

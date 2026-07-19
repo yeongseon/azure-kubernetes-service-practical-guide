@@ -90,6 +90,16 @@ kubectl get secretproviderclass \
     --all-namespaces
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show cluster identity and Key Vault add-on details. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects identity, issuer, and add-on fields. |
+| `--output` | Output format for the result. |
+| `kubectl get serviceaccount` | List service accounts across namespaces. |
+| `kubectl get secretproviderclass` | List Key Vault SecretProviderClass resources. |
+
 ### 2. Rotate cluster certificates separately from workload identity
 
 Cluster certificate rotation is not the same as workload identity rotation. Run it on its own change plan, then refresh clients.
@@ -105,6 +115,17 @@ az aks get-credentials \
     --name "$CLUSTER_NAME" \
     --overwrite-existing
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks rotate-certs` | Rotate the cluster certificates. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--yes` | Skip the confirmation prompt. |
+| `az aks get-credentials` | Refresh the local kubeconfig after rotation. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--overwrite-existing` | Overwrite any existing kubeconfig entry for the cluster. |
 
 ### 3. Rotate federated credentials without workload interruption
 

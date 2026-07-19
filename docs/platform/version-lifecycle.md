@@ -125,6 +125,23 @@ az aks update \
     --auto-upgrade-channel patch
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks create` | Create a premium cluster on long-term support. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--tier` | Cluster SKU tier, premium for LTS. |
+| `--k8s-support-plan` | Support plan, AKSLongTermSupport for LTS. |
+| `--kubernetes-version` | Target LTS Kubernetes version. |
+| `--auto-upgrade-channel` | Auto-upgrade channel to use. |
+| `--generate-ssh-keys` | Generate SSH keys if none are provided. |
+| `az aks update` | Move an existing cluster to premium LTS. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--tier` | Cluster SKU tier, premium for LTS. |
+| `--k8s-support-plan` | Support plan, AKSLongTermSupport for LTS. |
+| `--auto-upgrade-channel` | Auto-upgrade channel to use. |
+
 #### LTS trade-offs
 
 LTS buys time, but it changes how you should think about cluster ownership:

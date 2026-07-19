@@ -63,6 +63,15 @@ flowchart TD
         --output yaml
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks show` | Show OIDC issuer, kubelet identity, and Key Vault add-on. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--name` | Name of the AKS cluster. |
+    | `--query` | Selects issuer, kubelet identity, and add-on fields. |
+    | `--output` | Output format for the result. |
+    | `kubectl get secretproviderclass` | Show SecretProviderClass resources in the namespace. |
+
 2. Inspect pod events and mount-related symptoms.
 
     ```bash
@@ -82,6 +91,13 @@ flowchart TD
         --scope "$KEY_VAULT_RESOURCE_ID" \
         --output table
     ```
+
+    | Command | Purpose |
+    | --- | --- |
+    | `az role assignment list` | List role assignments on the Key Vault scope. |
+    | `--assignee` | Object ID of the identity to inspect. |
+    | `--scope` | Key Vault resource scope to filter assignments. |
+    | `--output` | Output format for the result. |
 
 4. If sync-to-Kubernetes-Secret is expected, verify whether the synced secret was ever refreshed.
 

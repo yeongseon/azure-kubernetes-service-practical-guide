@@ -42,6 +42,18 @@ kubectl get events --all-namespaces --sort-by=.lastTimestamp
 az aks show --resource-group "$RG" --name "$CLUSTER_NAME" --query "agentPoolProfiles[].{name:name,count:count,min:minCount,max:maxCount}" --output table
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `kubectl get hpa` | List HorizontalPodAutoscalers across namespaces. |
+| `kubectl get pods` | List pending pods awaiting scheduling. |
+| `kubectl describe hpa` | Show HorizontalPodAutoscaler status and events. |
+| `kubectl get events` | List Kubernetes events for troubleshooting. |
+| `az aks show` | Show autoscaler bounds per node pool. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects per-pool count, min, and max. |
+| `--output` | Output format for the result. |
+
 ## See Also
 
 - [Cluster Autoscaler Decisions](../kql/control-plane/cluster-autoscaler-decisions.md)

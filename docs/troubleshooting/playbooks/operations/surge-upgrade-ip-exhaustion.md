@@ -56,6 +56,14 @@ flowchart TD
         --output yaml
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks show` | Show the cluster network profile. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--name` | Name of the AKS cluster. |
+    | `--query` | Selects the network profile. |
+    | `--output` | Output format for the result. |
+
 2. Review the backing subnet.
 
     ```bash
@@ -65,6 +73,14 @@ flowchart TD
         --name "$AKS_SUBNET_NAME" \
         --output yaml
     ```
+
+    | Command | Purpose |
+    | --- | --- |
+    | `az network vnet subnet show` | Show the AKS subnet configuration. |
+    | `--resource-group` | Resource group that contains the virtual network. |
+    | `--vnet-name` | Name of the virtual network. |
+    | `--name` | Name of the AKS subnet. |
+    | `--output` | Output format for the result. |
 
 3. For Azure CNI with a pod subnet, calculate whether the subnet can satisfy `(nodes + maxSurge) * (1 + maxPods)`. (Azure CNI Overlay allocates pod IPs from a separate CIDR, so size the node subnet for nodes plus surge only.)
 

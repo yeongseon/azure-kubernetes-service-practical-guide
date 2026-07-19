@@ -94,6 +94,18 @@ az role assignment list \
     --output table
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show cluster and kubelet identity details. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects control plane and kubelet identity and issuer. |
+| `--output` | Output format for the result. |
+| `az role assignment list` | List role assignments for the identity. |
+| `--assignee` | Object ID of the identity to inspect. |
+| `--scope` | Resource scope to filter assignments. |
+| `--output` | Output format for the result. |
+
 ## See Also
 
 - [Identity and Secrets](identity-and-secrets.md)

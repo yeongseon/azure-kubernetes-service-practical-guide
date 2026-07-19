@@ -44,6 +44,22 @@ az aks show --resource-group $RG --name $CLUSTER_NAME --query networkProfile --o
 az network vnet subnet show --resource-group <network-rg> --vnet-name <vnet-name> --name <subnet-name> --output yaml
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az vm list-usage` | Show regional vCPU quota usage. |
+| `--location` | Azure region to query. |
+| `--output` | Output format for the result. |
+| `az aks show` | Show the cluster network profile. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the network profile. |
+| `--output` | Output format for the result. |
+| `az network vnet subnet show` | Show the subnet address plan. |
+| `--resource-group` | Resource group that contains the virtual network. |
+| `--vnet-name` | Name of the virtual network. |
+| `--name` | Name of the subnet. |
+| `--output` | Output format for the result. |
+
 ## Usage Notes
 
 - Treat official limits as moving targets; verify current Microsoft documentation before major expansion.

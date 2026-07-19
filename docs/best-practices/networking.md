@@ -82,6 +82,14 @@ az aks show \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show the cluster network profile. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the network profile. |
+| `--output` | Output format for the result. |
+
 This command confirms the cluster's network plugin, plugin mode, policy engine, outbound type, and CIDR settings before application onboarding starts.
 
 ### 2. Treat IP planning as a scale and upgrade requirement
@@ -105,6 +113,15 @@ az network vnet subnet show \
     --query "{addressPrefix:addressPrefix,routeTable:routeTable.id,natGateway:natGateway.id}" \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az network vnet subnet show` | Show the AKS subnet address plan, route table, and NAT gateway. |
+| `--resource-group` | Resource group that contains the virtual network. |
+| `--vnet-name` | Name of the virtual network. |
+| `--name` | Name of the AKS subnet. |
+| `--query` | Selects address prefix, route table, and NAT gateway. |
+| `--output` | Output format for the result. |
 
 This command shows whether the AKS node subnet is already tied to route or NAT decisions that affect scale headroom.
 
@@ -154,6 +171,14 @@ az aks show \
     --output tsv
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show the cluster outbound type. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the outbound type. |
+| `--output` | Output format for the result. |
+
 This command confirms whether the cluster is using the expected egress pattern before teams depend on firewall or NAT assumptions.
 
 For idle public IP and load balancer cost posture, use [Cost Optimization](cost-optimization.md) instead of restating that guidance here.
@@ -178,6 +203,14 @@ az aks show \
     --query "networkProfile.networkPolicy" \
     --output tsv
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show the configured network policy engine. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the network policy engine. |
+| `--output` | Output format for the result. |
 
 This command verifies which policy engine the cluster was built with.
 

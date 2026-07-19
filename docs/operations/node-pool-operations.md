@@ -67,12 +67,39 @@ kubectl cordon <node-name>
 kubectl drain <node-name> --ignore-daemonsets --delete-emptydir-data
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks nodepool list` | List the node pools in the cluster. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--output` | Output format for the result. |
+| `az aks nodepool add` | Add a user node pool for applications. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--name` | Name of the new node pool. |
+| `--mode` | Node pool mode, User for application workloads. |
+| `--node-vm-size` | VM size for the pool nodes. |
+| `--node-count` | Initial number of nodes in the pool. |
+| `kubectl get nodes` | List nodes labeled by agent pool. |
+| `kubectl cordon` | Mark a node unschedulable. |
+| `kubectl drain` | Evict workloads from a node before maintenance. |
+
 ## Verification
 
 ```bash
 az aks nodepool show --resource-group $RG --cluster-name $CLUSTER_NAME --name apps01 --query "{count:count,mode:mode,vmSize:vmSize,provisioningState:provisioningState}" --output yaml
 kubectl get pods -A -o wide
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks nodepool show` | Show a node pool's count, size, and state. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--name` | Name of the node pool to show. |
+| `--query` | Selects count, mode, VM size, and provisioning state. |
+| `--output` | Output format for the result. |
+| `kubectl get pods` | List pods across namespaces with node placement. |
 
 The Azure Portal **Node pools** blade shows the same state across every pool in one view.
 

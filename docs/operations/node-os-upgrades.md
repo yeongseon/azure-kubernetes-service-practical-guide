@@ -89,6 +89,18 @@ az aks show \
     --output yaml
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks update` | Set the node OS auto-upgrade channel. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--node-os-upgrade-channel` | Node OS upgrade channel to use. |
+| `az aks show` | Show the resulting auto-upgrade profile. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the auto-upgrade profile. |
+| `--output` | Output format for the result. |
+
 ### CVE response and operational cadence
 
 For production planning, the important difference is usually:
@@ -109,6 +121,15 @@ az aks show \
 
 kubectl get nodes --show-labels
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show the node OS upgrade channel. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the node OS upgrade channel. |
+| `--output` | Output format for the result. |
+| `kubectl get nodes` | List nodes with labels to confirm image state. |
 
 - Confirm the cluster shows the intended `nodeOsUpgradeChannel` value.
 - Confirm node labels reflect the expected image version after rollout.

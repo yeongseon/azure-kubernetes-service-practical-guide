@@ -51,6 +51,13 @@ az aks enable-addons \
     --addons azure-policy
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks enable-addons` | Enable the Azure Policy add-on. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--addons` | Add-on to enable, azure-policy. |
+
 This step is important because it establishes the control point for **enable azure policy add-on**. After running it, pause and verify the Azure resource state before moving on so you do not compound errors later in the lab.
 
 ### Step 2: Assign a built-in AKS policy initiative
@@ -61,6 +68,13 @@ az policy assignment create \
     --scope "$CLUSTER_ID" \
     --policy-set-definition "/providers/Microsoft.Authorization/policySetDefinitions/<policy-set-id>"
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az policy assignment create` | Assign a policy set to the cluster scope. |
+| `--name` | Name of the policy assignment. |
+| `--scope` | Resource scope the assignment applies to. |
+| `--policy-set-definition` | Policy set definition to assign. |
 
 This step is important because it establishes the control point for **assign a built-in aks policy initiative**. After running it, pause and verify the Azure resource state before moving on so you do not compound errors later in the lab.
 
@@ -86,6 +100,14 @@ az policy state list \
 kubectl get constrainttemplates \
     --output wide
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az policy state list` | List policy compliance states for the cluster. |
+| `--resource` | Resource ID of the AKS cluster. |
+| `--query` | Selects policy definition names and compliance states. |
+| `--output` | Output format for the result. |
+| `kubectl get constrainttemplates` | List Gatekeeper constraint templates. |
 
 This step is important because it establishes the control point for **review policy states and violations**. After running it, pause and verify the Azure resource state before moving on so you do not compound errors later in the lab.
 
@@ -123,12 +145,27 @@ az aks show \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show core cluster properties. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects name, provisioning state, and version. |
+| `--output` | Output format for the result. |
+
 ```bash
 az monitor log-analytics query \
     --workspace "$WORKSPACE_ID" \
     --analytics-query "KubeNodeInventory | where TimeGenerated > ago(15m) | summarize Nodes=dcount(Computer) by ClusterName" \
     --timespan "PT15M"
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az monitor log-analytics query` | Query node inventory counts by cluster. |
+| `--workspace` | Log Analytics workspace to query. |
+| `--analytics-query` | KQL query text to execute. |
+| `--timespan` | Time range for the query. |
 
 ## Cleanup Instructions
 
@@ -140,6 +177,13 @@ az group delete \
     --yes \
     --no-wait
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az group delete` | Delete the lab resource group and its resources. |
+| `--name` | Name of the resource group to delete. |
+| `--yes` | Skip the confirmation prompt. |
+| `--no-wait` | Return without waiting for deletion to finish. |
 
 If you created secondary resource groups, Application Gateway, or user-assigned identities, delete those resources as part of the same cleanup workflow or document why they remain.
 

@@ -67,6 +67,17 @@ kubectl get pods -A --field-selector=status.phase=Pending
 az aks show --resource-group $RG --name $CLUSTER_NAME --query agentPoolProfiles --output yaml
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `kubectl get hpa` | List HorizontalPodAutoscalers across namespaces. |
+| `kubectl top pods` | Show current pod CPU and memory usage. |
+| `kubectl get pods` | List pending pods awaiting scheduling. |
+| `az aks show` | Show the agent pool profiles. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the agent pool profiles. |
+| `--output` | Output format for the result. |
+
 ## 5. Evidence to Collect
 
 - HPA status and metrics.

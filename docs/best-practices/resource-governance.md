@@ -206,6 +206,13 @@ az aks nodepool list \
     --output table
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks nodepool list` | List the node pools in the cluster. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--output` | Output format for the result. |
+
 Inspect regional SKU restrictions:
 
 ```bash
@@ -215,6 +222,14 @@ az vm list-skus \
     --query "[?name=='Standard_D4s_v5'].{name:name,restrictions:restrictions}" \
     --output table
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az vm list-skus` | List VM SKU availability and restrictions in the region. |
+| `--location` | Azure region to query. |
+| `--resource-type` | Resource type to filter, virtualMachines. |
+| `--query` | Selects the SKU name and restrictions. |
+| `--output` | Output format for the result. |
 
 Use [Cost Optimization](cost-optimization.md) for economics, waste removal, and price trade-offs.
 

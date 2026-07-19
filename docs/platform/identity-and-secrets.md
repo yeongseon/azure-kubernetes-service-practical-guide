@@ -84,6 +84,20 @@ kubectl get secret \
     --all-namespaces
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks update` | Enable the OIDC issuer and workload identity. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--enable-oidc-issuer` | Enable the OIDC issuer for workload identity. |
+| `--enable-workload-identity` | Enable Microsoft Entra Workload ID. |
+| `az aks get-credentials` | Refresh the local kubeconfig. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--overwrite-existing` | Overwrite any existing kubeconfig entry for the cluster. |
+| `kubectl get serviceaccount` | List service accounts across namespaces. |
+| `kubectl get secret` | List secrets across namespaces. |
+
 ### Review cluster access in the Azure Portal
 
 The **Access control (IAM)** blade shows Azure RBAC role assignments that govern who can manage the cluster and its resources.

@@ -120,6 +120,26 @@ az network lb outbound-rule list \
     --output table
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show the cluster network profile. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the network profile. |
+| `--output` | Output format for the result. |
+| `az network nat gateway show` | Show the NAT gateway used for egress. |
+| `--resource-group` | Resource group that contains the NAT gateway. |
+| `--name` | Name of the NAT gateway. |
+| `--output` | Output format for the result. |
+| `az network route-table route list` | List the routes in the cluster route table. |
+| `--resource-group` | Resource group that contains the route table. |
+| `--route-table-name` | Name of the route table. |
+| `--output` | Output format for the result. |
+| `az network lb outbound-rule list` | List outbound rules on the load balancer. |
+| `--resource-group` | Node resource group that contains the load balancer. |
+| `--lb-name` | Name of the load balancer. |
+| `--output` | Output format for the result. |
+
 ## See Also
 
 - [Networking Models](networking-models.md)

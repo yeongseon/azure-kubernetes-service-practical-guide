@@ -91,6 +91,14 @@ az aks nodepool update \
     --localdns-config ./localdnsconfig.json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks nodepool update` | Apply a local DNS cache configuration to a node pool. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--name` | Name of the node pool to update. |
+| `--localdns-config` | Path to the local DNS configuration file. |
+
 Important rollout note: enabling LocalDNS on a node pool triggers a **node reimage** across that pool. Treat the change like a disruptive platform operation and validate:
 
 - PodDisruptionBudgets,

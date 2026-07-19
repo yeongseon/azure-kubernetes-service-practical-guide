@@ -68,6 +68,20 @@ az aks nodepool list --resource-group $RG --cluster-name $CLUSTER_NAME --output 
 az vm list-usage --location $LOCATION --output table
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show the cluster's full properties. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--output` | Output format for the result. |
+| `az aks nodepool list` | List the node pools in the cluster. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--output` | Output format for the result. |
+| `az vm list-usage` | Show regional vCPU quota usage. |
+| `--location` | Azure region to query. |
+| `--output` | Output format for the result. |
+
 ## Usage Notes
 
 - Capture command output in incident notes before changing configuration.

@@ -47,6 +47,15 @@ kubelogin --version
 helm version
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az version` | Show the installed Azure CLI version. |
+| `az extension add` | Install an Azure CLI extension. |
+| `--name` | Name of the extension to install. |
+| `kubectl version` | Show the kubectl client version. |
+| `kubelogin --version` | Show the kubelogin version. |
+| `helm version` | Show the Helm client version. |
+
 ### Baseline Kubernetes knowledge
 
 - Pods, deployments, services, ingress, and namespaces.
