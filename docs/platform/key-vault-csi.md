@@ -108,6 +108,17 @@ kubectl get secret "$SECRET_NAME" \
     --output yaml
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show the Key Vault secrets provider add-on. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the Key Vault secrets provider add-on. |
+| `--output` | Output format for the result. |
+| `kubectl get secretproviderclass` | List SecretProviderClass resources across namespaces. |
+| `kubectl describe pod` | Show pod details and mount events. |
+| `kubectl get secret` | Show a synced Kubernetes secret. |
+
 ## See Also
 
 - [Identity and Secrets](identity-and-secrets.md)

@@ -54,6 +54,14 @@ flowchart TD
         --output yaml
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks show` | Show the cluster auto-upgrade profile. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--name` | Name of the AKS cluster. |
+    | `--query` | Selects the auto-upgrade profile. |
+    | `--output` | Output format for the result. |
+
 2. Inspect node labels and node image versions.
 
     ```bash

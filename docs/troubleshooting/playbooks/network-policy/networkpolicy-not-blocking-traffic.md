@@ -63,6 +63,14 @@ flowchart TD
         --output yaml
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks show` | Show the dataplane, policy, plugin, and mode. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--name` | Name of the AKS cluster. |
+    | `--query` | Selects dataplane, policy, plugin, and mode. |
+    | `--output` | Output format for the result. |
+
 2. Inspect the policy and verify that the selected pods are the ones you intended.
 
     ```bash

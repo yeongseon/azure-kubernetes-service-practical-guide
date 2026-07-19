@@ -74,6 +74,17 @@ az aks update \
     --max-count 10
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `kubectl get hpa` | List HorizontalPodAutoscalers across namespaces. |
+| `kubectl top pods` | Show current pod CPU and memory usage. |
+| `az aks update` | Enable the cluster autoscaler bounds. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--enable-cluster-autoscaler` | Turn on the cluster autoscaler. |
+| `--min-count` | Minimum node count for autoscaling. |
+| `--max-count` | Maximum node count for autoscaling. |
+
 ### Common failure modes
 
 - HPA scales replicas but requests are too large for existing nodes.

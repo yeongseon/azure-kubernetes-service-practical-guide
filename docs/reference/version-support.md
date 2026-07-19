@@ -61,6 +61,21 @@ az aks get-versions \
     --output table
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show the current version and support plan. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects version, support plan, and upgrade profile. |
+| `--output` | Output format for the result. |
+| `az aks get-upgrades` | List available upgrade versions for the cluster. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--output` | Output format for the result. |
+| `az aks get-versions` | List Kubernetes versions available in the region. |
+| `--location` | Azure region to query. |
+| `--output` | Output format for the result. |
+
 ## Usage Notes
 
 - The operational target is not merely “supported”; it is “supported with enough runway left to schedule safely.”

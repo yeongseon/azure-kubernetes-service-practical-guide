@@ -75,6 +75,18 @@ az aks update \
     --max-count 10
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `kubectl get hpa` | List HorizontalPodAutoscalers across namespaces. |
+| `kubectl top nodes` | Show current node CPU and memory usage. |
+| `kubectl top pods` | Show current pod CPU and memory usage. |
+| `az aks update` | Enable the cluster autoscaler bounds. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--enable-cluster-autoscaler` | Turn on the cluster autoscaler. |
+| `--min-count` | Minimum node count for autoscaling. |
+| `--max-count` | Maximum node count for autoscaling. |
+
 ## Verification
 
 ```bash
@@ -89,6 +101,16 @@ az aks show \
     --query "agentPoolProfiles[].{name:name,min:minCount,max:maxCount,count:count}" \
     --output table
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `kubectl describe hpa` | Show HorizontalPodAutoscaler status and events. |
+| `kubectl get pods` | List pending pods awaiting scheduling. |
+| `az aks show` | Show autoscaler bounds per node pool. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects per-pool min, max, and count. |
+| `--output` | Output format for the result. |
 
 ## Rollback / Troubleshooting
 

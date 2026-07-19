@@ -103,6 +103,20 @@ az aks create \
     --generate-ssh-keys
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks create` | Create a Cilium cluster with explicit service networking. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--location` | Azure region for the cluster. |
+| `--network-plugin` | Container networking plugin. |
+| `--network-plugin-mode` | Network plugin mode such as overlay. |
+| `--network-dataplane` | Dataplane technology, Cilium for eBPF. |
+| `--pod-cidr` | CIDR range for pod addresses. |
+| `--service-cidr` | CIDR range for Kubernetes services. |
+| `--dns-service-ip` | Cluster DNS service IP inside the service CIDR. |
+| `--generate-ssh-keys` | Generate SSH keys if none are provided. |
+
 ### Confirm the active network profile
 
 ```bash
@@ -112,6 +126,14 @@ az aks show \
     --query "networkProfile.{plugin:networkPlugin,mode:networkPluginMode,dataplane:networkDataplane,policy:networkPolicy,serviceCidr:serviceCidr,dnsServiceIp:dnsServiceIP}" \
     --output yaml
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show the full network profile including service CIDR. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects plugin, dataplane, policy, and service networking. |
+| `--output` | Output format for the result. |
 
 ## See Also
 

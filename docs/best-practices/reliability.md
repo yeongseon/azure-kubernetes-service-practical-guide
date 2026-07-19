@@ -70,6 +70,13 @@ az aks get-upgrades \
     --output table
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks get-upgrades` | List available Kubernetes upgrade versions for the cluster. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--output` | Output format for the result. |
+
 Shows supported Kubernetes upgrade targets before the change window.
 
 **Validation**:
@@ -103,6 +110,19 @@ az aks maintenanceconfiguration add \
     --utc-offset +00:00
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks maintenanceconfiguration add` | Add a weekly auto-upgrade maintenance schedule. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--name` | Name of the maintenance configuration. |
+| `--schedule-type` | Recurrence type for the schedule. |
+| `--day-of-week` | Day of week the maintenance window opens. |
+| `--interval-weeks` | Number of weeks between windows. |
+| `--duration` | Length of the maintenance window in hours. |
+| `--start-time` | Local start time of the window. |
+| `--utc-offset` | UTC offset applied to the start time. |
+
 Creates a weekly planned-maintenance window for cluster auto-upgrade activity. The `aksManagedAutoUpgradeSchedule` configuration requires schedule-type flags (`--schedule-type`, `--day-of-week`, `--interval-weeks`); the `--weekday`/`--start-hour` flags apply only to the `default` maintenance configuration.
 
 **Validation**:
@@ -130,6 +150,14 @@ az aks nodepool show \
     --name system \
     --query "{mode:mode,count:count,zones:availabilityZones,maxSurge:upgradeSettings.maxSurge}"
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks nodepool show` | Show the system node pool mode, zones, and surge settings. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--name` | Name of the node pool to show. |
+| `--query` | Selects mode, count, zones, and max surge. |
 
 Checks whether a node pool is zonal or multi-zone and whether upgrade surge is defined.
 
@@ -163,6 +191,19 @@ az aks nodepool add \
     --max-count 3
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks nodepool add` | Add a small fallback user node pool. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--name` | Name of the new node pool. |
+| `--mode` | Node pool mode, User for application workloads. |
+| `--node-vm-size` | VM size for the pool nodes. |
+| `--node-count` | Initial number of nodes in the pool. |
+| `--enable-cluster-autoscaler` | Turn on the cluster autoscaler for the pool. |
+| `--min-count` | Minimum node count for autoscaling. |
+| `--max-count` | Maximum node count for autoscaling. |
+
 Adds a small fallback pool that can host non-system workloads when a primary pool is constrained.
 
 **Validation**:
@@ -189,6 +230,14 @@ az k8s-extension show \
     --cluster-type managedClusters \
     --name azure-aks-backup
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az k8s-extension show` | Show the installed backup cluster extension. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--cluster-type` | Cluster type, managedClusters for AKS. |
+| `--name` | Name of the cluster extension. |
 
 Checks the AKS Backup extension state. To inspect a backup instance's protection status, use `az dataprotection backup-instance show` (or `list`) against the backup vault instead.
 

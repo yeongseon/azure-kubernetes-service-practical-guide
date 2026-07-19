@@ -146,6 +146,13 @@ az aks update \
     --node-provisioning-mode Auto
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks update` | Enable node autoprovisioning on the cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--node-provisioning-mode` | Node provisioning mode, Auto for autoprovisioning. |
+
 List NAP-managed nodes:
 
 ```bash

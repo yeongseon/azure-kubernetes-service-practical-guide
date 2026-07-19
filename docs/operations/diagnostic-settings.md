@@ -104,6 +104,19 @@ WORKSPACE_ID=$(az monitor log-analytics workspace show \
     --output tsv)
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Read the cluster resource ID. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the cluster resource ID. |
+| `--output` | Output format for the result. |
+| `az monitor log-analytics workspace show` | Read the Log Analytics workspace resource ID. |
+| `--resource-group` | Resource group that contains the workspace. |
+| `--workspace-name` | Name of the Log Analytics workspace. |
+| `--query` | Selects the workspace resource ID. |
+| `--output` | Output format for the result. |
+
 Create the diagnostic setting with the issue #9 minimum baseline enabled:
 
 ```bash
@@ -124,6 +137,15 @@ az monitor diagnostic-settings create \
       {"category":"csi-azuredisk-controller","enabled":true}
     ]'
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az monitor diagnostic-settings create` | Route control plane logs to Log Analytics. |
+| `--name` | Name of the diagnostic setting. |
+| `--resource` | Resource ID of the AKS cluster. |
+| `--workspace` | Log Analytics workspace to receive the logs. |
+| `--export-to-resource-specific` | Send logs to resource-specific tables. |
+| `--logs` | JSON list of log categories to enable. |
 
 ### 4) Make cost choices deliberately
 
@@ -154,6 +176,11 @@ az monitor diagnostic-settings list \
     --resource "$CLUSTER_ID"
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az monitor diagnostic-settings list` | List the diagnostic settings on the cluster. |
+| `--resource` | Resource ID of the AKS cluster. |
+
 After data starts flowing, validate the destination tables:
 
 ```bash
@@ -161,6 +188,12 @@ az monitor log-analytics query \
     --workspace "$WORKSPACE_ID" \
     --analytics-query "union isfuzzy=true AKSControlPlane, AKSAudit, AKSAuditAdmin | summarize count() by Type"
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az monitor log-analytics query` | Query control plane log volume by table. |
+| `--workspace` | Log Analytics workspace to query. |
+| `--analytics-query` | KQL query text to execute. |
 
 Success means:
 

@@ -138,6 +138,13 @@ az aks update \
     --enable-keda
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks update` | Enable the KEDA add-on on the cluster. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--enable-keda` | Enable the KEDA workload autoscaler. |
+
 Confirm the add-on is enabled:
 
 ```bash
@@ -147,6 +154,14 @@ az aks show \
     --query "workloadAutoScalerProfile.keda.enabled" \
     --output tsv
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Check whether the KEDA add-on is enabled. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the KEDA enabled flag. |
+| `--output` | Output format for the result. |
 
 Inspect the KEDA control-plane pods:
 

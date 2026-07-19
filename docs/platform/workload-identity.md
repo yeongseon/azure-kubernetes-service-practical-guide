@@ -74,6 +74,19 @@ az aks show \
     --output yaml
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks update` | Enable the OIDC issuer and workload identity. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--enable-oidc-issuer` | Enable the OIDC issuer for workload identity. |
+| `--enable-workload-identity` | Enable Microsoft Entra Workload ID. |
+| `az aks show` | Show the OIDC issuer and workload identity profile. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the OIDC issuer and workload identity profile. |
+| `--output` | Output format for the result. |
+
 Treat the issuer URL as a cluster contract. A federated identity credential that trusts the wrong issuer cannot exchange tokens, even if the right service account name and namespace are used.
 
 ### ServiceAccount binding model
@@ -151,6 +164,16 @@ kubectl get serviceaccount "$SERVICE_ACCOUNT_NAME" \
 kubectl describe pod "$POD_NAME" \
     --namespace "$NAMESPACE"
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Read the cluster OIDC issuer URL. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the OIDC issuer URL. |
+| `--output` | Output format for the result. |
+| `kubectl get serviceaccount` | Show the workload service account definition. |
+| `kubectl describe pod` | Show pod details and identity mount events. |
 
 ## See Also
 

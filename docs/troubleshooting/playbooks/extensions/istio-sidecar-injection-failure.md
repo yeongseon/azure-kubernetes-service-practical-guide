@@ -73,6 +73,14 @@ flowchart TD
         --output json
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks show` | Show the installed Istio revisions. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--name` | Name of the AKS cluster. |
+    | `--query` | Selects the Istio mesh revisions. |
+    | `--output` | Output format for the result. |
+
 3. Inspect Istio control-plane pods.
 
     ```bash

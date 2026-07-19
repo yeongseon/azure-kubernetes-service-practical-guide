@@ -89,6 +89,14 @@ az aks show \
     --output yaml
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show the cluster identity and security posture. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects identity, RBAC, private cluster, and workload identity fields. |
+| `--output` | Output format for the result. |
+
 This verification is only the umbrella posture check. Delegate CNI, pod IP planning, ingress controller choice, outbound dependencies, and private API connectivity patterns to [networking.md](networking.md) and [private-cluster-api-connectivity.md](private-cluster-api-connectivity.md).
 
 ### Practice 3: Assign explicit platform ownership boundaries

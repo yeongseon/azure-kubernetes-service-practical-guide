@@ -138,6 +138,14 @@ az aks show \
     --output tsv
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Check whether Defender security monitoring is enabled. |
+| `--name` | Name of the AKS cluster. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--query` | Selects the Defender security monitoring flag. |
+| `--output` | Output format for the result. |
+
 Inspect Defender sensor pods:
 
 ```bash

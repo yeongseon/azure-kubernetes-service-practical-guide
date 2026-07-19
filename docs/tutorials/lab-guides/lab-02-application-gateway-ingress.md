@@ -59,6 +59,14 @@ az network vnet subnet create \
     --address-prefixes 10.40.8.0/24
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az network vnet subnet create` | Create the Application Gateway subnet. |
+| `--resource-group` | Resource group that contains the virtual network. |
+| `--vnet-name` | Name of the virtual network. |
+| `--name` | Name of the Application Gateway subnet. |
+| `--address-prefixes` | Address range for the subnet. |
+
 This step is important because it establishes the control point for **create the application gateway subnet**. After running it, pause and verify the Azure resource state before moving on so you do not compound errors later in the lab.
 
 ### Step 2: Deploy Application Gateway
@@ -74,6 +82,17 @@ az network application-gateway create \
     --sku WAF_v2
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az network application-gateway create` | Create the Application Gateway with WAF. |
+| `--resource-group` | Resource group that contains the Application Gateway. |
+| `--name` | Name of the Application Gateway. |
+| `--location` | Azure region for the gateway. |
+| `--vnet-name` | Virtual network for the gateway. |
+| `--subnet` | Subnet dedicated to the gateway. |
+| `--capacity` | Number of gateway instances. |
+| `--sku` | Gateway SKU, WAF_v2 for the web application firewall. |
+
 This step is important because it establishes the control point for **deploy application gateway**. After running it, pause and verify the Azure resource state before moving on so you do not compound errors later in the lab.
 
 ### Step 3: Enable AGIC on AKS
@@ -85,6 +104,14 @@ az aks enable-addons \
     --addons ingress-appgw \
     --appgw-id "$APPGW_ID"
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks enable-addons` | Enable the Application Gateway ingress controller add-on. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--addons` | Add-on to enable, ingress-appgw. |
+| `--appgw-id` | Resource ID of the Application Gateway. |
 
 This step is important because it establishes the control point for **enable agic on aks**. After running it, pause and verify the Azure resource state before moving on so you do not compound errors later in the lab.
 
@@ -118,6 +145,13 @@ az network application-gateway show-backend-health \
     --name "$APPGW_NAME"
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `kubectl get ingress` | List Ingress resources across namespaces. |
+| `az network application-gateway show-backend-health` | Show backend health of the Application Gateway. |
+| `--resource-group` | Resource group that contains the Application Gateway. |
+| `--name` | Name of the Application Gateway. |
+
 This step is important because it establishes the control point for **inspect ingress and gateway health**. After running it, pause and verify the Azure resource state before moving on so you do not compound errors later in the lab.
 
 ## Validation Steps
@@ -145,12 +179,27 @@ az aks show \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show core cluster properties. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects name, provisioning state, and version. |
+| `--output` | Output format for the result. |
+
 ```bash
 az monitor log-analytics query \
     --workspace "$WORKSPACE_ID" \
     --analytics-query "KubeNodeInventory | where TimeGenerated > ago(15m) | summarize Nodes=dcount(Computer) by ClusterName" \
     --timespan "PT15M"
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az monitor log-analytics query` | Query node inventory counts by cluster. |
+| `--workspace` | Log Analytics workspace to query. |
+| `--analytics-query` | KQL query text to execute. |
+| `--timespan` | Time range for the query. |
 
 ## Cleanup Instructions
 
@@ -162,6 +211,13 @@ az group delete \
     --yes \
     --no-wait
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az group delete` | Delete the lab resource group and its resources. |
+| `--name` | Name of the resource group to delete. |
+| `--yes` | Skip the confirmation prompt. |
+| `--no-wait` | Return without waiting for deletion to finish. |
 
 If you created secondary resource groups, Application Gateway, or user-assigned identities, delete those resources as part of the same cleanup workflow or document why they remain.
 

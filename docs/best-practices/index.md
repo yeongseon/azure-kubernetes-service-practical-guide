@@ -103,6 +103,29 @@ az aks create \
     --workspace-resource-id "$WORKSPACE_ID"
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks create` | Create the standard production AKS cluster blueprint. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--location` | Azure region for the cluster. |
+| `--enable-managed-identity` | Use a managed identity instead of a service principal. |
+| `--enable-aad` | Enable Microsoft Entra integration. |
+| `--enable-azure-rbac` | Use Azure RBAC for Kubernetes authorization. |
+| `--network-plugin` | Container networking plugin. |
+| `--network-plugin-mode` | Network plugin mode such as overlay. |
+| `--nodepool-name` | Name of the initial system node pool. |
+| `--node-count` | Number of nodes in the system pool. |
+| `--node-vm-size` | VM size for the system pool nodes. |
+| `--zones` | Availability zones to spread nodes across. |
+| `--enable-cluster-autoscaler` | Turn on the cluster autoscaler for the pool. |
+| `--min-count` | Minimum node count for autoscaling. |
+| `--max-count` | Maximum node count for autoscaling. |
+| `--tier` | Cluster SKU tier. |
+| `--enable-oidc-issuer` | Enable the OIDC issuer for workload identity. |
+| `--enable-workload-identity` | Enable Microsoft Entra Workload ID. |
+| `--workspace-resource-id` | Log Analytics workspace for Container Insights. |
+
 ```bash
 az aks show \
     --resource-group "$RG" \
@@ -110,6 +133,14 @@ az aks show \
     --query "{kubernetesVersion:kubernetesVersion,privateFqdn:privateFqdn,networkPlugin:networkProfile.networkPlugin,networkMode:networkProfile.networkPluginMode,identity:identity.type}" \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show key cluster fields to validate the blueprint. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | JMESPath projection of key cluster fields. |
+| `--output` | Output format for the result. |
 
 **Validation**:
 
@@ -140,6 +171,20 @@ az aks nodepool add \
     --max-count 10 \
     --labels workload=app team=platform
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks nodepool add` | Add a dedicated user node pool for applications. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--name` | Name of the new node pool. |
+| `--mode` | Node pool mode, User for application workloads. |
+| `--node-vm-size` | VM size for the pool nodes. |
+| `--node-count` | Initial number of nodes in the pool. |
+| `--enable-cluster-autoscaler` | Turn on the cluster autoscaler for the pool. |
+| `--min-count` | Minimum node count for autoscaling. |
+| `--max-count` | Maximum node count for autoscaling. |
+| `--labels` | Kubernetes labels applied to the pool nodes. |
 
 ```bash
 kubectl get nodes \
@@ -184,6 +229,14 @@ az aks show \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show the cluster network profile. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the network profile. |
+| `--output` | Output format for the result. |
+
 ```bash
 az network vnet subnet show \
     --resource-group "$RG" \
@@ -192,6 +245,15 @@ az network vnet subnet show \
     --query "{addressPrefix:addressPrefix,delegations:delegations}" \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az network vnet subnet show` | Show the AKS subnet address plan and delegations. |
+| `--resource-group` | Resource group that contains the virtual network. |
+| `--vnet-name` | Name of the virtual network. |
+| `--name` | Name of the AKS subnet. |
+| `--query` | Selects the address prefix and delegations. |
+| `--output` | Output format for the result. |
 
 ```bash
 kubectl get pods \
@@ -229,6 +291,13 @@ az aks update \
     --name "$CLUSTER_NAME" \
     --network-policy azure
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks update` | Enable Azure network policy on the cluster. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--network-policy` | Network policy engine to enable. |
 
 ```bash
 kubectl apply \
@@ -317,6 +386,12 @@ az aks approuting enable \
     --name "$CLUSTER_NAME"
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks approuting enable` | Enable the managed application routing add-on. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+
 ```bash
 kubectl get ingressclass \
     --output wide
@@ -335,6 +410,14 @@ az network application-gateway show \
     --query "{provisioningState:provisioningState,frontendIpConfigurations:frontendIpConfigurations[].privateIPAddress}" \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az network application-gateway show` | Show the Application Gateway provisioning and frontend state. |
+| `--resource-group` | Resource group that contains the Application Gateway. |
+| `--name` | Name of the Application Gateway. |
+| `--query` | Selects provisioning state and frontend IP configuration. |
+| `--output` | Output format for the result. |
 
 **Validation**:
 
@@ -375,6 +458,22 @@ az aks nodepool add \
     --max-count 20 \
     --labels workload=batch capacity=spot
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks nodepool add` | Add a spot node pool for interruptible workloads. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--name` | Name of the new node pool. |
+| `--mode` | Node pool mode, User for application workloads. |
+| `--priority` | Scale set priority, Spot for interruptible capacity. |
+| `--eviction-policy` | Action taken when a spot node is evicted. |
+| `--spot-max-price` | Maximum spot price, -1 to pay up to the on-demand price. |
+| `--node-vm-size` | VM size for the pool nodes. |
+| `--enable-cluster-autoscaler` | Turn on the cluster autoscaler for the pool. |
+| `--min-count` | Minimum node count for autoscaling. |
+| `--max-count` | Maximum node count for autoscaling. |
+| `--labels` | Kubernetes labels applied to the pool nodes. |
 
 ```bash
 kubectl top nodes
@@ -417,6 +516,14 @@ az aks enable-addons \
     --workspace-resource-id "$WORKSPACE_ID"
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks enable-addons` | Enable the Container Insights monitoring add-on. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--addons` | Add-on to enable, monitoring for Container Insights. |
+| `--workspace-resource-id` | Log Analytics workspace for the monitoring data. |
+
 ```bash
 az monitor log-analytics query \
     --workspace "$WORKSPACE_ID" \
@@ -424,12 +531,26 @@ az monitor log-analytics query \
     --timespan "PT15M"
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az monitor log-analytics query` | Run a KQL query for per-namespace pod counts. |
+| `--workspace` | Log Analytics workspace to query. |
+| `--analytics-query` | KQL query text to execute. |
+| `--timespan` | Time range for the query. |
+
 ```bash
 az monitor log-analytics query \
     --workspace "$WORKSPACE_ID" \
     --analytics-query "ContainerLogV2 | where TimeGenerated > ago(15m) | summarize RestartSignals=countif(LogMessage has 'Back-off') by Namespace" \
     --timespan "PT15M"
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az monitor log-analytics query` | Run a KQL query for container restart signals. |
+| `--workspace` | Log Analytics workspace to query. |
+| `--analytics-query` | KQL query text to execute. |
+| `--timespan` | Time range for the query. |
 
 **Validation**:
 

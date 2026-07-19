@@ -56,6 +56,14 @@ flowchart TD
         --output yaml
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks show` | Show version, auto-upgrade profile, and state. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--name` | Name of the AKS cluster. |
+    | `--query` | Selects version, auto-upgrade profile, and provisioning state. |
+    | `--output` | Output format for the result. |
+
 2. Review cluster events and the current node and PDB picture.
 
     ```bash

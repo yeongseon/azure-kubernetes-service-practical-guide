@@ -55,6 +55,12 @@ You can run these queries directly in the Azure Portal's **Logs** blade or via t
 az monitor log-analytics query --workspace <workspace-id> --analytics-query "KubePodInventory | take 10"
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az monitor log-analytics query` | Run a sample KQL query against the workspace. |
+| `--workspace` | Log Analytics workspace to query. |
+| `--analytics-query` | KQL query text to execute. |
+
 ## Usage Notes
 
 *   **Time Windows**: Most queries use `ago(1h)` by default. Adjust this window based on when your incident occurred.

@@ -41,6 +41,16 @@ kubectl auth can-i create deployments --namespace <namespace>
 az monitor metrics list --resource "$CLUSTER_ID" --metric apiserver_cpu_usage_percentage --interval PT5M
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `kubectl get --raw` | Query the API server readiness endpoint. |
+| `kubectl get events` | List Kubernetes events for troubleshooting. |
+| `kubectl auth can-i` | Check whether the caller can perform an action. |
+| `az monitor metrics list` | List API server CPU metrics for the cluster. |
+| `--resource` | Resource ID of the AKS cluster. |
+| `--metric` | Metric to retrieve. |
+| `--interval` | Aggregation interval for the metric. |
+
 ## See Also
 
 - [API Server Health and Latency](../kql/control-plane/api-server-health-latency.md)

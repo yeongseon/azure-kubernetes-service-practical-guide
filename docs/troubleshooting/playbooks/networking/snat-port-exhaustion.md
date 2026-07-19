@@ -67,6 +67,14 @@ flowchart TD
         --output yaml
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks show` | Show the outbound type and load balancer profiles. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--name` | Name of the AKS cluster. |
+    | `--query` | Selects outbound type, load balancer, and NAT gateway profiles. |
+    | `--output` | Output format for the result. |
+
 2. Collect cluster events and workload-side symptoms from the same time window.
 
     ```bash
@@ -83,6 +91,13 @@ flowchart TD
         --output table
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az network lb outbound-rule list` | List outbound rules on the load balancer. |
+    | `--resource-group` | Node resource group that contains the load balancer. |
+    | `--lb-name` | Name of the load balancer. |
+    | `--output` | Output format for the result. |
+
 4. If NAT Gateway is in use, confirm the expected gateway and subnet attachment.
 
     ```bash
@@ -92,6 +107,13 @@ flowchart TD
         --output json
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az network nat gateway show` | Show the NAT gateway used for egress. |
+    | `--resource-group` | Resource group that contains the NAT gateway. |
+    | `--name` | Name of the NAT gateway. |
+    | `--output` | Output format for the result. |
+
 5. Pull the relevant Azure Monitor metrics for the suspected egress resource and compare them with the metric reference page instead of recreating local metric tables.
 
     ```bash
@@ -100,6 +122,13 @@ flowchart TD
         --metric "SnatConnectionCount" \
         --interval PT5M
     ```
+
+    | Command | Purpose |
+    | --- | --- |
+    | `az monitor metrics list` | List SNAT connection metrics for the resource. |
+    | `--resource` | Resource ID to query. |
+    | `--metric` | Metric to retrieve. |
+    | `--interval` | Aggregation interval for the metric. |
 
 ## Resolution
 

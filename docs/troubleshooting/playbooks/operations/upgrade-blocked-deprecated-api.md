@@ -52,6 +52,13 @@ flowchart TD
         --output table
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks get-upgrades` | List available Kubernetes upgrade versions for the cluster. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--name` | Name of the AKS cluster. |
+    | `--output` | Output format for the result. |
+
 2. Review Kubernetes resources and controller inventory.
 
     ```bash

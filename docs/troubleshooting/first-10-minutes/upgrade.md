@@ -42,6 +42,21 @@ kubectl get pods --all-namespaces
 kubectl get events --all-namespaces --sort-by=.lastTimestamp
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show provisioning state, version, and power state. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects provisioning state, version, and power state. |
+| `--output` | Output format for the result. |
+| `az aks nodepool list` | List the node pools in the cluster. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--output` | Output format for the result. |
+| `kubectl get nodes` | List cluster nodes. |
+| `kubectl get pods` | List pods across namespaces. |
+| `kubectl get events` | List Kubernetes events for troubleshooting. |
+
 ## See Also
 
 - [Upgrades](../../operations/upgrades.md)

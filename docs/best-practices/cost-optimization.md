@@ -81,6 +81,14 @@ az aks nodepool list \
     --output table
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks nodepool list` | List the node pools in the cluster. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--query` | JMESPath projection of the node pool fields to return. |
+| `--output` | Output format for the result. |
+
 Use this inventory to find pools whose VM family, node count floor, or disk size looks more expensive than the workload actually needs.
 
 ```bash
@@ -106,6 +114,15 @@ az aks nodepool show \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks nodepool show` | Show details of a single node pool. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--name` | Name of the node pool to show. |
+| `--query` | JMESPath projection of the node pool fields to return. |
+| `--output` | Output format for the result. |
+
 Use this to confirm that the spot pool is a secondary user pool and that its price settings match the intended cost model.
 
 The economic decision is simple: use Spot when interruption is cheaper than regular capacity. The operational details of taints, tolerations, evictions, and autoscaler recovery belong in [Autoscaling](autoscaling.md), and this page intentionally does not restate them.
@@ -128,6 +145,13 @@ az aks show \
     --query "agentPoolProfiles[].{name:name,count:count,enableAutoScaling:enableAutoScaling,min:minCount,max:maxCount,vmSize:vmSize,mode:mode}"
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show cluster properties and agent pool profiles. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | JMESPath projection of the agent pool fields to return. |
+
 Use this to compare each pool's current count and minimum floor against the business reason for keeping spare capacity.
 
 Document the reason for every intentional buffer. If a pool has a nonzero minimum, the team should be able to say which workload needs that floor, what latency or availability risk it protects, and when the assumption will be reviewed. If they cannot, treat it as waste.
@@ -146,6 +170,18 @@ NODE_RG=$(az aks show \
     --query "[].{type:type,name:name,location:location}" \
     --output table
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Get the AKS-managed node resource group name for the next command. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the node resource group name. |
+| `--output` | Output format for the result. |
+| `az resource list` | List the resources inside the node resource group. |
+| `--resource-group` | Node resource group to enumerate. |
+| `--query` | JMESPath projection of the resource fields to return. |
+| `--output` | Output format for the result. |
 
 Use this to inventory billable Azure resources created on behalf of the cluster before deciding what can be deleted or downsized.
 
@@ -180,6 +216,12 @@ az monitor diagnostic-settings list \
     --resource "/subscriptions/$SUBSCRIPTION_ID/resourceGroups/$RG/providers/Microsoft.ContainerService/managedClusters/$CLUSTER_NAME" \
     --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az monitor diagnostic-settings list` | List the diagnostic settings on the cluster resource. |
+| `--resource` | Resource ID of the AKS cluster. |
+| `--output` | Output format for the result. |
 
 Use this to verify which AKS control-plane log categories are being collected and whether diagnostic settings still match the intended cost profile.
 

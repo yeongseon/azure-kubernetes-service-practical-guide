@@ -97,6 +97,14 @@ flowchart TD
         --output table
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks nodepool list` | List node pools with zones and scaling. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--cluster-name` | Name of the AKS cluster. |
+    | `--query` | Selects name, zones, count, and autoscaling. |
+    | `--output` | Output format for the result. |
+
 5. If replacement pods exist but are not Ready, inspect their exact failure path.
 
     ```bash

@@ -68,6 +68,15 @@ flowchart TD
         --output yaml
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks nodepool show` | Show a spot node pool's priority and scaling. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--cluster-name` | Name of the AKS cluster. |
+    | `--name` | Name of the node pool to show. |
+    | `--query` | Selects priority, min, max, count, and eviction policy. |
+    | `--output` | Output format for the result. |
+
 4. Review pod retry and reschedule behavior.
 
 ## Resolution

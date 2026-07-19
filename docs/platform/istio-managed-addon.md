@@ -125,6 +125,14 @@ az aks show \
     --output tsv
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show the service mesh add-on mode. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the service mesh mode. |
+| `--output` | Output format for the result. |
+
 Inspect control-plane pods:
 
 ```bash

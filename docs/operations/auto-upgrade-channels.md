@@ -91,6 +91,18 @@ az aks show \
     --output yaml
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks update` | Set the cluster auto-upgrade channel. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--auto-upgrade-channel` | Kubernetes auto-upgrade channel to use. |
+| `az aks show` | Show the resulting auto-upgrade profile. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the auto-upgrade profile. |
+| `--output` | Output format for the result. |
+
 ### Operational notes
 
 - Auto-upgrade first upgrades the control plane, then upgrades agent pools.
@@ -107,6 +119,14 @@ az aks show \
     --query "{clusterChannel:autoUpgradeProfile.upgradeChannel,nodeOsChannel:autoUpgradeProfile.nodeOsUpgradeChannel}" \
     --output yaml
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show the cluster and node OS upgrade channels. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the cluster and node OS upgrade channels. |
+| `--output` | Output format for the result. |
 
 - Confirm the intended cluster channel is present.
 - Confirm the node OS channel is independently set as expected.

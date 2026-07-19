@@ -83,6 +83,15 @@ az aks update \
     --grafana-resource-id "$GRAFANA_RESOURCE_ID"
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks update` | Enable managed Prometheus metrics and Grafana. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--enable-azure-monitor-metrics` | Enable the managed Prometheus metrics add-on. |
+| `--azure-monitor-workspace-resource-id` | Azure Monitor workspace to store metrics. |
+| `--grafana-resource-id` | Azure Managed Grafana instance to link. |
+
 If Container insights is not already enabled, add it separately so logs and events continue to land in Log Analytics:
 
 ```bash
@@ -92,6 +101,14 @@ az aks enable-addons \
     --name "$CLUSTER_NAME" \
     --workspace-resource-id "$LOG_ANALYTICS_WORKSPACE_ID"
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks enable-addons` | Enable the Container Insights monitoring add-on. |
+| `--addons` | Add-on to enable, monitoring for Container Insights. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--workspace-resource-id` | Log Analytics workspace for the monitoring data. |
 
 ### 3) Decide whether Grafana in the portal is enough
 
@@ -149,6 +166,14 @@ az aks show \
     --output tsv
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Check whether managed Prometheus metrics are enabled. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the metrics enabled flag. |
+| `--output` | Output format for the result. |
+
 Then confirm the workspace and Grafana linkages are present:
 
 ```bash
@@ -158,6 +183,14 @@ az aks show \
     --query "azureMonitorProfile.metrics" \
     --output yaml
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show the managed Prometheus metrics profile. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects the metrics profile. |
+| `--output` | Output format for the result. |
 
 Success means:
 

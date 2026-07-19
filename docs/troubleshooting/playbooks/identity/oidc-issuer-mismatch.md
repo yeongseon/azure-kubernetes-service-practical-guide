@@ -57,6 +57,14 @@ flowchart TD
         --output yaml
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks show` | Show the OIDC issuer and workload identity state. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--name` | Name of the AKS cluster. |
+    | `--query` | Selects the issuer URL and workload identity profile. |
+    | `--output` | Output format for the result. |
+
 2. Confirm the workload runs as the intended service account.
 
     ```bash
@@ -77,6 +85,13 @@ flowchart TD
         --identity-name "$USER_ASSIGNED_IDENTITY_NAME" \
         --output table
     ```
+
+    | Command | Purpose |
+    | --- | --- |
+    | `az identity federated-credential list` | List federated credentials on the identity. |
+    | `--resource-group` | Resource group that contains the identity. |
+    | `--identity-name` | Managed identity to inspect. |
+    | `--output` | Output format for the result. |
 
 4. Inspect pod logs for token exchange failures while keeping the issuer comparison as the primary hypothesis.
 

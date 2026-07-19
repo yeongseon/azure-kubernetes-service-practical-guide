@@ -37,6 +37,23 @@ az aks get-credentials --resource-group $RG --name $CLUSTER_NAME --overwrite-exi
 az aks get-upgrades --resource-group $RG --name $CLUSTER_NAME --output table
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks list` | List AKS clusters in the subscription. |
+| `--output` | Output format for the result. |
+| `az aks show` | Show a single cluster's full properties. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--output` | Output format for the result. |
+| `az aks get-credentials` | Merge cluster credentials into the local kubeconfig. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--overwrite-existing` | Overwrite any existing kubeconfig entry for the cluster. |
+| `az aks get-upgrades` | List available Kubernetes upgrade versions. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--output` | Output format for the result. |
+
 ### Node pools
 
 ```bash
@@ -44,6 +61,23 @@ az aks nodepool list --resource-group $RG --cluster-name $CLUSTER_NAME --output 
 az aks nodepool show --resource-group $RG --cluster-name $CLUSTER_NAME --name <pool-name> --output yaml
 az aks nodepool scale --resource-group $RG --cluster-name $CLUSTER_NAME --name <pool-name> --node-count 5
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks nodepool list` | List the node pools in the cluster. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--output` | Output format for the result. |
+| `az aks nodepool show` | Show a single node pool's properties. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--name` | Name of the node pool to show. |
+| `--output` | Output format for the result. |
+| `az aks nodepool scale` | Scale a node pool to a fixed node count. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--name` | Name of the node pool to scale. |
+| `--node-count` | Target number of nodes. |
 
 ### Kubernetes objects
 

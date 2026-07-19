@@ -56,6 +56,17 @@ az keyvault secret set \
     --value "demo-value"
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az keyvault create` | Create the Key Vault for the lab. |
+| `--resource-group` | Resource group that contains the Key Vault. |
+| `--name` | Name of the Key Vault. |
+| `--location` | Azure region for the Key Vault. |
+| `az keyvault secret set` | Store a demo secret in the Key Vault. |
+| `--vault-name` | Key Vault that stores the secret. |
+| `--name` | Name of the secret. |
+| `--value` | Value of the secret. |
+
 This step is important because it establishes the control point for **create key vault and a secret**. After running it, pause and verify the Azure resource state before moving on so you do not compound errors later in the lab.
 
 ### Step 2: Enable the CSI driver add-on
@@ -66,6 +77,13 @@ az aks enable-addons \
     --name "$CLUSTER_NAME" \
     --addons azure-keyvault-secrets-provider
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks enable-addons` | Enable the Azure Key Vault secrets provider add-on. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--addons` | Add-on to enable, the Key Vault secrets provider. |
 
 This step is important because it establishes the control point for **enable the csi driver add-on**. After running it, pause and verify the Azure resource state before moving on so you do not compound errors later in the lab.
 
@@ -83,6 +101,18 @@ az identity federated-credential create \
     --issuer "$OIDC_ISSUER" \
     --subject system:serviceaccount:workload:keyvault-reader
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az identity create` | Create the user-assigned managed identity. |
+| `--resource-group` | Resource group that contains the identity. |
+| `--name` | Name of the managed identity. |
+| `az identity federated-credential create` | Federate the identity with the service account. |
+| `--resource-group` | Resource group that contains the identity. |
+| `--identity-name` | Managed identity to federate. |
+| `--name` | Name of the federated credential. |
+| `--issuer` | OIDC issuer URL of the cluster. |
+| `--subject` | Kubernetes service account subject to trust. |
 
 This step is important because it establishes the control point for **create user-assigned identity and federated credential**. After running it, pause and verify the Azure resource state before moving on so you do not compound errors later in the lab.
 
@@ -104,6 +134,15 @@ kubectl apply \
 kubectl apply \
     --filename keyvault-pod.yaml
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az role assignment create` | Grant the identity access to Key Vault secrets. |
+| `--assignee-object-id` | Object ID of the identity to grant. |
+| `--assignee-principal-type` | Principal type of the assignee. |
+| `--role` | Role to assign. |
+| `--scope` | Resource scope the role applies to. |
+| `kubectl apply` | Apply the workload manifests to the cluster. |
 
 This step is important because it establishes the control point for **grant key vault access and apply manifests**. After running it, pause and verify the Azure resource state before moving on so you do not compound errors later in the lab.
 
@@ -144,12 +183,27 @@ az aks show \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show core cluster properties. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects name, provisioning state, and version. |
+| `--output` | Output format for the result. |
+
 ```bash
 az monitor log-analytics query \
     --workspace "$WORKSPACE_ID" \
     --analytics-query "KubeNodeInventory | where TimeGenerated > ago(15m) | summarize Nodes=dcount(Computer) by ClusterName" \
     --timespan "PT15M"
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az monitor log-analytics query` | Query node inventory counts by cluster. |
+| `--workspace` | Log Analytics workspace to query. |
+| `--analytics-query` | KQL query text to execute. |
+| `--timespan` | Time range for the query. |
 
 ## Cleanup Instructions
 
@@ -161,6 +215,13 @@ az group delete \
     --yes \
     --no-wait
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az group delete` | Delete the lab resource group and its resources. |
+| `--name` | Name of the resource group to delete. |
+| `--yes` | Skip the confirmation prompt. |
+| `--no-wait` | Return without waiting for deletion to finish. |
 
 If you created secondary resource groups, Application Gateway, or user-assigned identities, delete those resources as part of the same cleanup workflow or document why they remain.
 

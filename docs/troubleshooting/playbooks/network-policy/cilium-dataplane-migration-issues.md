@@ -68,6 +68,14 @@ flowchart TD
         --output yaml
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks show` | Show the cluster network profile. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--name` | Name of the AKS cluster. |
+    | `--query` | Selects the network profile. |
+    | `--output` | Output format for the result. |
+
 2. Determine whether the cluster is coming from:
 
     - Azure CNI node subnet,

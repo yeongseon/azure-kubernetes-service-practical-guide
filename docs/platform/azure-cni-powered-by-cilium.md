@@ -150,6 +150,18 @@ az aks create \
     --generate-ssh-keys
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks create` | Create a cluster with Cilium dataplane on overlay. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--location` | Azure region for the cluster. |
+| `--network-plugin` | Container networking plugin. |
+| `--network-plugin-mode` | Network plugin mode such as overlay. |
+| `--network-dataplane` | Dataplane technology, Cilium for eBPF. |
+| `--pod-cidr` | CIDR range for pod addresses. |
+| `--generate-ssh-keys` | Generate SSH keys if none are provided. |
+
 Update an existing Azure CNI cluster to the Cilium dataplane:
 
 ```bash
@@ -158,6 +170,13 @@ az aks update \
     --name "$CLUSTER_NAME" \
     --network-dataplane cilium
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks update` | Migrate the cluster to the Cilium dataplane. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--network-dataplane` | Dataplane technology, Cilium for eBPF. |
 
 Confirm the active dataplane and network mode:
 
@@ -168,6 +187,14 @@ az aks show \
     --query "networkProfile.{plugin:networkPlugin,mode:networkPluginMode,dataplane:networkDataplane,policy:networkPolicy}" \
     --output yaml
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show the plugin, mode, dataplane, and policy. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects plugin, mode, dataplane, and policy. |
+| `--output` | Output format for the result. |
 
 ## See Also
 

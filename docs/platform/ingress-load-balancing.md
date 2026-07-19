@@ -96,6 +96,15 @@ kubectl describe ingress <ingress-name> \
 az network public-ip list --resource-group MC_<managed-resource-group>_<cluster-name>_<location> --output table
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `kubectl get ingress` | List Ingress resources across namespaces. |
+| `kubectl get service` | List Services across namespaces. |
+| `kubectl describe ingress` | Show Ingress details and events. |
+| `az network public-ip list` | List public IPs in the node resource group. |
+| `--resource-group` | Node resource group that holds the load balancer IPs. |
+| `--output` | Output format for the result. |
+
 ### View services and ingresses in the Azure Portal
 
 The **Services and ingresses** blade lists Kubernetes Services with their type and external endpoint, so you can confirm a `LoadBalancer` service received a public IP.

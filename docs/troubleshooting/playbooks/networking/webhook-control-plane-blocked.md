@@ -71,6 +71,14 @@ Admission requests hang or fail, deployments time out on create or update, or va
         --output yaml
     ```
 
+    | Command | Purpose |
+    | --- | --- |
+    | `az aks show` | Show the private cluster and API server access profile. |
+    | `--resource-group` | Resource group that contains the AKS cluster. |
+    | `--name` | Name of the AKS cluster. |
+    | `--query` | Selects private cluster flag, access profile, and network profile. |
+    | `--output` | Output format for the result. |
+
 5. If the cluster uses UDR, firewall inspection, or a network-isolated path, inspect those controls for control-plane-to-webhook calls in addition to regular pod egress.
 
 ## Resolution

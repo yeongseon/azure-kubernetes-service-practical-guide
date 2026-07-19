@@ -65,6 +65,16 @@ az monitor log-analytics workspace create \
     --location "$LOCATION"
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az group create` | Create the resource group for the lab. |
+| `--name` | Name of the resource group. |
+| `--location` | Azure region for the resource group. |
+| `az monitor log-analytics workspace create` | Create the Log Analytics workspace. |
+| `--resource-group` | Resource group that contains the workspace. |
+| `--workspace-name` | Name of the Log Analytics workspace. |
+| `--location` | Azure region for the workspace. |
+
 This step is important because it establishes the control point for **create resource group and workspace**. After running it, pause and verify the Azure resource state before moving on so you do not compound errors later in the lab.
 
 ### Step 2: Create virtual network and subnet
@@ -77,6 +87,15 @@ az network vnet create \
     --subnet-name "$AKS_SUBNET_NAME" \
     --subnet-prefixes 10.40.0.0/22
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az network vnet create` | Create the virtual network and AKS subnet. |
+| `--resource-group` | Resource group that contains the virtual network. |
+| `--name` | Name of the virtual network. |
+| `--address-prefixes` | Address space for the virtual network. |
+| `--subnet-name` | Name of the AKS subnet. |
+| `--subnet-prefixes` | Address range for the AKS subnet. |
 
 This step is important because it establishes the control point for **create virtual network and subnet**. After running it, pause and verify the Azure resource state before moving on so you do not compound errors later in the lab.
 
@@ -105,6 +124,29 @@ az aks create \
     --workspace-resource-id "$WORKSPACE_ID"
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks create` | Create a private AKS cluster on a dedicated subnet. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--location` | Azure region for the cluster. |
+| `--enable-private-cluster` | Create the cluster with a private API server. |
+| `--network-plugin` | Container networking plugin. |
+| `--network-plugin-mode` | Network plugin mode such as overlay. |
+| `--vnet-subnet-id` | Resource ID of the AKS subnet. |
+| `--nodepool-name` | Name of the initial system node pool. |
+| `--node-count` | Number of nodes in the system pool. |
+| `--node-vm-size` | VM size for the system pool nodes. |
+| `--enable-cluster-autoscaler` | Turn on the cluster autoscaler for the pool. |
+| `--min-count` | Minimum node count for autoscaling. |
+| `--max-count` | Maximum node count for autoscaling. |
+| `--enable-managed-identity` | Use a managed identity instead of a service principal. |
+| `--enable-aad` | Enable Microsoft Entra integration. |
+| `--enable-azure-rbac` | Use Azure RBAC for Kubernetes authorization. |
+| `--enable-oidc-issuer` | Enable the OIDC issuer for workload identity. |
+| `--enable-workload-identity` | Enable Microsoft Entra Workload ID. |
+| `--workspace-resource-id` | Log Analytics workspace for Container Insights. |
+
 This step is important because it establishes the control point for **deploy the private aks cluster**. After running it, pause and verify the Azure resource state before moving on so you do not compound errors later in the lab.
 
 ### Step 4: Fetch credentials and inspect the cluster
@@ -118,6 +160,14 @@ az aks get-credentials \
 kubectl get nodes \
     --output wide
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks get-credentials` | Merge cluster credentials into the local kubeconfig. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--overwrite-existing` | Overwrite any existing kubeconfig entry for the cluster. |
+| `kubectl get nodes` | List cluster nodes to confirm readiness. |
 
 This step is important because it establishes the control point for **fetch credentials and inspect the cluster**. After running it, pause and verify the Azure resource state before moving on so you do not compound errors later in the lab.
 
@@ -136,6 +186,20 @@ az aks nodepool add \
     --max-count 10 \
     --labels workload=app environment=lab
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az aks nodepool add` | Add a user node pool for lab applications. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--cluster-name` | Name of the AKS cluster. |
+| `--name` | Name of the new node pool. |
+| `--mode` | Node pool mode, User for application workloads. |
+| `--node-vm-size` | VM size for the pool nodes. |
+| `--node-count` | Initial number of nodes in the pool. |
+| `--enable-cluster-autoscaler` | Turn on the cluster autoscaler for the pool. |
+| `--min-count` | Minimum node count for autoscaling. |
+| `--max-count` | Maximum node count for autoscaling. |
+| `--labels` | Kubernetes labels applied to the pool nodes. |
 
 This step is important because it establishes the control point for **add a user node pool and labels**. After running it, pause and verify the Azure resource state before moving on so you do not compound errors later in the lab.
 
@@ -164,12 +228,27 @@ az aks show \
     --output json
 ```
 
+| Command | Purpose |
+| --- | --- |
+| `az aks show` | Show core cluster properties. |
+| `--resource-group` | Resource group that contains the AKS cluster. |
+| `--name` | Name of the AKS cluster. |
+| `--query` | Selects name, provisioning state, and version. |
+| `--output` | Output format for the result. |
+
 ```bash
 az monitor log-analytics query \
     --workspace "$WORKSPACE_ID" \
     --analytics-query "KubeNodeInventory | where TimeGenerated > ago(15m) | summarize Nodes=dcount(Computer) by ClusterName" \
     --timespan "PT15M"
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az monitor log-analytics query` | Query node inventory counts by cluster. |
+| `--workspace` | Log Analytics workspace to query. |
+| `--analytics-query` | KQL query text to execute. |
+| `--timespan` | Time range for the query. |
 
 ## Cleanup Instructions
 
@@ -181,6 +260,13 @@ az group delete \
     --yes \
     --no-wait
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az group delete` | Delete the lab resource group and its resources. |
+| `--name` | Name of the resource group to delete. |
+| `--yes` | Skip the confirmation prompt. |
+| `--no-wait` | Return without waiting for deletion to finish. |
 
 If you created secondary resource groups, Application Gateway, or user-assigned identities, delete those resources as part of the same cleanup workflow or document why they remain.
 
