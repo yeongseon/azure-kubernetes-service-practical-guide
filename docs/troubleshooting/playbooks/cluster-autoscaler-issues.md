@@ -243,20 +243,21 @@ Interpretation: when the problem is node- or ingress-related, VMSS state and mod
 
 ### Node pool limits or autoscaler profile settings prevent scale-out
 
-**Proves if**: Kubernetes events, previous logs, and Azure-side state all align around this hypothesis.
+**Proves if**: Node pool max count, surge headroom, or profile settings block new nodes.
 
-**Disproves if**: Another signal explains the timing more directly or the expected discriminator is missing.
+**Disproves if**: Node pool max count, surge headroom, and profile settings do not block new nodes.
 
 ```bash
-kubectl describe pod <pod-name> \
-    --namespace <namespace>
+kubectl get configmap cluster-autoscaler-status \
+    --namespace kube-system \
+    --output yaml
 ```
 
 ### Pod constraints cannot be satisfied by any node pool
 
-**Proves if**: Kubernetes events, previous logs, and Azure-side state all align around this hypothesis.
+**Proves if**: Node selectors, taints, zones, or resource requests mismatch the available pools.
 
-**Disproves if**: Another signal explains the timing more directly or the expected discriminator is missing.
+**Disproves if**: Node selectors, taints, zones, and resource requests do not mismatch the available pools.
 
 ```bash
 kubectl describe pod <pod-name> \
@@ -265,24 +266,31 @@ kubectl describe pod <pod-name> \
 
 ### Azure quota or subnet capacity prevents new nodes
 
-**Proves if**: Kubernetes events, previous logs, and Azure-side state all align around this hypothesis.
+**Proves if**: Azure CLI shows VMSS, vCPU, or subnet address space limits reached.
 
-**Disproves if**: Another signal explains the timing more directly or the expected discriminator is missing.
+**Disproves if**: Azure CLI does not show VMSS, vCPU, or subnet address space limits reached.
 
 ```bash
-kubectl describe pod <pod-name> \
-    --namespace <namespace>
+az vm list-usage \
+    --location "$LOCATION" \
+    --output table
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az vm list-usage` | Show regional compute quota and usage. |
+| `--location` | Azure region for the affected cluster and node pool. |
+| `--output` | Output format for the result. |
 
 ### Scale-in blocked by workload protections
 
-**Proves if**: Kubernetes events, previous logs, and Azure-side state all align around this hypothesis.
+**Proves if**: PDBs, local storage, or daemonsets keep nodes from becoming removable.
 
-**Disproves if**: Another signal explains the timing more directly or the expected discriminator is missing.
+**Disproves if**: PDBs, local storage, and daemonsets do not keep nodes from becoming removable.
 
 ```bash
-kubectl describe pod <pod-name> \
-    --namespace <namespace>
+kubectl get poddisruptionbudgets \
+    --all-namespaces
 ```
 
 ## 7. Likely Root Cause Patterns
