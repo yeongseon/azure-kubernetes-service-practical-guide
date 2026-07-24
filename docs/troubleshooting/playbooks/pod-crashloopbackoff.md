@@ -240,46 +240,51 @@ Interpretation: when the problem is node- or ingress-related, VMSS state and mod
 
 ### Image or startup dependency drift
 
-**Proves if**: Kubernetes events, previous logs, and Azure-side state all align around this hypothesis.
+**Proves if**: Events show image pull delay, missing secrets, or entrypoint errors before the loop starts.
 
-**Disproves if**: Another signal explains the timing more directly or the expected discriminator is missing.
+**Disproves if**: Events do not show image pull delay, missing secrets, or entrypoint errors before the loop starts.
 
 ```bash
-kubectl describe pod <pod-name> \
-    --namespace <namespace>
+kubectl get events \
+    --namespace <namespace> \
+    --sort-by=.lastTimestamp
 ```
 
 ### Container exits because of application error
 
-**Proves if**: Kubernetes events, previous logs, and Azure-side state all align around this hypothesis.
+**Proves if**: Previous logs show stack traces, non-zero exit code, or dependency initialization failure.
 
-**Disproves if**: Another signal explains the timing more directly or the expected discriminator is missing.
+**Disproves if**: Previous logs do not show stack traces, non-zero exit code, or dependency initialization failure.
 
 ```bash
-kubectl describe pod <pod-name> \
-    --namespace <namespace>
+kubectl logs <pod-name> \
+    --namespace <namespace> \
+    --previous
 ```
 
 ### OOM kill caused by requests and limits mismatch
 
-**Proves if**: Kubernetes events, previous logs, and Azure-side state all align around this hypothesis.
+**Proves if**: Termination reason is `OOMKilled` and memory metrics climb before restart.
 
-**Disproves if**: Another signal explains the timing more directly or the expected discriminator is missing.
+**Disproves if**: Termination reason is not `OOMKilled` or memory metrics do not climb before restart.
 
 ```bash
-kubectl describe pod <pod-name> \
-    --namespace <namespace>
+kubectl get pod <pod-name> \
+    --namespace <namespace> \
+    --output jsonpath='{.status.containerStatuses[0].lastState.terminated.reason}'
 ```
 
 ### Liveness probe is too aggressive
 
-**Proves if**: Kubernetes events, previous logs, and Azure-side state all align around this hypothesis.
+**Proves if**: Logs show the app becomes healthy eventually, but the kubelet restarts it first.
 
-**Disproves if**: Another signal explains the timing more directly or the expected discriminator is missing.
+**Disproves if**: Logs do not show the app becoming healthy eventually before the kubelet restart.
 
 ```bash
-kubectl describe pod <pod-name> \
-    --namespace <namespace>
+kubectl get events \
+    --namespace <namespace> \
+    --field-selector involvedObject.name=<pod-name> \
+    --sort-by=.lastTimestamp
 ```
 
 ## 7. Likely Root Cause Patterns

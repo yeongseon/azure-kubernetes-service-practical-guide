@@ -237,46 +237,50 @@ Interpretation: when the problem is node- or ingress-related, VMSS state and mod
 
 ### Wrong ingress class or controller is watching the object
 
-**Proves if**: Kubernetes events, previous logs, and Azure-side state all align around this hypothesis.
+**Proves if**: Ingress object exists, but controller logs never mention it or another controller owns the class.
 
-**Disproves if**: Another signal explains the timing more directly or the expected discriminator is missing.
+**Disproves if**: Controller logs mention the ingress object and another controller does not own the class.
 
 ```bash
-kubectl describe pod <pod-name> \
-    --namespace <namespace>
+kubectl logs <controller-pod-name> \
+    --namespace <controller-namespace> \
+    --since=30m
 ```
 
 ### Backend service or endpoint mapping is wrong
 
-**Proves if**: Kubernetes events, previous logs, and Azure-side state all align around this hypothesis.
+**Proves if**: Ingress points to a service without healthy endpoints or wrong target port.
 
-**Disproves if**: Another signal explains the timing more directly or the expected discriminator is missing.
+**Disproves if**: Ingress does not point to a service without healthy endpoints and does not point to the wrong target port.
 
 ```bash
-kubectl describe pod <pod-name> \
-    --namespace <namespace>
+kubectl get endpoints <service-name> \
+    --namespace <namespace> \
+    --output wide
 ```
 
 ### TLS or certificate configuration is invalid
 
-**Proves if**: Kubernetes events, previous logs, and Azure-side state all align around this hypothesis.
+**Proves if**: Controller logs and client output show handshake or secret read errors.
 
-**Disproves if**: Another signal explains the timing more directly or the expected discriminator is missing.
+**Disproves if**: Controller logs and client output do not show handshake or secret read errors.
 
 ```bash
-kubectl describe pod <pod-name> \
-    --namespace <namespace>
+kubectl logs <controller-pod-name> \
+    --namespace <controller-namespace> \
+    --since=30m
 ```
 
 ### DNS or frontend endpoint drift
 
-**Proves if**: Kubernetes events, previous logs, and Azure-side state all align around this hypothesis.
+**Proves if**: Hostname resolves to the wrong public IP, private IP, or Application Gateway listener.
 
-**Disproves if**: Another signal explains the timing more directly or the expected discriminator is missing.
+**Disproves if**: Hostname does not resolve to the wrong public IP, private IP, or Application Gateway listener.
 
 ```bash
-kubectl describe pod <pod-name> \
-    --namespace <namespace>
+kubectl get ingress <ingress-name> \
+    --namespace <namespace> \
+    --output jsonpath='{.status.loadBalancer.ingress[*].ip} {.status.loadBalancer.ingress[*].hostname}'
 ```
 
 ## 7. Likely Root Cause Patterns

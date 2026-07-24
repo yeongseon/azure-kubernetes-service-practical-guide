@@ -16,9 +16,6 @@ content_sources:
     - https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions
 ---
 
-
-
-
 # Best Practices
 
 This section translates AKS platform guidance into production-ready operating standards. Use it as the policy layer between conceptual platform design and day-2 execution.
@@ -70,13 +67,13 @@ Typical operating questions this page answers:
 
 This landing page consolidates the standards that are expanded in the topic pages below. Use it as the review checklist for design workshops, platform governance boards, and pre-production go-live signoff.
 
+Every practice below shares one review lens: interpret each through the repository's landing-standards and review model, asking whether the chosen implementation strengthens or weakens that standard.
+
 ### Practice 1: Establish a standard production cluster blueprint
 
 **Why**: Standard cluster blueprints reduce one-off design drift. They make it easier to review new environments because identity, node pool separation, logging, and ingress follow the same known-good pattern.
 
 **Real-world scenario**: A platform team supports six product squads. When each squad creates its own AKS defaults, on-call engineers cannot quickly tell whether an outage is caused by workload behavior or by cluster-by-cluster configuration differences. A blueprint removes that ambiguity.
-
-**Focus for landing standards and review model**: This practice should be interpreted through the lens of landing standards and review model. Reviewers should ask whether the chosen implementation strengthens or weakens that focus area.
 
 **How**:
 
@@ -154,8 +151,6 @@ az aks show \
 
 **Real-world scenario**: A bursty CI runner workload lands on the same nodes as CoreDNS and ingress. Cluster DNS latency spikes and every application looks unhealthy even though the real problem is node contention. Dedicated pools prevent that kind of shared failure.
 
-**Focus for landing standards and review model**: This practice should be interpreted through the lens of landing standards and review model. Reviewers should ask whether the chosen implementation strengthens or weakens that focus area.
-
 **How**:
 
 ```bash
@@ -216,8 +211,6 @@ Sizing guidance for review meetings:
 **Why**: AKS networking problems usually begin with an under-sized address plan or an unsupported assumption about how pods receive addresses. CNI mode affects scale limits, routing, and operational ownership.
 
 **Real-world scenario**: A team uses Azure CNI traditional mode in a subnet sized only for initial node count. Two months later autoscaler cannot add nodes because pod IP reservations have consumed the subnet. The incident looks like a compute failure but is really IP planning debt.
-
-**Focus for landing standards and review model**: This practice should be interpreted through the lens of landing standards and review model. Reviewers should ask whether the chosen implementation strengthens or weakens that focus area.
 
 **How**:
 
@@ -281,8 +274,6 @@ CNI selection heuristics:
 
 **Real-world scenario**: A compromised pod in a shared namespace scans every service in the cluster because no policy exists. The initial security event becomes a platform-wide outage investigation. Simple default-deny rules would have limited the spread and the scope of triage.
 
-**Focus for landing standards and review model**: This practice should be interpreted through the lens of landing standards and review model. Reviewers should ask whether the chosen implementation strengthens or weakens that focus area.
-
 **How**:
 
 ```bash
@@ -330,8 +321,6 @@ Minimal network policy sequence for a new namespace:
 
 **Real-world scenario**: A developer deploys a debugging DaemonSet with privileged access and host networking into a shared cluster. The cluster remains working, but the security posture collapses instantly. Admission control catches this before it becomes an incident.
 
-**Focus for landing standards and review model**: This practice should be interpreted through the lens of landing standards and review model. Reviewers should ask whether the chosen implementation strengthens or weakens that focus area.
-
 **How**:
 
 ```bash
@@ -375,8 +364,6 @@ Pod security review prompts:
 **Why**: Ingress is where application routing, TLS, private and public exposure, and operational ownership meet. Running multiple controllers without documented intent multiplies certificate, DNS, and support complexity.
 
 **Real-world scenario**: One team deploys ingress-nginx, another installs Traefik, and a third expects Application Gateway Ingress Controller (AGIC) to own north-south traffic. Certificate renewals and DNS records drift because nobody knows which controller is authoritative.
-
-**Focus for landing standards and review model**: This practice should be interpreted through the lens of landing standards and review model. Reviewers should ask whether the chosen implementation strengthens or weakens that focus area.
 
 **How**:
 
@@ -438,8 +425,6 @@ Ingress controller comparison:
 **Why**: Healthy clusters still waste money if requests are inflated, min counts are too high, or spot capacity is not isolated from critical services. Cost discipline must preserve SLOs, not undercut them.
 
 **Real-world scenario**: A batch team moves low-priority workers onto the system pool because spot nodes were never introduced. The cluster pays premium rates for interruptible work and still risks starving critical add-ons during demand spikes.
-
-**Focus for landing standards and review model**: This practice should be interpreted through the lens of landing standards and review model. Reviewers should ask whether the chosen implementation strengthens or weakens that focus area.
 
 **How**:
 
@@ -503,8 +488,6 @@ Cost governance checkpoints:
 **Why**: Without baseline monitoring, AKS incidents start with guesswork. Container Insights gives a shared first responder view of node health, restart trends, and container logs even before application-specific dashboards are ready.
 
 **Real-world scenario**: An application team says the cluster is broken, but nobody can answer whether nodes are Ready, pods are restarting, or one namespace alone is failing. Container Insights shortens that first ten minutes dramatically.
-
-**Focus for landing standards and review model**: This practice should be interpreted through the lens of landing standards and review model. Reviewers should ask whether the chosen implementation strengthens or weakens that focus area.
 
 **How**:
 

@@ -240,47 +240,58 @@ Interpretation: when the problem is node- or ingress-related, VMSS state and mod
 
 ### Kubelet or container runtime on the node is unhealthy
 
-**Proves if**: Kubernetes events, previous logs, and Azure-side state all align around this hypothesis.
+**Proves if**: Node conditions stop updating and kubelet-related events appear first.
 
-**Disproves if**: Another signal explains the timing more directly or the expected discriminator is missing.
+**Disproves if**: Node conditions continue updating or kubelet-related events do not appear first.
 
 ```bash
-kubectl describe pod <pod-name> \
-    --namespace <namespace>
+kubectl describe node <node-name>
 ```
 
 ### Disk pressure or image layer buildup prevents normal kubelet behavior
 
-**Proves if**: Kubernetes events, previous logs, and Azure-side state all align around this hypothesis.
+**Proves if**: Node condition or `InsightsMetrics` shows disk usage saturation.
 
-**Disproves if**: Another signal explains the timing more directly or the expected discriminator is missing.
+**Disproves if**: Node condition does not show disk usage saturation and `InsightsMetrics` does not show disk usage saturation.
 
 ```bash
-kubectl describe pod <pod-name> \
-    --namespace <namespace>
+kubectl get node <node-name> \
+    --output jsonpath='{.status.conditions[?(@.type=="DiskPressure")].status}'
 ```
 
 ### CNI or route failure blocks node heartbeat and pod networking
 
-**Proves if**: Kubernetes events, previous logs, and Azure-side state all align around this hypothesis.
+**Proves if**: Pods lose network reachability and node events align with CNI logs.
 
-**Disproves if**: Another signal explains the timing more directly or the expected discriminator is missing.
+**Disproves if**: Pods do not lose network reachability or node events do not align with CNI logs.
 
 ```bash
-kubectl describe pod <pod-name> \
-    --namespace <namespace>
+kubectl logs <cni-pod-name> \
+    --namespace kube-system \
+    --since=30m
 ```
 
 ### Underlying VMSS or host maintenance event disrupted the node
 
-**Proves if**: Kubernetes events, previous logs, and Azure-side state all align around this hypothesis.
+**Proves if**: Azure instance view or activity logs show platform action near incident start.
 
-**Disproves if**: Another signal explains the timing more directly or the expected discriminator is missing.
+**Disproves if**: Azure instance view and activity logs do not show platform action near incident start.
 
 ```bash
-kubectl describe pod <pod-name> \
-    --namespace <namespace>
+az vmss get-instance-view \
+    --resource-group "$NODE_RESOURCE_GROUP" \
+    --name "$VMSS_NAME" \
+    --instance-id <instance-id> \
+    --output json
 ```
+
+| Command | Purpose |
+| --- | --- |
+| `az vmss get-instance-view` | Show platform state for a specific scale set instance. |
+| `--resource-group` | Node resource group that contains the scale set. |
+| `--name` | Name of the virtual machine scale set. |
+| `--instance-id` | Instance ID of the affected node. |
+| `--output` | Output format for the result. |
 
 ## 7. Likely Root Cause Patterns
 
