@@ -120,3 +120,9 @@ Some situations straddle two phases — the cluster design choice you make while
 - [AKS vs Other Compute](aks-vs-other-compute.md) — compute selection
 - [Decision Tree](../troubleshooting/decision-tree.md) — symptom-first troubleshooting router
 - [Evidence Map](../troubleshooting/evidence-map.md) — evidence-collection index
+
+## Sources
+
+- [Azure Kubernetes Service documentation](https://learn.microsoft.com/en-us/azure/aks/)
+- [AKS core concepts](https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads)
+- [Best practices for AKS](https://learn.microsoft.com/en-us/azure/aks/best-practices)
