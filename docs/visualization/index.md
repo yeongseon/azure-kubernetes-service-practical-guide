@@ -24,3 +24,8 @@ Maps are synthesized from official Microsoft Learn documentation to ensure accur
 - [Platform Architecture](../platform/cluster-architecture.md)
 - [Networking Models](../platform/networking-models.md)
 - [Troubleshooting Overview](../troubleshooting/index.md)
+
+## Sources
+
+- [AKS core concepts](https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads)
+- [AKS network concepts](https://learn.microsoft.com/en-us/azure/aks/concepts-network)
