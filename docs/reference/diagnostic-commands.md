@@ -7,7 +7,7 @@ content_sources:
     justification: Reference visualization synthesized from the Microsoft Learn sources
       linked in this page or the repository validation data for this guide.
     based_on:
-    - https://learn.microsoft.com/cli/azure/aks
+    - https://learn.microsoft.com/en-us/cli/azure/aks
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes
     - https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/
 ---
@@ -96,7 +96,7 @@ az vm list-usage --location $LOCATION --output table
 
 ## Sources
 
-- [Azure CLI az aks reference](https://learn.microsoft.com/cli/azure/aks)
+- [Azure CLI az aks reference](https://learn.microsoft.com/en-us/cli/azure/aks)
 - [kubectl Quick Reference](https://kubernetes.io/docs/reference/kubectl/quick-reference/)
-- [Troubleshoot AKS clusters](https://learn.microsoft.com/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes)
-- [AKS troubleshooting articles](https://learn.microsoft.com/troubleshoot/azure/azure-kubernetes/)
+- [Troubleshoot AKS clusters](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes)
+- [AKS troubleshooting articles](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/)

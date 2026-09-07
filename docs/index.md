@@ -78,7 +78,7 @@ flowchart TD
 
 This is an independent community project. Not affiliated with or endorsed by Microsoft.
 
-Primary product reference: [Azure Kubernetes Service (AKS) documentation (Microsoft Learn)](https://learn.microsoft.com/azure/aks/)
+Primary product reference: [Azure Kubernetes Service (AKS) documentation (Microsoft Learn)](https://learn.microsoft.com/en-us/azure/aks/)
 
 ## See Also
 
@@ -93,5 +93,5 @@ Primary product reference: [Azure Kubernetes Service (AKS) documentation (Micros
 
 ## Sources
 
-- [Azure Kubernetes Service (AKS) documentation](https://learn.microsoft.com/azure/aks/)
-- [What is Azure Kubernetes Service (AKS)?](https://learn.microsoft.com/azure/aks/intro-kubernetes)
+- [Azure Kubernetes Service (AKS) documentation](https://learn.microsoft.com/en-us/azure/aks/)
+- [What is Azure Kubernetes Service (AKS)?](https://learn.microsoft.com/en-us/azure/aks/intro-kubernetes)

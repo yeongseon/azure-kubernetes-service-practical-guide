@@ -73,5 +73,5 @@ az network vnet subnet show --resource-group <network-rg> --vnet-name <vnet-name
 
 ## Sources
 
-- [AKS quotas, virtual machine sizes, and regional availability](https://learn.microsoft.com/azure/aks/quotas-skus-regions)
-- [Azure subscription and service limits, quotas, and constraints](https://learn.microsoft.com/azure/azure-resource-manager/management/azure-subscription-service-limits)
+- [AKS quotas, virtual machine sizes, and regional availability](https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions)
+- [Azure subscription and service limits, quotas, and constraints](https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/azure-subscription-service-limits)

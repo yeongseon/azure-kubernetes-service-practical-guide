@@ -7,7 +7,7 @@ content_sources:
     justification: Navigation flow synthesized from the linked AKS topics and workflows
       on this page.
     based_on:
-    - https://learn.microsoft.com/cli/azure/aks
+    - https://learn.microsoft.com/en-us/cli/azure/aks
 ---
 
 
@@ -45,5 +45,5 @@ flowchart TD
 
 ## Sources
 
-- [Azure CLI az aks reference](https://learn.microsoft.com/cli/azure/aks)
+- [Azure CLI az aks reference](https://learn.microsoft.com/en-us/cli/azure/aks)
 - [kubectl Quick Reference](https://kubernetes.io/docs/reference/kubectl/quick-reference/)
