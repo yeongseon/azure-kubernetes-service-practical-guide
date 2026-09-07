@@ -47,7 +47,7 @@ kubectl get events -A --sort-by=.lastTimestamp
 
 ## Sources
 
-- [Troubleshoot AKS clusters](https://learn.microsoft.com/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes)
-- [AKS troubleshooting articles](https://learn.microsoft.com/troubleshoot/azure/azure-kubernetes/)
-- [Monitor AKS with Container insights](https://learn.microsoft.com/azure/azure-monitor/containers/container-insights-overview)
-- [Use managed Prometheus with AKS](https://learn.microsoft.com/azure/azure-monitor/containers/container-insights-data-collection-configure)
+- [Troubleshoot AKS clusters](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes)
+- [AKS troubleshooting articles](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/)
+- [Monitor AKS with Container insights](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview)
+- [Use managed Prometheus with AKS](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-data-collection-configure)

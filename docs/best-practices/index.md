@@ -637,11 +637,11 @@ A practical FinOps review for AKS should therefore compare cost to avoided risk,
 
 ## Sources
 
-- [Azure / Aks / Best Practices](https://learn.microsoft.com/azure/aks/best-practices)
-- [Azure / Architecture / Reference Architectures / Containers / Aks / Secure Baseline Aks](https://learn.microsoft.com/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks)
-- [Azure / Aks / Concepts Network](https://learn.microsoft.com/azure/aks/concepts-network)
-- [Azure / Aks / Use Network Policies](https://learn.microsoft.com/azure/aks/use-network-policies)
-- [Azure / Aks / Operator Best Practices Pod Security](https://learn.microsoft.com/azure/aks/operator-best-practices-pod-security)
-- [Azure / Aks / Cluster Autoscaler](https://learn.microsoft.com/azure/aks/cluster-autoscaler)
-- [Azure / Azure Monitor / Containers / Container Insights Overview](https://learn.microsoft.com/azure/azure-monitor/containers/container-insights-overview)
-- [Azure / Aks / Quotas Skus Regions](https://learn.microsoft.com/azure/aks/quotas-skus-regions)
+- [Azure / Aks / Best Practices](https://learn.microsoft.com/en-us/azure/aks/best-practices)
+- [Azure / Architecture / Reference Architectures / Containers / Aks / Secure Baseline Aks](https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks)
+- [Azure / Aks / Concepts Network](https://learn.microsoft.com/en-us/azure/aks/concepts-network)
+- [Azure / Aks / Use Network Policies](https://learn.microsoft.com/en-us/azure/aks/use-network-policies)
+- [Azure / Aks / Operator Best Practices Pod Security](https://learn.microsoft.com/en-us/azure/aks/operator-best-practices-pod-security)
+- [Azure / Aks / Cluster Autoscaler](https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler)
+- [Azure / Azure Monitor / Containers / Container Insights Overview](https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview)
+- [Azure / Aks / Quotas Skus Regions](https://learn.microsoft.com/en-us/azure/aks/quotas-skus-regions)

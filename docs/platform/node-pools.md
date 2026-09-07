@@ -127,8 +127,8 @@ Next step: Plan node pool upgrades from the [Node Pool Operations](../operations
 
 ## Sources
 
-- [AKS core concepts for Kubernetes and workloads](https://learn.microsoft.com/azure/aks/concepts-clusters-workloads)
-- [Azure Kubernetes Service (AKS) architecture](https://learn.microsoft.com/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks)
-- [Scale applications in AKS](https://learn.microsoft.com/azure/aks/concepts-scale)
-- [Cluster autoscaler in AKS](https://learn.microsoft.com/azure/aks/cluster-autoscaler)
-- [Vertical Pod Autoscaler for AKS](https://learn.microsoft.com/azure/aks/vertical-pod-autoscaler)
+- [AKS core concepts for Kubernetes and workloads](https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads)
+- [Azure Kubernetes Service (AKS) architecture](https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks)
+- [Scale applications in AKS](https://learn.microsoft.com/en-us/azure/aks/concepts-scale)
+- [Cluster autoscaler in AKS](https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler)
+- [Vertical Pod Autoscaler for AKS](https://learn.microsoft.com/en-us/azure/aks/vertical-pod-autoscaler)

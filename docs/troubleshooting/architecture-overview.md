@@ -68,7 +68,7 @@ Symptoms often appear at one layer and originate in another. A 502 at ingress mi
 
 ## Sources
 
-- [Troubleshoot AKS clusters](https://learn.microsoft.com/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes)
-- [AKS troubleshooting articles](https://learn.microsoft.com/troubleshoot/azure/azure-kubernetes/)
-- [AKS core concepts for Kubernetes and workloads](https://learn.microsoft.com/azure/aks/concepts-clusters-workloads)
-- [Azure Kubernetes Service (AKS) architecture](https://learn.microsoft.com/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks)
+- [Troubleshoot AKS clusters](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/welcome-azure-kubernetes)
+- [AKS troubleshooting articles](https://learn.microsoft.com/en-us/troubleshoot/azure/azure-kubernetes/)
+- [AKS core concepts for Kubernetes and workloads](https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads)
+- [Azure Kubernetes Service (AKS) architecture](https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks)

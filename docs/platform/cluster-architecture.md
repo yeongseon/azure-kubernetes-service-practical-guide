@@ -121,5 +121,5 @@ Next step: Scope Kubernetes RBAC and resource quotas per namespace as described 
 
 ## Sources
 
-- [AKS core concepts for Kubernetes and workloads](https://learn.microsoft.com/azure/aks/concepts-clusters-workloads)
-- [Azure Kubernetes Service (AKS) architecture](https://learn.microsoft.com/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks)
+- [AKS core concepts for Kubernetes and workloads](https://learn.microsoft.com/en-us/azure/aks/concepts-clusters-workloads)
+- [Azure Kubernetes Service (AKS) architecture](https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/containers/aks/secure-baseline-aks)

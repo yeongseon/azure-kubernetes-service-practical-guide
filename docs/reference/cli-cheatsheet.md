@@ -7,7 +7,7 @@ content_sources:
     justification: Reference visualization synthesized from the Microsoft Learn sources
       linked in this page or the repository validation data for this guide.
     based_on:
-    - https://learn.microsoft.com/cli/azure/aks
+    - https://learn.microsoft.com/en-us/cli/azure/aks
 ---
 
 
@@ -103,5 +103,5 @@ kubectl get events -A --sort-by=.lastTimestamp
 
 ## Sources
 
-- [Azure CLI az aks reference](https://learn.microsoft.com/cli/azure/aks)
+- [Azure CLI az aks reference](https://learn.microsoft.com/en-us/cli/azure/aks)
 - [kubectl Quick Reference](https://kubernetes.io/docs/reference/kubectl/quick-reference/)
