@@ -1,11 +1,10 @@
 ---
 content_sources:
-  - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/aks/private-clusters
-  - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/aks/api-server-vnet-integration
-  - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/aks/limit-egress-traffic
+  diagrams:
+    - id: pb-webhook-control-plane-blocked-flow
+      type: flowchart
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/aks/private-clusters
 content_validation:
   status: verified
   last_reviewed: 2026-07-18
@@ -23,6 +22,26 @@ content_validation:
 ---
 
 # Webhook / Control-Plane Calls Blocked
+
+Hypothesis triage for control-plane-blocked webhooks:
+
+<!-- diagram-id: pb-webhook-control-plane-blocked-flow -->
+```mermaid
+flowchart TD
+    S["Admission requests hang or fail"] --> H1{"Webhook Service has no ready endpoints?"}
+    H1 -- yes --> R1["Restore webhook pod readiness and endpoints"]
+    H1 -- no --> H2{"TLS certificate or CA bundle invalid?"}
+    H2 -- yes --> R2["Renew cert and fix the CA bundle"]
+    H2 -- no --> H3{"NetworkPolicy blocks API-server-to-webhook traffic?"}
+    H3 -- yes --> R3["Allow the control-plane path in NetworkPolicy"]
+    H3 -- no --> H4{"UDR, firewall, or proxy blocks control-plane calls?"}
+    H4 -- yes --> R4["Open the control-plane-originated path"]
+    H4 -- no --> H5{"Timeout or failurePolicy makes writes hang?"}
+    H5 -- yes --> R5["Tune timeout and failurePolicy"]
+    H5 -- no --> EV["Diagnose: webhook config, service and endpoints, network policies, cluster model"]
+    EV --> RES["Resolution per matched cause"]
+    RES --> PREV["Prevention: webhook readiness and policy checks in CI"]
+```
 
 ## Symptom
 
