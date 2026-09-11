@@ -1,15 +1,10 @@
 ---
-
 content_sources:
   diagrams:
     - id: pb-image-pull-restricted-egress-flow
       type: flowchart
-      source: self-generated
-      justification: Hypothesis triage flow synthesized from this playbook's own causes and diagnosis steps.
-
-    url: https://learn.microsoft.com/en-us/azure/aks/limit-egress-traffic
-  - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/aks/outbound-rules-control-egress
+      source: mslearn-adapted
+      mslearn_url: https://learn.microsoft.com/en-us/azure/aks/limit-egress-traffic
 content_validation:
   status: verified
   last_reviewed: 2026-07-18
