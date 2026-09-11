@@ -1,6 +1,12 @@
 ---
+
 content_sources:
-  - type: mslearn-adapted
+  diagrams:
+    - id: pb-image-pull-restricted-egress-flow
+      type: flowchart
+      source: self-generated
+      justification: Hypothesis triage flow synthesized from this playbook's own causes and diagnosis steps.
+
     url: https://learn.microsoft.com/en-us/azure/aks/limit-egress-traffic
   - type: mslearn-adapted
     url: https://learn.microsoft.com/en-us/azure/aks/outbound-rules-control-egress
@@ -18,6 +24,24 @@ content_validation:
 ---
 
 # Image Pull Fails in Restricted Egress
+
+Hypothesis triage for image pulls under restricted egress:
+
+<!-- diagram-id: pb-image-pull-restricted-egress-flow -->
+```mermaid
+flowchart TD
+    S["Pods in ImagePullBackOff under restricted egress"] --> H1{"Image reference or pull secret broken?"}
+    H1 -- yes --> R1["Fix image ref, tag, or pull secret"]
+    H1 -- no --> H2{"ACR private endpoint DNS resolves publicly?"}
+    H2 -- yes --> R2["Fix private DNS zone linkage"]
+    H2 -- no --> H3{"Firewall, UDR, or proxy blocks registry endpoints?"}
+    H3 -- yes --> R3["Allow ACR and MCR FQDNs on the egress path"]
+    H3 -- no --> H4{"Proxy intercepts TLS or misses no-proxy exclusions?"}
+    H4 -- yes --> R4["Correct TLS handling and bypass CIDRs"]
+    H4 -- no --> EV["Diagnose: prove image vs network first, confirm egress model"]
+    EV --> RES["Resolution per matched cause"]
+    RES --> PREV["Prevention: validate egress rules with each cluster change"]
+```
 
 ## Symptom
 
