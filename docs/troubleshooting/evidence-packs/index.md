@@ -9,7 +9,7 @@ content_sources:
       url: https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/kubeevents
     - type: mslearn-adapted
       url: https://learn.microsoft.com/en-us/azure/azure-monitor/reference/tables/perf
-  content_validation:
+content_validation:
   status: verified
   last_reviewed: 2026-07-18
   reviewer: agent

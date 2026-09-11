@@ -11,7 +11,7 @@ content_sources:
       url: https://learn.microsoft.com/en-us/azure/aks/load-balancer-standard
     - type: mslearn-adapted
       url: https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections
-  content_validation:
+content_validation:
   status: verified
   last_reviewed: 2026-07-18
   reviewer: agent

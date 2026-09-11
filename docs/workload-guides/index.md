@@ -4,7 +4,7 @@ content_sources:
   references:
     - type: self-generated
       justification: Hub page for workload-pattern guides derived from Microsoft Learn AKS architecture, scaling, ingress, identity, and monitoring guidance.
-  ---
+---
 
 # Workload Guides
 

@@ -5,7 +5,7 @@ content_sources:
       justification: Compatibility bridge page that preserves existing inbound links after the AKS metrics catalog was split by topic.
     - type: mslearn-adapted
       url: https://learn.microsoft.com/en-us/azure/aks/monitor-aks-reference
-  ---
+---
 
 # AKS Metrics Catalog
 

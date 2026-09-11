@@ -7,7 +7,7 @@ content_sources:
       url: https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler-overview
     - type: mslearn-adapted
       url: https://learn.microsoft.com/en-us/azure/aks/concepts-scale
-  content_validation:
+content_validation:
   status: verified
   last_reviewed: 2026-07-18
   reviewer: agent
