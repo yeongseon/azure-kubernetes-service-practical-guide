@@ -1,7 +1,8 @@
 ---
 content_sources:
-  - type: self-generated
-    justification: Hub page for the metrics reference subsection.
+  references:
+    - type: self-generated
+      justification: Hub page for the metrics reference subsection.
 ---
 
 # Metrics Reference

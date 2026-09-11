@@ -1,7 +1,8 @@
 ---
 content_sources:
-  - type: self-generated
-    justification: "Hub page for the Language Guides extension section"
+  references:
+    - type: self-generated
+      justification: "Hub page for the Language Guides extension section"
 ---
 
 # Language Guides

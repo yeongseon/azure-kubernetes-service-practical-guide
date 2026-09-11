@@ -1,11 +1,12 @@
 ---
 content_sources:
-  - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/aks/monitor-aks-reference
-  - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler-overview
-  - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/aks/concepts-scale
+  references:
+    - type: mslearn-adapted
+      url: https://learn.microsoft.com/en-us/azure/aks/monitor-aks-reference
+    - type: mslearn-adapted
+      url: https://learn.microsoft.com/en-us/azure/aks/cluster-autoscaler-overview
+    - type: mslearn-adapted
+      url: https://learn.microsoft.com/en-us/azure/aks/concepts-scale
 content_validation:
   status: verified
   last_reviewed: 2026-07-18

@@ -1,11 +1,12 @@
 ---
 content_sources:
-  - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/aks/monitor-aks-reference
-  - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
-  - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/prometheus-metrics-overview
+  references:
+    - type: mslearn-adapted
+      url: https://learn.microsoft.com/en-us/azure/aks/monitor-aks-reference
+    - type: mslearn-adapted
+      url: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
+    - type: mslearn-adapted
+      url: https://learn.microsoft.com/en-us/azure/azure-monitor/essentials/prometheus-metrics-overview
 content_validation:
   status: verified
   last_reviewed: 2026-07-18
