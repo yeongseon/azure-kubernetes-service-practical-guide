@@ -1,9 +1,10 @@
 ---
 description: Azure Kubernetes Service workload guides for implementation patterns — deployment shape, scaling, probes, networking, identity, and observability by workload type.
 content_sources:
-  - type: self-generated
-    justification: Hub page for workload-pattern guides derived from Microsoft Learn AKS architecture, scaling, ingress, identity, and monitoring guidance.
----
+  references:
+    - type: self-generated
+      justification: Hub page for workload-pattern guides derived from Microsoft Learn AKS architecture, scaling, ingress, identity, and monitoring guidance.
+  ---
 
 # Workload Guides
 

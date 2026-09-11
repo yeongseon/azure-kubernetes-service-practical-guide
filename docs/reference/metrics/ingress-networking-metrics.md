@@ -1,16 +1,17 @@
 ---
 content_sources:
-  - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/aks/monitor-aks-reference
-  - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
-  - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
-  - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/aks/load-balancer-standard
-  - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections
-content_validation:
+  references:
+    - type: mslearn-adapted
+      url: https://learn.microsoft.com/en-us/azure/aks/monitor-aks-reference
+    - type: mslearn-adapted
+      url: https://learn.microsoft.com/en-us/azure/aks/monitor-aks
+    - type: mslearn-adapted
+      url: https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+    - type: mslearn-adapted
+      url: https://learn.microsoft.com/en-us/azure/aks/load-balancer-standard
+    - type: mslearn-adapted
+      url: https://learn.microsoft.com/en-us/azure/load-balancer/load-balancer-outbound-connections
+  content_validation:
   status: verified
   last_reviewed: 2026-07-18
   reviewer: agent

@@ -1,12 +1,13 @@
 ---
 content_sources:
-  - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/aks/monitor-aks-reference
-  - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
-  - type: mslearn-adapted
-    url: https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-metric-alerts
-content_validation:
+  references:
+    - type: mslearn-adapted
+      url: https://learn.microsoft.com/en-us/azure/aks/monitor-aks-reference
+    - type: mslearn-adapted
+      url: https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-overview
+    - type: mslearn-adapted
+      url: https://learn.microsoft.com/en-us/azure/azure-monitor/containers/container-insights-metric-alerts
+  content_validation:
   status: verified
   last_reviewed: 2026-07-18
   reviewer: agent
